@@ -4,11 +4,12 @@ import SignIn from './src/components/Authentication/SignIn/sign-in';
 import Colors from './src/globals/colors';
 import Alignment from './src/globals/alignment';
 import SignUp from './src/components/Authentication/SignUp/sign-up';
+import ForgotPassword from './src/components/Authentication/ForgotPassword/forgot-password';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <SignUp/>
+      <ForgotPassword/>
     </SafeAreaView>
   );
 }

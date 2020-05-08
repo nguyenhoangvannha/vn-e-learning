@@ -8,11 +8,12 @@ import Sizes from '../../../globals/sizes'
 import CButton from '../../Common/Button/c-button'
 import SizedBox from '../../Common/Container/sized-box'
 import FontWeight from '../../../globals/font-weight'
+import Styles from '../../../globals/styles'
 
 const SignIn = () => {
     return (
-        <ScrollView style={styles.container} >
-            <View style={styles.column}>
+        <ScrollView style={Styles.screenContainer} >
+            <View style={Styles.screenColumn}>
                 <SizedBox height={'25%'} />
                 <CText data="Sign In" style={styles.label} />
                 <SizedBox height={Sizes.s70} />
@@ -32,16 +33,6 @@ const SignIn = () => {
 export default SignIn
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-    },
-    column: {
-        flex: 1,
-        width: '100%',
-        justifyContent: Alignment.center,
-        padding: Sizes.s16,
-    },
     label: {
         alignSelf: Alignment.center,
         fontSize: Sizes.s34,
