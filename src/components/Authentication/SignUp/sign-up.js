@@ -9,36 +9,36 @@ import CButton from '../../Common/Button/c-button'
 import SizedBox from '../../Common/Container/sized-box'
 import FontWeight from '../../../globals/font-weight'
 
-const SignIn = () => {
+const SignUp = (props) => {
     return (
-        <ScrollView style={styles.container} >
+        <ScrollView style={styles.container}>
             <View style={styles.column}>
-                <SizedBox height={'25%'} />
-                <CText data="Sign In" style={styles.label} />
-                <SizedBox height={Sizes.s70} />
-                <CTextInput label="Username" placeholder="Your username" style={styles.input} />
+                <SizedBox height={'8%'} />
+                <CText data="Sign Up" style={styles.label} />
+                <SizedBox height={Sizes.s32} />
+                <CTextInput label="Email" placeholder="Example: your@mail" style={styles.input} />
+                <CTextInput label="First name" placeholder="" style={styles.input} />
+                <CTextInput label="Last name" placeholder="" style={styles.input} />
+                <CTextInput label="Phone" placeholder="" style={styles.input} />
                 <CTextInput label="Password" placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
+                <CTextInput label="Re-typePassword" placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
                 <SizedBox height={Sizes.s16} />
-                <CButton title="SIGN IN" type='solid' style={styles.signIn} loading={false} disabled={false} />
-                <SizedBox height={Sizes.s12} />
-                <CButton title="SIGN UP" type='outline' style={styles.signUp} loading={false} disabled={false} />
+                <CButton title="CREATE ACCOUNT" type='outline' style={styles.signUp} loading={false} disabled={false} />
                 <SizedBox height={Sizes.s24} />
-                <CButton title="FORGOT PASSWORD?" type='clear' style={styles.forgotPassword} loading={false} disabled={false} />
+                <CButton title="BACK TO LOGIN" type='clear' style={styles.forgotPassword} loading={false} disabled={false} />
             </View>
         </ScrollView>
     )
 }
 
-export default SignIn
+export default SignUp
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%',
+        width: '100%'
     },
     column: {
-        flex: 1,
-        width: '100%',
         justifyContent: Alignment.center,
         padding: Sizes.s16,
     },
@@ -59,3 +59,4 @@ const styles = StyleSheet.create({
 
     },
 })
+

@@ -10,6 +10,8 @@ import FlexDirection from '../../../globals/flex-direction'
 
 const CTextInput = (props) => {
 
+    const input = React.createRef();
+
     var hasError = (props.error != undefined && props.error.length > 0);
     var borderColor = hasError ? Colors.red : Colors.grey100;
 
@@ -21,6 +23,7 @@ const CTextInput = (props) => {
             }
             <SizedBox height={3} />
             <TextInput
+                ref={input}
                 style={{ ...styles.textInput, ...props.style }}
                 onChangeText={props.onChangeText}
                 numberOfLines={props.numberOfLines ?? 1}
