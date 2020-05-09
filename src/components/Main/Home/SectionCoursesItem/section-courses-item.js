@@ -7,14 +7,14 @@ import SectionCourseItemInfo from './section-course-item-info'
 
 const SectionCourseItem = ({ style, course }) => {
     return (
-        <CCard style={style} child={
+        <CCard style={style}>
             <View>
                 <CImage uri={course.image} style={styles.image} />
                 <View style={styles.infoContainer}>
-                    <SectionCourseItemInfo course={course}/>
+                    <SectionCourseItemInfo course={course} />
                 </View>
             </View>
-        } />
+        </CCard>
     )
 }
 

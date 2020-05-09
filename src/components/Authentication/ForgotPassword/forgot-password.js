@@ -11,13 +11,13 @@ import Colors from '../../../globals/colors'
 import { Icon } from 'react-native-elements'
 import FlexDirection from '../../../globals/flex-direction'
 import CAppBar from '../../Common/AppBar/app-bar'
-import { Appbar } from 'react-native-paper'
+import CScrollView from '../../Common/Container/c-scroll-view'
 
 const ForgotPassword = () => {
     return (
         <View>
             <CAppBar/>
-            <ScrollView>
+            <CScrollView>
                 <View style={Styles.screenContainer}>
                     <SizedBox height={'25%'} />
                     <View style={{ flexDirection: FlexDirection.row }}>
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
                     <SizedBox height={Sizes.s16} />
                     <CButton title='Cancel' color={Colors.bodyText} titleStyle={TextStyles.primaryButton} />
                 </View>
-            </ScrollView>
+            </CScrollView>
         </View>
 
     )

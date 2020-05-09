@@ -1,4 +1,4 @@
-import CourseModel from "../SectionCoursesItem/course-model";
+import CourseModel from "../models/course/course-model";
 
 const coursesData = [
     new CourseModel(

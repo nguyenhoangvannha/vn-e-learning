@@ -1,29 +1,45 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import SectionCourseItem from './SectionCoursesItem/section-courses-item'
+import { StyleSheet, View } from 'react-native'
 import Styles from '../../../globals/styles'
-import { Image } from 'react-native-elements'
-import { ActivityIndicator } from 'react-native-paper'
 import SectionCourses from './SectionCourses/section-courses'
-import Colors from '../../../globals/colors'
 import Sizes from '../../../globals/sizes'
+import coursesData from '../../../data/mock/data'
+import SizedBox from '../../Common/Container/sized-box'
+import CScrollView from '../../Common/Container/c-scroll-view'
 
 const Home = () => {
     return (
-        <View style={Styles.screenContainer}>
-            <View style={styles.sectionCoursesContainer}>
-                <SectionCourses style={styles.sectionCourses}/>
+        <CScrollView>
+            <View style={Styles.screenContainer}>
+                <SectionCourses
+                    headerText='Software development'
+                    data={coursesData}
+                    style={styles.sectionCourses}
+                />
+                <SizedBox height={Sizes.s12} />
+                <SectionCourses
+                    headerText='IT operations'
+                    data={coursesData}
+                    style={styles.sectionCourses}
+                />
+                <SectionCourses
+                    headerText='Data professional'
+                    data={coursesData}
+                    style={styles.sectionCourses}
+                />
+                <SectionCourses
+                    headerText='Security professional'
+                    data={coursesData}
+                    style={styles.sectionCourses}
+                />
             </View>
-        </View>
+        </CScrollView>
     )
 }
 
 export default Home
 
 const styles = StyleSheet.create({
-    sectionCoursesContainer: {
-        height: '34%',
-    },
     sectionCourses: {
         padding: Sizes.s8,
     },

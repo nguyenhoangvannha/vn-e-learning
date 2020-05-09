@@ -1,10 +1,12 @@
 import React from 'react'
-import { Button } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 import Colors from '../../../globals/colors'
 
-const CButton = ({title, type, style, titleStyle, color,loading, disabled}) => {
+const CButton = ({ onPress, title, type, style, titleStyle, color, loading, disabled, icon, iconRight }) => {
     return (
-        <Button title={title}
+        <Button
+            onPress={onPress}
+            title={title}
             type={type}
             style={style}
             containerStyle={style}
@@ -13,9 +15,12 @@ const CButton = ({title, type, style, titleStyle, color,loading, disabled}) => {
                 colors: [color ?? Colors.blue500, color ?? Colors.blue500],
                 start: { x: 0, y: 0.5 },
                 end: { x: 1, y: 0.5 },
-              }}
+            }}
             loading={loading}
-            disabled={disabled}/>
+            disabled={disabled}
+            icon={icon}
+            iconRight={iconRight ?? false}
+        />
     )
 }
 

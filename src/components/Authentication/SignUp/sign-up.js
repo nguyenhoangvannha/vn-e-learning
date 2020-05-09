@@ -9,10 +9,11 @@ import CButton from '../../Common/Button/c-button'
 import SizedBox from '../../Common/Container/sized-box'
 import FontWeight from '../../../globals/font-weight'
 import Styles from '../../../globals/styles'
+import CScrollView from '../../Common/Container/c-scroll-view'
 
 const SignUp = () => {
     return (
-        <ScrollView style={Styles.screenContainer}>
+        <CScrollView style={Styles.screenContainer}>
             <View style={Styles.screenColumn}>
                 <SizedBox height={'8%'} />
                 <CText data="Sign Up" style={styles.label} />
@@ -28,7 +29,7 @@ const SignUp = () => {
                 <SizedBox height={Sizes.s24} />
                 <CButton title="BACK TO LOGIN" type='clear' style={styles.forgotPassword} loading={false} disabled={false} />
             </View>
-        </ScrollView>
+        </CScrollView>
     )
 }
 

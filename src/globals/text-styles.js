@@ -6,8 +6,14 @@ import { StyleSheet } from 'react-native'
 const TextStyles = StyleSheet.create({
     h1: {
         fontSize: Sizes.s28,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.normal,
         lineHeight: Sizes.s32,
+        color: Colors.heavyCaption,
+    },
+    h3: {
+        fontSize: Sizes.s20,
+        fontWeight: FontWeight.normal,
+        lineHeight: Sizes.s24,
         color: Colors.heavyCaption,
     },
     description: {
