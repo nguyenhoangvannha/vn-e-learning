@@ -10,7 +10,7 @@ import Home from './src/components/Main/Home/home';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Home/>
+      <SignUp/>
     </SafeAreaView>
   );
 }

@@ -7,15 +7,15 @@ import TextStyles from '../../../globals/text-styles';
 import FontWeight from '../../../globals/font-weight';
 
 
-const CAppBar = (props) => {
+const CAppBar = ({title, subtitle}) => {
     return (
         <Appbar.Header style={styles.container}>
             <Appbar.BackAction color={Colors.bodyText} size={22}/>
             {
-                (props.title != undefined) && <Appbar.Content
-                    title={props.title}
+                (title != undefined) && <Appbar.Content
+                    title={title}
                     titleStyle={styles.titleStyle}
-                    subtitle={props.subtitle}
+                    subtitle={subtitle}
                 />
             }
         </Appbar.Header>

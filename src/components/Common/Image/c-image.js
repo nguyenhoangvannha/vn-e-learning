@@ -2,11 +2,11 @@ import React from 'react'
 import { ActivityIndicator} from 'react-native'
 import { Image } from 'react-native-elements'
 
-const CImage = (props) => {
+const CImage = ({uri, style}) => {
     return (
         <Image
-            source={{ uri: props.uri }}
-            style={props.style}
+            source={{ uri: uri }}
+            style={style}
             PlaceholderContent={<ActivityIndicator />}
         />
     )

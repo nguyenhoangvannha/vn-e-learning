@@ -8,7 +8,7 @@ import SectionCourses from './SectionCourses/section-courses'
 import Colors from '../../../globals/colors'
 import Sizes from '../../../globals/sizes'
 
-const Home = (props) => {
+const Home = () => {
     return (
         <View style={Styles.screenContainer}>
             <View style={styles.sectionCoursesContainer}>

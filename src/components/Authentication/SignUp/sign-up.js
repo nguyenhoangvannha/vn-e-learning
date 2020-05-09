@@ -10,7 +10,7 @@ import SizedBox from '../../Common/Container/sized-box'
 import FontWeight from '../../../globals/font-weight'
 import Styles from '../../../globals/styles'
 
-const SignUp = (props) => {
+const SignUp = () => {
     return (
         <ScrollView style={Styles.screenContainer}>
             <View style={Styles.screenColumn}>

@@ -4,10 +4,10 @@ import { Card } from 'react-native-paper'
 import Colors from '../../../globals/colors'
 import Sizes from '../../../globals/sizes'
 
-const CCard = (props) => {
+const CCard = ({style, child}) => {
     return (
-        <Card style={styles.container, {...props.style}}>
-            {props.child}
+        <Card style={styles.container, {...style}}>
+            {child}
         </Card>
     )
 }

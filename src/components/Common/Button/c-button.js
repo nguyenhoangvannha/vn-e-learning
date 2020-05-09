@@ -2,20 +2,20 @@ import React from 'react'
 import { Button } from 'react-native-elements'
 import Colors from '../../../globals/colors'
 
-const CButton = (props) => {
+const CButton = ({title, type, style, titleStyle, color,loading, disabled}) => {
     return (
-        <Button title={props.title}
-            type={props.type}
-            style={props.style}
-            containerStyle={props.style}
-            titleStyle={props.titleStyle}
+        <Button title={title}
+            type={type}
+            style={style}
+            containerStyle={style}
+            titleStyle={titleStyle}
             linearGradientProps={{
-                colors: [props.color ?? Colors.blue500, props.color ?? Colors.blue500],
+                colors: [color ?? Colors.blue500, color ?? Colors.blue500],
                 start: { x: 0, y: 0.5 },
                 end: { x: 1, y: 0.5 },
               }}
-            loading={props.loading}
-            disabled={props.disabled}/>
+            loading={loading}
+            disabled={disabled}/>
     )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { View } from 'react-native'
 
-const SizedBox = (props) => {
-    return <View style={{ width: props.width, height: props.height, color: props.color }}>
+const SizedBox = ({ width, height, color }) => {
+    return <View style={{ width: width, height: height, color: color }}>
     </View>
 }
 

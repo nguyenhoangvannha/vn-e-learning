@@ -8,28 +8,28 @@ import { Divider, Icon } from 'react-native-elements'
 import SizedBox from '../Container/sized-box'
 import FlexDirection from '../../../globals/flex-direction'
 
-const CTextInput = (props) => {
+const CTextInput = ({error, style, width, label, onChangeText, numberOfLines,placeholder, secureTextEntry }) => {
 
     const input = React.createRef();
 
-    var hasError = (props.error != undefined && props.error.length > 0);
+    var hasError = (error != undefined && error.length > 0);
     var borderColor = hasError ? Colors.red : Colors.grey100;
 
     return <View>
-        <View style={{ ...styles.container, ...props.style, width: props.width, borderColor: borderColor }}>
+        <View style={{ ...styles.container, ...style, width: width, borderColor: borderColor }}>
             {
-                (props.label != undefined && props.label.length > 0) &&
-                <Text style={styles.label} >{props.label}</Text>
+                (label != undefined && label.length > 0) &&
+                <Text style={styles.label} >{label}</Text>
             }
             <SizedBox height={3} />
             <TextInput
                 ref={input}
-                style={{ ...styles.textInput, ...props.style }}
-                onChangeText={props.onChangeText}
-                numberOfLines={props.numberOfLines ?? 1}
-                placeholder={props.placeholder}
+                style={{ ...styles.textInput, ...style }}
+                onChangeText={onChangeText}
+                numberOfLines={numberOfLines ?? 1}
+                placeholder={placeholder}
                 placeholderTextColor={Colors.desText}
-                secureTextEntry={props.secureTextEntry ?? false}
+                secureTextEntry={secureTextEntry ?? false}
             />
         </View>
         <SizedBox height={Sizes.s8} />
@@ -37,7 +37,7 @@ const CTextInput = (props) => {
             hasError && <View style={styles.errorRow}>
                 <Icon name='error' color={Colors.red} size={Sizes.s14} />
                 <SizedBox width={Sizes.s8} />
-                <Text style={styles.errorText}>{props.error}</Text>
+                <Text style={styles.errorText}>{error}</Text>
             </View>
         }
     </View>
