@@ -25,9 +25,9 @@ const SignUp = () => {
                 <CTextInput label="Password" placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
                 <CTextInput label="Re-typePassword" placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
                 <SizedBox height={Sizes.s16} />
-                <CButton title="CREATE ACCOUNT" type='outline' style={styles.signUp} loading={false} disabled={false} />
+                <CButton title="CREATE ACCOUNT" type='outline' style={styles.signUp} loading={false} disabled={true} />
                 <SizedBox height={Sizes.s24} />
-                <CButton title="BACK TO LOGIN" type='clear' style={styles.forgotPassword} loading={false} disabled={false} />
+                <CButton title="BACK TO LOGIN" type='clear' color={Colors.transparent} style={styles.forgotPassword} loading={false} disabled={false} />
             </View>
         </CScrollView>
     )

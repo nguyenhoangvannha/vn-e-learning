@@ -12,11 +12,12 @@ import coursesData from './src/data/mock/courses-mock-data';
 import ForgotPassword from './src/components/Authentication/ForgotPassword/forgot-password'
 import MyCourses from './src/components/Main/MyCourses/my-courses';
 import Profile from './src/components/Account/Profile/profile';
+import Settings from './src/components/Account/Settings/settings';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Profile/>
+      <SignUp/>
     </SafeAreaView>
   );
 }
