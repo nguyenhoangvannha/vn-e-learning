@@ -10,11 +10,13 @@ import Home from './src/components/Main/Home/home'
 import CourseDetail from './src/components/CourseDetail/course-details';
 import coursesData from './src/data/mock/courses-mock-data';
 import ForgotPassword from './src/components/Authentication/ForgotPassword/forgot-password'
+import MyCourses from './src/components/Main/MyCourses/my-courses';
+import Profile from './src/components/Account/Profile/profile';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Home/>
+      <Profile/>
     </SafeAreaView>
   );
 }
