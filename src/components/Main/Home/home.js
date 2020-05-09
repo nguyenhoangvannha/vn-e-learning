@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import Styles from '../../../globals/styles'
 import SectionCourses from './SectionCourses/section-courses'
 import Sizes from '../../../globals/sizes'
-import coursesData from '../../../data/mock/data'
+import coursesData from '../../../data/mock/courses-mock-data'
 import SizedBox from '../../Common/Container/sized-box'
 import CScrollView from '../../Common/Container/c-scroll-view'
 

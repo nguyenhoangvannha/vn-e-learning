@@ -4,9 +4,8 @@ import CSearchBar from '../../Common/Search/c-search-bar'
 import Styles from '../../../globals/styles'
 import CCard from '../../Common/Container/c-card'
 import Sizes from '../../../globals/sizes'
-import CTabBar from '../../Common/Navigation/c-tab-bar'
 import ListCourses from '../../Courses/ListCourses/list-courses'
-import coursesData from '../../../data/mock/data'
+import coursesData from '../../../data/mock/courses-mock-data'
 
 const Search = () => {
     return (

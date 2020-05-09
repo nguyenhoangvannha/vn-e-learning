@@ -33,6 +33,16 @@ const TextStyles = StyleSheet.create({
         fontWeight: FontWeight.w600,
         color: Colors.back400,
     },
+    bodyText: {
+        fontSize: Sizes.s16,
+        lineHeight: Sizes.s20,
+        color: Colors.bodyText,
+    },
+    smallCaption: {
+        fontSize: Sizes.s10,
+        lineHeight: Sizes.s12,
+        color: Colors.grey200,
+    }
 })
 
 export default TextStyles

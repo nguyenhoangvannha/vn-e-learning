@@ -8,6 +8,7 @@ const Colors = {
     blue: 'blue',
     blue500: '#395AD2',
     grey100: '#D8DCEA',
+    grey200: '#999999',
     errorAlert: '#EB5757',
     // Neutral
     heavyCaption: '#343B57',
