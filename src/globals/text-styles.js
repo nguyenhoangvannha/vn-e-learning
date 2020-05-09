@@ -21,6 +21,12 @@ const TextStyles = StyleSheet.create({
         lineHeight: Sizes.s22,
         fontWeight: FontWeight.bold,
     },
+    headLine: {
+        fontSize: Sizes.s16,
+        lineHeight: Sizes.s20,
+        fontWeight: FontWeight.w600,
+        color: Colors.back400,
+    },
 })
 
 export default TextStyles
