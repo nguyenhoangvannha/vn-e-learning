@@ -5,14 +5,16 @@ import Alignment from './src/globals/alignment';
 import ListAuthors from './src/components/Author/ListAuthors/list-authors';
 import ListCourses from './src/components/Courses/ListCourses/list-courses';
 import SignIn from './src/components/Authentication/SignIn/sign-in'
+import SignUp from './src/components/Authentication/SignUp/sign-up'
 import Home from './src/components/Main/Home/home'
 import CourseDetail from './src/components/CourseDetail/course-details';
 import coursesData from './src/data/mock/courses-mock-data';
+import ForgotPassword from './src/components/Authentication/ForgotPassword/forgot-password'
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <CourseDetail course={coursesData[0]}/>
+      <Home/>
     </SafeAreaView>
   );
 }
