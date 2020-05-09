@@ -8,12 +8,15 @@ import { Rating } from 'react-native-elements'
 import Alignment from '../../../../globals/alignment'
 import FlexDirection from '../../../../globals/flex-direction'
 
-const SectionCourseItemInfo = ({course}) => {
+const SectionCourseItemInfo = ({ course, simple = false }) => {
     return (
         <View style={styles.container}>
             <CText data={course.name} style={TextStyles.headLine} />
             <SizedBox height={Sizes.s2} />
-            <CText data={course.teachers} style={TextStyles.description} />
+            {
+                !simple && <CText data={course.teachers} style={TextStyles.description} />
+            }
+            <SizedBox height={Sizes.s2} />
             <View style={styles.row}>
                 <CText data={course.level} style={TextStyles.description} />
                 <SizedBox width={Sizes.s4} />
@@ -22,14 +25,16 @@ const SectionCourseItemInfo = ({course}) => {
                 <CText data={course.length} style={TextStyles.description} />
             </View>
             <SizedBox height={Sizes.s4} />
-            <View style={styles.row}>
-                <Rating
-                    type='star'
-                    ratingCount={course.rating ?? 0}
-                    imageSize={Sizes.s16} />
-                <SizedBox width={Sizes.s4} />
-                <CText data={`(${course.ratingCount})`} style={TextStyles.description} />
-            </View>
+            {
+                !simple && <View style={styles.row}>
+                    <Rating
+                        type='star'
+                        ratingCount={course.rating ?? 0}
+                        imageSize={Sizes.s16} />
+                    <SizedBox width={Sizes.s4} />
+                    <CText data={`(${course.ratingCount})`} style={TextStyles.description} />
+                </View>
+            }
         </View>
     )
 }

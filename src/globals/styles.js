@@ -14,7 +14,8 @@ const Styles = StyleSheet.create({
     screenContainer: {
         flex: 1,
         width: '100%',
-        padding: Sizes.s24,
+        paddingHorizontal: Sizes.s18,
+        paddingVertical: Sizes.s14,
     },
     screenColumn: {
         justifyContent: Alignment.center,

@@ -2,7 +2,7 @@ const Colors = {
     transparent: '#FFFFFFFF',
     white: 'white',
     black: 'black',
-    back400: '#333333',
+    black400: '#333333',
     red: 'red',
     green: 'green',
     blue: 'blue',

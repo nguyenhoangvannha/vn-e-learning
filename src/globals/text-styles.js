@@ -31,7 +31,7 @@ const TextStyles = StyleSheet.create({
         fontSize: Sizes.s16,
         lineHeight: Sizes.s20,
         fontWeight: FontWeight.w600,
-        color: Colors.back400,
+        color: Colors.black400,
     },
     bodyText: {
         fontSize: Sizes.s16,

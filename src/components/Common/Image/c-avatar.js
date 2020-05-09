@@ -6,7 +6,7 @@ import Strings from '../../../globals/strings'
 const CAvatar = ({ uri, size }) => {
     return (
         <Avatar
-            size={size}
+            size={size ?? 'small'}
             rounded
             source={{
                 uri: uri ?? Strings.defaultAvatar,
