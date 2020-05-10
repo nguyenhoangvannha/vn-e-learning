@@ -17,11 +17,12 @@ import Browse from './src/components/Main/Browse/browse';
 import EmptyScreen from './src/components/Common/Screen/empty-screen';
 import Strings from './src/globals/strings';
 import Downloads from './src/components/Content/Downloads/downloads';
+import VerifyPassword from './src/components/Authentication/VerifyPassword/verify-password';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Downloads />
+      <VerifyPassword />
     </SafeAreaView>
   );
 }
