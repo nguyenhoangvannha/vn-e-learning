@@ -1,23 +1,36 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet} from 'react-native'
 import { Appbar } from 'react-native-paper';
 import Colors from '../../../globals/colors';
 import Sizes from '../../../globals/sizes';
 import TextStyles from '../../../globals/text-styles';
-import FontWeight from '../../../globals/font-weight';
+import Alignment from '../../../globals/alignment';
+import CText from '../Text/c-text';
+import CAvatar from '../Image/c-avatar';
+import Strings from '../../../globals/strings';
 
 
-const CAppBar = ({title, subtitle}) => {
+const CAppBar = ({ title, subtitle, hasBack = true, children }) => {
     return (
-        <Appbar.Header style={styles.container}>
-            <Appbar.BackAction color={Colors.bodyText} size={22}/>
+        <Appbar.Header style={styles.container} >
             {
-                (title != undefined) && <Appbar.Content
-                    title={title}
-                    titleStyle={styles.titleStyle}
-                    subtitle={subtitle}
-                />
+                hasBack &&
+                <Appbar.BackAction
+                    color={Colors.bodyText}
+                    size={Sizes.s22}
+                    style={styles.backButton} />
             }
+            {
+                (title != undefined) &&
+                <Appbar.Content
+                    title={title}
+                    titleStyle={styles.title}
+                    subtitle={subtitle} />
+            }
+            {children}
+            {/* <CAvatar uri={Strings.defaultAvatar} size={26}/> */}
+            {/* <Appbar.Action icon={name='magnify'} />
+            <Appbar.Action icon={name='dots-vertical'}/> */}
         </Appbar.Header>
     );
 
@@ -29,11 +42,12 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.transparent,
         elevation: Sizes.s0,
-        margin: Sizes.s0,
-        padding: Sizes.s0,
     },
-    titleStyle: {
+    backButton: {
+        marginRight: Sizes.s0,
+    },
+    title: {
         ...TextStyles.title,
-        alignSelf: 'flex-start',
+        alignSelf: Alignment.flexStart,
     }
 })

@@ -1,18 +1,23 @@
 import React from 'react'
-import { StyleSheet, View, FlatList } from 'react-native'
-import ListAuthorsItem from '../ListAuthorsItem/list-author-item'
+import { StyleSheet, View} from 'react-native'
 import Styles from '../../../globals/styles'
 import authorsData from '../../../data/mock/authos-mock-data'
 import CFlatList from '../../Common/Container/c-flat-list'
 import CDivider from '../../Common/Container/c-divider'
 import Sizes from '../../../globals/sizes'
+import ProfileTile from '../../Common/Profile/profile-tile'
 
 const ListAuthors = () => {
     return (
         <View style={Styles.fullScreen}>
             <CFlatList
                 data={authorsData}
-                renderItem={({ item }) => <ListAuthorsItem author={item} style={styles.authorItem}/>}
+                renderItem={
+                    ({ item }) => <ProfileTile
+                        title={item.name}
+                        subtitle={`${item.coursesCount} Courses`}
+                        image={item.avatar}
+                        style={styles.authorItem} />}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => <CDivider />} />
         </View>

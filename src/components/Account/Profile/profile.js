@@ -13,26 +13,25 @@ import CDivider from '../../Common/Container/c-divider'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CButton from '../../Common/Button/c-button'
 import CAppBar from '../../Common/AppBar/app-bar'
-import ListTile from '../../Common/Container/list-tile'
+import ProfileItem from './profile-item'
+import ProfileTile from '../../Common/Profile/profile-tile'
 
 const Profile = () => {
     return (
         <View style={Styles.fullScreen}>
             <CAppBar title='Profile' />
             <CScrollView style={Styles.screenContainer}>
-                <View style={styles.header}>
-                    <CAvatar uri={Strings.defaultAvatar} size='medium' />
-                    <SizedBox width={Sizes.s16} />
-                    <CText data='Nha Nguyen' style={TextStyles.title} />
-                </View>
+                <ProfileTile
+                    image={Strings.defaultAvatar}
+                    title='Nha Nguyen' />
                 <SizedBox height={Sizes.s32} />
-                <ListTile title='Email' subtitle='example@mail.com' />
+                <ProfileItem title='Email' subtitle='example@mail.com' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ListTile title='Phone' subtitle='+84090000922' />
+                <ProfileItem title='Phone' subtitle='+84090000922' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ListTile title='Courses' subtitle='4 Courses' />
+                <ProfileItem title='Courses' subtitle='4 Courses' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ListTile title='Total Active Date' subtitle='1 days s' />
+                <ProfileItem title='Total Active Date' subtitle='1 days s' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                 <SizedBox height={'25%'} />
                 <CButton title='SIGN OUT' />
