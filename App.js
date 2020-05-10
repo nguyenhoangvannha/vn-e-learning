@@ -13,11 +13,12 @@ import ForgotPassword from './src/components/Authentication/ForgotPassword/forgo
 import MyCourses from './src/components/Main/MyCourses/my-courses';
 import Profile from './src/components/Account/Profile/profile';
 import Settings from './src/components/Account/Settings/settings';
+import Browse from './src/components/Main/Browse/browse';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Settings/>
+      <Browse/>
     </SafeAreaView>
   );
 }

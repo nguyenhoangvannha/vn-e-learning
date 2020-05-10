@@ -2,11 +2,15 @@ import React from 'react'
 import { StyleSheet, Text, View, ImageBackground } from 'react-native'
 import Alignment from '../../../globals/alignment'
 import CTouchableButton from './c-touchable-button'
+import CText from '../Text/c-text'
+import TextStyles from '../../../globals/text-styles'
+import Colors from '../../../globals/colors'
 
-const CImageButton = ({ style, uri, children, onPress }) => {
+const CImageButton = ({ style, uri, children, onPress, height, title }) => {
     return (
-        <CTouchableButton style={style} onPress={onPress}>
+        <CTouchableButton style={{ ...style, height: height }} onPress={onPress}>
             <ImageBackground style={styles.image} source={{ uri: uri }}>
+                {title != undefined && <CText data={title} style={{ ...TextStyles.button, color: Colors.white }} />}
                 {children}
             </ImageBackground>
         </CTouchableButton>

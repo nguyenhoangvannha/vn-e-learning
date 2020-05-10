@@ -5,9 +5,6 @@ import Colors from '../../../globals/colors';
 import Sizes from '../../../globals/sizes';
 import TextStyles from '../../../globals/text-styles';
 import Alignment from '../../../globals/alignment';
-import CText from '../Text/c-text';
-import CAvatar from '../Image/c-avatar';
-import Strings from '../../../globals/strings';
 
 
 const CAppBar = ({ title, subtitle, hasBack = true, children }) => {
@@ -42,6 +39,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.transparent,
         elevation: Sizes.s0,
+        width: '100%',
     },
     backButton: {
         marginRight: Sizes.s0,

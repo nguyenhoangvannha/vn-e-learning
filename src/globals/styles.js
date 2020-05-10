@@ -6,7 +6,7 @@ import FlexDirection from './flex-direction'
 const Styles = StyleSheet.create({
     fullScreen:{
         flex: 1,
-        width: '100%'
+        width: '100%',
     },
     row: {
         flexDirection: FlexDirection.row,
