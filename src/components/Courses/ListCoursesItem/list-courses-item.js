@@ -17,7 +17,7 @@ const ListCoursesItem = ({ style, course }) => {
                 <SectionCourseItemInfo course={course} />
             </View>
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
-                <CIconButton icon='more' style={styles.trailingIcon} />
+                <CIconButton icon='expand-more' style={styles.trailingIcon} />
             </SizedBox>
         </View>
     )

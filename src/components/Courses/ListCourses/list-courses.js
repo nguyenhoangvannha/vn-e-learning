@@ -9,7 +9,7 @@ import ListCoursesItems from '../ListCoursesItem/list-courses-item'
 import CDivider from '../../Common/Container/c-divider';
 import CFlatButton from '../../Common/Button/c-flat-button';
 
-const ListCourses = ({ style, headerText, data }) => {
+const ListCourses = ({ style, headerText, data, hasTrailing = true }) => {
 
     const trailing = <CFlatButton
         title='See All'
@@ -26,15 +26,15 @@ const ListCourses = ({ style, headerText, data }) => {
 
     return (
         <CFlatList
+            data={data}
             headerText={headerText}
             headerStyle={TextStyles.caption}
             style={style}
             horizontal={false}
-            data={data}
             renderItem={({ item }) => <ListCoursesItems course={item} />}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox height={Sizes.s4}><CDivider /></SizedBox>}
-            trailing={trailing}
+            trailing={ hasTrailing ? trailing : undefined}
         />
     )
 }
