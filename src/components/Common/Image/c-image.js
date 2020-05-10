@@ -7,8 +7,6 @@ const CImage = ({ uri, style ,width, height}) => {
         <Image
             source={{ uri: uri }}
             style={style}
-            width={width}
-            height={height}
             containerStyle={{ flex: 1 }}
             PlaceholderContent={<ActivityIndicator />}
         />

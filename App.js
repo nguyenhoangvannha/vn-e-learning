@@ -14,11 +14,14 @@ import MyCourses from './src/components/Main/MyCourses/my-courses';
 import Profile from './src/components/Account/Profile/profile';
 import Settings from './src/components/Account/Settings/settings';
 import Browse from './src/components/Main/Browse/browse';
+import EmptyScreen from './src/components/Common/Screen/empty-screen';
+import Strings from './src/globals/strings';
+import Downloads from './src/components/Content/Downloads/downloads';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Browse/>
+      <Downloads />
     </SafeAreaView>
   );
 }
