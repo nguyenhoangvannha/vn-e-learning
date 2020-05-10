@@ -13,7 +13,7 @@ const CIconButton = ({ onPress, color, size, icon, style, containerStyle, bottom
         <View style={styles.container}>
             <Icon
                 style={style}
-                containerStyle={{ ...containerStyle, alignSelf: Alignment.center }}
+                containerStyle={{ ...styles.container, ...containerStyle}}
                 name={icon ?? ''}
                 color={color ?? Colors.black}
                 size={size ?? Sizes.s16}

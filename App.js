@@ -17,7 +17,7 @@ import Settings from './src/components/Account/Settings/settings';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Profile/>
+      <Settings/>
     </SafeAreaView>
   );
 }
