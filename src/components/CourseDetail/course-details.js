@@ -42,10 +42,6 @@ const styles = StyleSheet.create({
         height: '30%',
         width: '100%',
     },
-    courseName: {
-        ...TextStyles.h3,
-        fontWeight: FontWeight.w500,
-    },
     teacherAvatar: {
         alignSelf: Alignment.baseLine
     },

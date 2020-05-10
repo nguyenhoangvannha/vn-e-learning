@@ -4,45 +4,69 @@ import Colors from "./colors"
 import { StyleSheet } from 'react-native'
 
 const TextStyles = StyleSheet.create({
-    h1: {
-        fontSize: Sizes.s28,
-        fontWeight: FontWeight.normal,
-        lineHeight: Sizes.s32,
-        color: Colors.heavyCaption,
+    display4: {
+        fontSize: Sizes.s96,
+        fontWeight: FontWeight.w300,
+        letterSpacing: -1.5
     },
-    h3: {
+    display3: {
+        fontSize: Sizes.s60,
+        fontWeight: FontWeight.w300,
+        letterSpacing: -0.5
+    },
+    display2: {
+        fontSize: Sizes.s48,
+        fontWeight: FontWeight.w400
+    },
+    display1: {
+        fontSize: Sizes.s34,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.25
+    },
+    headline: {
+        fontSize: Sizes.s24,
+        fontWeight: FontWeight.w400
+    },
+    title: {
         fontSize: Sizes.s20,
-        fontWeight: FontWeight.normal,
-        lineHeight: Sizes.s24,
-        color: Colors.heavyCaption,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15
     },
-    description: {
+    subhead: {
+        fontSize: Sizes.s16,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.15
+    },
+    subtitle: {
+        fontSize: Sizes.s14,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.1
+    },
+    body1: {
+        fontSize: Sizes.s16,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.5
+    },
+    body2: {
+        fontSize: Sizes.s14,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.25
+    },
+    button: {
+        fontSize: Sizes.s14,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 1.25
+    },
+    caption: {
         fontSize: Sizes.s12,
-        lineHeight: Sizes.s14,
-        letterSpacing: 0.5,
-        color: Colors.bodyText,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 0.4
     },
-    primaryButton: {
-        fontSize: Sizes.s18,
-        lineHeight: Sizes.s22,
-        fontWeight: FontWeight.bold,
-    },
-    headLine: {
-        fontSize: Sizes.s16,
-        lineHeight: Sizes.s20,
-        fontWeight: FontWeight.w600,
-        color: Colors.black400,
-    },
-    bodyText: {
-        fontSize: Sizes.s16,
-        lineHeight: Sizes.s20,
-        color: Colors.bodyText,
-    },
-    smallCaption: {
+    overline: {
         fontSize: Sizes.s10,
-        lineHeight: Sizes.s12,
-        color: Colors.grey200,
-    }
+        fontWeight: FontWeight.w400,
+        letterSpacing: 1.5
+    },
 })
 
 export default TextStyles

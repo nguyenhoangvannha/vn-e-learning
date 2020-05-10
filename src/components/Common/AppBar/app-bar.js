@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         padding: Sizes.s0,
     },
     titleStyle: {
-        ...TextStyles.primaryButton,
+        ...TextStyles.title,
         alignSelf: 'flex-start',
     }
 })

@@ -20,7 +20,7 @@ const Home = () => {
                     uri={Strings.defaultCourseThubnail}
                     style={styles.coursesBanner}
                     onPress={() => console.log('NEW RELEASE')}>
-                    <CText data='NEW RELEASE' style={TextStyles.primaryButton} />
+                    <CText data='NEW RELEASE' style={TextStyles.title} />
                 </CImageButton>
                 <SectionCourses
                     headerText='Software development'

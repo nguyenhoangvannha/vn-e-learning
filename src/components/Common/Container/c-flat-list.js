@@ -19,7 +19,7 @@ const CFlatList = ({ style,
     return (
         <View>
             <View style={styles.header}>
-                {headerText != undefined && <CText data={headerText} style={headerStyle ?? TextStyles.h3} />}
+                {headerText != undefined && <CText data={headerText} style={headerStyle ?? TextStyles.title} />}
                 {trailing}
             </View>
             <FlatList style={style}

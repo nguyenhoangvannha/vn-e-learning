@@ -11,18 +11,18 @@ import FlexDirection from '../../../../globals/flex-direction'
 const SectionCourseItemInfo = ({ course, simple = false }) => {
     return (
         <View style={styles.container}>
-            <CText data={course.name} style={TextStyles.headLine} />
+            <CText data={course.name} style={TextStyles.subhead} />
             <SizedBox height={Sizes.s2} />
             {
-                !simple && <CText data={course.teachers} style={TextStyles.description} />
+                !simple && <CText data={course.teachers} style={TextStyles.caption} />
             }
             <SizedBox height={Sizes.s2} />
             <View style={styles.row}>
-                <CText data={course.level} style={TextStyles.description} />
+                <CText data={course.level} style={TextStyles.caption} />
                 <SizedBox width={Sizes.s4} />
-                <CText data={course.date.toString()} style={TextStyles.description} />
+                <CText data={course.date.toString()} style={TextStyles.caption} />
                 <SizedBox width={Sizes.s4} />
-                <CText data={course.length} style={TextStyles.description} />
+                <CText data={course.length} style={TextStyles.caption} />
             </View>
             <SizedBox height={Sizes.s4} />
             {
@@ -32,7 +32,7 @@ const SectionCourseItemInfo = ({ course, simple = false }) => {
                         ratingCount={course.rating ?? 0}
                         imageSize={Sizes.s16} />
                     <SizedBox width={Sizes.s4} />
-                    <CText data={`(${course.ratingCount})`} style={TextStyles.description} />
+                    <CText data={`(${course.ratingCount})`} style={TextStyles.caption} />
                 </View>
             }
         </View>

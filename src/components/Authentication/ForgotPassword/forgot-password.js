@@ -22,9 +22,9 @@ const ForgotPassword = () => {
                     <SizedBox height={'25%'} />
                     <View style={{ flexDirection: FlexDirection.row }}>
                         <View style={{ width: '65%' }}>
-                            <CText data="Request to get your password" style={TextStyles.h1} />
+                            <CText data="Request to get your password" style={TextStyles.display1} />
                             <SizedBox height={Sizes.s8} />
-                            <CText data="The link to renew password will be sent to your email." style={TextStyles.description} />
+                            <CText data="The link to renew password will be sent to your email." style={TextStyles.caption} />
                         </View>
                         <SizedBox width={'8%'}></SizedBox>
                         <Icon
@@ -33,9 +33,9 @@ const ForgotPassword = () => {
                     <SizedBox height={Sizes.s38} />
                     <CTextInput label='Email' placeholder='Enter your email' />
                     <SizedBox height={Sizes.s38} />
-                    <CButton title='Send email' titleStyle={TextStyles.primaryButton} />
+                    <CButton title='Send email' titleStyle={TextStyles.button} />
                     <SizedBox height={Sizes.s16} />
-                    <CButton title='Cancel' color={Colors.bodyText} titleStyle={TextStyles.primaryButton} />
+                    <CButton title='Cancel' color={Colors.bodyText} titleStyle={TextStyles.button} />
                 </View>
             </CScrollView>
         </View>

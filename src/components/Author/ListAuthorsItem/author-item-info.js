@@ -6,8 +6,8 @@ import TextStyles from '../../../globals/text-styles'
 const AuthorItemInfo = ({style, author}) => {
     return (
         <View style={style}>
-            <CText data={author.name} style={TextStyles.headLine}/>
-            <CText data={`${author.coursesCount} Courses`} style={TextStyles.smallCaption}/>
+            <CText data={author.name} style={TextStyles.subhead}/>
+            <CText data={`${author.coursesCount} Courses`} style={TextStyles.overline}/>
         </View>
     )
 }

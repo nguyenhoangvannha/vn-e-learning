@@ -23,7 +23,7 @@ const Profile = () => {
                 <View style={styles.header}>
                     <CAvatar uri={Strings.defaultAvatar} size='medium' />
                     <SizedBox width={Sizes.s16} />
-                    <CText data='Nha Nguyen' style={TextStyles.primaryButton} />
+                    <CText data='Nha Nguyen' style={TextStyles.title} />
                 </View>
                 <SizedBox height={Sizes.s32} />
                 <ListTile title='Email' subtitle='example@mail.com' />

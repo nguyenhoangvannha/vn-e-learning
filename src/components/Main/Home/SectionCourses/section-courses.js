@@ -13,7 +13,7 @@ const SectionCourses = ({ style , headerText, data}) => {
     const trailing = <CButton
         type='clear'
         title='See All'
-        titleStyle={TextStyles.description}
+        titleStyle={TextStyles.caption}
         color={Colors.transparent}
         icon={
             <Icon

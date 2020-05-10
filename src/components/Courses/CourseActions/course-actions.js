@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: Alignment.center,
     },
     actionButtonText: {
-        ...TextStyles.bodyText,
+        ...TextStyles.body1,
         color: Colors.black,
     }
 })

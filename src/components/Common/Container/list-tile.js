@@ -6,8 +6,8 @@ import TextStyles from '../../../globals/text-styles'
 const ListTile = ({ title, subtitle }) => {
     return (
         <View>
-            <CText data={title} style={TextStyles.description} />
-            <CText data={subtitle} style={TextStyles.headLine} />
+            <CText data={title} style={TextStyles.caption} />
+            <CText data={subtitle} style={TextStyles.subhead} />
         </View>
     )
 }

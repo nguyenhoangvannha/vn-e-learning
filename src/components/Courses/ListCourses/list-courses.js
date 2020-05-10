@@ -13,7 +13,7 @@ const ListCourses = ({ style, headerText, data }) => {
 
     const trailing = <CFlatButton
         title='See All'
-        titleStyle={TextStyles.description}
+        titleStyle={TextStyles.caption}
         trailing={
             <Icon
                 name='chevron-right'
@@ -27,7 +27,7 @@ const ListCourses = ({ style, headerText, data }) => {
     return (
         <CFlatList
             headerText={headerText}
-            headerStyle={TextStyles.description}
+            headerStyle={TextStyles.caption}
             style={style}
             horizontal={false}
             data={data}
