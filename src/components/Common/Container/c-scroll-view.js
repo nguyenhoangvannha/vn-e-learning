@@ -7,9 +7,11 @@ const CScrollView = ({
     contentContainerStyle,
     indicatorStyle,
     showsHorizontalScrollIndicator,
-    showsVerticalScrollIndicator }) => {
+    showsVerticalScrollIndicator,
+    horizontal = false }) => {
     return (
         <ScrollView
+            horizontal={horizontal}
             style={style}
             indicatorStyle={indicatorStyle}
             contentContainerStyle={contentContainerStyle}

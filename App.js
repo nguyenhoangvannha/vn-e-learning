@@ -20,11 +20,12 @@ import Downloads from './src/components/Content/Downloads/downloads';
 import VerifyPassword from './src/components/Authentication/VerifyPassword/verify-password';
 import Search from './src/components/Main/Search/search';
 import Splash from './src/components/SplashSreen/splash';
+import Subscription from './src/components/Subscription/subscription';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Splash />
+      <Subscription />
     </SafeAreaView>
   );
 }

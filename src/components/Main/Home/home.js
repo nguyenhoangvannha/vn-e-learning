@@ -11,40 +11,48 @@ import Strings from '../../../globals/strings'
 import CText from '../../Common/Text/c-text'
 import Alignment from '../../../globals/alignment'
 import TextStyles from '../../../globals/text-styles'
+import Colors from '../../../globals/colors'
+import CAppBar from '../../Common/AppBar/app-bar'
 
 const Home = () => {
     return (
-        <CScrollView>
-            <View style={Styles.screenContainer}>
-                <CImageButton
-                    uri={Strings.defaultCourseThubnail}
-                    style={styles.coursesBanner}
-                    onPress={() => console.log('NEW RELEASE')}>
-                    <CText data='NEW RELEASE' style={TextStyles.title} />
-                </CImageButton>
-                <SectionCourses
-                    headerText='Software development'
-                    data={coursesData}
-                    style={styles.sectionCourses}
-                />
-                <SizedBox height={Sizes.s12} />
-                <SectionCourses
-                    headerText='IT operations'
-                    data={coursesData}
-                    style={styles.sectionCourses}
-                />
-                <SectionCourses
-                    headerText='Data professional'
-                    data={coursesData}
-                    style={styles.sectionCourses}
-                />
-                <SectionCourses
-                    headerText='Security professional'
-                    data={coursesData}
-                    style={styles.sectionCourses}
-                />
-            </View>
-        </CScrollView>
+        <View>
+            <CAppBar title='Home' hasBack={false}/>
+            <CScrollView>
+                <View style={Styles.screenContainer}>
+                    <CImageButton
+                        uri={Strings.defaultCourseThubnail}
+                        style={styles.coursesBanner}
+                        height={'15%'}
+                        onPress={() => console.log('NEW RELEASE')}>
+                        <CText data='NEW RELEASE' style={{ ...TextStyles.headline, color: Colors.white }} />
+                    </CImageButton>
+                    <SectionCourses
+                        headerText='Software development'
+                        data={coursesData}
+                        style={styles.sectionCourses}
+                    />
+                    <SizedBox height={Sizes.s12} />
+                    <SectionCourses
+                        headerText='IT operations'
+                        data={coursesData}
+                        style={styles.sectionCourses}
+                    />
+                    <SectionCourses
+                        headerText='Data professional'
+                        data={coursesData}
+                        style={styles.sectionCourses}
+                    />
+                    <SectionCourses
+                        headerText='Security professional'
+                        data={coursesData}
+                        style={styles.sectionCourses}
+                    />
+                    <SizedBox height={Sizes.s160}/>
+                </View>
+            </CScrollView>
+        </View>
+
     )
 }
 
