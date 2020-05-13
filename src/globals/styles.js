@@ -7,6 +7,7 @@ const Styles = StyleSheet.create({
     fullScreen:{
         flex: 1,
         width: '100%',
+        height: '100%',
     },
     row: {
         flexDirection: FlexDirection.row,

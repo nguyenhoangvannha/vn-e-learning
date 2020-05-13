@@ -16,7 +16,7 @@ import CAppBar from '../../Common/AppBar/app-bar'
 
 const Home = () => {
     return (
-        <View>
+        <View style={Styles.fullScreen}>
             <CAppBar title='Home' hasBack={false}/>
             <CScrollView>
                 <View style={Styles.screenContainer}>

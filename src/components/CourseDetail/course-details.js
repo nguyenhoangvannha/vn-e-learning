@@ -14,8 +14,11 @@ import SizedBox from '../Common/Container/sized-box'
 import Alignment from '../../globals/alignment'
 import SectionCourseItemInfo from '../Main/Home/SectionCoursesItem/section-course-item-info'
 import CourseActions from '../Courses/CourseActions/course-actions'
+import coursesData from '../../data/mock/courses-mock-data'
 
-const CourseDetail = ({ course }) => {
+const CourseDetail = ({ navigation, route }) => {
+    var course = route.params.course ?? coursesData[0]
+    navigation.setOptions({title: course.name})
     return (
         <View style={Styles.fullScreen}>
             <VideoView uri={course.image} style={styles.videoView} />

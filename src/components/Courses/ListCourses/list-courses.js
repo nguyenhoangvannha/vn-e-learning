@@ -5,11 +5,12 @@ import SizedBox from '../../Common/Container/sized-box';
 import Sizes from '../../../globals/sizes';
 import TextStyles from '../../../globals/text-styles';
 import Colors from '../../../globals/colors';
-import ListCoursesItems from '../ListCoursesItem/list-courses-item'
+import ListCoursesItem from '../ListCoursesItem/list-courses-item'
 import CDivider from '../../Common/Container/c-divider';
 import CFlatButton from '../../Common/Button/c-flat-button';
+import coursesData from '../../../data/mock/courses-mock-data';
 
-const ListCourses = ({ style, headerText, data, hasTrailing = true }) => {
+const ListCourses = ({ navigation, style, headerText, hasTrailing = true }) => {
 
     const trailing = <CFlatButton
         title='See All'
@@ -23,15 +24,14 @@ const ListCourses = ({ style, headerText, data, hasTrailing = true }) => {
         }
         iconRight={true}
     />
-
     return (
         <CFlatList
-            data={data}
+            data={coursesData}
             headerText={headerText}
             headerStyle={TextStyles.caption}
             style={style}
             horizontal={false}
-            renderItem={({ item }) => <ListCoursesItems course={item} />}
+            renderItem={({ item }) => <ListCoursesItem course={item} navigation={navigation}/>}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox height={Sizes.s4}><CDivider /></SizedBox>}
             trailing={ hasTrailing ? trailing : undefined}

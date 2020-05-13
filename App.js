@@ -21,12 +21,26 @@ import VerifyPassword from './src/components/Authentication/VerifyPassword/verif
 import Search from './src/components/Main/Search/search';
 import Splash from './src/components/SplashSreen/splash';
 import Subscription from './src/components/Subscription/subscription';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Routes from './src/routes/routes';
+import CButton from './src/components/Common/Button/c-button';
+
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Subscription />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={Routes.ListCourses}>
+        <Stack.Screen name={Routes.Home} component={Home} options={{ title: 'Home' }} />
+        <Stack.Screen name={Routes.ListCourses} component={ListCourses}
+          options={{ title: 'List Courses' }} />
+        <Stack.Screen name={Routes.CourseDetail} component={CourseDetail}
+          // options={({ route }) => ({ title: route.params.course.name })} 
+          options={{ title: 'Course Name', headerBackTitle: '' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
