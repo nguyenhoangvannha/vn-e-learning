@@ -12,7 +12,7 @@ import Styles from '../../../globals/styles'
 import CDivider from '../../Common/Container/c-divider'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CButton from '../../Common/Button/c-button'
-import CAppBar from '../../Common/AppBar/app-bar'
+import CAppBar from '../../Common/AppBar/c-app-bar'
 import ProfileItem from './profile-item'
 import ProfileTile from '../../Common/Profile/profile-tile'
 

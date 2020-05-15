@@ -7,11 +7,10 @@ import CDivider from '../../Common/Container/c-divider'
 import Sizes from '../../../globals/sizes'
 import ProfileTile from '../../Common/Profile/profile-tile'
 import ProfileTileVer from '../../Common/Profile/profile-tile-ver'
-import CText from '../../Common/Text/c-text'
 
-const ListAuthors = ({ horizontal = false , headerText}) => {
+const ListAuthors = ({ horizontal = false, headerText }) => {
 
-    const buildItem = (author) => {
+    const buildItem = (author ) => {
         return (
             horizontal ?
                 <ProfileTileVer
@@ -27,16 +26,13 @@ const ListAuthors = ({ horizontal = false , headerText}) => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
-            <CFlatList
-                headerText={headerText}
-                data={authorsData}
-                horizontal={horizontal}
-                renderItem={
-                    ({ item }) => buildItem(item)}
-                keyExtractor={item => item.id}
-                ItemSeparatorComponent={() => <CDivider />} />
-        </View>
+        <CFlatList
+            headerText={headerText}
+            data={authorsData}
+            horizontal={horizontal}
+            renderItem={({ item }) => buildItem(item)}
+            keyExtractor={item => item.id}
+            ItemSeparatorComponent={() => <CDivider />} />
     )
 }
 

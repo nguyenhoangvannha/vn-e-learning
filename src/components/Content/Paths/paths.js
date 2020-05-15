@@ -12,7 +12,7 @@ const Paths = ({ style, headerText}) => {
             style={styles.item}
             image={path.image}
             name={path.name}
-            coursesCount={path.coursesCount} />;
+            coursesCount={path.coursesCount} />
     }
     return (
         <View style={style}>

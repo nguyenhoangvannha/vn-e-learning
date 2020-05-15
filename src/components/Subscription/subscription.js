@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import CAppBar from '../Common/AppBar/app-bar'
+import { StyleSheet, View } from 'react-native'
+import CAppBar from '../Common/AppBar/c-app-bar'
 import Styles from '../../globals/styles'
 import PricingItem from './pricing'
 import CScrollView from '../Common/Container/c-scroll-view'

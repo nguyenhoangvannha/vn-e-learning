@@ -7,8 +7,10 @@ import CButton from '../../../Common/Button/c-button';
 import TextStyles from '../../../../globals/text-styles';
 import Colors from '../../../../globals/colors';
 import { Icon } from 'react-native-elements';
+import Routes from '../../../../routes/routes';
+import * as RootNavigation from '../../../../routes/navigations/root-navigation'
 
-const SectionCourses = ({ style , headerText, data}) => {
+const SectionCourses = ({ style , headerText, data, navigation}) => {
 
     const trailing = <CButton
         type='clear'
@@ -31,7 +33,11 @@ const SectionCourses = ({ style , headerText, data}) => {
             style={style}
             horizontal={true}
             data={data}
-            renderItem={({ item }) => <SectionCourseItem course={item} />}
+            renderItem={({ item }) => <SectionCourseItem course={item} onPress={() => {
+                RootNavigation.navigate(Routes.CourseDetail, {
+                    course: item
+                })
+            }}/>}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
             trailing={trailing}

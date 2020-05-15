@@ -10,13 +10,16 @@ import CButton from '../../Common/Button/c-button'
 import Colors from '../../../globals/colors'
 import { Icon } from 'react-native-elements'
 import FlexDirection from '../../../globals/flex-direction'
-import CAppBar from '../../Common/AppBar/app-bar'
+import CAppBar from '../../Common/AppBar/c-app-bar'
 import CScrollView from '../../Common/Container/c-scroll-view'
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ navigation }) => {
+    const onPressedBack = () => {
+        navigation.goBack();
+    }
     return (
-        <View>
-            <CAppBar/>
+        <View style={Styles.fullScreen}>
+            <CAppBar onLeadingPressed={onPressedBack} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
                     <SizedBox height={'25%'} />

@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, Picker } from 'react-native'
-import CAppBar from '../../Common/AppBar/app-bar'
+import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../globals/styles'
 import CSwitch from '../../Common/switch/c-switch'
 import ListTileText from '../../Common/Container/list-tile-text'

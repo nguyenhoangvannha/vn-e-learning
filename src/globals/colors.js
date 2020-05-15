@@ -2,6 +2,8 @@ const Colors = {
     transparent: '#FFFFFFFF',
     white: 'white',
     black: 'black',
+    gray: 'gray',
+    tomato: 'tomato',
     black400: '#333333',
     red: 'red',
     green: 'green',

@@ -10,7 +10,7 @@ import CButton from '../../Common/Button/c-button'
 import Colors from '../../../globals/colors'
 import { Icon } from 'react-native-elements'
 import FlexDirection from '../../../globals/flex-direction'
-import CAppBar from '../../Common/AppBar/app-bar'
+import CAppBar from '../../Common/AppBar/c-app-bar'
 import CScrollView from '../../Common/Container/c-scroll-view'
 
 const VerifyPassword = () => {
