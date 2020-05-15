@@ -9,6 +9,8 @@ import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../globals/alignment'
 import COpacityButton from '../../Common/Button/c-opacity-button'
 import Routes from '../../../routes/routes'
+import CIonIcon from '../../Common/Icon/c-ion-icon'
+import IconName from '../../../globals/icon-name'
 
 const ListCoursesItem = ({ navigation, style, course }) => {
     
@@ -25,7 +27,7 @@ const ListCoursesItem = ({ navigation, style, course }) => {
                 <SectionCourseItemInfo course={course} />
             </View>
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
-                <CIconButton icon='expand-more' style={styles.trailingIcon} />
+                <CIonIcon name={IconName.mdMore} style={styles.trailingIcon} />
             </SizedBox>
         </COpacityButton>
     )
@@ -46,6 +48,7 @@ const styles = StyleSheet.create({
         padding: Sizes.s8,
     },
     trailingIcon: {
+        fontSize: Sizes.s20,
         alignSelf: Alignment.center
     }
 })

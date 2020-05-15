@@ -6,6 +6,14 @@ import CCard from '../../Common/Container/c-card'
 import Sizes from '../../../globals/sizes'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import coursesData from '../../../data/mock/courses-mock-data'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Routes from '../../../routes/routes'
+import SearchAll from './All/search-all'
+import SearchCourses from './Courses/search-courses'
+import SearchPaths from './Paths/search-paths'
+import SearchAuthors from './Authors/search-authors'
+
+const Tab = createMaterialTopTabNavigator();
 
 const Search = () => {
     return (
@@ -13,9 +21,12 @@ const Search = () => {
             <CCard style={styles.searchBar}>
                 <CSearchBar />
             </CCard>
-            <ListCourses
-                headerText='152 results'
-                data={coursesData} />
+            <Tab.Navigator>
+                <Tab.Screen name={Routes.SearchAll} component={SearchAll} options={{ title: 'All' }} />
+                <Tab.Screen name={Routes.SearchCourses} component={SearchCourses} options={{ title: 'Courses' }} />
+                <Tab.Screen name={Routes.SearchPaths} component={SearchPaths} options={{ title: 'Paths' }} />
+                <Tab.Screen name={Routes.SearchAuthors} component={SearchAuthors} options={{ title: 'Authors' }} />
+            </Tab.Navigator>
         </View>
     )
 }

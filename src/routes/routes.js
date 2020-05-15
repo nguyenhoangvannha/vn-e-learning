@@ -10,7 +10,11 @@ const Routes = {
     ListCourses: 'ListCourses',
     CourseDetail: 'CourseDetail',
     Profile: 'Profile',
-    Settings: 'Settings'
+    Settings: 'Settings',
+    SearchAll: 'SearchAll',
+    SearchCourses: 'SearchCourses',
+    SearchPaths: 'SearchPaths',
+    SearchAuthors: 'SearchAuthors',
 }
 
 export default Routes

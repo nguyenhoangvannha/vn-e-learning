@@ -19,6 +19,7 @@ const Styles = StyleSheet.create({
         width: '100%',
         paddingHorizontal: Sizes.s18,
         paddingVertical: Sizes.s14,
+        backgroundColor: Colors.white,
     },
     body: {
         flex: 1,
