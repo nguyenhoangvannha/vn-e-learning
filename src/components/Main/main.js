@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
-import { createBottomTabNavigator, BottomTabBarOptions } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Routes from '../../routes/routes';
 import Home from './Home/home';
 import Downloads from '../Content/Downloads/downloads'

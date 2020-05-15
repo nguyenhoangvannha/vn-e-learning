@@ -10,6 +10,8 @@ const IconName = {
     iosCloudDownload: 'ios-cloud-download',
     iosApps: 'ios-apps',
     mdSearch: 'md-search',
+    mdAlert: 'md-alert',
+    mdClose: 'md-close',
 }
 
 export default IconName

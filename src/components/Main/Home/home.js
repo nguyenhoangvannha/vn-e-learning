@@ -12,7 +12,7 @@ import CText from '../../Common/Text/c-text'
 import Alignment from '../../../globals/alignment'
 import TextStyles from '../../../globals/text-styles'
 import Colors from '../../../globals/colors'
-import HomeAppBar from '../../Common/AppBar/home-app-bar'
+import HomeAppBar from '../home-app-bar'
 
 
 const Home = ({ navigation }) => {

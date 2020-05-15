@@ -1,22 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View, Picker } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../globals/styles'
 import CSwitch from '../../Common/switch/c-switch'
 import ListTileText from '../../Common/Container/list-tile-text'
-import CText from '../../Common/Text/c-text'
 import Sizes from '../../../globals/sizes'
-import CFlatList from '../../Common/Container/c-flat-list'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CDivider from '../../Common/Container/c-divider'
 import ProfileTile from '../../Common/Profile/profile-tile'
 import Strings from '../../../globals/strings'
 import SizedBox from '../../Common/Container/sized-box'
-import CIconButton from '../../Common/Button/c-icon-button'
 import CFlatButton from '../../Common/Button/c-flat-button'
 import Alignment from '../../../globals/alignment'
-import CButton from '../../Common/Button/c-button'
-import Colors from '../../../globals/colors'
 
 const Settings = () => {
     return (

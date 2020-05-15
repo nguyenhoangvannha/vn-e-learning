@@ -9,7 +9,7 @@ import SizedBox from '../../Common/Container/sized-box'
 import PopularSkills from '../../Skills/PopularSkills/popular-skills'
 import Paths from '../../Content/Paths/paths'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
-import HomeAppBar from '../../Common/AppBar/home-app-bar'
+import HomeAppBar from '../home-app-bar'
 
 const Browse = ({ navigation }) => {
     return (

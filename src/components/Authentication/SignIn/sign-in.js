@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
 import CText from '../../Common/Text/c-text'
-import CTextInput from '../../Common/TextField/c-text-input'
+import CFromTextInput from '../../Common/TextField/c-form-text-input'
 import Colors from '../../../globals/colors'
 import Alignment from '../../../globals/alignment'
 import Sizes from '../../../globals/sizes'
@@ -29,8 +29,8 @@ const SignIn = () => {
                 <SizedBox height={'25%'} />
                 <CText data="Sign In" style={styles.label} />
                 <SizedBox height={Sizes.s70} />
-                <CTextInput label="Username" placeholder="Your username" style={styles.input} />
-                <CTextInput label="Password" placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
+                <CFromTextInput label="Username" placeholder="Your username" style={styles.input} />
+                <CFromTextInput label="Password" placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
                 <SizedBox height={Sizes.s16} />
                 <CButton title="SIGN IN" onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
                 <SizedBox height={Sizes.s12} />

@@ -5,7 +5,7 @@ import SizedBox from '../../Common/Container/sized-box'
 import CText from '../../Common/Text/c-text'
 import TextStyles from '../../../globals/text-styles'
 import Sizes from '../../../globals/sizes'
-import CTextInput from '../../Common/TextField/c-text-input'
+import CFromTextInput from '../../Common/TextField/c-form-text-input'
 import CButton from '../../Common/Button/c-button'
 import Colors from '../../../globals/colors'
 import { Icon } from 'react-native-elements'
@@ -34,7 +34,7 @@ const ForgotPassword = ({ navigation }) => {
                             name='lock' size={Sizes.s92} color={Colors.blue500} />
                     </View>
                     <SizedBox height={Sizes.s38} />
-                    <CTextInput label='Email' placeholder='Enter your email' />
+                    <CFromTextInput label='Email' placeholder='Enter your email' />
                     <SizedBox height={Sizes.s38} />
                     <CButton title='Send email' titleStyle={TextStyles.button} />
                     <SizedBox height={Sizes.s16} />

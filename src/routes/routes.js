@@ -9,6 +9,8 @@ const Routes = {
     Search: 'Search',
     ListCourses: 'ListCourses',
     CourseDetail: 'CourseDetail',
+    Profile: 'Profile',
+    Settings: 'Settings'
 }
 
 export default Routes

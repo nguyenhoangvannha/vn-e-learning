@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import EmptyScreen from '../../Common/Screen/empty-screen'
-import HomeAppBar from '../../Common/AppBar/home-app-bar'
+import HomeAppBar from '../../Main/home-app-bar'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import coursesData from '../../../data/mock/courses-mock-data'
 import Sizes from '../../../globals/sizes'
