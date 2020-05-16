@@ -12,7 +12,8 @@ import IconName from '../../../globals/icon-name'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
 import * as RootNavigation from '../../../routes/navigations/root-navigation'
 import MenuButton from '../../Common/Menu/menu-button'
-import MenuItem from '../../Common/Menu/menu-item'
+import MenuItem from '../../Common/Menu/c-menu-item'
+import CourseActionsMenuButton from '../CourseActions/course-actions-menu-button'
 
 const ListCoursesItem = ({ navigation, style, course }) => {
 
@@ -27,13 +28,7 @@ const ListCoursesItem = ({ navigation, style, course }) => {
             <CImage uri={course.image} style={styles.image} />
             <SectionCourseItemInfo course={course} />
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
-                <MenuButton
-                    menuOptions={[
-                        <MenuItem title='Bookmark' />,
-                        <MenuItem title='Add to Channel' />,
-                        <MenuItem title='Downloads' />,
-                    ]}
-                />
+                <CourseActionsMenuButton/>
             </SizedBox>
         </COpacityButton>
     )

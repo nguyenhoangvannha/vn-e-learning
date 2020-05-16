@@ -17,6 +17,7 @@ import ListCoursesScreen from './src/components/Courses/ListCoursesScreen/list-c
 import AllPathsScreen from './src/components/Content/Paths/all-paths-screen';
 import { NavigationOptions } from './src/routes/navigation-options';
 import { MenuProvider } from 'react-native-popup-menu';
+import SendFeedbackScreen from './src/components/Help/Feedback/send-feedback-screen';
 
 const Stack = createStackNavigator()
 
@@ -42,6 +43,7 @@ export default function App() {
           <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.ListCoursesScreen} component={ListCoursesScreen} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.AllPathsScreen} component={AllPathsScreen} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.SendFeedbackScreen} component={SendFeedbackScreen} options={NavigationOptions.normalOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </MenuProvider>

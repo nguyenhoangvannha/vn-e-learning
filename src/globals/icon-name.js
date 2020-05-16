@@ -17,7 +17,11 @@ const IconName = {
     mdShare: 'md-share',
     bookmarkOutline: 'md-bookmark',
     iosRadio: 'ios-radio',
-    iosText: 'ios-text'
+    iosText: 'ios-text',
+    settings: 'ios-settings',
+    iosPaperPlane: 'ios-paper-plane',
+    mdCall: 'md-call',
+    mdSend: 'md-send'
 }
 
 export default IconName

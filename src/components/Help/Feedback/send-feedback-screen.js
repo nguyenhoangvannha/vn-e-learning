@@ -1,0 +1,35 @@
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import Styles from '../../../globals/styles'
+import CAppBar from '../../Common/AppBar/c-app-bar'
+import CIonIcon from '../../Common/Icon/c-ion-icon'
+import IconName from '../../../globals/icon-name'
+import Sizes from '../../../globals/sizes'
+import CScrollView from '../../Common/Container/c-scroll-view'
+import CFormTextInput from '../../Common/TextField/c-form-text-input'
+import SizedBox from '../../Common/Container/sized-box'
+import CButton from '../../Common/Button/c-button'
+
+const SendFeedbackScreen = () => {
+    return (
+        <View style={Styles.fullScreen}>
+            <CAppBar
+                title='Send Feedback'
+                trailing={<CIonIcon name={IconName.mdSend} paddingHorizontal={Sizes.s0} />} />
+            <CScrollView style={Styles.screenContainer}>
+                <SizedBox height={'15%'} />
+                <CFormTextInput
+                    placeholder='Your email address' />
+                <SizedBox height={Sizes.s16} />
+                <CFormTextInput
+                    placeholder='Your feedback' />
+                <SizedBox height={'25%'} />
+                <CButton title='Send Feedback' />
+            </CScrollView>
+        </View>
+    )
+}
+
+export default SendFeedbackScreen
+
+const styles = StyleSheet.create({})

@@ -12,8 +12,7 @@ import AbstractAppbar from '../Common/AppBar/abstract-appbar'
 import Routes from '../../routes/routes'
 import * as RootNavigation from '../../routes/navigations/root-navigation'
 import MenuButton from '../Common/Menu/menu-button'
-import { MenuOption } from 'react-native-popup-menu'
-import MenuItem from '../Common/Menu/menu-item'
+import CMenuItem from '../Common/Menu/c-menu-item'
 
 const HomeAppBar = ({ title, hasBack = false }) => {
     const iconSize = Sizes.s24
@@ -24,6 +23,10 @@ const HomeAppBar = ({ title, hasBack = false }) => {
 
     const onSettingsPressed = () => {
         RootNavigation.navigate(Routes.Settings)
+    }
+
+    const onFeedbackPressed= () => {
+        RootNavigation.navigate(Routes.SendFeedbackScreen)
     }
 
 
@@ -38,9 +41,9 @@ const HomeAppBar = ({ title, hasBack = false }) => {
                 <MenuButton
                     iconName={IconName.mdMore}
                     menuOptions={[
-                        <MenuItem title='Settings' onPress={onSettingsPressed}/>,
-                        <MenuItem title='Send Feedback' />,
-                        <MenuItem title='Contact Support' />
+                        <CMenuItem title='Settings' iconName={IconName.settings} onPress={onSettingsPressed}/>,
+                        <CMenuItem title='Send Feedback' iconName={IconName.iosPaperPlane} onPress={onFeedbackPressed}/>,
+                        <CMenuItem title='Contact Support' iconName={IconName.mdCall} />
                     ]}
                 />
             ]}
