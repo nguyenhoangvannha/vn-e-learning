@@ -9,10 +9,10 @@ import SizedBox from '../../Common/Container/sized-box'
 import PopularSkills from '../../Skills/PopularSkills/popular-skills'
 import Paths from '../../Content/Paths/paths'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
-import HomeAppBar from '../home-app-bar'
 import * as RootNavigation from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import ListCategory from '../../Category/ListCategory/list-category'
+import HomeAppBar from '../../Common/AppBar/home-app-bar'
 
 const Browse = ({ }) => {
 

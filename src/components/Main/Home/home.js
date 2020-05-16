@@ -11,8 +11,8 @@ import CText from '../../Common/Text/c-text'
 import Alignment from '../../../globals/alignment'
 import TextStyles from '../../../globals/text-styles'
 import Colors from '../../../globals/colors'
-import HomeAppBar from '../home-app-bar'
 import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import HomeAppBar from '../../Common/AppBar/home-app-bar'
 
 const Home = ({ navigation }) => {
     const buildSectionCourses = (title) => {
