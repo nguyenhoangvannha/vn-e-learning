@@ -1,6 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import Styles from '../../../globals/styles'
+import { StyleSheet } from 'react-native'
 import authorsData from '../../../data/mock/authos-mock-data'
 import CFlatList from '../../Common/Container/c-flat-list'
 import CDivider from '../../Common/Container/c-divider'
@@ -10,7 +9,7 @@ import ProfileTileVer from '../../Common/Profile/profile-tile-ver'
 
 const ListAuthors = ({ horizontal = false, headerText }) => {
 
-    const buildItem = (author ) => {
+    const buildItem = (author) => {
         return (
             horizontal ?
                 <ProfileTileVer
@@ -32,7 +31,8 @@ const ListAuthors = ({ horizontal = false, headerText }) => {
             horizontal={horizontal}
             renderItem={({ item }) => buildItem(item)}
             keyExtractor={item => item.id}
-            ItemSeparatorComponent={() => <CDivider />} />
+            ItemSeparatorComponent={() => <CDivider />}
+            hasTrailing={false} />
     )
 }
 

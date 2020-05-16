@@ -26,7 +26,7 @@ const PopularSkills = ({ style, headerText }) => {
             keyExtractor={item => item}
             horizontal={true}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s6} />}
-        />
+            hasTrailing={false} />
     )
 }
 

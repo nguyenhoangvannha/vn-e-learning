@@ -7,8 +7,8 @@ import ListAuthors from '../../../Author/ListAuthors/list-authors'
 const SearchAuthors = () => {
     return (
         <View style={Styles.screenContainer}>
-            <CText data='6 Results'/>
-            <ListAuthors/>
+            <ListAuthors
+                headerText='6 Results' />
         </View>
     )
 }

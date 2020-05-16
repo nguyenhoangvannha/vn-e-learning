@@ -1,11 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
-import TextStyles from '../../../globals/text-styles'
-import CText from '../Text/c-text'
+import { StyleSheet, View, FlatList } from 'react-native'
 import Sizes from '../../../globals/sizes'
 import FlexDirection from '../../../globals/flex-direction'
 import Alignment from '../../../globals/alignment'
-import SizedBox from './sized-box'
+import CSectionHeader from './c-section-header'
 
 const CFlatList = ({
     style,
@@ -16,23 +14,25 @@ const CFlatList = ({
     keyExtractor,
     ItemSeparatorComponent,
     headerText,
-    headerStyle,
-    trailing }) => {
+    trailingText,
+    trailingIcon,
+    onTrailingPress,
+    hasTrailing = true }) => {
     return (
         <View style={containerStyle}>
-            <View style={styles.header}>
-                {headerText != undefined && <CText data={headerText} style={headerStyle ?? TextStyles.subhead} />}
-                {trailing}
-            </View>
-            {(headerText != undefined || trailing != undefined) && <SizedBox height={Sizes.s8} />}
+            <CSectionHeader
+                leadingText={headerText}
+                trailingText={trailingText}
+                iconName={trailingIcon}
+                onTrailingPress={onTrailingPress}
+                hasTrailing={hasTrailing} />
             <FlatList style={style}
                 horizontal={horizontal ?? false}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 ItemSeparatorComponent={ItemSeparatorComponent}
-                contentContainerStyle={styles.contentContainerStyle}
-            />
+                contentContainerStyle={styles.contentContainerStyle} />
         </View>
     )
 }

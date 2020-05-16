@@ -22,7 +22,8 @@ const Paths = ({ style, headerText}) => {
                 data={pathsData}
                 renderItem={({ item }) => buildItem(item)}
                 keyExtractor={item => item.id}
-                ItemSeparatorComponent={() => <SizedBox width={Sizes.s16} />} />
+                ItemSeparatorComponent={() => <SizedBox width={Sizes.s16} />} 
+                trailingText='See All'/>
         </View>
     )
 }

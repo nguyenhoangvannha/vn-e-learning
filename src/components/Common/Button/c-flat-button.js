@@ -4,9 +4,9 @@ import CText from '../Text/c-text'
 import FlexDirection from '../../../globals/flex-direction'
 import COpacityButton from './c-opacity-button'
 
-const CFlatButton = ({ style, leading, title, titleStyle, trailing }) => {
+const CFlatButton = ({ style, leading, title, titleStyle, trailing , onPress}) => {
     return (
-        <COpacityButton style={{ ...style, flexDirection: FlexDirection.row, }}>
+        <COpacityButton onPress={onPress} style={{ ...style, flexDirection: FlexDirection.row, }}>
             {leading}
             <CText data={title} style={titleStyle} />
             {trailing}

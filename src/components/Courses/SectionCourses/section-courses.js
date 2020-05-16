@@ -12,27 +12,13 @@ import IconName from '../../../globals/icon-name';
 import Routes from '../../../routes/routes';
 
 const SectionCourses = ({ style, headerText, data }) => {
-    const trailing = <CButton
-        type='clear'
-        title='See All'
-        titleStyle={TextStyles.caption}
-        color={Colors.transparent}
-        icon={
-            <CIonIcon
-                name={IconName.iosArrowForward}
-                size={15}
-                color={Colors.bodyText}
-            />
-        }
-        iconRight={true}
-        onPress={
-            () => {
-                RootNavigation.navigate(Routes.ListCoursesScreen, {
-                    title: headerText,
-                })
-            }
-        }
-    />
+
+    const onTrailingPressed = () => {
+        RootNavigation.navigate(Routes.ListCoursesScreen, {
+            title: headerText,
+        })
+    }
+
     return (
         <CFlatList
             headerText={headerText}
@@ -46,7 +32,8 @@ const SectionCourses = ({ style, headerText, data }) => {
             }} />}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
-            trailing={trailing} />
+            trailingText='See All'
+            onTrailingPress={onTrailingPressed} />
     )
 }
 

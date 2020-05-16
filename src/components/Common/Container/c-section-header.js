@@ -12,15 +12,15 @@ import Colors from '../../../globals/colors'
 import Sizes from '../../../globals/sizes'
 import TextStyles from '../../../globals/text-styles'
 
-const CSectionHeader = ({ leadingText, trailingText, iconName }) => {
+const CSectionHeader = ({ style, leadingText, trailingText, iconName, onTrailingPress, hasTrailing = true }) => {
     return (
-        <View style={styles.container}>
-            <CText data={leadingText} style={TextStyles.subhead}/>
+        <View style={{ ...styles.container, ...style }}>
+            <CText data={leadingText} style={TextStyles.subhead} />
             <Expanded />
-            <CFlatButton
+            {hasTrailing && <CFlatButton
                 title={trailingText}
-                trailing={<CIonIcon name={iconName ?? IconName.iosArrowForward} size={Sizes.s16}/>}
-            />
+                trailing={<CIonIcon name={iconName ?? IconName.iosArrowForward} size={Sizes.s16} />}
+                onPress={onTrailingPress} />}
         </View>
     )
 }
