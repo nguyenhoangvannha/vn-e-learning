@@ -21,7 +21,7 @@ const CFlatList = ({
     return (
         <View style={containerStyle}>
             <View style={styles.header}>
-                {headerText != undefined && <CText data={headerText} style={headerStyle ?? TextStyles.title} />}
+                {headerText != undefined && <CText data={headerText} style={headerStyle ?? TextStyles.subhead} />}
                 {trailing}
             </View>
             {(headerText != undefined || trailing != undefined) && <SizedBox height={Sizes.s8} />}
@@ -31,6 +31,7 @@ const CFlatList = ({
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 ItemSeparatorComponent={ItemSeparatorComponent}
+                contentContainerStyle={styles.contentContainerStyle}
             />
         </View>
     )
@@ -45,6 +46,9 @@ const styles = StyleSheet.create({
         alignItems: Alignment.center,
         marginHorizontal: Sizes.s8,
         marginVertical: Sizes.s8,
+    },
+    contentContainerStyle: {
+        paddingBottom: Sizes.s10,
     }
 })
 

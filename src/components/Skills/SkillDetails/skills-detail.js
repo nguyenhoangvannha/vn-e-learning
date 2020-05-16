@@ -5,6 +5,9 @@ import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../globals/styles'
 import SectionCourses from '../../Main/Home//SectionCourses/section-courses'
 import coursesData from '../../../data/mock/courses-mock-data'
+import ListAuthors from '../../Author/ListAuthors/list-authors'
+import Paths from '../../Content/Paths/paths'
+import CScrollView from '../../Common/Container/c-scroll-view'
 
 const SkillsDetail = ({ route }) => {
     const navigation = useNavigation()
@@ -14,11 +17,19 @@ const SkillsDetail = ({ route }) => {
     return (
         <View style={Styles.fullScreen}>
             <CAppBar title={skills} />
-            <View style={Styles.body}>
+            <CScrollView style={Styles.body}>
+                <Paths
+                    headerText={`Paths in ${skills}`} />
                 <SectionCourses
                     data={coursesData}
                     headerText={`New in ${skills}`} />
-            </View>
+                <SectionCourses
+                    data={coursesData}
+                    headerText={`Trending in ${skills}`} />
+                <ListAuthors
+                    headerText={`Top authors in ${skills}`}
+                    horizontal={true} />
+            </CScrollView>
         </View>
     )
 }

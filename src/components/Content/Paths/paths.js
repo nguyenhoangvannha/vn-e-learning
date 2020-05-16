@@ -31,8 +31,7 @@ export default Paths
 
 const styles = StyleSheet.create({
     item: {
-        width: 200,
-        height: 150,
-        marginBottom: 9
+        width: Sizes.s200,
+        height: Sizes.s150,
     }
 })

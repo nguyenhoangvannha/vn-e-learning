@@ -10,7 +10,7 @@ import { Icon } from 'react-native-elements';
 import Routes from '../../../../routes/routes';
 import * as RootNavigation from '../../../../routes/navigations/root-navigation'
 
-const SectionCourses = ({ style , headerText, data}) => {
+const SectionCourses = ({ style, headerText, data }) => {
 
     const trailing = <CButton
         type='clear'
@@ -37,11 +37,10 @@ const SectionCourses = ({ style , headerText, data}) => {
                 RootNavigation.navigate(Routes.CourseDetail, {
                     course: item
                 })
-            }}/>}
+            }} />}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
-            trailing={trailing}
-        />
+            trailing={trailing} />
     )
 }
 
