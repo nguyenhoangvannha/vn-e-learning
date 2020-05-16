@@ -13,16 +13,18 @@ import { rootNavigationRef, isRootMountedRef } from './src/routes/navigations/ro
 import Settings from './src/components/Account/Settings/settings';
 import SkillsDetail from './src/components/Skills/SkillDetails/skills-detail';
 import CourseDetail from './src/components/Courses/CourseDetail/course-details'
+import ListCoursesScreen from './src/components/Courses/ListCoursesScreen/list-courses-screen';
 
 const Stack = createStackNavigator()
 
 export default function App() {
+
   React.useEffect(() => {
     isRootMountedRef.current = true;
 
     return () => (isRootMountedRef.current = false);
   }, []);
-
+  
   return (
     <NavigationContainer ref={rootNavigationRef}>
       <Stack.Navigator initialRouteName={Routes.SignIn}>
@@ -34,6 +36,7 @@ export default function App() {
         <Stack.Screen name={Routes.Profile} component={Profile} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.Settings} component={Settings} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={{ headerShown: false, }} />
+        <Stack.Screen name={Routes.ListCoursesScreen} component={ListCoursesScreen} options={{ headerShown: false, }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

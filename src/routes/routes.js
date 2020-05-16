@@ -15,7 +15,8 @@ const Routes = {
     SearchCourses: 'SearchCourses',
     SearchPaths: 'SearchPaths',
     SearchAuthors: 'SearchAuthors',
-    SkillsDetail: 'SkillsDetail'
+    SkillsDetail: 'SkillsDetail',
+    ListCoursesScreen: 'ListCoursesScreen',
 }
 
 export default Routes

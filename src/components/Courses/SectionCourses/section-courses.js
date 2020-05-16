@@ -9,6 +9,7 @@ import TextStyles from '../../../globals/text-styles';
 import Colors from '../../../globals/colors';
 import CIonIcon from '../../Common/Icon/c-ion-icon';
 import IconName from '../../../globals/icon-name';
+import Routes from '../../../routes/routes';
 
 const SectionCourses = ({ style, headerText, data }) => {
     const trailing = <CButton
@@ -24,6 +25,13 @@ const SectionCourses = ({ style, headerText, data }) => {
             />
         }
         iconRight={true}
+        onPress={
+            () => {
+                RootNavigation.navigate(Routes.ListCoursesScreen, {
+                    title: headerText,
+                })
+            }
+        }
     />
     return (
         <CFlatList
