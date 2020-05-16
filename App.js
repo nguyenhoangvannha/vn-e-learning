@@ -16,6 +16,7 @@ import CourseDetail from './src/components/Courses/CourseDetail/course-details'
 import ListCoursesScreen from './src/components/Courses/ListCoursesScreen/list-courses-screen';
 import AllPathsScreen from './src/components/Content/Paths/all-paths-screen';
 import { NavigationOptions } from './src/routes/navigation-options';
+import { MenuProvider } from 'react-native-popup-menu';
 
 const Stack = createStackNavigator()
 
@@ -28,19 +29,21 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer ref={rootNavigationRef}>
-      <Stack.Navigator initialRouteName={Routes.SignIn}>
-        <Stack.Screen name={Routes.SignIn} component={SignIn} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.SignUp} component={SignUp} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.ForgotPassword} component={ForgotPassword} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.Main} component={MainScreen} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.CourseDetail} component={CourseDetail} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.Profile} component={Profile} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.Settings} component={Settings} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.ListCoursesScreen} component={ListCoursesScreen} options={NavigationOptions.normalOptions} />
-        <Stack.Screen name={Routes.AllPathsScreen} component={AllPathsScreen} options={NavigationOptions.normalOptions} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <MenuProvider>
+      <NavigationContainer ref={rootNavigationRef}>
+        <Stack.Navigator initialRouteName={Routes.SignIn}>
+          <Stack.Screen name={Routes.SignIn} component={SignIn} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.SignUp} component={SignUp} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.ForgotPassword} component={ForgotPassword} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.Main} component={MainScreen} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.CourseDetail} component={CourseDetail} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.Profile} component={Profile} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.Settings} component={Settings} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.ListCoursesScreen} component={ListCoursesScreen} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.AllPathsScreen} component={AllPathsScreen} options={NavigationOptions.normalOptions} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </MenuProvider>
   );
 }

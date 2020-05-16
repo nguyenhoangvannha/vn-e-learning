@@ -11,7 +11,9 @@ import Alignment from '../../globals/alignment'
 import AbstractAppbar from '../Common/AppBar/abstract-appbar'
 import Routes from '../../routes/routes'
 import * as RootNavigation from '../../routes/navigations/root-navigation'
-
+import MenuButton from '../Common/Menu/menu-button'
+import { MenuOption } from 'react-native-popup-menu'
+import MenuItem from '../Common/Menu/menu-item'
 
 const HomeAppBar = ({ title, hasBack = false }) => {
     const iconSize = Sizes.s24
@@ -20,7 +22,7 @@ const HomeAppBar = ({ title, hasBack = false }) => {
         RootNavigation.navigate(Routes.Profile)
     }
 
-    const onOptionsPressed = () => {
+    const onSettingsPressed = () => {
         RootNavigation.navigate(Routes.Settings)
     }
 
@@ -33,7 +35,14 @@ const HomeAppBar = ({ title, hasBack = false }) => {
             trailing={[
                 <CIonIcon name={IconName.ioscontact} size={iconSize} onPress={onProfilePressed} />,
                 <SizedBox width={Sizes.s16} />,
-                <CIonIcon name={IconName.mdMore} size={iconSize} onPress={onOptionsPressed}/>
+                <MenuButton
+                    iconName={IconName.mdMore}
+                    menuOptions={[
+                        <MenuItem title='Settings' onPress={onSettingsPressed}/>,
+                        <MenuItem title='Send Feedback' />,
+                        <MenuItem title='Contact Support' />
+                    ]}
+                />
             ]}
         />
     )

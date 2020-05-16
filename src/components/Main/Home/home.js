@@ -14,7 +14,6 @@ import Colors from '../../../globals/colors'
 import HomeAppBar from '../home-app-bar'
 import SectionCourses from '../../Courses/SectionCourses/section-courses'
 
-
 const Home = ({ navigation }) => {
     const buildSectionCourses = (title) => {
         return <SectionCourses
@@ -27,7 +26,7 @@ const Home = ({ navigation }) => {
 
     return (
         <View style={Styles.fullScreen}>
-            <HomeAppBar title={'Home'} hasBack={false}/>
+            <HomeAppBar title={'Home'} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
                     <CImageButton

@@ -11,9 +11,11 @@ import CIonIcon from '../../Common/Icon/c-ion-icon'
 import IconName from '../../../globals/icon-name'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
 import * as RootNavigation from '../../../routes/navigations/root-navigation'
+import MenuButton from '../../Common/Menu/menu-button'
+import MenuItem from '../../Common/Menu/menu-item'
 
 const ListCoursesItem = ({ navigation, style, course }) => {
-    
+
     const onPress = (course) => {
         RootNavigation.navigate(Routes.CourseDetail, {
             course: course,
@@ -23,11 +25,15 @@ const ListCoursesItem = ({ navigation, style, course }) => {
     return (
         <COpacityButton style={{ ...styles.container, ...style }} onPress={() => onPress(course)}>
             <CImage uri={course.image} style={styles.image} />
-            <View style={styles.infoContainer}>
-                <SectionCourseItemInfo course={course} />
-            </View>
+            <SectionCourseItemInfo course={course} />
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
-                <CIonIcon name={IconName.mdMore} style={styles.trailingIcon} />
+                <MenuButton
+                    menuOptions={[
+                        <MenuItem title='Bookmark' />,
+                        <MenuItem title='Add to Channel' />,
+                        <MenuItem title='Downloads' />,
+                    ]}
+                />
             </SizedBox>
         </COpacityButton>
     )
@@ -43,9 +49,6 @@ const styles = StyleSheet.create({
         height: Sizes.s68,
         width: Sizes.s84,
         margin: Sizes.s8
-    },
-    infoContainer: {
-        padding: Sizes.s8,
     },
     trailingIcon: {
         fontSize: Sizes.s20,

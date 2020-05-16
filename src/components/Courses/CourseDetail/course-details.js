@@ -18,6 +18,9 @@ import CourseContent from '../CourseContent/course-content'
 import CourseTranscript from '../CourseTranscript/course-transcript'
 import Routes from '../../../routes/routes'
 import { ShareUtils } from '../../../utils/share-utils'
+import CButton from '../../Common/Button/c-button'
+import Colors from '../../../globals/colors'
+import CText from '../../Common/Text/c-text'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -48,6 +51,13 @@ const CourseDetail = ({ route }) => {
                     chip={true} />
                 <SizedBox height={Sizes.s8} />
                 <CourseActions style={styles.courseActions} />
+                <SizedBox height={Sizes.s8} />
+                <CText data='Ratings are used to collect measurable feedback from users. Use Rating over an Input where imagery can increase user interaction.' />
+                <SizedBox height={Sizes.s12} />
+                <CButton title='Take a learning check' color={Colors.gray} />
+                <SizedBox height={Sizes.s8} />
+                <CButton title='View related paths & courses' color={Colors.gray} />
+                <SizedBox height={Sizes.s8} />
                 <View style={{ height: Sizes.s420 }}>
                     <Tab.Navigator>
                         <Tab.Screen name={Routes.CourseContent} component={CourseContent} options={{ title: 'Contents' }} />
