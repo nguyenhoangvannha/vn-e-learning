@@ -1,11 +1,9 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import CSearchBar from '../../Common/Search/c-search-bar'
 import Styles from '../../../globals/styles'
 import CCard from '../../Common/Container/c-card'
 import Sizes from '../../../globals/sizes'
-import ListCourses from '../../Courses/ListCourses/list-courses'
-import coursesData from '../../../data/mock/courses-mock-data'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Routes from '../../../routes/routes'
 import SearchAll from './All/search-all'

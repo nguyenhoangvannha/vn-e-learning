@@ -7,7 +7,9 @@ import FlexDirection from '../../../globals/flex-direction'
 import Alignment from '../../../globals/alignment'
 import SizedBox from './sized-box'
 
-const CFlatList = ({ style,
+const CFlatList = ({
+    style,
+    containerStyle,
     horizontal,
     data,
     renderItem,
@@ -17,12 +19,12 @@ const CFlatList = ({ style,
     headerStyle,
     trailing }) => {
     return (
-        <View>
+        <View style={containerStyle}>
             <View style={styles.header}>
                 {headerText != undefined && <CText data={headerText} style={headerStyle ?? TextStyles.title} />}
                 {trailing}
             </View>
-            {(headerText != undefined || trailing != undefined) && <SizedBox height={Sizes.s8}/>}
+            {(headerText != undefined || trailing != undefined) && <SizedBox height={Sizes.s8} />}
             <FlatList style={style}
                 horizontal={horizontal ?? false}
                 data={data}

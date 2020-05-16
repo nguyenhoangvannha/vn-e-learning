@@ -4,10 +4,13 @@ import { Chip } from 'react-native-paper'
 import CText from '../Text/c-text'
 import Alignment from '../../../globals/alignment'
 import TextStyles from '../../../globals/text-styles'
+import COpacityButton from '../Button/c-opacity-button'
 
-const CChip = ({ title }) => {
+const CChip = ({ title, onPress }) => {
     return (
-        <Chip style={styles.chip}><CText data={title} style={TextStyles.caption} /></Chip>
+        <COpacityButton onPress={onPress}>
+            <Chip style={styles.chip}><CText data={title} style={TextStyles.caption} /></Chip>
+        </COpacityButton>
     )
 }
 

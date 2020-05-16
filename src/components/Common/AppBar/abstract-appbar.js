@@ -3,6 +3,7 @@ import { StyleSheet, View, SafeAreaView } from 'react-native'
 import Sizes from '../../../globals/sizes'
 import Alignment from '../../../globals/alignment'
 import FlexDirection from '../../../globals/flex-direction'
+import CDivider from '../Container/c-divider'
 
 const AbstractAppbar = ({ leading, title, middle, trailing }) => {
     return (
@@ -13,6 +14,7 @@ const AbstractAppbar = ({ leading, title, middle, trailing }) => {
                 {middle}
                 {trailing}
             </View>
+            <CDivider marginHorizontal={Sizes.s0} />
         </SafeAreaView>
     )
 }

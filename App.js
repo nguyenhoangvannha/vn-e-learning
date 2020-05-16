@@ -12,6 +12,7 @@ import Profile from './src/components/Account/Profile/profile'
 
 import { rootNavigationRef, isRootMountedRef } from './src/routes/navigations/root-navigation'
 import Settings from './src/components/Account/Settings/settings';
+import SkillsDetail from './src/components/Skills/SkillDetails/skills-detail';
 
 const Stack = createStackNavigator()
 
@@ -32,6 +33,7 @@ export default function App() {
         <Stack.Screen name={Routes.CourseDetail} component={CourseDetail} options={{ headerShown: true, }} />
         <Stack.Screen name={Routes.Profile} component={Profile} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.Settings} component={Settings} options={{ headerShown: false, }} />
+        <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={{ headerShown: false, }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

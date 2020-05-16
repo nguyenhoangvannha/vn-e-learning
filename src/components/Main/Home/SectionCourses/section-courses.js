@@ -10,7 +10,7 @@ import { Icon } from 'react-native-elements';
 import Routes from '../../../../routes/routes';
 import * as RootNavigation from '../../../../routes/navigations/root-navigation'
 
-const SectionCourses = ({ style , headerText, data, navigation}) => {
+const SectionCourses = ({ style , headerText, data}) => {
 
     const trailing = <CButton
         type='clear'
