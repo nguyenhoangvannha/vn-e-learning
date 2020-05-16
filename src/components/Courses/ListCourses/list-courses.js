@@ -14,6 +14,7 @@ const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }
             data={data ?? coursesData}
             headerText={headerText}
             trailingText={'See All'}
+            hasTrailing={hasTrailing}
             headerStyle={TextStyles.caption}
             style={style}
             horizontal={false}

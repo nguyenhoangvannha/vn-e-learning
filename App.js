@@ -33,7 +33,7 @@ export default function App() {
         <Stack.Screen name={Routes.SignUp} component={SignUp} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.ForgotPassword} component={ForgotPassword} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.Main} component={MainScreen} options={{ headerShown: false, }} />
-        <Stack.Screen name={Routes.CourseDetail} component={CourseDetail} options={{ headerShown: true, }} />
+        <Stack.Screen name={Routes.CourseDetail} component={CourseDetail} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.Profile} component={Profile} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.Settings} component={Settings} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={{ headerShown: false, }} />

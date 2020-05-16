@@ -11,15 +11,15 @@ import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../globals/alignment'
 import coursesData from '../../../data/mock/courses-mock-data'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
+import CAppBar from '../../Common/AppBar/c-app-bar'
 
 const CourseDetail = ({ navigation, route }) => {
 
     var course = route.params.course ?? coursesData[0]
 
-    navigation.setOptions({title: course.name})
-
     return (
         <View style={Styles.fullScreen}>
+            <CAppBar title={course.name}/>
             <VideoView uri={course.image} style={styles.videoView} />
             <CScrollView style={Styles.screenContainer}>
                 <SizedBox height={Sizes.s10} />

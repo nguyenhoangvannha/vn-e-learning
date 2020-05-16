@@ -10,11 +10,12 @@ import Routes from '../../../routes/routes'
 import CIonIcon from '../../Common/Icon/c-ion-icon'
 import IconName from '../../../globals/icon-name'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
+import * as RootNavigation from '../../../routes/navigations/root-navigation'
 
 const ListCoursesItem = ({ navigation, style, course }) => {
     
     const onPress = (course) => {
-        navigation.navigate(Routes.CourseDetail, {
+        RootNavigation.navigate(Routes.CourseDetail, {
             course: course,
         });
     }

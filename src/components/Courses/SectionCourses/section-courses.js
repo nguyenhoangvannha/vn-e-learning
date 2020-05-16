@@ -25,11 +25,17 @@ const SectionCourses = ({ style, headerText, data }) => {
             style={style}
             horizontal={true}
             data={data}
-            renderItem={({ item }) => <SectionCourseItem course={item} onPress={() => {
-                RootNavigation.navigate(Routes.CourseDetail, {
-                    course: item
-                })
-            }} />}
+            renderItem={({ item }) =>
+                <SectionCourseItem
+                    key={item.id}
+                    course={item}
+                    onPress={() => {
+                        RootNavigation.navigate(Routes.CourseDetail, {
+                            course: item
+                        })
+                    }}
+                />
+            }
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
             trailingText='See All'

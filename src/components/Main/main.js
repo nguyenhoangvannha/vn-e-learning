@@ -8,7 +8,7 @@ import Search from './Search/search'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import IconName from '../../globals/icon-name';
 import Colors from '../../globals/colors';
-
+import { StyleSheet } from 'react-native'
 const Tab = createBottomTabNavigator()
 
 const MainScreen = () => {
@@ -23,6 +23,11 @@ const MainScreen = () => {
 }
 
 export default MainScreen
+
+const styles = StyleSheet.create({
+    labelStyle: {
+    }
+})
 
 const screenOptions = ({ route }) => ({
     tabBarIcon: ({ focused, color, size }) => {
@@ -52,4 +57,5 @@ const screenOptions = ({ route }) => ({
 const tabBarOptions = {
     activeTintColor: Colors.tomato,
     inactiveTintColor: Colors.gray,
+    labelStyle: styles.labelStyle,
 };

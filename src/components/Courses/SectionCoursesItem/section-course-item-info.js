@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { Rating } from 'react-native-elements'
 import TextStyles from '../../../globals/text-styles'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../globals/sizes'
 import Alignment from '../../../globals/alignment'
 import FlexDirection from '../../../globals/flex-direction'
 import CText from '../../Common/Text/c-text'
+import { CRating, RatingType } from '../../Common/Rating/c-rating'
 
 const SectionCourseItemInfo = ({ course, simple = false }) => {
     return (
@@ -27,10 +27,10 @@ const SectionCourseItemInfo = ({ course, simple = false }) => {
             <SizedBox height={Sizes.s4} />
             {
                 !simple && <View style={styles.row}>
-                    <Rating
-                        type='star'
-                        ratingCount={course.rating ?? 0}
-                        imageSize={Sizes.s16} />
+                    <CRating
+                        readonly={true}
+                        type={RatingType.star}
+                        ratingCount={course.rating} />
                     <SizedBox width={Sizes.s4} />
                     <CText data={`(${course.ratingCount})`} style={TextStyles.caption} />
                 </View>

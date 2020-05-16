@@ -17,22 +17,34 @@ const CFlatList = ({
     trailingText,
     trailingIcon,
     onTrailingPress,
-    hasTrailing = true }) => {
+    hasTrailing = true,
+    contentContainerStyle,
+    showsHorizontalScrollIndicator,
+    showsVerticalScrollIndicator,
+    numColumns,
+    scrollEnabled, }) => {
     return (
         <View style={containerStyle}>
-            <CSectionHeader
-                leadingText={headerText}
-                trailingText={trailingText}
-                iconName={trailingIcon}
-                onTrailingPress={onTrailingPress}
-                hasTrailing={hasTrailing} />
-            <FlatList style={style}
+            {(hasTrailing || headerText != undefined) &&
+                <CSectionHeader
+                    leadingText={headerText}
+                    trailingText={trailingText}
+                    iconName={trailingIcon}
+                    onTrailingPress={onTrailingPress}
+                    hasTrailing={hasTrailing} />
+            }
+            <FlatList
+                style={style}
                 horizontal={horizontal ?? false}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 ItemSeparatorComponent={ItemSeparatorComponent}
-                contentContainerStyle={styles.contentContainerStyle} />
+                contentContainerStyle={contentContainerStyle ?? styles.contentContainerStyle}
+                showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
+                showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+                numColumns={numColumns}
+                scrollEnabled={scrollEnabled} />
         </View>
     )
 }

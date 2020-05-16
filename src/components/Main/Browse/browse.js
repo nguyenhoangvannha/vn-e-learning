@@ -12,6 +12,7 @@ import ListAuthors from '../../Author/ListAuthors/list-authors'
 import HomeAppBar from '../home-app-bar'
 import * as RootNavigation from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import ListCategory from '../../Category/ListCategory/list-category'
 
 const Browse = ({ }) => {
 
@@ -29,6 +30,9 @@ const Browse = ({ }) => {
                     title='RECOMMENDED FOR YOU'
                     height={Sizes.s64} />
                 <SizedBox height={Sizes.s12} />
+                
+                <ListCategory/>
+                
                 <PopularSkills
                     headerText='Popular Skills' />
                 <SizedBox height={Sizes.s12} />

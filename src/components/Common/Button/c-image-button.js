@@ -6,9 +6,9 @@ import CText from '../Text/c-text'
 import TextStyles from '../../../globals/text-styles'
 import Colors from '../../../globals/colors'
 
-const CImageButton = ({ style, uri, children, onPress, height, title }) => {
+const CImageButton = ({ style, uri, children, onPress, width, height, title }) => {
     return (
-        <CTouchableButton style={{ ...style, height: height }} onPress={onPress}>
+        <CTouchableButton style={{ ...style, height: height, width: width }} onPress={onPress}>
             <ImageBackground style={styles.image} source={{ uri: uri }}>
                 {title != undefined && <CText data={title} style={{ ...TextStyles.button, color: Colors.white }} />}
                 {children}
