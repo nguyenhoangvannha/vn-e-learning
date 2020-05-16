@@ -7,7 +7,7 @@ import Colors from '../../../globals/colors'
 
 const CDivider = ({ marginHorizontal, style, height, marginVertical, containerHeight, color, elevation }) => {
     return (
-        <View style={{ height: containerHeight, justifyContent: Alignment.center, ...style, elevation: elevation }}>
+        <View style={{ height: containerHeight, justifyContent: Alignment.center, ...style, elevation: elevation , backgroundColor: Colors.transparent}}>
             <Divider style={{
                 backgroundColor: color ?? Colors.grey100,
                 height: height ?? 1,

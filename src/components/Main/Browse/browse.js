@@ -10,11 +10,14 @@ import PopularSkills from '../../Skills/PopularSkills/popular-skills'
 import Paths from '../../Content/Paths/paths'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
 import HomeAppBar from '../home-app-bar'
+import * as RootNavigation from '../../../routes/navigations/root-navigation'
+import Routes from '../../../routes/routes'
 
-const Browse = ({ navigation }) => {
+const Browse = ({ }) => {
+
     return (
         <View style={Styles.fullScreen}>
-            <HomeAppBar title='Browse'/>
+            <HomeAppBar title='Browse' />
             <CScrollView style={Styles.screenContainer} >
                 <CImageButton
                     uri={Strings.defaultCourseThubnail}
@@ -31,7 +34,12 @@ const Browse = ({ navigation }) => {
                 <SizedBox height={Sizes.s12} />
 
                 <Paths
-                    headerText='Paths' />
+                    headerText='Paths'
+                    onTrailingPress={
+                        () => {
+                            RootNavigation.navigate(Routes.AllPathsScreen)
+                        }
+                    } />
                 <SizedBox height={Sizes.s28} />
                 <ListAuthors
                     horizontal={true}

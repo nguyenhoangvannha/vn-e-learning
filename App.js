@@ -14,6 +14,7 @@ import Settings from './src/components/Account/Settings/settings';
 import SkillsDetail from './src/components/Skills/SkillDetails/skills-detail';
 import CourseDetail from './src/components/Courses/CourseDetail/course-details'
 import ListCoursesScreen from './src/components/Courses/ListCoursesScreen/list-courses-screen';
+import AllPathsScreen from './src/components/Content/Paths/all-paths-screen';
 
 const Stack = createStackNavigator()
 
@@ -37,6 +38,7 @@ export default function App() {
         <Stack.Screen name={Routes.Settings} component={Settings} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.SkillsDetail} component={SkillsDetail} options={{ headerShown: false, }} />
         <Stack.Screen name={Routes.ListCoursesScreen} component={ListCoursesScreen} options={{ headerShown: false, }} />
+        <Stack.Screen name={Routes.AllPathsScreen} component={AllPathsScreen} options={{ headerShown: false, }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
