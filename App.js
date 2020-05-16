@@ -7,12 +7,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Routes from './src/routes/routes';
 import MainScreen from './src/components/Main/main';
-import CourseDetail from './src/components/CourseDetail/course-details'
 import Profile from './src/components/Account/Profile/profile'
 
 import { rootNavigationRef, isRootMountedRef } from './src/routes/navigations/root-navigation'
 import Settings from './src/components/Account/Settings/settings';
 import SkillsDetail from './src/components/Skills/SkillDetails/skills-detail';
+import CourseDetail from './src/components/Courses/CourseDetail/course-details'
 
 const Stack = createStackNavigator()
 

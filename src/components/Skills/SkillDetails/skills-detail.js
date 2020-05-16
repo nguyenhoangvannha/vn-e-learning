@@ -3,13 +3,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../globals/styles'
-import SectionCourses from '../../Main/Home//SectionCourses/section-courses'
 import coursesData from '../../../data/mock/courses-mock-data'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
 import Paths from '../../Content/Paths/paths'
 import CScrollView from '../../Common/Container/c-scroll-view'
+import SectionCourses from '../../Courses/SectionCourses/section-courses'
 
 const SkillsDetail = ({ route }) => {
+    
     const navigation = useNavigation()
 
     var skills = route.params.skills

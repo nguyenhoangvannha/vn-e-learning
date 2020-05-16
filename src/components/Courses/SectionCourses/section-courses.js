@@ -1,32 +1,30 @@
 import React from 'react'
-import CFlatList from '../../../Common/Container/c-flat-list';
 import SectionCourseItem from '../SectionCoursesItem/section-courses-item';
-import SizedBox from '../../../Common/Container/sized-box';
-import Sizes from '../../../../globals/sizes';
-import CButton from '../../../Common/Button/c-button';
-import TextStyles from '../../../../globals/text-styles';
-import Colors from '../../../../globals/colors';
-import { Icon } from 'react-native-elements';
-import Routes from '../../../../routes/routes';
-import * as RootNavigation from '../../../../routes/navigations/root-navigation'
+import * as RootNavigation from '../../../routes/navigations/root-navigation'
+import CFlatList from '../../Common/Container/c-flat-list';
+import SizedBox from '../../Common/Container/sized-box';
+import Sizes from '../../../globals/sizes';
+import CButton from '../../Common/Button/c-button';
+import TextStyles from '../../../globals/text-styles';
+import Colors from '../../../globals/colors';
+import CIonIcon from '../../Common/Icon/c-ion-icon';
+import IconName from '../../../globals/icon-name';
 
 const SectionCourses = ({ style, headerText, data }) => {
-
     const trailing = <CButton
         type='clear'
         title='See All'
         titleStyle={TextStyles.caption}
         color={Colors.transparent}
         icon={
-            <Icon
-                name='chevron-right'
+            <CIonIcon
+                name={IconName.iosArrowForward}
                 size={15}
                 color={Colors.bodyText}
             />
         }
         iconRight={true}
     />
-
     return (
         <CFlatList
             headerText={headerText}

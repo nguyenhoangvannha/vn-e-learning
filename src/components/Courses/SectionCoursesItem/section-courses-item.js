@@ -1,13 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
-import CCard from '../../../Common/Container/c-card'
-import CImage from '../../../Common/Image/c-image'
-import Sizes from '../../../../globals/sizes'
+import { StyleSheet, View } from 'react-native'
+import Sizes from '../../../globals/sizes'
+import COpacityButton from '../../Common/Button/c-opacity-button'
+import CCard from '../../Common/Container/c-card'
+import CImage from '../../Common/Image/c-image'
 import SectionCourseItemInfo from './section-course-item-info'
-import COpacityButton from '../../../Common/Button/c-opacity-button'
-import Colors from '../../../../globals/colors'
 
-const SectionCourseItem = ({ style, course, onPress }) => {
+const SectionCourseItem = ({ course, onPress }) => {
     return (
         <COpacityButton onPress={onPress}>
             <CCard>

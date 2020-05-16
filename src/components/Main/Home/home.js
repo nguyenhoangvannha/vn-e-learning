@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../globals/styles'
-import SectionCourses from './SectionCourses/section-courses'
 import Sizes from '../../../globals/sizes'
 import coursesData from '../../../data/mock/courses-mock-data'
 import SizedBox from '../../Common/Container/sized-box'
@@ -13,6 +12,7 @@ import Alignment from '../../../globals/alignment'
 import TextStyles from '../../../globals/text-styles'
 import Colors from '../../../globals/colors'
 import HomeAppBar from '../home-app-bar'
+import SectionCourses from '../../Courses/SectionCourses/section-courses'
 
 
 const Home = ({ navigation }) => {

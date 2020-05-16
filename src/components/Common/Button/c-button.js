@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Icon } from 'react-native-elements'
+import { Button } from 'react-native-elements'
 import Colors from '../../../globals/colors'
+import { StyleSheet } from 'react-native'
 
 const CButton = ({ onPress, title, type, style, titleStyle, color, loading, disabled, icon, iconRight }) => {
     return (

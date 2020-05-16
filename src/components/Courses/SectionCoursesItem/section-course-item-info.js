@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import CText from '../../../Common/Text/c-text'
-import TextStyles from '../../../../globals/text-styles'
-import SizedBox from '../../../Common/Container/sized-box'
-import Sizes from '../../../../globals/sizes'
+import { StyleSheet, View } from 'react-native'
 import { Rating } from 'react-native-elements'
-import Alignment from '../../../../globals/alignment'
-import FlexDirection from '../../../../globals/flex-direction'
+import TextStyles from '../../../globals/text-styles'
+import SizedBox from '../../Common/Container/sized-box'
+import Sizes from '../../../globals/sizes'
+import Alignment from '../../../globals/alignment'
+import FlexDirection from '../../../globals/flex-direction'
+import CText from '../../Common/Text/c-text'
 
 const SectionCourseItemInfo = ({ course, simple = false }) => {
     return (
