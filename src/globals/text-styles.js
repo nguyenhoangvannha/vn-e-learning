@@ -35,7 +35,7 @@ const TextStyles = StyleSheet.create({
     subhead: {
         fontSize: Sizes.s16,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.15
+        letterSpacing: 0.15,
     },
     subtitle: {
         fontSize: Sizes.s14,

@@ -10,7 +10,7 @@ import CDivider from '../../Common/Container/c-divider';
 import CFlatButton from '../../Common/Button/c-flat-button';
 import coursesData from '../../../data/mock/courses-mock-data';
 
-const ListCourses = ({ navigation, style, headerText, hasTrailing = true }) => {
+const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }) => {
 
     const trailing = <CFlatButton
         title='See All'
@@ -26,7 +26,7 @@ const ListCourses = ({ navigation, style, headerText, hasTrailing = true }) => {
     />
     return (
         <CFlatList
-            data={coursesData}
+            data={data ?? coursesData}
             headerText={headerText}
             headerStyle={TextStyles.caption}
             style={style}

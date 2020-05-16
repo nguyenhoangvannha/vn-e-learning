@@ -3,13 +3,15 @@ import Alignment from "./alignment"
 import Sizes from "./sizes"
 import FlexDirection from './flex-direction'
 import Colors from './colors'
+import Constants from "expo-constants";
 
 const Styles = StyleSheet.create({
     fullScreen:{
         flex: 1,
         width: '100%',
         height: '100%',
-        backgroundColor: Colors.white
+        backgroundColor: Colors.white,
+        marginTop: Constants.statusBarHeight,
     },
     row: {
         flexDirection: FlexDirection.row,
