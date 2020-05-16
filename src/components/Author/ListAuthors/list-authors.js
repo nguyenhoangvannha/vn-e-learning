@@ -6,16 +6,26 @@ import CDivider from '../../Common/Container/c-divider'
 import Sizes from '../../../globals/sizes'
 import ProfileTile from '../../Common/Profile/profile-tile'
 import ProfileTileVer from '../../Common/Profile/profile-tile-ver'
+import Strings from '../../../globals/strings'
+import CAvatar from '../../Common/Image/c-avatar'
+import Alignment from '../../../globals/alignment'
+import { Chip } from 'react-native-paper'
 
-const ListAuthors = ({ horizontal = false, headerText }) => {
+const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
 
     const buildItem = (author) => {
         return (
             horizontal ?
-                <ProfileTileVer
-                    title={author.name}
-                    image={author.avatar}
-                    style={styles.authorItemVer} /> :
+                (chip ?
+                    <Chip
+                        style={styles.teacherAvatar}
+                        avatar={<CAvatar uri={Strings.defaultAvatar} size={Sizes.s24} />}
+                        onPress={() => console.log('Pressed')}>
+                        {author.name}
+                    </Chip> : <ProfileTileVer
+                        title={author.name}
+                        image={author.avatar}
+                        style={styles.authorItemVer} />) :
                 <ProfileTile
                     title={author.name}
                     subtitle={`${author.coursesCount} Courses`}
@@ -31,7 +41,7 @@ const ListAuthors = ({ horizontal = false, headerText }) => {
             horizontal={horizontal}
             renderItem={({ item }) => buildItem(item)}
             keyExtractor={item => item.id}
-            ItemSeparatorComponent={() => <CDivider />}
+            ItemSeparatorComponent={() => <CDivider marginHorizontal={Sizes.s4}/>}
             hasTrailing={false} />
     )
 }
@@ -45,5 +55,8 @@ const styles = StyleSheet.create({
     },
     authorItemVer: {
         width: Sizes.s100
-    }
+    },
+    teacherAvatar: {
+        alignSelf: Alignment.baseLine,
+    },
 })

@@ -18,6 +18,8 @@ const Routes = {
     SkillsDetail: 'SkillsDetail',
     ListCoursesScreen: 'ListCoursesScreen',
     AllPathsScreen: 'AllPathsScreen',
+    CourseContent: 'CourseContent',
+    CourseTranscript: 'CourseTranscript',
 }
 
 export default Routes

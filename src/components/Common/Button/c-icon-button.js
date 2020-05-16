@@ -1,17 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { IconButton } from 'react-native-paper'
+import { StyleSheet, View } from 'react-native'
 import Colors from '../../../globals/colors'
 import Sizes from '../../../globals/sizes'
-import { Icon } from 'react-native-elements'
 import Alignment from '../../../globals/alignment'
 import CText from '../Text/c-text'
 import SizedBox from '../Container/sized-box'
+import CIonIcon from '../Icon/c-ion-icon'
 
 const CIconButton = ({ onPress, color, size, icon, style, containerStyle, bottomText, bottomTextStyle }) => {
     return (
         <View style={styles.container}>
-            <Icon
+            <CIonIcon
                 style={style}
                 containerStyle={{ ...styles.container, ...containerStyle}}
                 name={icon ?? ''}

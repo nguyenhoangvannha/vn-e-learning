@@ -8,7 +8,8 @@ const CScrollView = ({
     indicatorStyle,
     showsHorizontalScrollIndicator,
     showsVerticalScrollIndicator,
-    horizontal = false }) => {
+    stickyHeaderIndices,
+    horizontal = false, }) => {
     return (
         <ScrollView
             horizontal={horizontal}
@@ -17,6 +18,7 @@ const CScrollView = ({
             contentContainerStyle={contentContainerStyle}
             showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
             indicatorStyle={indicatorStyle}
+            stickyHeaderIndices={stickyHeaderIndices}
             showsVerticalScrollIndicator={showsVerticalScrollIndicator}>
             {children}
         </ScrollView>

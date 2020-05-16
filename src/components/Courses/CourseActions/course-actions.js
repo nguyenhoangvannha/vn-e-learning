@@ -1,35 +1,32 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import CIconButton from '../../Common/Button/c-icon-button'
 import Colors from '../../../globals/colors'
-import { Avatar } from 'react-native-paper'
 import Alignment from '../../../globals/alignment'
 import Sizes from '../../../globals/sizes'
 import TextStyles from '../../../globals/text-styles'
-import FontWeight from '../../../globals/font-weight'
 import FlexDirection from '../../../globals/flex-direction'
+import IconName from '../../../globals/icon-name'
+
+const Item = ({ bottomText, icon }) => <CIconButton
+    containerStyle={styles.actionButton}
+    size={Sizes.s32}
+    icon={icon}
+    bottomText={bottomText}
+    bottomTextStyle={styles.actionButtonText} />
 
 const CourseActions = ({ style, course }) => {
     return (
-        <View style={styles.container}>
-            <CIconButton
-                containerStyle={styles.actionButton}
-                size={Sizes.s32}
-                icon='bookmark'
-                bottomText='Bookmark'
-                bottomTextStyle={styles.actionButtonText} />
-            <CIconButton
-                containerStyle={styles.actionButton}
-                size={Sizes.s32}
-                icon='clock'
-                bottomText='Bookmark'
-                bottomTextStyle={styles.actionButtonText} />
-            <CIconButton
-                containerStyle={styles.actionButton}
-                size={Sizes.s32}
-                icon='save'
-                bottomText='Download'
-                bottomTextStyle={styles.actionButtonText} />
+        <View style={{...styles.container, ...style}}>
+            <Item
+                icon={IconName.bookmarkOutline}
+                bottomText='Bookmark' />
+            <Item
+                icon={IconName.iosRadio}
+                bottomText='Add to Channel' />
+            <Item
+                icon={IconName.mdCloudDownload}
+                bottomText='Download' />
         </View>
     )
 }

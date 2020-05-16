@@ -4,6 +4,7 @@ import FlexDirection from '../../../globals/flex-direction'
 import SizedBox from './sized-box'
 import Sizes from '../../../globals/sizes'
 import Alignment from '../../../globals/alignment'
+import Expanded from './expanded'
 
 const ListTile = ({ style, title, subtitle, leading, trailing, bodyItemsSpace, leadingMarginRight }) => {
     return (
@@ -16,7 +17,8 @@ const ListTile = ({ style, title, subtitle, leading, trailing, bodyItemsSpace, l
                     {title != undefined && subtitle != undefined && <SizedBox height={bodyItemsSpace ?? Sizes.s2} />}
                     {subtitle != undefined && subtitle}
                 </View>
-                <View style={{ flex: 1 }} />
+                <Expanded>
+                </Expanded>
                 {trailing != undefined && trailing}
             </View>
         </View>

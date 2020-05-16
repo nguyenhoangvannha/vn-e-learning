@@ -24,7 +24,7 @@ export default EmptyScreen
 
 const styles = StyleSheet.create({
     container: {
-        ...Styles.fullScreen,
+        ...Styles.screenContainer,
         justifyContent: Alignment.center,
         alignItems: Alignment.center,
         paddingHorizontal:40,

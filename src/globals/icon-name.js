@@ -14,6 +14,10 @@ const IconName = {
     mdSearch: 'md-search',
     mdAlert: 'md-alert',
     mdClose: 'md-close',
+    mdShare: 'md-share',
+    bookmarkOutline: 'md-bookmark',
+    iosRadio: 'ios-radio',
+    iosText: 'ios-text'
 }
 
 export default IconName
