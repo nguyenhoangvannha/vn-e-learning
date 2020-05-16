@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Share } from 'react-native'
 import Styles from '../../../globals/styles'
 import VideoView from '../../Common/Video/video-view'
 import Sizes from '../../../globals/sizes'
@@ -17,7 +17,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import CourseContent from '../CourseContent/course-content'
 import CourseTranscript from '../CourseTranscript/course-transcript'
 import Routes from '../../../routes/routes'
-import Expanded from '../../Common/Container/expanded'
+import { ShareUtils } from '../../../utils/share-utils'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -25,13 +25,18 @@ const CourseDetail = ({ route }) => {
 
     var course = route.params.course ?? coursesData[0]
 
+    const onShare = () => {
+        ShareUtils.share({ message: course.name })
+    };
+
     return (
         <View style={Styles.fullScreen}>
             <CAppBar
                 title={course.name}
                 trailing={
                     <CIonIcon
-                        name={IconName.mdShare} />} />
+                        name={IconName.mdShare}
+                        onPress={onShare} />} />
             <VideoView uri={course.image} style={styles.videoView} />
             <CScrollView
                 style={Styles.screenContainer}>
