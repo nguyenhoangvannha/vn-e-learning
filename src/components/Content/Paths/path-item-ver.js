@@ -11,7 +11,7 @@ const PathItemVer = ({ image, name, coursesCount }) => {
     return (
         <CCard borderRadius={Sizes.s0}>
             <View style={Styles.row} >
-                <CImage uri={image ?? ''} containerStyle={styles.image} />
+                <CImage uri={image ?? ''} width={Sizes.s80} height={Sizes.s80} />
                 <View style={styles.body}>
                     <CText data={name} style={TextStyles.subhead} numberOfLines={2} />
                     <CText data={`${coursesCount} Courses`} style={TextStyles.overline} />
@@ -24,10 +24,6 @@ const PathItemVer = ({ image, name, coursesCount }) => {
 export default PathItemVer
 
 const styles = StyleSheet.create({
-    image: {
-        height: Sizes.s80,
-        width: Sizes.s80,
-    },
     body: {
         paddingHorizontal: Sizes.s8,
         paddingVertical: Sizes.s4,
