@@ -18,6 +18,7 @@ import AllPathsScreen from './src/components/Content/Paths/all-paths-screen';
 import { NavigationOptions } from './src/routes/navigation-options';
 import { MenuProvider } from 'react-native-popup-menu';
 import SendFeedbackScreen from './src/components/Help/Feedback/send-feedback-screen';
+import Styles from './src/globals/styles';
 
 const Stack = createStackNavigator()
 
@@ -30,7 +31,7 @@ export default function App() {
   }, []);
 
   return (
-    <MenuProvider>
+    <MenuProvider style={Styles.fullScreen}>
       <NavigationContainer ref={rootNavigationRef}>
         <Stack.Navigator initialRouteName={Routes.SignIn}>
           <Stack.Screen name={Routes.SignIn} component={SignIn} options={NavigationOptions.normalOptions} />

@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import CText from '../Text/c-text'
 import Expanded from '../Container/expanded'
 
-const CAppBar = ({ leading, onLeadingPressed, title, middle, trailing, hasLeading = true }) => {
+const CAppBar = ({ leading, onLeadingPressed, title, middle, trailing, hasLeading = true , dividerColor}) => {
     const navigation = useNavigation();
 
     const onBackPressed = () => {
@@ -28,6 +28,7 @@ const CAppBar = ({ leading, onLeadingPressed, title, middle, trailing, hasLeadin
                 <CText data={title} style={styles.title} />}
             middle={<Expanded/>}
             trailing={trailing}
+            dividerColor={dividerColor}
         />
     )
 }

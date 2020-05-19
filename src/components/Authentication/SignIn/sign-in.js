@@ -24,7 +24,7 @@ const SignIn = () => {
         RootNavigation.navigate(Routes.ForgotPassword);
     }
     return (
-        <CScrollView style={Styles.screenContainer} >
+        <CScrollView contentContainerStyle={Styles.screenContainer} >
             <View style={Styles.screenColumn}>
                 <SizedBox height={'25%'} />
                 <CText data="Sign In" style={styles.label} />
@@ -36,7 +36,7 @@ const SignIn = () => {
                 <SizedBox height={Sizes.s12} />
                 <CButton title="SIGN UP" onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
                 <SizedBox height={Sizes.s24} />
-                <CButton title="FORGOT PASSWORD?" onPress={onPressedForgotPassword} type='clear' style={styles.forgotPassword} loading={false} disabled={false} />
+                <CButton title="FORGOT PASSWORD?" onPress={onPressedForgotPassword} type='clear' style={styles.forgotPassword} loading={false} disabled={false} color={Colors.transparent}/>
             </View>
         </CScrollView>
     )

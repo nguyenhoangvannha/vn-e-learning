@@ -11,7 +11,6 @@ const Styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: Colors.white,
-        marginTop: Constants.statusBarHeight,
     },
     row: {
         flexDirection: FlexDirection.row,
