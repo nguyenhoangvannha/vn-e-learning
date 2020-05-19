@@ -8,10 +8,10 @@ import ListAuthors from '../../Author/ListAuthors/list-authors'
 import Paths from '../../Content/Paths/paths'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import SizedBox from '../../Common/Container/sized-box'
+import Sizes from '../../../globals/sizes'
 
 const SkillsDetail = ({ route }) => {
-    
-    const navigation = useNavigation()
 
     var skills = route.params.skills
 
@@ -30,6 +30,7 @@ const SkillsDetail = ({ route }) => {
                 <ListAuthors
                     headerText={`Top authors in ${skills}`}
                     horizontal={true} />
+                <SizedBox height={Sizes.s16}/>
             </CScrollView>
         </View>
     )

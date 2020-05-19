@@ -11,11 +11,11 @@ import FontWeight from '../../../globals/font-weight'
 import Styles from '../../../globals/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import Routes from '../../../routes/routes'
-import * as RootNavigation from '../../../routes/navigations/root-navigation'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
 const SignIn = () => {
     const onPressedSignIn = () => {
-        RootNavigation.navigate(Routes.Main);
+        RootNavigation.replace(Routes.Main);
     }
     const onPressedSignUp = () => {
         RootNavigation.navigate(Routes.SignUp);

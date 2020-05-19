@@ -10,9 +10,9 @@ import CIonIcon from '../Icon/c-ion-icon'
 import Alignment from '../../../globals/alignment'
 import AbstractAppbar from './abstract-appbar'
 import Routes from '../../../routes/routes'
-import * as RootNavigation from '../../../routes/navigations/root-navigation'
 import MenuButton from '../Menu/menu-button'
 import CMenuItem from '../Menu/c-menu-item'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
 const HomeAppBar = ({ title, hasBack = false }) => {
     const iconSize = Sizes.s24

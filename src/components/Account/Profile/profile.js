@@ -1,9 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import CAvatar from '../../Common/Image/c-avatar'
+import { StyleSheet, View } from 'react-native'
 import Strings from '../../../globals/strings'
-import CText from '../../Common/Text/c-text'
-import TextStyles from '../../../globals/text-styles'
 import FlexDirection from '../../../globals/flex-direction'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../globals/sizes'
@@ -15,12 +12,20 @@ import CButton from '../../Common/Button/c-button'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import ProfileItem from './profile-item'
 import ProfileTile from '../../Common/Profile/profile-tile'
+import Colors from '../../../globals/colors'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import Routes from '../../../routes/routes'
 
 const Profile = () => {
+
+    const onSignOutPressed = () => {
+        RootNavigation.reset(Routes.SignIn)
+    }
+
     return (
         <View style={Styles.fullScreen}>
             <CAppBar title='Profile' />
-            <CScrollView style={Styles.screenContainer}>
+            <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
                     title='Nha Nguyen' />
@@ -31,10 +36,10 @@ const Profile = () => {
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                 <ProfileItem title='Courses' subtitle='4 Courses' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title='Total Active Date' subtitle='1 days s' />
+                <ProfileItem title='Total Active Date' subtitle='1 days' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                 <SizedBox height={'25%'} />
-                <CButton title='SIGN OUT' />
+                <CButton title='SIGN OUT' color={Colors.grey200} onPress={onSignOutPressed} />
             </CScrollView>
         </View>
 

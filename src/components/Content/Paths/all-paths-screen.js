@@ -13,7 +13,7 @@ const AllPathsScreen = () => {
     return (
         <View>
             <CAppBar title='Paths' />
-            <CScrollView style={Styles.screenContainer}>
+            <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <Paths
                     headerText='Conferences' />
                 <Divider />

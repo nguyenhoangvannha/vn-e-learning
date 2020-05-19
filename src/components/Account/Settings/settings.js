@@ -17,7 +17,7 @@ const Settings = () => {
     return (
         <View style={Styles.fullScreen}>
             <CAppBar title='Settings' />
-            <CScrollView style={Styles.screenContainer}>
+            <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
                     title='Nha Nguyen'
@@ -40,8 +40,7 @@ const Settings = () => {
                     title='Language'
                     subtitle='English'
                 />
-                <SizedBox height={Sizes.s48}/>
-                <CFlatButton title='SIGN OUT' style={styles.logout}/>
+                
             </CScrollView>
         </View>
     )

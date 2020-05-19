@@ -5,8 +5,8 @@ import skillData from '../../../data/mock/skills-mock-data'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../globals/sizes'
 import CChip from '../../Common/Container/c-chip'
-import * as RootNavigation from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
 
 const PopularSkills = ({ style, headerText }) => {

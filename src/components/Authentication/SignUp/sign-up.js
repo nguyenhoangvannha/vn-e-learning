@@ -22,7 +22,7 @@ const SignUp = ({ navigation }) => {
     }
 
     return (
-        <CScrollView style={Styles.screenContainer}>
+        <CScrollView contentContainerStyle={Styles.screenContainer}>
             <View style={Styles.screenColumn}>
                 <SizedBox height={Sizes.s32} />
                 <CText data="Sign Up" style={styles.label} />

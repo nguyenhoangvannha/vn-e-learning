@@ -16,7 +16,7 @@ const SendFeedbackScreen = () => {
             <CAppBar
                 title='Send Feedback'
                 trailing={<CIonIcon name={IconName.mdSend} paddingHorizontal={Sizes.s0} />} />
-            <CScrollView style={Styles.screenContainer}>
+            <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <SizedBox height={'15%'} />
                 <CFormTextInput
                     placeholder='Your email address' />

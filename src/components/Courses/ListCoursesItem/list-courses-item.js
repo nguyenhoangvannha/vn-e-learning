@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import CImage from '../../Common/Image/c-image'
 import Sizes from '../../../globals/sizes'
 import FlexDirection from '../../../globals/flex-direction'
@@ -7,13 +7,9 @@ import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../globals/alignment'
 import COpacityButton from '../../Common/Button/c-opacity-button'
 import Routes from '../../../routes/routes'
-import CIonIcon from '../../Common/Icon/c-ion-icon'
-import IconName from '../../../globals/icon-name'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
-import * as RootNavigation from '../../../routes/navigations/root-navigation'
-import MenuButton from '../../Common/Menu/menu-button'
-import MenuItem from '../../Common/Menu/c-menu-item'
 import CourseActionsMenuButton from '../CourseActions/course-actions-menu-button'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
 const ListCoursesItem = ({ navigation, style, course }) => {
 
