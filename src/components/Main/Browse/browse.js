@@ -19,7 +19,7 @@ const Browse = ({ }) => {
     return (
         <View style={Styles.fullScreen}>
             <HomeAppBar title='Browse' />
-            <CScrollView contentContainerStyle={Styles.screenContainer} >
+            <CScrollView style={Styles.screenContainer} >
                 <CImageButton
                     uri={Strings.defaultCourseThubnail}
                     title='NEW RELEASE'
