@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import CText from '../../../Common/Text/c-text'
-import Styles from '../../../../globals/styles'
+import Styles from '../../../../res/styles/styles'
 import ListCourses from '../../../Courses/ListCourses/list-courses'
 import SizedBox from '../../../Common/Container/sized-box'
-import Sizes from '../../../../globals/sizes'
+import Sizes from '../../../../res/sizes'
 
 const SearchCourses = () => {
     return (

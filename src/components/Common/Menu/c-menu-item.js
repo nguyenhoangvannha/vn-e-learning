@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { MenuOption } from 'react-native-popup-menu'
 import CText from '../Text/c-text'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 import CIonIcon from '../Icon/c-ion-icon'
 import FlexDirection from '../../../globals/flex-direction'
-import Alignment from '../../../globals/alignment'
+import Alignment from '../../../res/styles/alignment'
 
 const CMenuItem = ({onPress, title, iconName}) => {
     return (

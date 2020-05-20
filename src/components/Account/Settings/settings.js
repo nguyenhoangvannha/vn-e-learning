@@ -1,17 +1,17 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 import CSwitch from '../../Common/switch/c-switch'
 import ListTileText from '../../Common/Container/list-tile-text'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CDivider from '../../Common/Container/c-divider'
 import ProfileTile from '../../Common/Profile/profile-tile'
-import Strings from '../../../globals/strings'
+import Strings from '../../../res/strings'
 import SizedBox from '../../Common/Container/sized-box'
 import CFlatButton from '../../Common/Button/c-flat-button'
-import Alignment from '../../../globals/alignment'
+import Alignment from '../../../res/styles/alignment'
 
 const Settings = () => {
     return (

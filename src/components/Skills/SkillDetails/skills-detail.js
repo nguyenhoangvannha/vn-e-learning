@@ -2,14 +2,14 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 import coursesData from '../../../data/mock/courses-mock-data'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
 import Paths from '../../Content/Paths/paths'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import SectionCourses from '../../Courses/SectionCourses/section-courses'
 import SizedBox from '../../Common/Container/sized-box'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 
 const SkillsDetail = ({ route }) => {
 

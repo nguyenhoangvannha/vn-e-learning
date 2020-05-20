@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import CSearchBar from '../../Common/Search/c-search-bar'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 import CCard from '../../Common/Container/c-card'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Routes from '../../../routes/routes'
 import SearchAll from './All/search-all'

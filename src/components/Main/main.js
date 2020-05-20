@@ -6,9 +6,11 @@ import Downloads from '../Content/Downloads/downloads'
 import Browse from './Browse/browse'
 import Search from './Search/search'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import IconName from '../../globals/icon-name';
-import Colors from '../../globals/colors';
+import IconName from '../../res/icon-name';
+import Colors from '../../res/colors';
 import { StyleSheet } from 'react-native'
+import i18n from '../../res/i18n';
+import CText from '../Common/Text/c-text';
 const Tab = createBottomTabNavigator()
 
 const MainScreen = () => {
@@ -26,6 +28,7 @@ export default MainScreen
 
 const styles = StyleSheet.create({
     labelStyle: {
+        color: Colors.black,
     }
 })
 
@@ -51,6 +54,28 @@ const screenOptions = ({ route }) => ({
                 break;
         }
         return <Ionicons name={iconName} size={size} color={color} />;
+    },
+    tabBarLabel: ({ focused, color, size }) => {
+        let label;
+
+        switch (route.name) {
+            case Routes.Home:
+                label = i18n.t('home');
+                break;
+            case Routes.Downloads:
+                label = i18n.t('downloads');
+                break;
+            case Routes.Browse:
+                label = i18n.t('browse');
+                break;
+            case Routes.Search:
+                label = i18n.t('search');
+                break;
+            default:
+                label = i18n.t('home');
+                break;
+        }
+        return <CText style={styles.labelStyle}>{label}</CText>;
     },
 })
 

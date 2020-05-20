@@ -2,7 +2,7 @@ import React from 'react'
 import SectionCourseItem from '../SectionCoursesItem/section-courses-item';
 import CFlatList from '../../Common/Container/c-flat-list';
 import SizedBox from '../../Common/Container/sized-box';
-import Sizes from '../../../globals/sizes';
+import Sizes from '../../../res/sizes';
 import Routes from '../../../routes/routes';
 import { RootNavigation } from '../../../routes/navigations/root-navigation';
 

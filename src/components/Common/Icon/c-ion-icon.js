@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Sizes from '../../../globals/sizes';
+import Sizes from '../../../res/sizes';
 
 const CIonIcon = ({ name, style, size, onPress, paddingHorizontal }) => {
     return (

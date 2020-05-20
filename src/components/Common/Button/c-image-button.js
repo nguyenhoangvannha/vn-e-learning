@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View, ImageBackground } from 'react-native'
-import Alignment from '../../../globals/alignment'
+import Alignment from '../../../res/styles/alignment'
 import CTouchableButton from './c-touchable-button'
 import CText from '../Text/c-text'
-import TextStyles from '../../../globals/text-styles'
-import Colors from '../../../globals/colors'
+import TextStyles from '../../../res/styles/text-styles'
+import Colors from '../../../res/colors'
 
 const CImageButton = ({ style, uri, children, onPress, width, height, title }) => {
     return (

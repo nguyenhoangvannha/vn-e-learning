@@ -2,8 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import FlexDirection from '../../../globals/flex-direction'
 import SizedBox from './sized-box'
-import Sizes from '../../../globals/sizes'
-import Alignment from '../../../globals/alignment'
+import Sizes from '../../../res/sizes'
+import Alignment from '../../../res/styles/alignment'
 import Expanded from './expanded'
 
 const ListTile = ({ style, title, subtitle, leading, trailing, bodyItemsSpace, leadingMarginRight }) => {

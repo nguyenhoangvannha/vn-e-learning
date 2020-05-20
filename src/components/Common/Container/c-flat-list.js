@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 import FlexDirection from '../../../globals/flex-direction'
-import Alignment from '../../../globals/alignment'
+import Alignment from '../../../res/styles/alignment'
 import CSectionHeader from './c-section-header'
 
 const CFlatList = ({

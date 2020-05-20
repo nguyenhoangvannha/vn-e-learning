@@ -3,9 +3,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import CardTile from '../../Common/Container/card-tile'
 import CImage from '../Image/c-image'
 import CText from '../Text/c-text'
-import Sizes from '../../../globals/sizes'
-import Alignment from '../../../globals/alignment'
-import TextStyles from '../../../globals/text-styles'
+import Sizes from '../../../res/sizes'
+import Alignment from '../../../res/styles/alignment'
+import TextStyles from '../../../res/styles/text-styles'
 import FontWeight from '../../../globals/font-weight'
 
 const ProfileTileVer = ({ style, image, title, subtitle }) => {

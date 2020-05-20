@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import CImage from '../../Common/Image/c-image'
 import CText from '../../Common/Text/c-text'
-import TextStyles from '../../../globals/text-styles'
-import Sizes from '../../../globals/sizes'
+import TextStyles from '../../../res/styles/text-styles'
+import Sizes from '../../../res/sizes'
 import CCard from '../../Common/Container/c-card'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 
 const PathItemVer = ({ image, name, coursesCount }) => {
     return (

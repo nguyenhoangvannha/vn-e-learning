@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Rating } from 'react-native-elements'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 
 export const RatingType = {
     bell: 'bell',

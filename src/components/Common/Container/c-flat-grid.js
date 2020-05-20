@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import CScrollView from './c-scroll-view'
 import SizedBox from './sized-box'
-import Sizes from '../../../globals/sizes'
-import Styles from '../../../globals/styles'
+import Sizes from '../../../res/sizes'
+import Styles from '../../../res/styles/styles'
 import CFlatList from './c-flat-list'
 
 const DefaultSeparator = () => <SizedBox width={Sizes.s4} height={Sizes.s4} />

@@ -18,7 +18,7 @@ import AllPathsScreen from './src/components/Content/Paths/all-paths-screen';
 import { NavigationOptions } from './src/routes/navigation-options';
 import { MenuProvider } from 'react-native-popup-menu';
 import SendFeedbackScreen from './src/components/Help/Feedback/send-feedback-screen';
-import Styles from './src/globals/styles';
+import Styles from './src/res/styles/styles';
 
 const Stack = createStackNavigator()
 

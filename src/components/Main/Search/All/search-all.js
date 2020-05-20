@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import Styles from '../../../../globals/styles'
+import Styles from '../../../../res/styles/styles'
 import coursesData from '../../../../data/mock/courses-mock-data'
 import CSectionList from '../../../Common/Container/c-section-list'
 import ListCoursesItem from '../../../Courses/ListCoursesItem/list-courses-item'
@@ -12,7 +12,7 @@ import PathModel from '../../../../data/models/paths/path'
 import AuthorModel from '../../../../data/models/author/author-model'
 import ProfileTile from '../../../Common/Profile/profile-tile'
 import CDivider from '../../../Common/Container/c-divider'
-import Sizes from '../../../../globals/sizes'
+import Sizes from '../../../../res/sizes'
 import PathItemVer from '../../../Content/Paths/path-item-ver'
 
 const courses = coursesData.splice(0, 4)

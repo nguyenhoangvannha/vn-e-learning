@@ -2,9 +2,9 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import EmptyScreen from '../../Common/Screen/empty-screen'
 import ListCourses from '../../Courses/ListCourses/list-courses'
-import Sizes from '../../../globals/sizes'
-import Styles from '../../../globals/styles'
-import IconName from '../../../globals/icon-name'
+import Sizes from '../../../res/sizes'
+import Styles from '../../../res/styles/styles'
+import IconName from '../../../res/icon-name'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 
 const Downloads = () => {

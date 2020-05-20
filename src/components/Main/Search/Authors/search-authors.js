@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Styles from '../../../../globals/styles'
+import Styles from '../../../../res/styles/styles'
 import CText from '../../../Common/Text/c-text'
 import ListAuthors from '../../../Author/ListAuthors/list-authors'
 

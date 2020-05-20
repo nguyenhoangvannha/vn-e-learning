@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Divider } from 'react-native-elements'
-import Sizes from '../../../globals/sizes'
-import Alignment from '../../../globals/alignment'
-import Colors from '../../../globals/colors'
+import Sizes from '../../../res/sizes'
+import Alignment from '../../../res/styles/alignment'
+import Colors from '../../../res/colors'
 
 const CDivider = ({ marginHorizontal, style, height, marginVertical, containerHeight, color, elevation }) => {
     return (

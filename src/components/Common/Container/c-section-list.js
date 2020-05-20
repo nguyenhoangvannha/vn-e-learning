@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, SectionList } from 'react-native'
-import TextStyles from '../../../globals/text-styles'
+import TextStyles from '../../../res/styles/text-styles'
 
 const CSectionList = ({sections, keyExtractor, renderItem, renderSectionHeader, ItemSeparatorComponent}) => {
     return (

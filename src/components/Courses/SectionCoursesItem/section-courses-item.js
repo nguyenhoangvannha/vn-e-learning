@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 import COpacityButton from '../../Common/Button/c-opacity-button'
 import CCard from '../../Common/Container/c-card'
 import CImage from '../../Common/Image/c-image'

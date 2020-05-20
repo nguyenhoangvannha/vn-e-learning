@@ -1,6 +1,6 @@
 import React from 'react'
 import CText from '../Text/c-text'
-import TextStyles from '../../../globals/text-styles'
+import TextStyles from '../../../res/styles/text-styles'
 import ListTile from './list-tile'
 
 const ListTileText = ({ style, title, subtitle, leading, trailing, bodyItemsSpace, leadingMarginRight }) => {

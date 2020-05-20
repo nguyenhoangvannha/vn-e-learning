@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import MenuButton from '../../Common/Menu/menu-button'
 import CMenuItem from '../../Common/Menu/c-menu-item'
-import IconName from '../../../globals/icon-name'
+import IconName from '../../../res/icon-name'
 
 const CourseActionsMenuButton = () => {
     return (

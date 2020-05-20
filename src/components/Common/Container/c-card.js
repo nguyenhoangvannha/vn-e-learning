@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Card } from 'react-native-paper'
-import Colors from '../../../globals/colors'
-import Sizes from '../../../globals/sizes'
+import Colors from '../../../res/colors'
+import Sizes from '../../../res/sizes'
 
 const CCard = ({ style, children, elevation , borderRadius}) => {
     return (

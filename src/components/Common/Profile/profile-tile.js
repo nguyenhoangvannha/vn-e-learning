@@ -1,11 +1,11 @@
 
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 import CText from '../Text/c-text'
-import TextStyles from '../../../globals/text-styles'
-import Sizes from '../../../globals/sizes'
-import Alignment from '../../../globals/alignment'
+import TextStyles from '../../../res/styles/text-styles'
+import Sizes from '../../../res/sizes'
+import Alignment from '../../../res/styles/alignment'
 import CAvatar from '../Image/c-avatar'
 import ListTile from '../Container/list-tile'
 

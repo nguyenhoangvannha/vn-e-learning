@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import ListTile from '../../Common/Container/list-tile'
 import CText from '../../Common/Text/c-text'
-import TextStyles from '../../../globals/text-styles'
+import TextStyles from '../../../res/styles/text-styles'
 
 const ProfileItem = ({ style, title, subtitle }) => {
     return (

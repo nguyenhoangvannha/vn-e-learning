@@ -2,8 +2,8 @@ import React from 'react'
 import CFlatGrid from '../../Common/Container/c-flat-grid'
 import categoriesData from '../../../data/mock/categories-mock-data'
 import CImageButton from '../../Common/Button/c-image-button'
-import Strings from '../../../globals/strings'
-import Sizes from '../../../globals/sizes'
+import Strings from '../../../res/strings'
+import Sizes from '../../../res/sizes'
 
 const ListCategory = () => {
     return (

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import EmptyScreen from '../../Common/Screen/empty-screen'
-import IconName from '../../../globals/icon-name'
+import IconName from '../../../res/icon-name'
 
 const CourseTranscript = () => {
     return (

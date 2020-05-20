@@ -3,9 +3,9 @@ import { StyleSheet, View } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import Paths from './paths'
 import CScrollView from '../../Common/Container/c-scroll-view'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 import SizedBox from '../../Common/Container/sized-box'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 
 const Divider = () => <SizedBox height={Sizes.s16} />
 

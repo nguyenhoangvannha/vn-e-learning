@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import CIconButton from '../../Common/Button/c-icon-button'
-import Colors from '../../../globals/colors'
-import Alignment from '../../../globals/alignment'
-import Sizes from '../../../globals/sizes'
-import TextStyles from '../../../globals/text-styles'
+import Colors from '../../../res/colors'
+import Alignment from '../../../res/styles/alignment'
+import Sizes from '../../../res/sizes'
+import TextStyles from '../../../res/styles/text-styles'
 import FlexDirection from '../../../globals/flex-direction'
-import IconName from '../../../globals/icon-name'
+import IconName from '../../../res/icon-name'
 
 const Item = ({ bottomText, icon }) => <CIconButton
     containerStyle={styles.actionButton}

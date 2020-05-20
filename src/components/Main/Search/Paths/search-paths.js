@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Paths from '../../../Content/Paths/paths'
-import Styles from '../../../../globals/styles'
+import Styles from '../../../../res/styles/styles'
 
 const SearchPaths = () => {
     return (

@@ -5,7 +5,7 @@ import PathItenVer from './path-item-ver'
 import CFlatList from '../../Common/Container/c-flat-list'
 import pathsData from '../../../data/mock/paths-mock-data'
 import SizedBox from '../../Common/Container/sized-box'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 import CDivider from '../../Common/Container/c-divider'
 
 const Paths = ({ style, headerText, horizontal = true, hasTrailing = true, onTrailingPress }) => {

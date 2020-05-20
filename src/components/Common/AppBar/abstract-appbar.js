@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleSheet, View, SafeAreaView } from 'react-native'
-import Sizes from '../../../globals/sizes'
-import Alignment from '../../../globals/alignment'
+import Sizes from '../../../res/sizes'
+import Alignment from '../../../res/styles/alignment'
 import FlexDirection from '../../../globals/flex-direction'
 import CDivider from '../Container/c-divider'
 import Constants from "expo-constants";
-import Colors from '../../../globals/colors'
+import Colors from '../../../res/colors'
 
 const AbstractAppbar = ({ leading, title, middle, trailing, dividerColor }) => {
     return (

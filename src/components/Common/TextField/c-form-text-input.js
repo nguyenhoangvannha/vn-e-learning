@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import Colors from '../../../globals/colors'
-import Sizes from '../../../globals/sizes'
-import Alignment from '../../../globals/alignment'
+import Colors from '../../../res/colors'
+import Sizes from '../../../res/sizes'
+import Alignment from '../../../res/styles/alignment'
 import FontWeight from '../../../globals/font-weight'
 import SizedBox from '../Container/sized-box'
 import FlexDirection from '../../../globals/flex-direction'
 import CTextInput from './c-text-input'
-import IconName from '../../../globals/icon-name'
+import IconName from '../../../res/icon-name'
 import CIonIcon from '../Icon/c-ion-icon'
 
 const CFromTextInput = ({error, style, width, label, onChangeText, numberOfLines,placeholder, secureTextEntry }) => {

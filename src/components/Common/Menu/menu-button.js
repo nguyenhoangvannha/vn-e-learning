@@ -7,8 +7,8 @@ import {
     MenuTrigger,
 } from 'react-native-popup-menu';
 import CIonIcon from '../Icon/c-ion-icon';
-import IconName from '../../../globals/icon-name';
-import Sizes from '../../../globals/sizes';
+import IconName from '../../../res/icon-name';
+import Sizes from '../../../res/sizes';
 
 const MenuButton = ({ iconName, menuOptions }) => {
 

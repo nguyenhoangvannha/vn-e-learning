@@ -2,8 +2,8 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Chip } from 'react-native-paper'
 import CText from '../Text/c-text'
-import Alignment from '../../../globals/alignment'
-import TextStyles from '../../../globals/text-styles'
+import Alignment from '../../../res/styles/alignment'
+import TextStyles from '../../../res/styles/text-styles'
 import COpacityButton from '../Button/c-opacity-button'
 
 const CChip = ({ title, onPress }) => {

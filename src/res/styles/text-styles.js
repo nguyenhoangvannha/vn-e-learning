@@ -1,6 +1,5 @@
-import Sizes from "./sizes"
-import FontWeight from "./font-weight"
-import Colors from "./colors"
+import Sizes from "../sizes"
+import FontWeight from "../../globals/font-weight"
 import { StyleSheet } from 'react-native'
 
 const TextStyles = StyleSheet.create({

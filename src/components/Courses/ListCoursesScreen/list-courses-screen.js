@@ -1,12 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import Styles from '../../../globals/styles'
+import Styles from '../../../res/styles/styles'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import CText from '../../Common/Text/c-text'
-import TextStyles from '../../../globals/text-styles'
+import TextStyles from '../../../res/styles/text-styles'
 import ListCourses from '../ListCourses/list-courses'
 import SizedBox from '../../Common/Container/sized-box'
-import Sizes from '../../../globals/sizes'
+import Sizes from '../../../res/sizes'
 
 const ListCoursesScreen = ({ route }) => {
     const params = route.params

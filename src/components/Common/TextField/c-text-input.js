@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native'
-import Sizes from '../../../globals/sizes';
+import Sizes from '../../../res/sizes';
 import FontWeight from '../../../globals/font-weight';
-import Alignment from '../../../globals/alignment';
-import Colors from '../../../globals/colors';
+import Alignment from '../../../res/styles/alignment';
+import Colors from '../../../res/colors';
 
 const CTextInput = ({style, onChangeText, numberOfLines, placeholder, secureTextEntry}) => {
     const input = React.createRef();
