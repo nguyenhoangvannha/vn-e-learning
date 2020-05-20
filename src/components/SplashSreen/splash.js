@@ -8,7 +8,6 @@ import TextStyles from '../../res/styles/text-styles'
 import FontWeight from '../../globals/font-weight'
 import Sizes from '../../res/sizes'
 import SizedBox from '../Common/Container/sized-box'
-import { Icon } from 'react-native-elements'
 import i18n from '../../res/i18n'
 import { RootNavigation } from '../../routes/navigations/root-navigation'
 import Routes from '../../routes/routes'
@@ -26,6 +25,7 @@ const Splash = () => {
         }, 100)
 
         if(loading >= 100){
+            clearInterval(timer)
             RootNavigation.navigate(Routes.SignIn)
         }
 
