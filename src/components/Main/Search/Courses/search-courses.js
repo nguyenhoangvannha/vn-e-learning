@@ -5,14 +5,15 @@ import Styles from '../../../../res/styles/styles'
 import ListCourses from '../../../Courses/ListCourses/list-courses'
 import SizedBox from '../../../Common/Container/sized-box'
 import Sizes from '../../../../res/sizes'
+import i18n from '../../../../res/i18n'
 
 const SearchCourses = () => {
     return (
         <View style={Styles.screenContainer}>
-            <CText data='Skill Levels' />
+            <CText data={i18n.t('skill_levels')} />
             <SizedBox height={Sizes.s8} />
             <ListCourses
-                headerText='154 Results' />
+                headerText={`132 ${i18n.t('results')}`} />
         </View>
     )
 }

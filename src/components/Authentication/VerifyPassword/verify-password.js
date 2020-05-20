@@ -12,6 +12,7 @@ import { Icon } from 'react-native-elements'
 import FlexDirection from '../../../globals/flex-direction'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import CScrollView from '../../Common/Container/c-scroll-view'
+import i18n from '../../../res/i18n'
 
 const VerifyPassword = () => {
     return (
@@ -22,20 +23,20 @@ const VerifyPassword = () => {
                     <SizedBox height={'25%'} />
                     <View style={{ flexDirection: FlexDirection.row }}>
                         <View style={{ width: '65%' }}>
-                            <CText data="Enter your email code" style={TextStyles.display1} />
+                            <CText data={i18n.t('enter_your_email_code')} style={TextStyles.display1} />
                             <SizedBox height={Sizes.s8} />
-                            <CText data="The code has been sent to your email." style={TextStyles.caption} />
+                            <CText data={i18n.t('the_code_has_been_sent_to_your_email')} style={TextStyles.caption} />
                         </View>
                         <SizedBox width={'8%'}></SizedBox>
                         <Icon
                             name='lock' size={Sizes.s92} color={Colors.blue500} />
                     </View>
                     <SizedBox height={Sizes.s38} />
-                    <CFromTextInput placeholder='Enter code' />
+                    <CFromTextInput placeholder={i18n.t('enter_code')} />
                     <SizedBox height={Sizes.s38} />
-                    <CButton title='Verify' titleStyle={TextStyles.button} />
+                    <CButton title={i18n.t('verify')} titleStyle={TextStyles.button} />
                     <SizedBox height={Sizes.s16} />
-                    <CButton title='Cancel' color={Colors.bodyText} titleStyle={TextStyles.button} />
+                    <CButton title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
                 </View>
             </CScrollView>
         </View>

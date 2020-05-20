@@ -1,4 +1,5 @@
 const Routes = {
+    Splash: 'Splash',
     Main: 'Main',
     SignIn: 'SignIn',
     SignUp: 'SignUp',

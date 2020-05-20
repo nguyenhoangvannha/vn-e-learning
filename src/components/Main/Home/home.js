@@ -35,13 +35,13 @@ const Home = ({ navigation }) => {
                         style={styles.coursesBanner}
                         height={'15%'}
                         onPress={() => console.log('NEW RELEASE')}>
-                        <CText data='NEW RELEASE' style={{ ...TextStyles.headline, color: Colors.white }} />
+                        <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
                     </CImageButton>
-                    {buildSectionCourses('Software development')}
+                    {buildSectionCourses(i18n.t('software_development'))}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses('IT operations')}
-                    {buildSectionCourses('Data professional')}
-                    {buildSectionCourses('Security professional')}
+                    {buildSectionCourses(i18n.t('it_operations'))}
+                    {buildSectionCourses(i18n.t('data_professional'))}
+                    {buildSectionCourses(i18n.t('security_professional'))}
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>

@@ -30,8 +30,8 @@ const SignIn = () => {
                 <SizedBox height={'25%'} />
                 <CText data={i18n.t('sign_in')} style={styles.label} />
                 <SizedBox height={Sizes.s70} />
-                <CFromTextInput label={i18n.t('username')} placeholder="Your username" style={styles.input} />
-                <CFromTextInput label={i18n.t('password')} placeholder="Atless 6 char" style={styles.input} secureTextEntry={true} />
+                <CFromTextInput label={i18n.t('username')} placeholder={i18n.t('your_username')} style={styles.input} />
+                <CFromTextInput label={i18n.t('password')} placeholder={i18n.t('atless_x_char').replace('%s', 6)} style={styles.input} secureTextEntry={true} />
                 <SizedBox height={Sizes.s16} />
                 <CButton title={i18n.t('sign_in').toUpperCase()} onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
                 <SizedBox height={Sizes.s12} />

@@ -15,6 +15,7 @@ import ProfileTile from '../../Common/Profile/profile-tile'
 import Colors from '../../../res/colors'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import i18n from '../../../res/i18n'
 
 const Profile = () => {
 
@@ -24,22 +25,22 @@ const Profile = () => {
 
     return (
         <View style={Styles.fullScreen}>
-            <CAppBar title='Profile' />
+            <CAppBar title={i18n.t('profile')} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
                     title='Nha Nguyen' />
                 <SizedBox height={Sizes.s32} />
-                <ProfileItem title='Email' subtitle='example@mail.com' />
+                <ProfileItem title={i18n.t('email')} subtitle='example@mail.com' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title='Phone' subtitle='+84090000922' />
+                <ProfileItem title={i18n.t('phone')} subtitle='+84090000922' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title='Courses' subtitle='4 Courses' />
+                <ProfileItem title={i18n.t('courses')} subtitle={`4 ${i18n.t('courses')}`} />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title='Total Active Date' subtitle='1 days' />
+                <ProfileItem title={i18n.t('total_active_date')} subtitle={`1 ${i18n.t('days')}`} />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                 <SizedBox height={'25%'} />
-                <CButton title='SIGN OUT' color={Colors.grey200} onPress={onSignOutPressed} />
+                <CButton title={i18n.t('sign_out')} color={Colors.grey200} onPress={onSignOutPressed} />
             </CScrollView>
         </View>
 

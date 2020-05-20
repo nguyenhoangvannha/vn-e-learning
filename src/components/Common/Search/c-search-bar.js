@@ -10,6 +10,7 @@ import CText from '../Text/c-text';
 import Styles from '../../../res/styles/styles';
 import Sizes from '../../../res/sizes';
 import FontWeight from '../../../globals/font-weight';
+import i18n from '../../../res/i18n';
 
 const CSearchBar = () => {
     const [value, setValue] = useState('')
@@ -21,7 +22,7 @@ const CSearchBar = () => {
     return (
         <View>
             <AbstractAppbar
-                title={<CText data='Search' style={styles.title} />}
+                title={<CText data={i18n.t('search')} style={styles.title} />}
                 middle={<Expanded>
                     <CTextInput onChangeText={onChangeText} />
                 </Expanded>}

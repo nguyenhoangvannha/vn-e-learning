@@ -7,6 +7,7 @@ import Sizes from '../../../res/sizes'
 import TextStyles from '../../../res/styles/text-styles'
 import FlexDirection from '../../../globals/flex-direction'
 import IconName from '../../../res/icon-name'
+import i18n from '../../../res/i18n'
 
 const Item = ({ bottomText, icon }) => <CIconButton
     containerStyle={styles.actionButton}
@@ -20,13 +21,13 @@ const CourseActions = ({ style, course }) => {
         <View style={{...styles.container, ...style}}>
             <Item
                 icon={IconName.bookmarkOutline}
-                bottomText='Bookmark' />
+                bottomText={i18n.t('bookmark')} />
             <Item
                 icon={IconName.iosRadio}
-                bottomText='Add to Channel' />
+                bottomText={i18n.t('add_to_channel')} />
             <Item
                 icon={IconName.mdCloudDownload}
-                bottomText='Download' />
+                bottomText={i18n.t('download')} />
         </View>
     )
 }

@@ -14,6 +14,7 @@ import ProfileTile from '../../../Common/Profile/profile-tile'
 import CDivider from '../../../Common/Container/c-divider'
 import Sizes from '../../../../res/sizes'
 import PathItemVer from '../../../Content/Paths/path-item-ver'
+import i18n from '../../../../res/i18n'
 
 const courses = coursesData.splice(0, 4)
 
@@ -23,15 +24,15 @@ const paths = pathsData.splice(0, 4)
 
 const DATA = [
     {
-        title: 'Courses',
+        title: i18n.t('courses'),
         data: courses,
     },
     {
-        title: 'Paths',
+        title: i18n.t('paths'),
         data: paths,
     },
     {
-        title: 'Authors',
+        title: i18n.t('authors'),
         data: authors,
     },
 ]
@@ -48,7 +49,7 @@ const buildItem = (item) => {
         return <ProfileTile
             image={item.avatar}
             title={item.name}
-            subtitle={`${item.coursesCount} Courses`}
+            subtitle={`${item.coursesCount} ${i18n.t('courses')}`}
             style={styles.author} />
     } else {
         return <View />
@@ -65,7 +66,7 @@ const SearchAll = () => {
                 renderSectionHeader={({ section: { title, data } }) => (
                     <CSectionHeader
                         leadingText={title}
-                        trailingText={`${data.length} results`} />
+                        trailingText={`${data.length} ${i18n.t('results')}`} />
                 )}
                 ItemSeparatorComponent={() => <CDivider containerHeight={Sizes.s16} />}
             />

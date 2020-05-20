@@ -12,11 +12,12 @@ import Strings from '../../../res/strings'
 import SizedBox from '../../Common/Container/sized-box'
 import CFlatButton from '../../Common/Button/c-flat-button'
 import Alignment from '../../../res/styles/alignment'
+import i18n from '../../../res/i18n'
 
 const Settings = () => {
     return (
         <View style={Styles.fullScreen}>
-            <CAppBar title='Settings' />
+            <CAppBar title={i18n.t('settings')} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
@@ -25,19 +26,19 @@ const Settings = () => {
                 <SizedBox height={Sizes.s16} />
                 <ListTileText
                     style={styles.item}
-                    title='Notifications'
-                    subtitle='Show notification'
+                    title={i18n.t('notifications')}
+                    subtitle={i18n.t('show_notification')}
                     trailing={<CSwitch initValue={true} />} />
                 <CDivider containerHeight={Sizes.s16} />
                 <ListTileText
                     style={styles.item}
-                    title='Dark Theme'
+                    title={i18n.t('dark_theme')}
                     subtitle='Off'
                     trailing={<CSwitch />} />
                 <CDivider containerHeight={Sizes.s16} />
                 <ListTileText
                     style={styles.item}
-                    title='Language'
+                    title={i18n.t('language')}
                     subtitle='English'
                 />
                 

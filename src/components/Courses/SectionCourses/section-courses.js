@@ -5,6 +5,7 @@ import SizedBox from '../../Common/Container/sized-box';
 import Sizes from '../../../res/sizes';
 import Routes from '../../../routes/routes';
 import { RootNavigation } from '../../../routes/navigations/root-navigation';
+import i18n from '../../../res/i18n';
 
 const SectionCourses = ({ style, headerText, data }) => {
 
@@ -33,7 +34,7 @@ const SectionCourses = ({ style, headerText, data }) => {
             }
             keyExtractor={item => item.id}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
-            trailingText='See All'
+            trailingText={i18n.t('see_all')}
             onTrailingPress={onTrailingPressed} />
     )
 }

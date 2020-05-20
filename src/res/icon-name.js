@@ -21,7 +21,9 @@ const IconName = {
     settings: 'ios-settings',
     iosPaperPlane: 'ios-paper-plane',
     mdCall: 'md-call',
-    mdSend: 'md-send'
+    mdSend: 'md-send',
+    mdLock: 'md-lock',
+    book: 'ios-bookmarks'
 }
 
 export default IconName

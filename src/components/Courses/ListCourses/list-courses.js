@@ -6,6 +6,7 @@ import TextStyles from '../../../res/styles/text-styles';
 import ListCoursesItem from '../ListCoursesItem/list-courses-item'
 import CDivider from '../../Common/Container/c-divider';
 import coursesData from '../../../data/mock/courses-mock-data';
+import i18n from '../../../res/i18n';
 
 const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }) => {
 
@@ -13,7 +14,7 @@ const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }
         <CFlatList
             data={data ?? coursesData}
             headerText={headerText}
-            trailingText={'See All'}
+            trailingText={i18n.t('see_all')}
             hasTrailing={hasTrailing}
             headerStyle={TextStyles.caption}
             style={style}

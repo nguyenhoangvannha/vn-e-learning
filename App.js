@@ -19,6 +19,7 @@ import { NavigationOptions } from './src/routes/navigation-options';
 import { MenuProvider } from 'react-native-popup-menu';
 import SendFeedbackScreen from './src/components/Help/Feedback/send-feedback-screen';
 import Styles from './src/res/styles/styles';
+import Splash from './src/components/SplashSreen/splash';
 
 const Stack = createStackNavigator()
 
@@ -33,7 +34,8 @@ export default function App() {
   return (
     <MenuProvider style={Styles.fullScreen}>
       <NavigationContainer ref={rootNavigationRef}>
-        <Stack.Navigator initialRouteName={Routes.SignIn}>
+        <Stack.Navigator initialRouteName={Routes.Splash}>
+          <Stack.Screen name={Routes.Splash} component={Splash} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.SignIn} component={SignIn} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.SignUp} component={SignUp} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.ForgotPassword} component={ForgotPassword} options={NavigationOptions.normalOptions} />

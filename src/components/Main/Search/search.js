@@ -10,6 +10,7 @@ import SearchAll from './All/search-all'
 import SearchCourses from './Courses/search-courses'
 import SearchPaths from './Paths/search-paths'
 import SearchAuthors from './Authors/search-authors'
+import i18n from '../../../res/i18n'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -20,10 +21,10 @@ const Search = () => {
                 <CSearchBar />
             </CCard>
             <Tab.Navigator>
-                <Tab.Screen name={Routes.SearchAll} component={SearchAll} options={{ title: 'All' }} />
-                <Tab.Screen name={Routes.SearchCourses} component={SearchCourses} options={{ title: 'Courses' }} />
-                <Tab.Screen name={Routes.SearchPaths} component={SearchPaths} options={{ title: 'Paths' }} />
-                <Tab.Screen name={Routes.SearchAuthors} component={SearchAuthors} options={{ title: 'Authors' }} />
+                <Tab.Screen name={Routes.SearchAll} component={SearchAll} options={{ title: i18n.t('all') }} />
+                <Tab.Screen name={Routes.SearchCourses} component={SearchCourses} options={{ title: i18n.t('courses') }} />
+                <Tab.Screen name={Routes.SearchPaths} component={SearchPaths} options={{ title: i18n.t('paths') }} />
+                <Tab.Screen name={Routes.SearchAuthors} component={SearchAuthors} options={{ title: i18n.t('authors') }} />
             </Tab.Navigator>
         </View>
     )
@@ -34,6 +35,5 @@ export default Search
 const styles = StyleSheet.create({
     searchBar: {
         borderRadius: Sizes.s0,
-        borderColor: 'red',
     }
 })

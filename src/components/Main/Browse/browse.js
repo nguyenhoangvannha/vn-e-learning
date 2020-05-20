@@ -13,32 +13,33 @@ import Routes from '../../../routes/routes'
 import ListCategory from '../../Category/ListCategory/list-category'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import i18n from '../../../res/i18n'
 
 const Browse = ({ }) => {
 
     return (
         <View style={Styles.fullScreen}>
-            <HomeAppBar title='Browse' />
+            <HomeAppBar title={i18n.t('browse')} />
             <CScrollView style={Styles.screenContainer} >
                 <CImageButton
                     uri={Strings.defaultCourseThubnail}
-                    title='NEW RELEASE'
+                    title={i18n.t('new_release').toUpperCase()}
                     height={Sizes.s64} />
                 <SizedBox height={Sizes.s12} />
                 <CImageButton
                     uri={Strings.defaultCourseThubnail}
-                    title='RECOMMENDED FOR YOU'
+                    title={i18n.t('recommended_for_you').toUpperCase()}
                     height={Sizes.s64} />
                 <SizedBox height={Sizes.s12} />
                 
                 <ListCategory/>
                 
                 <PopularSkills
-                    headerText='Popular Skills' />
+                    headerText={i18n.t('popular_skills')} />
                 <SizedBox height={Sizes.s12} />
 
                 <Paths
-                    headerText='Paths'
+                    headerText={i18n.t('paths')}
                     onTrailingPress={
                         () => {
                             RootNavigation.navigate(Routes.AllPathsScreen)
@@ -47,7 +48,7 @@ const Browse = ({ }) => {
                 <SizedBox height={Sizes.s28} />
                 <ListAuthors
                     horizontal={true}
-                    headerText='Top Authors' />
+                    headerText={i18n.t('top_authors')} />
             </CScrollView>
         </View>
     )

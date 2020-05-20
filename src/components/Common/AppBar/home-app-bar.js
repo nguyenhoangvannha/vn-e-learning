@@ -13,6 +13,7 @@ import Routes from '../../../routes/routes'
 import MenuButton from '../Menu/menu-button'
 import CMenuItem from '../Menu/c-menu-item'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import i18n from '../../../res/i18n'
 
 const HomeAppBar = ({ title, hasBack = false }) => {
     const iconSize = Sizes.s24
@@ -41,9 +42,9 @@ const HomeAppBar = ({ title, hasBack = false }) => {
                 <MenuButton
                     iconName={IconName.mdMore}
                     menuOptions={[
-                        <CMenuItem title='Settings' iconName={IconName.settings} onPress={onSettingsPressed}/>,
-                        <CMenuItem title='Send Feedback' iconName={IconName.iosPaperPlane} onPress={onFeedbackPressed}/>,
-                        <CMenuItem title='Contact Support' iconName={IconName.mdCall} />
+                        <CMenuItem title={i18n.t('settings')} iconName={IconName.settings} onPress={onSettingsPressed}/>,
+                        <CMenuItem title={i18n.t('send_feedback')} iconName={IconName.iosPaperPlane} onPress={onFeedbackPressed}/>,
+                        <CMenuItem title={i18n.t('contact_support')} iconName={IconName.mdCall} />
                     ]}
                 />
             ]}

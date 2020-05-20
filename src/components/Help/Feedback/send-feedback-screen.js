@@ -9,22 +9,23 @@ import CScrollView from '../../Common/Container/c-scroll-view'
 import CFormTextInput from '../../Common/TextField/c-form-text-input'
 import SizedBox from '../../Common/Container/sized-box'
 import CButton from '../../Common/Button/c-button'
+import i18n from '../../../res/i18n'
 
 const SendFeedbackScreen = () => {
     return (
         <View style={Styles.fullScreen}>
             <CAppBar
-                title='Send Feedback'
+                title={i18n.t('send_feedback')}
                 trailing={<CIonIcon name={IconName.mdSend} paddingHorizontal={Sizes.s0} />} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <SizedBox height={'15%'} />
                 <CFormTextInput
-                    placeholder='Your email address' />
+                    placeholder={i18n.t('your_email_address')} />
                 <SizedBox height={Sizes.s16} />
                 <CFormTextInput
-                    placeholder='Your feedback' />
+                    placeholder={i18n.t('your_feedback')} />
                 <SizedBox height={'25%'} />
-                <CButton title='Send Feedback' />
+                <CButton title={i18n.t('send_feedback')} />
             </CScrollView>
         </View>
     )
