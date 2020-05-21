@@ -20,6 +20,7 @@
   "all": "All",
   "courses": "Courses",
   "paths": "Paths",
+  "author": "Author",
   "authors": "Authors",
   "results": "Results",
   "skill_levels": "Skill Levels",
@@ -63,5 +64,6 @@
   "enter_code": "Enter code",
   "top_authors": "Top Authors",
   "popular_skills": "Popular Skills",
-  "recommended_for_you": "Recommended for you"
+  "recommended_for_you": "Recommended for you",
+  "follow": "Follow"
 }

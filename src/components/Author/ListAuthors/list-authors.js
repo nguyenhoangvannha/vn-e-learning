@@ -10,8 +10,16 @@ import Strings from '../../../res/strings'
 import CAvatar from '../../Common/Image/c-avatar'
 import Alignment from '../../../res/styles/alignment'
 import { Chip } from 'react-native-paper'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import Routes from '../../../routes/routes'
 
 const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
+
+    const onItemPressed = (author) => {
+        RootNavigation.navigate(Routes.AuthorScreen, {
+            author: author,
+        })
+    }
 
     const buildItem = (author) => {
         return (
@@ -20,17 +28,19 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
                     <Chip
                         style={styles.teacherAvatar}
                         avatar={<CAvatar uri={Strings.defaultAvatar} size={Sizes.s24} />}
-                        onPress={() => console.log('Pressed')}>
+                        onPress={() => onItemPressed(author)}>
                         {author.name}
                     </Chip> : <ProfileTileVer
                         title={author.name}
                         image={author.avatar}
-                        style={styles.authorItemVer} />) :
+                        style={styles.authorItemVer}
+                        onPress={() => onItemPressed(author)} />) :
                 <ProfileTile
                     title={author.name}
                     subtitle={`${author.coursesCount} Courses`}
                     image={author.avatar}
-                    style={styles.authorItem} />
+                    style={styles.authorItem}
+                    onPress={() => onItemPressed(author)} />
         )
     }
 
@@ -41,7 +51,7 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
             horizontal={horizontal}
             renderItem={({ item }) => buildItem(item)}
             keyExtractor={item => item.id}
-            ItemSeparatorComponent={() => <CDivider marginHorizontal={Sizes.s4}/>}
+            ItemSeparatorComponent={() => <CDivider marginHorizontal={Sizes.s4} />}
             hasTrailing={false} />
     )
 }

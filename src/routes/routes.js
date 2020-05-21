@@ -22,6 +22,7 @@ const Routes = {
     CourseContent: 'CourseContent',
     CourseTranscript: 'CourseTranscript',
     SendFeedbackScreen: 'SendFeedbackScreen',
+    AuthorScreen: 'AuthorScreen',
 }
 
 export default Routes

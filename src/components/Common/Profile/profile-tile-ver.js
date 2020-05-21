@@ -7,15 +7,16 @@ import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
 import TextStyles from '../../../res/styles/text-styles'
 import FontWeight from '../../../globals/font-weight'
+import COpacityButton from '../Button/c-opacity-button'
 
-const ProfileTileVer = ({ style, image, title, subtitle }) => {
+const ProfileTileVer = ({ style, image, title, subtitle, onPress }) => {
     return (
-        <View style={style}>
+        <COpacityButton style={style} onPress={onPress}>
             <CardTile
                 leading={<CImage uri={image} style={styles.image} />}
-                title={<CText data={title} style={styles.text}/>}
+                title={<CText data={title} style={styles.text} />}
                 subtitle={<CText data={subtitle} />} />
-        </View>
+        </COpacityButton>
     )
 }
 
