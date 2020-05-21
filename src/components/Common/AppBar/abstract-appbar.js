@@ -1,22 +1,21 @@
 import React from 'react'
-import { StyleSheet, View, SafeAreaView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
 import FlexDirection from '../../../globals/flex-direction'
-import CDivider from '../Container/c-divider'
 import Constants from "expo-constants";
 import Colors from '../../../res/colors'
 
-const AbstractAppbar = ({ leading, title, middle, trailing, dividerColor }) => {
+const AbstractAppbar = ({ leading, title, middle, trailing, dividerColor, backgroundColor, hasBackgroundColor = true }) => {
     return (
         <View >
-            <View style={styles.container}>
+            <View style={{ ...styles.container, backgroundColor: hasBackgroundColor ? (backgroundColor ?? styles.container.backgroundColor) : undefined }}>
                 {leading}
                 {title}
                 {middle}
                 {trailing}
             </View>
-            <View style={{ width: '100%', height: 0.25,  backgroundColor: dividerColor}} />
+            <View style={{ width: '100%', height: 0.25, backgroundColor: dividerColor }} />
         </View>
     )
 }

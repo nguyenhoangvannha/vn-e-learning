@@ -17,6 +17,10 @@ import i18n from '../../../res/i18n'
 
 const Browse = ({ }) => {
 
+    const onNewReleasesPressed = () => {
+        RootNavigation.navigate(Routes.NewReleasesScreen)
+    }
+
     return (
         <View style={Styles.fullScreen}>
             <HomeAppBar title={i18n.t('browse')} />
@@ -24,16 +28,18 @@ const Browse = ({ }) => {
                 <CImageButton
                     uri={Strings.defaultCourseThubnail}
                     title={i18n.t('new_release').toUpperCase()}
-                    height={Sizes.s64} />
+                    height={Sizes.s64}
+                    onPress={onNewReleasesPressed} />
                 <SizedBox height={Sizes.s12} />
                 <CImageButton
                     uri={Strings.defaultCourseThubnail}
                     title={i18n.t('recommended_for_you').toUpperCase()}
-                    height={Sizes.s64} />
+                    height={Sizes.s64}
+                    onPress={onNewReleasesPressed} />
                 <SizedBox height={Sizes.s12} />
-                
-                <ListCategory/>
-                
+
+                <ListCategory />
+
                 <PopularSkills
                     headerText={i18n.t('popular_skills')} />
                 <SizedBox height={Sizes.s12} />

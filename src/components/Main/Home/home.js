@@ -14,14 +14,20 @@ import Colors from '../../../res/colors'
 import SectionCourses from '../../Courses/SectionCourses/section-courses'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import i18n from '../../../res/i18n'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import Routes from '../../../routes/routes'
 
-const Home = ({ navigation }) => {
+const Home = () => {
+
+    const onNewReleasesPressed = () => {
+        RootNavigation.navigate(Routes.NewReleasesScreen)
+    }
+
     const buildSectionCourses = (title) => {
         return <SectionCourses
             headerText={title}
             data={coursesData}
             style={styles.sectionCourses}
-            navigation={navigation}
         />
     }
 
@@ -34,7 +40,7 @@ const Home = ({ navigation }) => {
                         uri={Strings.defaultCourseThubnail}
                         style={styles.coursesBanner}
                         height={'15%'}
-                        onPress={() => console.log('NEW RELEASE')}>
+                        onPress={onNewReleasesPressed}>
                         <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
                     </CImageButton>
                     {buildSectionCourses(i18n.t('software_development'))}

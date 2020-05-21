@@ -20,6 +20,7 @@ import SendFeedbackScreen from './src/components/Help/Feedback/send-feedback-scr
 import Styles from './src/res/styles/styles';
 import Splash from './src/components/SplashSreen/splash';
 import AuthorScreen from './src/components/Author/AuthorScreen/author-screen';
+import NewReleasesScreen from './src/components/Content/NewReleases/new-releases-screen';
 
 const Stack = createStackNavigator()
 
@@ -48,6 +49,7 @@ export default function App() {
           <Stack.Screen name={Routes.AllPathsScreen} component={AllPathsScreen} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.SendFeedbackScreen} component={SendFeedbackScreen} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.AuthorScreen} component={AuthorScreen} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.NewReleasesScreen} component={NewReleasesScreen} options={NavigationOptions.normalOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </MenuProvider>

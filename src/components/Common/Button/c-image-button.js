@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
+import { StyleSheet, ImageBackground } from 'react-native'
 import Alignment from '../../../res/styles/alignment'
 import CTouchableButton from './c-touchable-button'
 import CText from '../Text/c-text'
