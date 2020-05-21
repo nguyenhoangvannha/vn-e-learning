@@ -26,7 +26,7 @@ const Splash = () => {
 
         if(loading >= 100){
             clearInterval(timer)
-            RootNavigation.navigate(Routes.SignIn)
+            RootNavigation.replace(Routes.SignIn)
         }
 
         return () => {

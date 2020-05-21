@@ -22,7 +22,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nhvn",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.nhvn.vn_e_learning",
+      "versionCode": 1
     }
   }
 }

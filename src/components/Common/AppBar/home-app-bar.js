@@ -37,14 +37,15 @@ const HomeAppBar = ({ title, hasBack = false }) => {
             title={<CText data={title} style={styles.title} />}
             middle={<Expanded />}
             trailing={[
-                <CIonIcon name={IconName.ioscontact} size={iconSize} onPress={onProfilePressed} />,
-                <SizedBox width={Sizes.s16} />,
+                <CIonIcon key={'profile'} name={IconName.ioscontact} size={iconSize} onPress={onProfilePressed} />,
+                <SizedBox key={'sizedbox'} width={Sizes.s16} />,
                 <MenuButton
+                    key={'options'}
                     iconName={IconName.mdMore}
                     menuOptions={[
-                        <CMenuItem title={i18n.t('settings')} iconName={IconName.settings} onPress={onSettingsPressed}/>,
-                        <CMenuItem title={i18n.t('send_feedback')} iconName={IconName.iosPaperPlane} onPress={onFeedbackPressed}/>,
-                        <CMenuItem title={i18n.t('contact_support')} iconName={IconName.mdCall} />
+                        <CMenuItem key={'settings'} title={i18n.t('settings')} iconName={IconName.settings} onPress={onSettingsPressed}/>,
+                        <CMenuItem key={'send_feedback'} title={i18n.t('send_feedback')} iconName={IconName.iosPaperPlane} onPress={onFeedbackPressed}/>,
+                        <CMenuItem key={'contact_support'} title={i18n.t('contact_support')} iconName={IconName.mdCall} />
                     ]}
                 />
             ]}
