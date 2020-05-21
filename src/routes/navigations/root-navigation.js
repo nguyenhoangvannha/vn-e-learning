@@ -1,52 +1,30 @@
 import * as React from 'react';
-import { StackActions } from '@react-navigation/native';
-import { CommonActions } from '@react-navigation/native';
+import NavigationUtils from '../navigation-utils'
 
-export const rootNavigationRef = React.createRef();
-export const isRootMountedRef = React.createRef();
+const rootNavigationRef = React.createRef();
+const isRootMountedRef = React.createRef();
 
-export function navigate(name, params) {
-  if (isRootMountedRef.current && rootNavigationRef.current) {
-    // Perform navigation if the app has mounted
-    rootNavigationRef.current.navigate(name, params);
-  } else {
-    // You can decide what to do if the app hasn't mounted
-    // You can ignore this, or add these actions to a queue you can call later
-  }
+const navigate = (name, params) => {
+  NavigationUtils.navigate(rootNavigationRef, isRootMountedRef, name, params);
 }
 
-export function replace(name, params) {
-  if (isRootMountedRef.current && rootNavigationRef.current) {
-    // Perform navigation if the app has mounted
-    rootNavigationRef.current.dispatch(
-      StackActions.replace(name, params)
-    );
-  } else {
-    // You can decide what to do if the app hasn't mounted
-    // You can ignore this, or add these actions to a queue you can call later
-  }
+const push = (name, params) => {
+  NavigationUtils.push(rootNavigationRef, isRootMountedRef, name, params);
 }
 
-export function reset(name, params) {
-  if (isRootMountedRef.current && rootNavigationRef.current) {
-    // Perform navigation if the app has mounted
-    rootNavigationRef.current.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [
-          { name: name , params: params},
-        ],
-      })
-    );
-  } else {
-    // You can decide what to do if the app hasn't mounted
-    // You can ignore this, or add these actions to a queue you can call later
-  }
+const replace = (name, params) => {
+  NavigationUtils.replace(rootNavigationRef, isRootMountedRef, name, params);
+}
+
+const reset = (name, params) => {
+  NavigationUtils.reset(rootNavigationRef, isRootMountedRef, name, params);
 }
 
 export const RootNavigation = {
-  ref: rootNavigationRef,
+  navigationRef: rootNavigationRef,
+  isMountedRef: isRootMountedRef,
   navigate: navigate,
+  push: push,
   replace: replace,
   reset: reset,
 }

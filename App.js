@@ -8,8 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Routes from './src/routes/routes';
 import MainScreen from './src/components/Main/main';
 import Profile from './src/components/Account/Profile/profile'
-
-import { rootNavigationRef, isRootMountedRef } from './src/routes/navigations/root-navigation'
+import { RootNavigation } from './src/routes/navigations/root-navigation'
 import Settings from './src/components/Account/Settings/settings';
 import SkillsDetail from './src/components/Skills/SkillDetails/skills-detail';
 import CourseDetail from './src/components/Courses/CourseDetail/course-details'
@@ -26,14 +25,14 @@ const Stack = createStackNavigator()
 export default function App() {
 
   React.useEffect(() => {
-    isRootMountedRef.current = true;
+    RootNavigation.isMountedRef.current = true;
 
-    return () => (isRootMountedRef.current = false);
+    return () => (RootNavigation.isMountedRef.current = false);
   }, []);
 
   return (
     <MenuProvider style={Styles.fullScreen}>
-      <NavigationContainer ref={rootNavigationRef}>
+      <NavigationContainer ref={RootNavigation.navigationRef}>
         <Stack.Navigator initialRouteName={Routes.Splash}>
           <Stack.Screen name={Routes.Splash} component={Splash} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.SignIn} component={SignIn} options={NavigationOptions.normalOptions} />
