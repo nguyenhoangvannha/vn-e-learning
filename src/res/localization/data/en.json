@@ -68,5 +68,9 @@
   "follow": "Follow",
   "new_releases": "New Releases",
   "hours": "Hours",
-  "your_progress": "Your Progress"
+  "your_progress": "Your Progress",
+  "type_here": "Type here",
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advanced": "Advanced"
 }

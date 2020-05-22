@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import Colors from '../../../res/colors';
+import { StyleSheet, View } from 'react-native'
 import AbstractAppbar from '../AppBar/abstract-appbar';
 import CIonIcon from '../Icon/c-ion-icon';
 import IconName from '../../../res/icon-name';
 import Expanded from '../Container/expanded';
 import CTextInput from '../TextField/c-text-input';
-import CText from '../Text/c-text';
-import Styles from '../../../res/styles/styles';
 import Sizes from '../../../res/sizes';
 import FontWeight from '../../../globals/font-weight';
 import i18n from '../../../res/i18n';
@@ -22,9 +19,8 @@ const CSearchBar = () => {
     return (
         <View>
             <AbstractAppbar
-                title={<CText data={i18n.t('search')} style={styles.title} />}
                 middle={<Expanded>
-                    <CTextInput onChangeText={onChangeText} />
+                    <CTextInput onChangeText={onChangeText} placeholder={i18n.t('type_here')}/>
                 </Expanded>}
                 trailing={<CIonIcon name={value.length == 0 ? IconName.mdSearch : IconName.mdClose} />}
             />
