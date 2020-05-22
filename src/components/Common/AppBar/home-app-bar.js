@@ -14,6 +14,7 @@ import MenuButton from '../Menu/menu-button'
 import CMenuItem from '../Menu/c-menu-item'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
+import BackButton from '../Button/back-button'
 
 const HomeAppBar = ({ title, hasBack = false }) => {
     const iconSize = Sizes.s24
@@ -33,7 +34,7 @@ const HomeAppBar = ({ title, hasBack = false }) => {
 
     return (
         <AbstractAppbar
-            leading={hasBack && <CIonIcon name={IconName.iosArrowBack} style={styles.backIcon} size={iconSize} />}
+            leading={hasBack && <BackButton/>}
             title={<CText data={title} style={styles.title} />}
             middle={<Expanded />}
             trailing={[

@@ -3,25 +3,16 @@ import { StyleSheet, ImageBackground } from 'react-native'
 import Sizes from '../../../res/sizes'
 import SizedBox from '../Container/sized-box'
 import AbstractAppbar from './abstract-appbar'
-import CIonIcon from '../Icon/c-ion-icon'
-import IconName from '../../../res/icon-name'
 import Colors from '../../../res/colors'
-import FontWeight from '../../../globals/font-weight'
 import CText from '../Text/c-text'
 import TextStyles from '../../../res/styles/text-styles'
 import Expanded from '../Container/expanded'
 import Alignment from '../../../res/styles/alignment'
-import {useNavigation} from '@react-navigation/native'
+import BackButton from '../Button/back-button'
 
 const ImageAppBar = ({ uri, height, title }) => {
 
     height = height ?? Sizes.s120
-
-    const navigation = useNavigation()
-
-    const onLeadingPressed= () => {
-        navigation.goBack()
-    }
 
     return (
         <ImageBackground
@@ -31,7 +22,7 @@ const ImageAppBar = ({ uri, height, title }) => {
             <SizedBox height={height} style={styles.container}>
                 <AbstractAppbar
                     hasBackgroundColor={false}
-                    leading={<CIonIcon name={IconName.iosArrowBack} color={Colors.white} style={styles.leading} onPress={onLeadingPressed}/>}
+                    leading={<BackButton style={styles.backButton} />}
                     middle={<Expanded><CText style={{ ...TextStyles.headline, ...styles.title }}>{title}</CText></Expanded>} />
             </SizedBox>
         </ImageBackground>
@@ -47,6 +38,9 @@ const styles = StyleSheet.create({
     // leading: {
     //     alignSelf: Alignment.flexStart,
     // },
+    backButton: {
+        color: Colors.white,
+    },
     title: {
         textAlignVertical: Alignment.center,
         textAlign: Alignment.center,
