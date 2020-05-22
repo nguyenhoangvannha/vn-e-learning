@@ -9,6 +9,7 @@ import Sizes from '../../../res/sizes'
 import CDivider from '../../Common/Container/c-divider'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import i18n from '../../../res/i18n'
 
 const Paths = ({ style, headerText, horizontal = true, hasTrailing = true, onTrailingPress }) => {
 
@@ -44,7 +45,7 @@ const Paths = ({ style, headerText, horizontal = true, hasTrailing = true, onTra
                 renderItem={({ item }) => buildItem(item)}
                 keyExtractor={item => item.id}
                 ItemSeparatorComponent={() => horizontal ? <SizedBox width={Sizes.s16} /> : <CDivider containerHeight={Sizes.s12} />}
-                trailingText='See All'
+                trailingText={i18n.t('see_all')}
                 hasTrailing={hasTrailing}
                 onTrailingPress={onTrailingPress}
             />
