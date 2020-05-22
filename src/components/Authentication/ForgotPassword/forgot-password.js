@@ -14,14 +14,22 @@ import CScrollView from '../../Common/Container/c-scroll-view'
 import i18n from '../../../res/i18n'
 import CIonIcon from '../../Common/Icon/c-ion-icon'
 import IconName from '../../../res/icon-name'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import Routes from '../../../routes/routes'
 
-const ForgotPassword = ({ navigation }) => {
-    const onPressedBack = () => {
-        navigation.goBack();
+const ForgotPassword = () => {
+
+    const onCancelPressed = () => {
+        RootNavigation.goBack()
     }
+
+    const onSendEmailPressed = () => {
+        RootNavigation.navigate(Routes.VerifyPasswordScreen)
+    }
+
     return (
         <View style={Styles.fullScreen}>
-            <CAppBar onLeadingPressed={onPressedBack} dividerColor={Colors.transparent}/>
+            <CAppBar dividerColor={Colors.transparent} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <SizedBox height={'25%'} />
                 <View style={{ flexDirection: FlexDirection.row }}>
@@ -37,9 +45,9 @@ const ForgotPassword = ({ navigation }) => {
                 <SizedBox height={Sizes.s38} />
                 <CFromTextInput label={i18n.t('email')} placeholder={i18n.t('enter_your_email')} />
                 <SizedBox height={Sizes.s38} />
-                <CButton title={i18n.t('send_email')} titleStyle={TextStyles.button} />
+                <CButton onPress={onSendEmailPressed} title={i18n.t('send_email')} titleStyle={TextStyles.button} />
                 <SizedBox height={Sizes.s16} />
-                <CButton title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} onPress={onPressedBack}/>
+                <CButton onPress={onCancelPressed} title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
             </CScrollView>
         </View>
 

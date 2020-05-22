@@ -42,9 +42,19 @@ const reset = (navigationRef, isMountedRef, name, params) => {
   }
 }
 
+const goBack = (navigationRef, isMountedRef) => {
+  if (isMountedRef.current && navigationRef.current) {
+    navigationRef.current.goBack();
+  } else {
+    // You can decide what to do if the app hasn't mounted
+    // You can ignore this, or add these actions to a queue you can call later
+  }
+}
+
 export default NavigationUtils = {
   navigate: navigate,
   push: push,
   replace: replace,
   reset: reset,
+  goBack: goBack,
 }

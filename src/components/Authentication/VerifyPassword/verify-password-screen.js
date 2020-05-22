@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import SizedBox from '../../Common/Container/sized-box'
 import CText from '../../Common/Text/c-text'
@@ -13,11 +13,17 @@ import FlexDirection from '../../../globals/flex-direction'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import i18n from '../../../res/i18n'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
-const VerifyPassword = () => {
+const VerifyPasswordScreen = () => {
+
+    const onCancelPressed = () => {
+        RootNavigation.goBack()
+    }
+
     return (
-        <View>
-            <CAppBar/>
+        <View style={Styles.fullScreen}>
+            <CAppBar />
             <CScrollView>
                 <View style={Styles.screenContainer}>
                     <SizedBox height={'25%'} />
@@ -36,7 +42,7 @@ const VerifyPassword = () => {
                     <SizedBox height={Sizes.s38} />
                     <CButton title={i18n.t('verify')} titleStyle={TextStyles.button} />
                     <SizedBox height={Sizes.s16} />
-                    <CButton title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
+                    <CButton onPress={onCancelPressed} title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
                 </View>
             </CScrollView>
         </View>
@@ -44,7 +50,7 @@ const VerifyPassword = () => {
     )
 }
 
-export default VerifyPassword
+export default VerifyPasswordScreen
 
 const styles = StyleSheet.create({
 

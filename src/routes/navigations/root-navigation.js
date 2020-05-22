@@ -20,6 +20,10 @@ const reset = (name, params) => {
   NavigationUtils.reset(rootNavigationRef, isRootMountedRef, name, params);
 }
 
+const goBack = () => {
+  NavigationUtils.goBack(rootNavigationRef, isRootMountedRef);
+}
+
 export const RootNavigation = {
   navigationRef: rootNavigationRef,
   isMountedRef: isRootMountedRef,
@@ -27,4 +31,5 @@ export const RootNavigation = {
   push: push,
   replace: replace,
   reset: reset,
+  goBack: goBack,
 }

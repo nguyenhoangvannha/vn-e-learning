@@ -4,6 +4,7 @@ const Routes = {
     SignIn: 'SignIn',
     SignUp: 'SignUp',
     ForgotPassword: 'ForgotPassword',
+    VerifyPasswordScreen: 'VerifyPasswordScreen',
     Home: 'Home',
     Downloads: 'Downloads',
     Browse: 'Browse',

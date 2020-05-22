@@ -22,6 +22,7 @@ import Splash from './src/components/SplashSreen/splash';
 import AuthorScreen from './src/components/Author/AuthorScreen/author-screen';
 import NewReleasesScreen from './src/components/Content/NewReleases/new-releases-screen';
 import PathScreen from './src/components/Content/Paths/path-screen';
+import VerifyPasswordScreen from './src/components/Authentication/VerifyPassword/verify-password-screen';
 
 const Stack = createStackNavigator()
 
@@ -41,6 +42,7 @@ export default function App() {
           <Stack.Screen name={Routes.SignIn} component={SignIn} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.SignUp} component={SignUp} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.ForgotPassword} component={ForgotPassword} options={NavigationOptions.normalOptions} />
+          <Stack.Screen name={Routes.VerifyPasswordScreen} component={VerifyPasswordScreen} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.Main} component={MainScreen} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.CourseDetail} component={CourseDetail} options={NavigationOptions.normalOptions} />
           <Stack.Screen name={Routes.Profile} component={Profile} options={NavigationOptions.normalOptions} />
