@@ -14,6 +14,7 @@ import CButton from '../../Common/Button/c-button'
 import SizedBox from '../../Common/Container/sized-box'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import CScrollView from '../../Common/Container/c-scroll-view'
+import CAvatar from '../../Common/Image/c-avatar'
 
 const AuthorScreen = ({ route }) => {
 
@@ -23,7 +24,7 @@ const AuthorScreen = ({ route }) => {
         <View style={Styles.fullScreen}>
             <CAppBar title={i18n.t('author')} />
             <CScrollView contentContainerStyle={{ ...Styles.screenContainer, ...styles.body }}>
-                <CImage uri={Strings.defaultAvatar} style={styles.avatar} />
+                <CAvatar uri={Strings.defaultAvatar} size={Sizes.s68}/>
                 <CText style={{ ...TextStyles.title, ...styles.name }}>{author.name}</CText>
                 <CButton title={i18n.t('follow')} style={{width: '100%'}}/>
                 <CText style={{...TextStyles.subtitle, ...styles.description}}>
@@ -43,11 +44,6 @@ export default AuthorScreen
 const styles = StyleSheet.create({
     body: {
         alignItems: Alignment.center,
-    },
-    avatar: {
-        width: Sizes.s68,
-        height: Sizes.s68,
-        borderRadius: Sizes.s34,
     },
     name: {
         fontWeight: FontWeight.bold,

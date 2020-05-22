@@ -5,16 +5,19 @@ import CText from '../../Common/Text/c-text'
 import TextStyles from '../../../res/styles/text-styles'
 import Sizes from '../../../res/sizes'
 import CCard from '../../Common/Container/c-card'
+import COpacityButton from '../../Common/Button/c-opacity-button'
 
-const PathItem = ({ style, image, name, coursesCount }) => {
+const PathItem = ({ style, image, name, coursesCount, onPress }) => {
     return (
-        <CCard style={style} borderRadius={Sizes.s0}>
+       <COpacityButton onPress={onPress}>
+            <CCard style={style} borderRadius={Sizes.s0}>
             <CImage uri={image ?? ''} style={styles.image} />
             <View style={styles.body}>
                 <CText data={name} style={TextStyles.subhead} />
                 <CText data={`${coursesCount} Courses`} style={TextStyles.overline} />
             </View>
         </CCard>
+       </COpacityButton>
     )
 }
 

@@ -24,6 +24,7 @@ const Routes = {
     SendFeedbackScreen: 'SendFeedbackScreen',
     AuthorScreen: 'AuthorScreen',
     NewReleasesScreen: 'NewReleasesScreen',
+    PathScreen: 'PathScreen',
 }
 
 export default Routes
