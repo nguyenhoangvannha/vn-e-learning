@@ -1,0 +1,23 @@
+{
+  "sign_in": "Đăng nhập",
+  "sign_up": "Đăng ký",
+  "sign_out": "sign_out",
+  "username": "Tên người dùng",
+  "password": "Mật khẩu",
+  "forgot_password": "Quên mật khẩu",
+  "home": "Home",
+  "downloads": "Downloads",
+  "browse": "Browse",
+  "search": "Search",
+  "see_all": "See All",
+  "profile": "Profile",
+  "new_release": "New Release",
+  "software_development": "Software development",
+  "it_operations": "IT operations",
+  "data_professional": "Data professional",
+  "security_professional": "Security professional",
+  "all": "All",
+  "courses": "Courses",
+  "paths": "Paths",
+  "authors": "Authors"
+}

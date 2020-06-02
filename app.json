@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "vn-e-learning",
+    "slug": "vn-e-learning",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nhvn",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.nhvn.vn_e_learning",
+      "versionCode": 1
+    }
+  }
+}
