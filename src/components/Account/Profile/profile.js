@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Strings from '../../../res/strings'
 import FlexDirection from '../../../globals/flex-direction'
@@ -16,11 +16,22 @@ import Colors from '../../../res/colors'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
+import { AuthenticationContext } from '../../../provider/authentication-provider'
 
 const Profile = () => {
 
+    const authState = useContext(AuthenticationContext)
+
+    useEffect(
+        () => {
+            if (authState.authentication.status === undefined) {
+                RootNavigation.reset(Routes.SignIn)
+            }
+        }
+    )
+
     const onSignOutPressed = () => {
-        RootNavigation.reset(Routes.SignIn)
+        authState.setAuthentication({ status: undefined })
     }
 
     return (
@@ -29,7 +40,7 @@ const Profile = () => {
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
-                    title='Nha Nguyen' />
+                    title={authState.authentication.user?.fullName ?? ''} />
                 <SizedBox height={Sizes.s32} />
                 <ProfileItem title={i18n.t('email')} subtitle='example@mail.com' />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />

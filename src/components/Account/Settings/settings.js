@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../res/styles/styles'
@@ -10,18 +10,21 @@ import CDivider from '../../Common/Container/c-divider'
 import ProfileTile from '../../Common/Profile/profile-tile'
 import Strings from '../../../res/strings'
 import SizedBox from '../../Common/Container/sized-box'
-import CFlatButton from '../../Common/Button/c-flat-button'
 import Alignment from '../../../res/styles/alignment'
 import i18n from '../../../res/i18n'
+import { AuthenticationContext } from '../../../provider/authentication-provider'
 
 const Settings = () => {
+
+    const authState = useContext(AuthenticationContext)
+
     return (
         <View style={Styles.fullScreen}>
             <CAppBar title={i18n.t('settings')} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
-                    title='Nha Nguyen'
+                    title={authState.authentication.user?.fullName ?? ''}
                     subtitle='Mobile Developer' />
                 <SizedBox height={Sizes.s16} />
                 <ListTileText
@@ -41,7 +44,7 @@ const Settings = () => {
                     title={i18n.t('language')}
                     subtitle='English'
                 />
-                
+
             </CScrollView>
         </View>
     )

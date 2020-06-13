@@ -5,7 +5,7 @@ import FontWeight from '../../../globals/font-weight';
 import Alignment from '../../../res/styles/alignment';
 import Colors from '../../../res/colors';
 
-const CTextInput = ({style, onChangeText, numberOfLines, placeholder, secureTextEntry}) => {
+const CTextInput = ({ style, onChangeText, numberOfLines, placeholder, secureTextEntry, children }) => {
     const input = React.createRef();
     return (
         <TextInput
@@ -15,7 +15,7 @@ const CTextInput = ({style, onChangeText, numberOfLines, placeholder, secureText
             numberOfLines={numberOfLines ?? 1}
             placeholder={placeholder}
             placeholderTextColor={Colors.desText}
-            secureTextEntry={secureTextEntry ?? false}/>
+            secureTextEntry={secureTextEntry ?? false}>{children}</TextInput>
     )
 }
 

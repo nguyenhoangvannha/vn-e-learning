@@ -10,7 +10,7 @@ import CTextInput from './c-text-input'
 import IconName from '../../../res/icon-name'
 import CIonIcon from '../Icon/c-ion-icon'
 
-const CFromTextInput = ({error, style, width, label, onChangeText, numberOfLines,placeholder, secureTextEntry }) => {
+const CFromTextInput = ({ error, style, width, label, onChangeText, numberOfLines, placeholder, secureTextEntry, children, }) => {
 
     var hasError = (error != undefined && error.length > 0);
     var borderColor = hasError ? Colors.red : Colors.grey100;
@@ -28,8 +28,9 @@ const CFromTextInput = ({error, style, width, label, onChangeText, numberOfLines
                 numberOfLines={numberOfLines ?? 1}
                 placeholder={placeholder}
                 placeholderTextColor={Colors.desText}
-                secureTextEntry={secureTextEntry ?? false}
-            />
+                secureTextEntry={secureTextEntry ?? false} >
+                {children}
+            </CTextInput>
         </View>
         <SizedBox height={Sizes.s8} />
         {
