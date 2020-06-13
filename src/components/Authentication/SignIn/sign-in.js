@@ -22,7 +22,7 @@ const SignIn = (props) => {
     const [username, setUsername] = useState('admin');
 
     const [password, setPassword] = useState('123456');
-
+    
     useEffect(() => {
         var status = authState.authentication.status;
         if (status != undefined && status === 200) {
@@ -34,11 +34,13 @@ const SignIn = (props) => {
         authState.setAuthentication(login(username, password));
     }
     const onPressedSignUp = () => {
-        RootNavigation.navigate(Routes.SignUp);
+       RootNavigation.navigate(Routes.SignUp);
     }
     const onPressedForgotPassword = () => {
         RootNavigation.navigate(Routes.ForgotPassword);
     }
+
+
     return (
         <CScrollView contentContainerStyle={Styles.screenContainer} >
             <View style={Styles.screenColumn}>

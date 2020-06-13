@@ -18,7 +18,7 @@ const Routes = {
     SearchPaths: 'SearchPaths',
     SearchAuthors: 'SearchAuthors',
     SkillsDetail: 'SkillsDetail',
-    ListCoursesScreen: 'ListCoursesScreen',
+    ListCoursesByTypeScreen: 'ListCoursesByTypeScreen',
     AllPathsScreen: 'AllPathsScreen',
     CourseContent: 'CourseContent',
     CourseTranscript: 'CourseTranscript',

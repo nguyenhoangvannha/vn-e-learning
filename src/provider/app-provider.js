@@ -1,7 +1,7 @@
 import React from 'react'
 import { AuthenticationProvider } from './authentication-provider';
 import { ThemeProvider } from './theme-provider';
-
+import { CoursesProvider } from './courses-provider'
 const AppContext = React.createContext();
 
 const AppProvider = (props) => {
@@ -9,11 +9,13 @@ const AppProvider = (props) => {
         <AppContext.Provider>
             <AuthenticationProvider>
                 <ThemeProvider>
-                    {props.children}
+                    <CoursesProvider>
+                        {props.children}
+                    </CoursesProvider>
                 </ThemeProvider>
             </AuthenticationProvider>
         </AppContext.Provider>
     )
 }
 
-export {AppContext, AppProvider}
+export { AppContext, AppProvider }

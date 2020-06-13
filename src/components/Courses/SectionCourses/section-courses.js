@@ -7,11 +7,12 @@ import Routes from '../../../routes/routes';
 import { RootNavigation } from '../../../routes/navigations/root-navigation';
 import i18n from '../../../res/i18n';
 
-const SectionCourses = ({ style, headerText, data }) => {
+const SectionCourses = ({ style, headerText, data, type }) => {
 
     const onTrailingPressed = () => {
-        RootNavigation.navigate(Routes.ListCoursesScreen, {
+        RootNavigation.navigate(Routes.ListCoursesByTypeScreen, {
             title: headerText,
+            type: type,
         })
     }
 

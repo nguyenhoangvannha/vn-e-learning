@@ -16,7 +16,7 @@ import Sizes from '../../../../res/sizes'
 import PathItemVer from '../../../Content/Paths/path-item-ver'
 import i18n from '../../../../res/i18n'
 
-const courses = coursesData.splice(0, 4)
+const courses = []
 
 const authors = authorsData.splice(0, 4)
 

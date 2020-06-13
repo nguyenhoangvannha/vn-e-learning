@@ -19,15 +19,15 @@ import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item'
 const DATA = [
     {
         title: i18n.t('beginner'),
-        data: coursesData.slice(0, 2),
+        data: [],
     },
     {
         title: i18n.t('intermediate'),
-        data: coursesData.slice(2, 4),
+        data: [],
     },
     {
         title: i18n.t('advanced'),
-        data: coursesData.slice(4, 6),
+        data: [],
     },
 ]
 
