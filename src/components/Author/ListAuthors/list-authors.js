@@ -53,7 +53,6 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false, authorIds }
             horizontal={horizontal}
             renderItem={({ item }) => {
                 const author = authorsContext.authors.get(item)
-                console.log('RENDER AUTHOR', item, author)
                 return buildItem(author)
             }}
             keyExtractor={item => item}

@@ -1,77 +1,22 @@
-import PathModel from '../models/paths/path'
-const pathsData = [
-    new PathModel(
-        id = '15890963907001',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 1 Web Applications with Brazor',
-        coursesCount = 11),
+import { coursesData } from './courses-mock-data'
 
-    new PathModel(
-        id = '15890963907002',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 2 Web Applications with Brazor',
-        coursesCount = 12),
+const allCourse = Array.from(coursesData.keys())
 
-    new PathModel(
-        id = '15890963907003',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 3 Web Applications with Brazor',
-        coursesCount = 13),
-
-    new PathModel(
-        id = '15890963907004',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 4 Web Applications with Brazor',
-        coursesCount = 14),
-
-    new PathModel(
-        id = '15890963907015',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 5 Web Applications with Brazor',
-        coursesCount = 15),
-
-    new PathModel(
-        id = '15890963907016',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 6 Web Applications with Brazor',
-        coursesCount = 16),
-
-    new PathModel(
-        id = '15890963907017',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 7 Web Applications with Brazor',
-        coursesCount = 17),
-
-    new PathModel(
-        id = '15890963907018',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 8 Web Applications with Brazor',
-        coursesCount = 18),
-
-    new PathModel(
-        id = '15890963907019',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 9 Web Applications with Brazor',
-        coursesCount = 19),
-
-    new PathModel(
-        id = '158909639070110',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 10 Web Applications with Brazor',
-        coursesCount = 110),
-
-    new PathModel(
-        id = '158909639070111',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 11 Web Applications with Brazor',
-        coursesCount = 111),
-
-    new PathModel(
-        id = '158909639070112',
-        image = 'https://picsum.photos/700',
-        name = 'Buiding 12 Web Applications with Brazor',
-        coursesCount = 112),
-
-]
+const pathsData = new Map(Array(60).fill(1).map(
+    (value, index) => {
+        const id = `${Date.now()}${index}`
+        return [
+            id, {
+                id: id,
+                image: 'https://picsum.photos/700',
+                name: `React Path ${index}`,
+                courseIds: allCourse.slice(index, index + 9),
+                coursesTime: `1${index}`,
+                progress: index,
+                introduce: `A ${index} Learning Path is a selection of courses tied together for learners to progress through, mastering a particular subject or program. It allows you to enroll multiple users in multiple courses at once saving you valuable time.`
+            }
+        ]
+    }
+))
 
 export default pathsData

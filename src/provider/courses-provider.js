@@ -7,6 +7,8 @@ const CoursesProvider = (props) => {
 
     const [courses, setCourses] = useState(coursesData)
 
+    const [courseIds] = useState(Array.from(courses.keys()))
+
     const [learningCourseIds, setLearningCourseIds] = useState(new Set())
 
     const [newReleaseCourseIds, setNewReleaseCourseIds] = useState(newCourses)
@@ -31,6 +33,7 @@ const CoursesProvider = (props) => {
                 recommendedCourseIds,
                 setRecommendedCourseIds,
                 addLearningCourse,
+                courseIds,
             }}>
             {props.children}
         </CoursesContext.Provider>

@@ -15,10 +15,13 @@ import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
 import { AuthorsContext } from '../../../provider/authors-provider'
+import { PathsContext } from '../../../provider/paths-provider'
 
 const Browse = ({ }) => {
 
     const authorsContext = useContext(AuthorsContext)
+
+    const pathsContext = useContext(PathsContext)
 
     const onNewReleasesPressed = () => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
@@ -48,6 +51,7 @@ const Browse = ({ }) => {
                 <SizedBox height={Sizes.s12} />
 
                 <Paths
+                    pathIds={Array.from(pathsContext.paths.keys())}
                     headerText={i18n.t('paths')}
                     onTrailingPress={
                         () => {
