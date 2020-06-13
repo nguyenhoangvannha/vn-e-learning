@@ -2,6 +2,7 @@ import React from 'react'
 import { AuthenticationProvider } from './authentication-provider';
 import { ThemeProvider } from './theme-provider';
 import { CoursesProvider } from './courses-provider'
+import { FavouritesProvider } from './favourites-provider';
 const AppContext = React.createContext();
 
 const AppProvider = (props) => {
@@ -10,7 +11,9 @@ const AppProvider = (props) => {
             <AuthenticationProvider>
                 <ThemeProvider>
                     <CoursesProvider>
-                        {props.children}
+                        <FavouritesProvider>
+                            {props.children}
+                        </FavouritesProvider>
                     </CoursesProvider>
                 </ThemeProvider>
             </AuthenticationProvider>

@@ -38,5 +38,4 @@ const coursesData = new Map(Array(204).fill(1).map((value, index) => {
     }]
 }));
 
-
 export { CourseType, coursesData }

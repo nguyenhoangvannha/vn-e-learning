@@ -24,7 +24,7 @@ const ListCoursesItem = ({ navigation, style, course }) => {
             <CImage uri={course.image} style={styles.image} />
             <SectionCourseItemInfo course={course} />
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
-                <CourseActionsMenuButton/>
+                <CourseActionsMenuButton courseId={course.id}/>
             </SizedBox>
         </COpacityButton>
     )

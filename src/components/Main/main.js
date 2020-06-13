@@ -11,13 +11,14 @@ import Colors from '../../res/colors';
 import { StyleSheet } from 'react-native'
 import i18n from '../../res/i18n';
 import CText from '../Common/Text/c-text';
+import Favourites from '../Favourites/favourites';
 const Tab = createBottomTabNavigator()
 
 const MainScreen = () => {
     return (
         <Tab.Navigator initialRouteName={Routes.Home} screenOptions={screenOptions} tabBarOptions={tabBarOptions}>
             <Tab.Screen name={Routes.Home} component={Home} />
-            <Tab.Screen name={Routes.Downloads} component={Downloads} />
+            <Tab.Screen name={Routes.Favourites} component={Favourites} />
             <Tab.Screen name={Routes.Browse} component={Browse} />
             <Tab.Screen name={Routes.Search} component={Search} />
         </Tab.Navigator>
@@ -40,8 +41,8 @@ const screenOptions = ({ route }) => ({
             case Routes.Home:
                 iconName = IconName.mdHome;
                 break;
-            case Routes.Downloads:
-                iconName = IconName.iosCloudDownload;
+            case Routes.Favourites:
+                iconName = IconName.mdHeart;
                 break;
             case Routes.Browse:
                 iconName = IconName.iosApps;
@@ -62,8 +63,8 @@ const screenOptions = ({ route }) => ({
             case Routes.Home:
                 label = i18n.t('home');
                 break;
-            case Routes.Downloads:
-                label = i18n.t('downloads');
+            case Routes.Favourites:
+                label = i18n.t('favourites');
                 break;
             case Routes.Browse:
                 label = i18n.t('browse');

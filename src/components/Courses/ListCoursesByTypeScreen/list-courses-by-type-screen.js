@@ -15,6 +15,8 @@ const ListCoursesByTypeScreen = ({ route }) => {
     const coursesState = useContext(CoursesContext)
 
     const data = Array.from(coursesState.courses.values()).filter((course) => course.type == params.type)
+    
+    const courseIds = data.map((value)=> value.id);
 
     return (
         <View style={Styles.fullScreen}>
@@ -24,7 +26,7 @@ const ListCoursesByTypeScreen = ({ route }) => {
                 <SizedBox height={Sizes.s16} />
                 <ListCourses
                     hasTrailing={false}
-                    data={data} />
+                    data={courseIds} />
             </View>
         </View>
     )

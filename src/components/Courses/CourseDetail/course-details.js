@@ -51,7 +51,9 @@ const CourseDetail = ({ route }) => {
                     horizontal={true}
                     chip={true} />
                 <SizedBox height={Sizes.s8} />
-                <CourseActions style={styles.courseActions} />
+                <CourseActions
+                    courseId={course?.id ?? ''}
+                    style={styles.courseActions} />
                 <SizedBox height={Sizes.s8} />
                 <CText data='Ratings are used to collect measurable feedback from users. Use Rating over an Input where imagery can increase user interaction.' />
                 <SizedBox height={Sizes.s12} />
