@@ -8,22 +8,28 @@ import FlexDirection from '../../../globals/flex-direction'
 import CText from '../../Common/Text/c-text'
 import { CRating, RatingType } from '../../Common/Rating/c-rating'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
+import { DateFormat } from '../../../utils/date-format'
 
 const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) => {
+
     return (
         <View style={styles.container}>
             <CText data={course.name} style={TextStyles.subhead} />
             <SizedBox height={Sizes.s2} />
             {
-                !simple && (authorChip ? <ListAuthors
-                    horizontal={true}
-                    chip={true} /> : <CText data={course.teachers} style={TextStyles.caption} />)
+                !simple && (
+                    authorChip ?
+                        <ListAuthors
+                            authorIds={course.authors}
+                            horizontal={true}
+                            chip={true} /> :
+                        <CText data={course.teachers} style={TextStyles.caption} />)
             }
             <SizedBox height={Sizes.s2} />
             <View style={styles.row}>
                 <CText data={course.level} style={TextStyles.caption} />
                 <SizedBox width={Sizes.s4} />
-                <CText data={course.date.toString()} style={TextStyles.caption} />
+                <CText data={DateFormat.toMdy(course.date)} style={TextStyles.caption} />
                 <SizedBox width={Sizes.s4} />
                 <CText data={course.length} style={TextStyles.caption} />
             </View>

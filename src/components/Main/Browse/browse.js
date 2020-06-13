@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
@@ -14,8 +14,11 @@ import ListCategory from '../../Category/ListCategory/list-category'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
+import { AuthorsContext } from '../../../provider/authors-provider'
 
 const Browse = ({ }) => {
+
+    const authorsContext = useContext(AuthorsContext)
 
     const onNewReleasesPressed = () => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
@@ -53,6 +56,7 @@ const Browse = ({ }) => {
                     } />
                 <SizedBox height={Sizes.s28} />
                 <ListAuthors
+                    authorIds={Array.from(authorsContext.authors.keys())}
                     horizontal={true}
                     headerText={i18n.t('top_authors')} />
             </CScrollView>

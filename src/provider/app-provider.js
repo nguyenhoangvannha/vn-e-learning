@@ -4,6 +4,7 @@ import { ThemeProvider } from './theme-provider';
 import { CoursesProvider } from './courses-provider'
 import { FavouritesProvider } from './favourites-provider';
 import { SkillsProvider } from './skills-provider';
+import { AuthorsProvider } from './authors-provider';
 const AppContext = React.createContext();
 
 const AppProvider = (props) => {
@@ -15,7 +16,9 @@ const AppProvider = (props) => {
                     <CoursesProvider>
                         <FavouritesProvider>
                             <SkillsProvider>
-                                {props.children}
+                                <AuthorsProvider>
+                                    {props.children}
+                                </AuthorsProvider>
                             </SkillsProvider>
                         </FavouritesProvider>
                     </CoursesProvider>

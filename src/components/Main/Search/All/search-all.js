@@ -18,9 +18,9 @@ import i18n from '../../../../res/i18n'
 
 const courses = []
 
-const authors = authorsData.splice(0, 4)
+const authors = []
 
-const paths = pathsData.splice(0, 4)
+const paths = []
 
 const DATA = [
     {

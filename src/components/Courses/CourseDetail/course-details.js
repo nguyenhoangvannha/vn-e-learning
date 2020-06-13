@@ -28,7 +28,7 @@ const CourseDetail = ({ route }) => {
 
     var course = route.params.course
 
-    console.log('received', course)
+    console.log('received', course.authors)
 
     const onShare = () => {
         ShareUtils.share({ message: course.name })
@@ -49,6 +49,7 @@ const CourseDetail = ({ route }) => {
                 <SectionCourseItemInfo course={course} simple={true} />
                 <SizedBox height={Sizes.s8} />
                 <ListAuthors
+                    authorIds={course.authors}
                     horizontal={true}
                     chip={true} />
                 <SizedBox height={Sizes.s8} />
@@ -56,7 +57,7 @@ const CourseDetail = ({ route }) => {
                     courseId={course.id ?? ''}
                     style={styles.courseActions} />
                 <SizedBox height={Sizes.s8} />
-                <CText data='Ratings are used to collect measurable feedback from users. Use Rating over an Input where imagery can increase user interaction.' />
+                <CText data={course.introduce} />
                 <SizedBox height={Sizes.s12} />
                 <CButton title={i18n.t('take_a_learning_check')} color={Colors.gray} />
                 <SizedBox height={Sizes.s8} />

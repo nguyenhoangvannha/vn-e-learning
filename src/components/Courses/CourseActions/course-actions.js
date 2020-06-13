@@ -41,9 +41,9 @@ const CourseActions = ({ style, courseId }) => {
             <Item
                 icon={IconName.iosRadio}
                 bottomText={i18n.t('add_to_channel')} />
-            <Item
+            {/* <Item
                 icon={IconName.mdCloudDownload}
-                bottomText={i18n.t('download')} />
+                bottomText={i18n.t('download')} /> */}
         </View>
     )
 }

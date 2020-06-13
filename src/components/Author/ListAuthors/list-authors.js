@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
-import authorsData from '../../../data/mock/authos-mock-data'
 import CFlatList from '../../Common/Container/c-flat-list'
 import CDivider from '../../Common/Container/c-divider'
 import Sizes from '../../../res/sizes'
@@ -12,9 +11,12 @@ import Alignment from '../../../res/styles/alignment'
 import { Chip } from 'react-native-paper'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import { AuthorsContext } from '../../../provider/authors-provider'
 
-const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
+const ListAuthors = ({ horizontal = false, headerText, chip = false, authorIds }) => {
 
+    const authorsContext = useContext(AuthorsContext)
+    
     const onItemPressed = (author) => {
         RootNavigation.navigate(Routes.AuthorScreen, {
             author: author,
@@ -47,10 +49,14 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
     return (
         <CFlatList
             headerText={headerText}
-            data={authorsData}
+            data={authorIds}
             horizontal={horizontal}
-            renderItem={({ item }) => buildItem(item)}
-            keyExtractor={item => item.id}
+            renderItem={({ item }) => {
+                const author = authorsContext.authors.get(item)
+                console.log('RENDER AUTHOR', item, author)
+                return buildItem(author)
+            }}
+            keyExtractor={item => item}
             ItemSeparatorComponent={() => <CDivider marginHorizontal={Sizes.s4} />}
             hasTrailing={false} />
     )
