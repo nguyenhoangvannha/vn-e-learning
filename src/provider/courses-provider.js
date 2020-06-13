@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { coursesData } from '../data/mock/courses-mock-data'
+import { coursesData, newCourses, recommendedCourses } from '../data/mock/courses-mock-data'
 
 const CoursesContext = React.createContext()
 
@@ -7,11 +7,17 @@ const CoursesProvider = (props) => {
 
     const [courses, setCourses] = useState(coursesData)
 
-    const [learningCourseIds, setLearningCourseIds] = useState([])
+    const [learningCourseIds, setLearningCourseIds] = useState(new Set())
 
-    const [newCourseIds, setNewCourseIds] = useState([])
+    const [newReleaseCourseIds, setNewReleaseCourseIds] = useState(newCourses)
 
-    const [recommendedCourseIds, setRecommendedCourseIds] = useState([])
+    const [recommendedCourseIds, setRecommendedCourseIds] = useState(recommendedCourses)
+
+    function addLearningCourse(courseId) {
+        console.log('addLearningCourse', courseId, learningCourseIds)
+        var newData = new Set(learningCourseIds.add(courseId))
+        setLearningCourseIds(newData)
+    }
 
     return (
         <CoursesContext.Provider
@@ -20,8 +26,11 @@ const CoursesProvider = (props) => {
                 setCourses,
                 learningCourseIds,
                 setLearningCourseIds,
+                newReleaseCourseIds,
+                setNewReleaseCourseIds,
                 recommendedCourseIds,
                 setRecommendedCourseIds,
+                addLearningCourse,
             }}>
             {props.children}
         </CoursesContext.Provider>

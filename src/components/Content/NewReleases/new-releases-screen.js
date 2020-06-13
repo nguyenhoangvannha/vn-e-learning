@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import ImageAppBar from '../../Common/AppBar/image-appbar'
 import Strings from '../../../res/strings'
 import i18n from '../../../res/i18n'
 import Styles from '../../../res/styles/styles'
 import ListCourses from '../../Courses/ListCourses/list-courses'
+import { CoursesContext } from '../../../provider/courses-provider'
 
 const NewReleasesScreen = () => {
+    const coursesContext = useContext(CoursesContext)
+
     return (
         <View style={Styles.fullScreen}>
             <ImageAppBar
@@ -15,7 +18,8 @@ const NewReleasesScreen = () => {
             />
             <View style={Styles.screenContainer}>
                 <ListCourses
-                    hasTrailing={false} />
+                    hasTrailing={false}
+                    data={coursesContext.newReleaseCourseIds} />
             </View>
         </View>
     )

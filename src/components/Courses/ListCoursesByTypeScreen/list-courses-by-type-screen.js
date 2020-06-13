@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import CText from '../../Common/Text/c-text'
@@ -14,10 +14,6 @@ const ListCoursesByTypeScreen = ({ route }) => {
 
     const coursesState = useContext(CoursesContext)
 
-    const data = Array.from(coursesState.courses.values()).filter((course) => course.type == params.type)
-    
-    const courseIds = data.map((value)=> value.id);
-
     return (
         <View style={Styles.fullScreen}>
             <CAppBar />
@@ -26,7 +22,7 @@ const ListCoursesByTypeScreen = ({ route }) => {
                 <SizedBox height={Sizes.s16} />
                 <ListCourses
                     hasTrailing={false}
-                    data={courseIds} />
+                    data={params.courseIds} />
             </View>
         </View>
     )

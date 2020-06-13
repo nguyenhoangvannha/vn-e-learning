@@ -6,7 +6,6 @@ import Sizes from '../../../res/sizes'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../res/styles/alignment'
-import coursesData from '../../../data/mock/courses-mock-data'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
@@ -27,7 +26,9 @@ const Tab = createMaterialTopTabNavigator()
 
 const CourseDetail = ({ route }) => {
 
-    var course = route.params.course ?? coursesData[0]
+    var course = route.params.course
+
+    console.log('received', course)
 
     const onShare = () => {
         ShareUtils.share({ message: course.name })
@@ -52,7 +53,7 @@ const CourseDetail = ({ route }) => {
                     chip={true} />
                 <SizedBox height={Sizes.s8} />
                 <CourseActions
-                    courseId={course?.id ?? ''}
+                    courseId={course.id ?? ''}
                     style={styles.courseActions} />
                 <SizedBox height={Sizes.s8} />
                 <CText data='Ratings are used to collect measurable feedback from users. Use Rating over an Input where imagery can increase user interaction.' />

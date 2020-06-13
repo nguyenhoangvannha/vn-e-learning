@@ -25,6 +25,7 @@ const IconName = {
     mdLock: 'md-lock',
     book: 'ios-bookmarks',
     mdHeart: 'md-heart',
+    mdHeartOutline: 'md-heart-outline',
 }
 
 export default IconName

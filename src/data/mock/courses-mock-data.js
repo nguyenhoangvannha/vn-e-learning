@@ -38,4 +38,8 @@ const coursesData = new Map(Array(204).fill(1).map((value, index) => {
     }]
 }));
 
-export { CourseType, coursesData }
+const newCourses = Array.from(coursesData.keys()).slice(0, 20);
+
+const recommendedCourses = Array.from(coursesData.keys()).slice(30, 50);
+
+export { CourseType, coursesData, newCourses, recommendedCourses }

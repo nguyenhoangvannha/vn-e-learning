@@ -8,6 +8,8 @@ import CDivider from '../../Common/Container/c-divider';
 import i18n from '../../../res/i18n';
 import { CoursesContext } from '../../../provider/courses-provider'
 
+
+//data: list course ids
 const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }) => {
 
     const coursesState = useContext(CoursesContext)

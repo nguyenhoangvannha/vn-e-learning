@@ -29,13 +29,26 @@ const Home = () => {
     }
 
     const buildSectionCourses = (title, type) => {
-        var data = allCourses.filter((course) => course.type === type);
+        var data = allCourses.filter((course) => course.type === type).map(value => value.id)
         return (
-            <SectionCourses
-                headerText={title}
-                data={data}
-                style={styles.sectionCourses} 
-                type={type}/>
+            data.length == 0 ?
+                <View /> :
+                <SectionCourses
+                    headerText={title}
+                    data={data}
+                    style={styles.sectionCourses}/>
+        )
+    }
+
+    const buildContinueLearning = (title) => {
+        var data = Array.from(coursesState.learningCourseIds);
+        return (
+            data.length == 0 ?
+                <View /> :
+                <SectionCourses
+                    headerText={title}
+                    data={data}
+                    style={styles.sectionCourses} />
         )
     }
 
@@ -51,6 +64,7 @@ const Home = () => {
                         onPress={onNewReleasesPressed}>
                         <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
                     </CImageButton>
+                    {buildContinueLearning(i18n.t('continue_learning'))}
                     {buildSectionCourses(i18n.t('software_development'), CourseType.SOFTWARE_DEVELOPMENT)}
                     <SizedBox height={Sizes.s12} />
                     {buildSectionCourses(i18n.t('it_operations'), CourseType.IT_OPERATIONS)}
