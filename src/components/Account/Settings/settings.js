@@ -17,6 +17,8 @@ import { AuthenticationContext } from '../../../provider/authentication-provider
 const Settings = () => {
 
     const authState = useContext(AuthenticationContext)
+    
+    const user = authState.user
 
     return (
         <View style={Styles.fullScreen}>
@@ -24,7 +26,7 @@ const Settings = () => {
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
-                    title={authState.authentication.user?.fullName ?? ''}
+                    title={user?.fullName ?? ''}
                     subtitle='Mobile Developer' />
                 <SizedBox height={Sizes.s16} />
                 <ListTileText

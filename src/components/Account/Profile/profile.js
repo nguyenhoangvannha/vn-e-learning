@@ -22,6 +22,10 @@ const Profile = () => {
 
     const authState = useContext(AuthenticationContext)
 
+    const user = authState.user;
+
+    console.log(user)
+
     useEffect(
         () => {
             if (authState.authentication.status === undefined) {
@@ -40,11 +44,11 @@ const Profile = () => {
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
-                    title={authState.authentication.user?.fullName ?? ''} />
+                    title={user?.fullName ?? ''} />
                 <SizedBox height={Sizes.s32} />
-                <ProfileItem title={i18n.t('email')} subtitle='example@mail.com' />
+                <ProfileItem title={i18n.t('email')} subtitle={user.email} />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title={i18n.t('phone')} subtitle='+84090000922' />
+                <ProfileItem title={i18n.t('phone')} subtitle={user.phone} />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                 <ProfileItem title={i18n.t('courses')} subtitle={`4 ${i18n.t('courses')}`} />
                 <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />

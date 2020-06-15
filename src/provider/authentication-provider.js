@@ -8,11 +8,15 @@ const AuthenticationProvider = (props) => {
 
     const [users, setUsers] = useState(usersData)
 
+    const [user, setUser] = useState(undefined)
+
     const login = (username, password) => {
         var user = users.get(username)
         console.log('login', username, user)
         if (user != undefined && user.password === password) {
             setAuthentication({ status: 200 })
+            console.log('user', user)
+            setUser(user)
         } else {
             setAuthentication({ status: 404 })
         }
@@ -32,6 +36,7 @@ const AuthenticationProvider = (props) => {
             setUsers,
             addUser,
             login,
+            user,
         }}>
             {props.children}
         </AuthenticationContext.Provider>
