@@ -7,12 +7,13 @@ import SizedBox from '../../../Common/Container/sized-box'
 import Sizes from '../../../../res/sizes'
 import i18n from '../../../../res/i18n'
 
-const SearchCourses = () => {
+const SearchCourses = ({ courseIds }) => {
     return (
         <View style={Styles.screenContainer}>
             <CText data={i18n.t('skill_levels')} />
             <SizedBox height={Sizes.s8} />
             <ListCourses
+                data={courseIds}
                 headerText={`132 ${i18n.t('results')}`} />
         </View>
     )

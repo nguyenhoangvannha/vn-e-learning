@@ -52,7 +52,7 @@ const buildItem = (item) => {
     }
 }
 
-const SearchAll = () => {
+const SearchAll = ({}) => {
     return (
         <View style={Styles.screenContainer}>
             <CSectionList
