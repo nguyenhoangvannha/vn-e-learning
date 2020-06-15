@@ -15,23 +15,27 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
 import { login } from '../../../core/service/authentication-services'
+import snackbarUtils from '../../../utils/snackbar-utils'
+import Snackbar from 'react-native-snackbar'
 
 const SignIn = (props) => {
-    const authState = useContext(AuthenticationContext)
+    const authContext = useContext(AuthenticationContext)
 
     const [username, setUsername] = useState('admin');
 
     const [password, setPassword] = useState('123456');
     
     useEffect(() => {
-        var status = authState.authentication.status;
+        var status = authContext.authentication.status;
         if (status != undefined && status === 200) {
             RootNavigation.replace(Routes.Main);
+        } else {
+            snackbarUtils.show(i18n.t('wrong_username_or_password'), Snackbar.LENGTH_SHORT)
         }
-    }, [authState])
+    }, [authContext])
 
     const onPressedSignIn = () => {
-        authState.setAuthentication(login(username, password));
+        authContext.login(username, password);
     }
     const onPressedSignUp = () => {
        RootNavigation.navigate(Routes.SignUp);

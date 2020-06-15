@@ -12,3 +12,21 @@ export const login = (username, password) => {
         return { status: 404 };
     }
 }
+
+export const register = (email, username, password, fullName, phone) => {
+    if (username != '' && password != '') {
+        return {
+            status: 200,
+            user: {
+                email: email,
+                username: username,
+                password: password,
+                fullName: fullName,
+                phone: phone,
+                token: 'empty',
+            }
+        };
+    } else {
+        return { status: 404 };
+    }
+}
