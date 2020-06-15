@@ -14,12 +14,16 @@ import i18n from '../../../res/i18n'
 import CText from '../../Common/Text/c-text'
 import { CoursesContext } from '../../../provider/courses-provider'
 import ListCourses from '../../Courses/ListCourses/list-courses'
+import CFlatList from '../../Common/Container/c-flat-list'
+import ListTileText from '../../Common/Container/list-tile-text'
 
 const Tab = createMaterialTopTabNavigator();
 
 const Search = () => {
 
     const [courseIds, setCourseIds] = useState([]);
+
+    const [suggestions, setSuggestions] = useState([]);
 
     const coursesContext = useContext(CoursesContext)
 
@@ -32,28 +36,40 @@ const Search = () => {
     }
 
     const buildSuggestion = () => {
+        console.log('buildSuggestion', suggestions.length)
         return (
-            <ListCourses
-                data={courseIds}>
+            <CFlatList
+                hasTrailing={false}
+                data={suggestions}
+                renderItem={({ item }) => {
+                    return <ListTileText subtitle={item} style={styles.suggestion}>
 
-            </ListCourses>
+                    </ListTileText>
+                }}
+                keyExtractor={item => item}>
+            </CFlatList>
         )
     }
 
     function search(keyword) {
         setCourseIds([])
-        
+
         const lKeyword = keyword.toLowerCase();
+
+        const resultSuggestions = [];
 
         const resultCourseIds = [];
 
         coursesContext.courses.forEach((value, key) => {
             if (value.name.toLowerCase().includes(lKeyword) || value.introduce.toLowerCase().includes(lKeyword)) {
                 resultCourseIds.push(key)
+                resultSuggestions.push(value.name)
             }
         })
 
         setCourseIds(resultCourseIds)
+        setSuggestions(resultSuggestions)
+        console.log('setSuggestions', suggestions.length)
     }
 
     function onPressDone() {
@@ -105,5 +121,10 @@ export default Search
 const styles = StyleSheet.create({
     searchBar: {
         borderRadius: Sizes.s0,
+    },
+    suggestion: {
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderWidth: 1
     }
 })
