@@ -7,7 +7,7 @@ const CoursesProvider = (props) => {
 
     const [courses, setCourses] = useState(coursesData)
 
-    const [courseIds] = useState(Array.from(courses.keys()))
+    const [courseIds, setCourseIds] = useState(Array.from(courses.keys()))
 
     const [learningCourseIds, setLearningCourseIds] = useState(new Set())
 

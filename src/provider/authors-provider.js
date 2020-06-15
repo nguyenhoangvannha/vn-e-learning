@@ -7,9 +7,11 @@ const AuthorsContext = React.createContext()
 const AuthorsProvider = (props) => {
     const [authors, setAuthors] = useState(authorsData)
 
+    const [authorIds] = useState(Array.from(authors.keys()))
+
     return (
         <AuthorsContext.Provider
-            value={{ authors, setAuthors }}>
+            value={{ authors, setAuthors , authorIds}}>
             {props.children}
         </AuthorsContext.Provider>
     )

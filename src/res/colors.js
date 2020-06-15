@@ -17,6 +17,7 @@ const Colors = {
     bodyText: '#7B8198',
     desText: '#AFB5C6',
     disable: '#D0D5E1',
+    dark: '#121212',
 }
 
 export default Colors
