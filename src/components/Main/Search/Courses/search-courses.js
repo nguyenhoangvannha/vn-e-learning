@@ -14,7 +14,7 @@ const SearchCourses = ({ courseIds }) => {
             <SizedBox height={Sizes.s8} />
             <ListCourses
                 data={courseIds}
-                headerText={`132 ${i18n.t('results')}`} />
+                headerText={`${courseIds.length} ${i18n.t('results')}`} />
         </View>
     )
 }

@@ -32,9 +32,10 @@ const CSearchBar = ({ onTextChange, onPressDone }) => {
                             setValue('')
                         }
                     }} />
-                <COpacityButton style={styles.done} onPress={onPressDone}>
-                    <CText>Done</CText>
-                </COpacityButton>
+                {value.length > 0 &&
+                    <COpacityButton style={styles.done} onPress={onPressDone}>
+                        <CText>Done</CText>
+                    </COpacityButton>}
             </View>
         )
     }

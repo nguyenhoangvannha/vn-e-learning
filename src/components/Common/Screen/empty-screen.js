@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
         alignItems: Alignment.center,
         paddingHorizontal:40,
     },
+    title: {
+        ...TextStyles.title,
+        textAlign: Alignment.center,
+    },
     subtitle: {
         ...TextStyles.subtitle,
         textAlign: Alignment.center,
