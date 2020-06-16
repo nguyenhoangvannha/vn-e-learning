@@ -4,6 +4,9 @@ import categoriesData from '../../../data/mock/categories-mock-data'
 import CImageButton from '../../Common/Button/c-image-button'
 import Strings from '../../../res/strings'
 import Sizes from '../../../res/sizes'
+import NavigationUtils from '../../../routes/navigation-utils'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import Routes from '../../../routes/routes'
 
 const ListCategory = () => {
     return (
@@ -14,7 +17,14 @@ const ListCategory = () => {
                     uri={Strings.defaultCourseThubnail}
                     title={item}
                     width={Sizes.s150}
-                    height={Sizes.s60} />}
+                    height={Sizes.s60} 
+                    onPress={
+                        () => {
+                            RootNavigation.push(Routes.CategoryDetailScreen, {
+                                category: item,
+                            })
+                        }
+                    }/>}
             keyExtractor={item => item}
         />
     )
