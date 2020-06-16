@@ -17,6 +17,7 @@ import CFlatList from '../../Common/Container/c-flat-list'
 import ListTileText from '../../Common/Container/list-tile-text'
 import SearchGuideScreen from '../../Common/Search/search-guide-screen'
 import { PathsContext } from '../../../provider/paths-provider'
+import { AuthorsContext } from '../../../provider/authors-provider'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -25,9 +26,13 @@ const Search = () => {
 
     const pathsContext = useContext(PathsContext)
 
+    const authorsContext = useContext(AuthorsContext)
+
     const [courseIds, setCourseIds] = useState([]);
 
     const [pathIds, setPathIds] = useState([]);
+
+    const [authorIds, setAuthorIds] = useState([])
 
     const [suggestions, setSuggestions] = useState([]);
 
@@ -56,8 +61,10 @@ const Search = () => {
     }
 
     function search(keyword) {
+        setSuggestions([])
         setCourseIds([])
         setPathIds([])
+        setAuthorIds([])
 
         const lKeyword = keyword.toLowerCase();
 
@@ -67,22 +74,32 @@ const Search = () => {
 
         const resultPathIds = [];
 
+        const resultAuthorIds = [];
+
         coursesContext.courses.forEach((value, key) => {
-            if (value.name.toLowerCase().includes(lKeyword) || value.introduce.toLowerCase().includes(lKeyword)) {
+            if (value.name.toLowerCase().includes(lKeyword)) {
                 resultCourseIds.push(key)
                 resultSuggestions.push(value.name)
             }
         })
 
         pathsContext.paths.forEach((value, key) => {
-            if (value.name.toLowerCase().includes(lKeyword) || value.introduce.toLowerCase().includes(lKeyword)) {
+            if (value.name.toLowerCase().includes(lKeyword)) {
                 resultPathIds.push(key)
+                resultSuggestions.push(value.name)
+            }
+        })
+
+        authorsContext.authors.forEach((value, key) => {
+            if (value.name.toLowerCase().includes(lKeyword)) {
+                resultAuthorIds.push(key)
                 resultSuggestions.push(value.name)
             }
         })
 
         setCourseIds(resultCourseIds)
         setPathIds(resultPathIds)
+        setAuthorIds(resultAuthorIds)
         setSuggestions(resultSuggestions)
         console.log('setSuggestions', suggestions.length)
     }
@@ -111,7 +128,11 @@ const Search = () => {
                     pathIds={pathIds}>
                 </SearchPaths>}
             </Tab.Screen>
-            <Tab.Screen name={Routes.SearchAuthors} component={SearchAuthors} options={{ title: i18n.t('authors') }} />
+            <Tab.Screen name={Routes.SearchAuthors} options={{ title: i18n.t('authors') }} >
+                {() => <SearchAuthors
+                    authorIds={authorIds}>
+                </SearchAuthors>}
+            </Tab.Screen>
         </Tab.Navigator>
     }
 
