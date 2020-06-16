@@ -66,7 +66,7 @@ const Search = () => {
         setPathIds([])
         setAuthorIds([])
 
-        const lKeyword = keyword.toLowerCase();
+        const lKeyword = keyword.toLowerCase().trim();
 
         const resultSuggestions = [];
 
@@ -77,21 +77,21 @@ const Search = () => {
         const resultAuthorIds = [];
 
         coursesContext.courses.forEach((value, key) => {
-            if (value.name.toLowerCase().includes(lKeyword)) {
+            if (value.name.toLowerCase().search(lKeyword) >= 0) {
                 resultCourseIds.push(key)
                 resultSuggestions.push(value.name)
             }
         })
 
         pathsContext.paths.forEach((value, key) => {
-            if (value.name.toLowerCase().includes(lKeyword)) {
+            if (value.name.toLowerCase().search(lKeyword) >= 0) {
                 resultPathIds.push(key)
                 resultSuggestions.push(value.name)
             }
         })
 
         authorsContext.authors.forEach((value, key) => {
-            if (value.name.toLowerCase().includes(lKeyword)) {
+            if (value.name.toLowerCase().search(lKeyword) >= 0) {
                 resultAuthorIds.push(key)
                 resultSuggestions.push(value.name)
             }
@@ -113,8 +113,12 @@ const Search = () => {
         return <Tab.Navigator>
             <Tab.Screen
                 name={Routes.SearchAll}
-                component={SearchAll}
                 options={{ title: i18n.t('all') }}>
+                {() => <SearchAll
+                    courseIds={courseIds}
+                    pathIds={pathIds}
+                    authorIds={authorIds}>
+                </SearchAll>}
             </Tab.Screen>
             <Tab.Screen
                 name={Routes.SearchCourses}

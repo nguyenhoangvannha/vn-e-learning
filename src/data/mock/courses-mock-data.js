@@ -1,3 +1,4 @@
+import {DataType} from "../../core/data/data-type";
 
 const CourseType = {
     SOFTWARE_DEVELOPMENT: 'SOFTWARE_DEVELOPMENT',
@@ -41,6 +42,7 @@ const coursesData = new Map(Array(204).fill(1).map((value, index) => {
         "type": mockCourseType(index),
         "authors": listAuthor,
         "introduce": courseName + " Angular 9 simply is the latest version of Angular 2, you will learn this amazing framework from the ground up in this course!",
+        'type': DataType.Course,
     }]
 }));
 
