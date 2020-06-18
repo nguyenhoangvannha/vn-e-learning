@@ -27,7 +27,7 @@ const AbstractAppbar = ({ leading, title, middle, trailing, dividerColor, backgr
                 }}>
                 </CSwitch>
             </View>
-            <View style={{ width: '100%', height: 0.25, backgroundColor: dividerColor }} />
+            <View style={{ width: '100%', height: 0.25, backgroundColor: dividerColor ?? theme.background }} />
         </View>
     )
 }

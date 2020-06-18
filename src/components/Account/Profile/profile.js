@@ -17,31 +17,36 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
+import { ThemeContext } from '../../../provider/theme-provider'
 
 const Profile = () => {
 
-    const authState = useContext(AuthenticationContext)
+    const authContext = useContext(AuthenticationContext)
 
-    const user = authState.user;
+    const themeContext = useContext(ThemeContext)
+
+    const user = authContext.user;
+
+    const theme = themeContext.theme
 
     console.log(user)
 
     useEffect(
         () => {
-            if (authState.authentication.status === undefined) {
+            if (authContext.authentication.status === undefined) {
                 RootNavigation.reset(Routes.SignIn)
             }
         }
     )
 
     const onSignOutPressed = () => {
-        authState.setAuthentication({ status: undefined })
+        authContext.setAuthentication({ status: undefined })
     }
 
     return (
         <View style={Styles.fullScreen}>
             <CAppBar title={i18n.t('profile')} />
-            <CScrollView contentContainerStyle={Styles.screenContainer}>
+            <CScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={{ ...Styles.screenContainer }}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
                     title={user?.fullName ?? ''} />

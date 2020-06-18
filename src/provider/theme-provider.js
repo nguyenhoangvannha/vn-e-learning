@@ -11,6 +11,7 @@ export const themes = {
         textColor: Colors.black,
         iconColor: Colors.black,
         divider: Colors.grey100,
+        popupColor: Colors.white,
     },
     dark: {
         statusBarColor: Colors.dark,
@@ -20,6 +21,7 @@ export const themes = {
         textColor: Colors.white,
         iconColor: Colors.white,
         divider: Colors.white,
+        popupColor: Colors.dark,
     },
 }
 
