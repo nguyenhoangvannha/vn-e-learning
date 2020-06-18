@@ -7,6 +7,7 @@ import Styles from '../../../res/styles/styles'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../res/sizes'
 import { PathsContext } from '../../../provider/paths-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const Divider = () => <SizedBox height={Sizes.s16} />
 
@@ -17,7 +18,7 @@ const AllPathsScreen = () => {
     const pathIds = pathsContext.pathIds
 
     return (
-        <View>
+        <ScreenContainer>
             <CAppBar title='Paths' />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <Paths
@@ -37,7 +38,7 @@ const AllPathsScreen = () => {
                     headerText='Information Security'
                     pathIds={pathIds.slice(31, 40)} />
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 

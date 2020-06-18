@@ -15,6 +15,7 @@ import CSectionHeader from '../../Common/Container/c-section-header'
 import ListCoursesItem from '../../Courses/ListCoursesItem/list-courses-item'
 import { CoursesContext } from '../../../provider/courses-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import ContentContainer from '../../Common/Screen/content-container'
 
 const PathScreen = ({ route }) => {
     const path = route.params.path
@@ -42,7 +43,7 @@ const PathScreen = ({ route }) => {
     return (
         <ScreenContainer>
             <CAppBar title={path.name} />
-            <View style={Styles.screenContainer}>
+            <ContentContainer style={Styles.screenContainer}>
                 <ListTileText
                     leading={<CImage uri={Strings.defaultCourseThubnail} width={Sizes.s68} height={Sizes.s68} />}
                     title={path.name}
@@ -67,7 +68,7 @@ const PathScreen = ({ route }) => {
                     )}
                     keyExtractor={(item, index) => item + index}>
                 </CSectionList>
-            </View>
+            </ContentContainer>
         </ScreenContainer>
     )
 }

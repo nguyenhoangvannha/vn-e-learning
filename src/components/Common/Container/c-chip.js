@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet } from 'react-native'
-import { Chip } from 'react-native-paper'
+import { StyleSheet, View } from 'react-native'
 import CText from '../Text/c-text'
 import TextStyles from '../../../res/styles/text-styles'
 import COpacityButton from '../Button/c-opacity-button'
@@ -8,6 +7,7 @@ import { ThemeContext } from '../../../provider/theme-provider'
 import SizedBox from './sized-box'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
+import FlexDirection from '../../../globals/flex-direction'
 
 const CChip = ({ leading, title, onPress, style }) => {
 
@@ -17,12 +17,12 @@ const CChip = ({ leading, title, onPress, style }) => {
 
     return (
         <COpacityButton onPress={onPress}>
-            <Chip
+            <View
                 style={{ ...styles.chip, ...style, backgroundColor: theme.chipColor }}>
                 {leading}
                 {leading != undefined && <SizedBox width={Sizes.s8} />}
                 <CText data={title} style={{ ...TextStyles.caption, ...styles.text }} />
-            </Chip>
+            </View>
         </COpacityButton>
     )
 }
@@ -31,9 +31,12 @@ export default CChip
 
 const styles = StyleSheet.create({
     chip: {
-
+        alignItems: Alignment.center,
+        flexDirection: FlexDirection.row,
+        paddingVertical: Sizes.s8,
+        paddingHorizontal: Sizes.s12,
+        borderRadius: Sizes.s16,
     },
     text: {
-        textAlignVertical: Alignment.center,
     }
 })

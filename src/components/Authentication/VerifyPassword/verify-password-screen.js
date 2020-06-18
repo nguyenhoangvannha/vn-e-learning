@@ -25,26 +25,24 @@ const VerifyPasswordScreen = () => {
     return (
         <ScreenContainer style={Styles.fullScreen}>
             <CAppBar />
-            <CScrollView>
-                <View style={Styles.screenContainer}>
-                    <SizedBox height={'25%'} />
-                    <View style={{ flexDirection: FlexDirection.row }}>
-                        <View style={{ width: '65%' }}>
-                            <CText data={i18n.t('enter_your_email_code')} style={TextStyles.display1} />
-                            <SizedBox height={Sizes.s8} />
-                            <CText data={i18n.t('the_code_has_been_sent_to_your_email')} style={TextStyles.caption} />
-                        </View>
-                        <SizedBox width={'8%'}></SizedBox>
-                        <Icon
-                            name='lock' size={Sizes.s92} color={Colors.blue500} />
+            <CScrollView contentContainerStyle={Styles.screenContainer}>
+                <SizedBox height={'25%'} />
+                <View style={{ flexDirection: FlexDirection.row }}>
+                    <View style={{ width: '65%' }}>
+                        <CText data={i18n.t('enter_your_email_code')} style={TextStyles.display1} />
+                        <SizedBox height={Sizes.s8} />
+                        <CText data={i18n.t('the_code_has_been_sent_to_your_email')} style={TextStyles.caption} />
                     </View>
-                    <SizedBox height={Sizes.s38} />
-                    <CFromTextInput placeholder={i18n.t('enter_code')} />
-                    <SizedBox height={Sizes.s38} />
-                    <CButton title={i18n.t('verify')} titleStyle={TextStyles.button} />
-                    <SizedBox height={Sizes.s16} />
-                    <CButton onPress={onCancelPressed} title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
+                    <SizedBox width={'8%'}></SizedBox>
+                    <Icon
+                        name='lock' size={Sizes.s92} color={Colors.blue500} />
                 </View>
+                <SizedBox height={Sizes.s38} />
+                <CFromTextInput placeholder={i18n.t('enter_code')} />
+                <SizedBox height={Sizes.s38} />
+                <CButton title={i18n.t('verify')} titleStyle={TextStyles.button} />
+                <SizedBox height={Sizes.s16} />
+                <CButton onPress={onCancelPressed} title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
             </CScrollView>
         </ScreenContainer>
 

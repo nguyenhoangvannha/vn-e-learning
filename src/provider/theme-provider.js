@@ -36,7 +36,7 @@ export const themes = {
 const ThemeContext = React.createContext()
 
 const ThemeProvider = (props) => {
-    const [theme, setTheme] = useState(themes.dark);
+    const [theme, setTheme] = useState(themes.light);
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>
             {props.children}

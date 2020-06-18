@@ -8,6 +8,8 @@ import ListCourses from '../ListCourses/list-courses'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../res/sizes'
 import { CoursesContext } from '../../../provider/courses-provider'
+import { ScreenContainer } from 'react-native-screens'
+import ContentContainer from '../../Common/Screen/content-container'
 
 const ListCoursesByTypeScreen = ({ route }) => {
     const params = route.params
@@ -15,16 +17,16 @@ const ListCoursesByTypeScreen = ({ route }) => {
     const coursesState = useContext(CoursesContext)
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CAppBar />
-            <View style={Styles.screenContainer}>
+            <ContentContainer style={Styles.screenContainer}>
                 <CText data={params.title} style={TextStyles.headline} />
                 <SizedBox height={Sizes.s16} />
                 <ListCourses
                     hasTrailing={false}
                     data={params.courseIds} />
-            </View>
-        </View>
+            </ContentContainer>
+        </ScreenContainer>
     )
 }
 
