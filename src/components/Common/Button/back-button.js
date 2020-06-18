@@ -4,6 +4,7 @@ import IconName from '../../../res/icon-name'
 import CIonIcon from '../Icon/c-ion-icon'
 import Sizes from '../../../res/sizes'
 import { useNavigation } from '@react-navigation/native';
+import Colors from '../../../res/colors'
 
 const BackButton = ({ iconName, iconSize, style, onPress, }) => {
 

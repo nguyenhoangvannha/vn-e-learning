@@ -10,7 +10,6 @@ const Styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         height: '100%',
-        backgroundColor: Colors.white,
     },
     row: {
         flexDirection: FlexDirection.row,
@@ -20,7 +19,6 @@ const Styles = StyleSheet.create({
         height: '100%',
         paddingHorizontal: Sizes.s18,
         paddingVertical: Sizes.s14,
-        backgroundColor: Colors.white,
     },
     body: {
         flex: 1,

@@ -12,8 +12,8 @@ const AppProvider = (props) => {
 
     return (
         <AppContext.Provider>
-            <AuthenticationProvider>
-                <ThemeProvider>
+            <ThemeProvider>
+                <AuthenticationProvider>
                     <CoursesProvider>
                         <FavouritesProvider>
                             <SkillsProvider>
@@ -25,8 +25,8 @@ const AppProvider = (props) => {
                             </SkillsProvider>
                         </FavouritesProvider>
                     </CoursesProvider>
-                </ThemeProvider>
-            </AuthenticationProvider>
+                </AuthenticationProvider>
+            </ThemeProvider>
         </AppContext.Provider>
     )
 }
