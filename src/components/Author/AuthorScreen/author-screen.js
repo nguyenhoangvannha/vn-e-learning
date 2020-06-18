@@ -14,13 +14,14 @@ import SizedBox from '../../Common/Container/sized-box'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CAvatar from '../../Common/Image/c-avatar'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const AuthorScreen = ({ route }) => {
 
     const author = route.params.author;
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CAppBar title={i18n.t('author')} />
             <CScrollView contentContainerStyle={{ ...Styles.screenContainer, ...styles.body }}>
                 <CAvatar uri={Strings.defaultAvatar} size={Sizes.s68} />
@@ -36,7 +37,7 @@ const AuthorScreen = ({ route }) => {
                     data={author.courseIds}
                     hasTrailing={false} />
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 

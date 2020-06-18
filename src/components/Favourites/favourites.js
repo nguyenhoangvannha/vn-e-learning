@@ -8,6 +8,7 @@ import HomeAppBar from '../Common/AppBar/home-app-bar'
 import Sizes from '../../res/sizes'
 import Styles from '../../res/styles/styles'
 import { FavouritesContext } from '../../provider/favourites-provider'
+import ContentContainer from '../Common/Screen/content-container'
 
 const Favourites = () => {
 
@@ -29,12 +30,12 @@ const Favourites = () => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ContentContainer style={Styles.fullScreen}>
             <HomeAppBar title={i18n.t('favourites')} />
             <View style={Styles.body}>
                 <Content data={Array.from(favouritesState.favouriteCourses)} />
             </View>
-        </View>
+        </ContentContainer>
     )
 }
 

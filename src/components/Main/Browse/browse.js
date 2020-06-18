@@ -16,6 +16,7 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
 import { AuthorsContext } from '../../../provider/authors-provider'
 import { PathsContext } from '../../../provider/paths-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const Browse = ({ }) => {
 
@@ -28,7 +29,7 @@ const Browse = ({ }) => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <HomeAppBar title={i18n.t('browse')} />
             <CScrollView style={Styles.screenContainer} >
                 <CImageButton
@@ -64,7 +65,7 @@ const Browse = ({ }) => {
                     horizontal={true}
                     headerText={i18n.t('top_authors')} />
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 

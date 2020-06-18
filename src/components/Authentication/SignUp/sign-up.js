@@ -14,6 +14,7 @@ import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
 import { register } from '../../../core/service/authentication-services'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const SignUp = ({ navigation }) => {
 
@@ -42,53 +43,55 @@ const SignUp = ({ navigation }) => {
     }
 
     return (
-        <CScrollView contentContainerStyle={Styles.screenContainer}>
-            <View style={Styles.screenColumn}>
-                <SizedBox height={Sizes.s32} />
-                <CText data={i18n.t('sign_up')} style={styles.label} />
-                <SizedBox height={Sizes.s32} />
-                <CFromTextInput
-                    label={i18n.t('email')}
-                    placeholder="Example: your@mail"
-                    style={styles.input}
-                    onChangeText={(value) => setEmail(value)} />
-                <CFromTextInput
-                    label={i18n.t('username')}
-                    placeholder=""
-                    style={styles.input}
-                    onChangeText={(value) => setUsername(value)} />
-                <CFromTextInput
-                    label={i18n.t('fullname')}
-                    placeholder="" style={styles.input}
-                    onChangeText={(value) => setFullname(value)} />
-                <CFromTextInput
-                    label={i18n.t('phone')}
-                    placeholder=""
-                    style={styles.input}
-                    onChangeText={(value) => setPhone(value)} />
-                <CFromTextInput
-                    label={i18n.t('password')}
-                    placeholder={i18n.t('atless_x_char').replace('%s', 6)}
-                    style={styles.input}
-                    secureTextEntry={true}
-                    onChangeText={(value) => setPassword(value)} />
-                <CFromTextInput
-                    label={i18n.t('re_type_password')}
-                    placeholder={i18n.t('atless_x_char').replace('%s', 6)}
-                    style={styles.input}
-                    secureTextEntry={true}
-                    onChangeText={(value) => setRePassword(value)} />
-                <SizedBox height={Sizes.s16} />
-                <CButton
-                    title={i18n.t('create_account')}
-                    type='outline'
-                    style={styles.signUp}
-                    loading={false} disabled={false}
-                    onPress={onPressedCreateAccount} />
-                <SizedBox height={Sizes.s24} />
-                <CButton title={i18n.t('back_to_login')} onPress={onPressedBackToSignIn} type='clear' color={Colors.transparent} style={styles.forgotPassword} loading={false} disabled={false} />
-            </View>
-        </CScrollView>
+        <ScreenContainer>
+            <CScrollView contentContainerStyle={Styles.screenContainer}>
+                <View style={Styles.screenColumn}>
+                    <SizedBox height={Sizes.s32} />
+                    <CText data={i18n.t('sign_up')} style={styles.label} />
+                    <SizedBox height={Sizes.s32} />
+                    <CFromTextInput
+                        label={i18n.t('email')}
+                        placeholder="Example: your@mail"
+                        style={styles.input}
+                        onChangeText={(value) => setEmail(value)} />
+                    <CFromTextInput
+                        label={i18n.t('username')}
+                        placeholder=""
+                        style={styles.input}
+                        onChangeText={(value) => setUsername(value)} />
+                    <CFromTextInput
+                        label={i18n.t('fullname')}
+                        placeholder="" style={styles.input}
+                        onChangeText={(value) => setFullname(value)} />
+                    <CFromTextInput
+                        label={i18n.t('phone')}
+                        placeholder=""
+                        style={styles.input}
+                        onChangeText={(value) => setPhone(value)} />
+                    <CFromTextInput
+                        label={i18n.t('password')}
+                        placeholder={i18n.t('atless_x_char').replace('%s', 6)}
+                        style={styles.input}
+                        secureTextEntry={true}
+                        onChangeText={(value) => setPassword(value)} />
+                    <CFromTextInput
+                        label={i18n.t('re_type_password')}
+                        placeholder={i18n.t('atless_x_char').replace('%s', 6)}
+                        style={styles.input}
+                        secureTextEntry={true}
+                        onChangeText={(value) => setRePassword(value)} />
+                    <SizedBox height={Sizes.s16} />
+                    <CButton
+                        title={i18n.t('create_account')}
+                        type='outline'
+                        style={styles.signUp}
+                        loading={false} disabled={false}
+                        onPress={onPressedCreateAccount} />
+                    <SizedBox height={Sizes.s24} />
+                    <CButton title={i18n.t('back_to_login')} onPress={onPressedBackToSignIn} type='clear' color={Colors.transparent} style={styles.forgotPassword} loading={false} disabled={false} />
+                </View>
+            </CScrollView>
+        </ScreenContainer>
     )
 }
 

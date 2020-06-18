@@ -12,17 +12,15 @@ import ContentContainer from '../../Common/Screen/content-container'
 const PathItemVer = ({ image, name, coursesCount, onPress }) => {
     return (
         <COpacityButton onPress={onPress}>
-            <ContentContainer>
-                <CCard borderRadius={Sizes.s0}>
-                    <View style={Styles.row} >
-                        <CImage uri={image ?? ''} width={Sizes.s80} height={Sizes.s80} />
-                        <View style={styles.body}>
-                            <CText data={name} style={TextStyles.subhead} numberOfLines={2} />
-                            <CText data={`${coursesCount} Courses`} style={TextStyles.overline} />
-                        </View>
+            <CCard borderRadius={Sizes.s0}>
+                <ContentContainer style={Styles.row} >
+                    <CImage uri={image ?? ''} width={Sizes.s80} height={Sizes.s80} />
+                    <View style={styles.body}>
+                        <CText data={name} style={TextStyles.subhead} numberOfLines={2} />
+                        <CText data={`${coursesCount} Courses`} style={TextStyles.overline} />
                     </View>
-                </CCard>
-            </ContentContainer>
+                </ContentContainer>
+            </CCard>
         </COpacityButton>
     )
 }

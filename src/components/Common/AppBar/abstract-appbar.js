@@ -22,10 +22,10 @@ const AbstractAppbar = ({ leading, title, middle, trailing, dividerColor, backgr
                 {title}
                 {middle}
                 {trailing}
-                <CSwitch initValue={isDarkTheme} onValueChange={(dark) => {
+                {/* <CSwitch initValue={isDarkTheme} onValueChange={(dark) => {
                     themeContext.setTheme(dark ? themes.dark : themes.light)
                 }}>
-                </CSwitch>
+                </CSwitch> */}
             </View>
             <View style={{ width: '100%', height: 0.25, backgroundColor: dividerColor ?? theme.background }} />
         </View>

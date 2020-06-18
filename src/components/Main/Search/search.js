@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import CSearchBar from '../../Common/Search/c-search-bar'
 import Styles from '../../../res/styles/styles'
 import CCard from '../../Common/Container/c-card'
@@ -11,13 +11,14 @@ import SearchCourses from './Courses/search-courses'
 import SearchPaths from './Paths/search-paths'
 import SearchAuthors from './Authors/search-authors'
 import i18n from '../../../res/i18n'
-import CText from '../../Common/Text/c-text'
 import { CoursesContext } from '../../../provider/courses-provider'
 import CFlatList from '../../Common/Container/c-flat-list'
 import ListTileText from '../../Common/Container/list-tile-text'
 import SearchGuideScreen from '../../Common/Search/search-guide-screen'
 import { PathsContext } from '../../../provider/paths-provider'
 import { AuthorsContext } from '../../../provider/authors-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
+import { ThemeContext } from '../../../provider/theme-provider'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -27,6 +28,10 @@ const Search = () => {
     const pathsContext = useContext(PathsContext)
 
     const authorsContext = useContext(AuthorsContext)
+
+    const themeContext = useContext(ThemeContext)
+
+    const theme = themeContext.theme
 
     const [courseIds, setCourseIds] = useState([]);
 
@@ -110,7 +115,12 @@ const Search = () => {
     }
 
     const buildResult = () => {
-        return <Tab.Navigator>
+        return <Tab.Navigator tabBarOptions={{
+            contentContainerStyle: { backgroundColor: theme.tabColor },
+            activeTintColor: theme.activeTextColor,
+            inactiveTintColor: theme.textColor,
+            indicatorStyle: { backgroundColor: theme.indicatorColor },
+        }}>
             <Tab.Screen
                 name={Routes.SearchAll}
                 options={{ title: i18n.t('all') }}>
@@ -141,7 +151,7 @@ const Search = () => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CCard style={styles.searchBar}>
                 <CSearchBar
                     onTextChange={(value) => {
@@ -156,7 +166,7 @@ const Search = () => {
                     onPressDone={onPressDone} />
             </CCard>
             {searching == undefined ? buildInit() : (searching === true ? buildSuggestion() : buildResult())}
-        </View>
+        </ScreenContainer>
     )
 }
 

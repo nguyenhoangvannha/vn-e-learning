@@ -6,12 +6,13 @@ import i18n from '../../../res/i18n'
 import Styles from '../../../res/styles/styles'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import { CoursesContext } from '../../../provider/courses-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const NewReleasesScreen = () => {
     const coursesContext = useContext(CoursesContext)
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <ImageAppBar
                 uri={Strings.defaultCourseThubnail}
                 title={i18n.t('new_releases')}
@@ -21,7 +22,7 @@ const NewReleasesScreen = () => {
                     hasTrailing={false}
                     data={coursesContext.newReleaseCourseIds} />
             </View>
-        </View>
+        </ScreenContainer>
     )
 }
 

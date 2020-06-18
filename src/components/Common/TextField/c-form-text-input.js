@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import Colors from '../../../res/colors'
 import Sizes from '../../../res/sizes'
@@ -9,21 +9,34 @@ import FlexDirection from '../../../globals/flex-direction'
 import CTextInput from './c-text-input'
 import IconName from '../../../res/icon-name'
 import CIonIcon from '../Icon/c-ion-icon'
+import { ThemeContext } from '../../../provider/theme-provider'
 
 const CFromTextInput = ({ error, style, width, label, onChangeText, numberOfLines, placeholder, secureTextEntry, children, }) => {
+    const themeContext = useContext(ThemeContext)
+
+    const theme = themeContext.theme
 
     var hasError = (error != undefined && error.length > 0);
     var borderColor = hasError ? Colors.red : Colors.grey100;
 
     return <View>
-        <View style={{ ...styles.container, ...style, width: width, borderColor: borderColor }}>
+        <View style={{
+            ...styles.container,
+            ...style,
+            width: width,
+            borderColor: borderColor
+        }}>
             {
                 (label != undefined && label.length > 0) &&
                 <Text style={styles.label} >{label}</Text>
             }
             <SizedBox height={3} />
             <CTextInput
-                style={{ ...styles.textInput, ...style }}
+                style={{
+                    ...styles.textInput,
+                    ...style,
+                    color: theme.textColor
+                }}
                 onChangeText={onChangeText}
                 numberOfLines={numberOfLines ?? 1}
                 placeholder={placeholder}
@@ -67,7 +80,6 @@ const styles = StyleSheet.create({
         fontWeight: FontWeight.w500,
         lineHeight: 19,
         alignItems: Alignment.center,
-        color: Colors.heavyCaption,
     },
     errorRow: {
         flexDirection: FlexDirection.row

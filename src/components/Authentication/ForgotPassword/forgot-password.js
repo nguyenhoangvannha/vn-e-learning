@@ -16,6 +16,7 @@ import CIonIcon from '../../Common/Icon/c-ion-icon'
 import IconName from '../../../res/icon-name'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const ForgotPassword = () => {
 
@@ -28,7 +29,7 @@ const ForgotPassword = () => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CAppBar dividerColor={Colors.transparent} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <SizedBox height={'25%'} />
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
                 <SizedBox height={Sizes.s16} />
                 <CButton onPress={onCancelPressed} title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
             </CScrollView>
-        </View>
+        </ScreenContainer>
 
     )
 }

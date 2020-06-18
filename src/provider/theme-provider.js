@@ -12,6 +12,10 @@ export const themes = {
         iconColor: Colors.black,
         divider: Colors.grey100,
         popupColor: Colors.white,
+        chipColor: Colors.grey100,
+        tabColor: Colors.white,
+        indicatorColor: Colors.green,
+        activeTextColor: Colors.black,
     },
     dark: {
         statusBarColor: Colors.dark,
@@ -22,6 +26,10 @@ export const themes = {
         iconColor: Colors.white,
         divider: Colors.white,
         popupColor: Colors.dark,
+        chipColor: Colors.dark,
+        tabColor: Colors.dark,
+        indicatorColor: Colors.green,
+        activeTextColor: Colors.white,
     },
 }
 

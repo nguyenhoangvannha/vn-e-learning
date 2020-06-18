@@ -11,6 +11,7 @@ import Sizes from '../../../res/sizes'
 import { CoursesContext } from '../../../provider/courses-provider'
 import { PathsContext } from '../../../provider/paths-provider'
 import { AuthorsContext } from '../../../provider/authors-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const SkillsDetail = ({ route }) => {
 
@@ -25,7 +26,7 @@ const SkillsDetail = ({ route }) => {
     var skills = route.params.skills
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CAppBar title={skills} />
             <CScrollView style={Styles.body}>
                 <Paths
@@ -44,7 +45,7 @@ const SkillsDetail = ({ route }) => {
                     horizontal={true} />
                 <SizedBox height={Sizes.s16}/>
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 

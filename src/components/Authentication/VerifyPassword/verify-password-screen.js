@@ -14,6 +14,7 @@ import CAppBar from '../../Common/AppBar/c-app-bar'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import i18n from '../../../res/i18n'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const VerifyPasswordScreen = () => {
 
@@ -22,7 +23,7 @@ const VerifyPasswordScreen = () => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CAppBar />
             <CScrollView>
                 <View style={Styles.screenContainer}>
@@ -45,7 +46,7 @@ const VerifyPasswordScreen = () => {
                     <CButton onPress={onCancelPressed} title={i18n.t('cancel')} color={Colors.bodyText} titleStyle={TextStyles.button} />
                 </View>
             </CScrollView>
-        </View>
+        </ScreenContainer>
 
     )
 }

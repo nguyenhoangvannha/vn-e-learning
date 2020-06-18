@@ -17,6 +17,7 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import { CoursesContext } from '../../../provider/courses-provider'
 import { CourseType } from '../../../data/mock/courses-mock-data'
+import ContentContainer from '../../Common/Screen/content-container'
 
 const Home = () => {
 
@@ -53,7 +54,7 @@ const Home = () => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ContentContainer style={Styles.fullScreen}>
             <HomeAppBar title={i18n.t('home')} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
@@ -73,7 +74,7 @@ const Home = () => {
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>
-        </View>
+        </ContentContainer>
     )
 
 }

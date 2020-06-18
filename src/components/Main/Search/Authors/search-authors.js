@@ -4,14 +4,15 @@ import Styles from '../../../../res/styles/styles'
 import CText from '../../../Common/Text/c-text'
 import ListAuthors from '../../../Author/ListAuthors/list-authors'
 import i18n from '../../../../res/i18n'
+import ContentContainer from '../../../Common/Screen/content-container'
 
 const SearchAuthors = ({ authorIds }) => {
     return (
-        <View style={Styles.screenContainer}>
+        <ContentContainer style={Styles.screenContainer}>
             <ListAuthors
                 authorIds={authorIds}
                 headerText={`${authorIds.length} ${i18n.t('results')}`} />
-        </View>
+        </ContentContainer>
     )
 }
 

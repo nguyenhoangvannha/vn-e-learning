@@ -12,6 +12,7 @@ import i18n from '../../../../res/i18n'
 import { CoursesContext } from '../../../../provider/courses-provider'
 import { PathsContext } from '../../../../provider/paths-provider'
 import { AuthorsContext } from '../../../../provider/authors-provider'
+import ContentContainer from '../../../Common/Screen/content-container'
 
 
 const SearchAll = ({ courseIds, authorIds, pathIds }) => {
@@ -57,7 +58,7 @@ const SearchAll = ({ courseIds, authorIds, pathIds }) => {
         }
     }
     return (
-        <View style={Styles.screenContainer}>
+        <ContentContainer style={Styles.screenContainer}>
             <CSectionList
                 sections={DATA}
                 keyExtractor={(item, index) => item + index}
@@ -69,7 +70,7 @@ const SearchAll = ({ courseIds, authorIds, pathIds }) => {
                 )}
                 ItemSeparatorComponent={() => <CDivider containerHeight={Sizes.s16} />}
             />
-        </View>
+        </ContentContainer>
     )
 }
 

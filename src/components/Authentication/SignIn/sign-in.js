@@ -14,7 +14,7 @@ import Routes from '../../../routes/routes'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
-import { login } from '../../../core/service/authentication-services'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const SignIn = (props) => {
     const authContext = useContext(AuthenticationContext)
@@ -22,7 +22,7 @@ const SignIn = (props) => {
     const [username, setUsername] = useState('admin');
 
     const [password, setPassword] = useState('123456');
-    
+
     useEffect(() => {
         var status = authContext.authentication.status;
         if (status != undefined && status === 200) {
@@ -35,7 +35,7 @@ const SignIn = (props) => {
         authContext.login(username, password);
     }
     const onPressedSignUp = () => {
-       RootNavigation.navigate(Routes.SignUp);
+        RootNavigation.navigate(Routes.SignUp);
     }
     const onPressedForgotPassword = () => {
         RootNavigation.navigate(Routes.ForgotPassword);
@@ -43,36 +43,38 @@ const SignIn = (props) => {
 
 
     return (
-        <CScrollView contentContainerStyle={Styles.screenContainer} >
-            <View style={Styles.screenColumn}>
-                <SizedBox height={'25%'} />
-                <CText data={i18n.t('sign_in')} style={styles.label} />
-                <SizedBox height={Sizes.s70} />
+        <ScreenContainer>
+            <CScrollView contentContainerStyle={Styles.screenContainer} >
+                <View style={Styles.screenColumn}>
+                    <SizedBox height={'25%'} />
+                    <CText data={i18n.t('sign_in')} style={styles.label} />
+                    <SizedBox height={Sizes.s70} />
 
-                <CFromTextInput
-                    label={i18n.t('username')}
-                    placeholder={i18n.t('your_username')}
-                    style={styles.input}
-                    onChangeText={(value) => setUsername(value)}>
-                    {username}
-                </CFromTextInput>
+                    <CFromTextInput
+                        label={i18n.t('username')}
+                        placeholder={i18n.t('your_username')}
+                        style={styles.input}
+                        onChangeText={(value) => setUsername(value)}>
+                        {username}
+                    </CFromTextInput>
 
-                <CFromTextInput
-                    label={i18n.t('password')}
-                    placeholder={i18n.t('atless_x_char').replace('%s', 6)}
-                    style={styles.input} secureTextEntry={true}
-                    onChangeText={(value) => setPassword(value)}>
-                    {password}
-                </CFromTextInput>
+                    <CFromTextInput
+                        label={i18n.t('password')}
+                        placeholder={i18n.t('atless_x_char').replace('%s', 6)}
+                        style={styles.input} secureTextEntry={true}
+                        onChangeText={(value) => setPassword(value)}>
+                        {password}
+                    </CFromTextInput>
 
-                <SizedBox height={Sizes.s16} />
-                <CButton title={i18n.t('sign_in').toUpperCase()} onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
-                <SizedBox height={Sizes.s12} />
-                <CButton title={i18n.t('sign_up').toUpperCase()} onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
-                <SizedBox height={Sizes.s24} />
-                <CButton title={i18n.t('forgot_password').toUpperCase()} onPress={onPressedForgotPassword} type='clear' style={styles.forgotPassword} loading={false} disabled={false} color={Colors.transparent} />
-            </View>
-        </CScrollView>
+                    <SizedBox height={Sizes.s16} />
+                    <CButton title={i18n.t('sign_in').toUpperCase()} onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
+                    <SizedBox height={Sizes.s12} />
+                    <CButton title={i18n.t('sign_up').toUpperCase()} onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
+                    <SizedBox height={Sizes.s24} />
+                    <CButton title={i18n.t('forgot_password').toUpperCase()} onPress={onPressedForgotPassword} type='clear' style={styles.forgotPassword} loading={false} disabled={false} color={Colors.transparent} />
+                </View>
+            </CScrollView>
+        </ScreenContainer>
     )
 }
 

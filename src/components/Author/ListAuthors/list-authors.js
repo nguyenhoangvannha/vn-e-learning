@@ -7,16 +7,15 @@ import ProfileTile from '../../Common/Profile/profile-tile'
 import ProfileTileVer from '../../Common/Profile/profile-tile-ver'
 import Strings from '../../../res/strings'
 import CAvatar from '../../Common/Image/c-avatar'
-import Alignment from '../../../res/styles/alignment'
-import { Chip } from 'react-native-paper'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import { AuthorsContext } from '../../../provider/authors-provider'
+import CChip from '../../Common/Container/c-chip'
 
 const ListAuthors = ({ horizontal = false, headerText, chip = false, authorIds }) => {
 
     const authorsContext = useContext(AuthorsContext)
-    
+
     const onItemPressed = (author) => {
         RootNavigation.navigate(Routes.AuthorScreen, {
             author: author,
@@ -27,12 +26,11 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false, authorIds }
         return (
             horizontal ?
                 (chip ?
-                    <Chip
-                        style={styles.teacherAvatar}
-                        avatar={<CAvatar uri={Strings.defaultAvatar} size={Sizes.s24} />}
+                    <CChip
+                        leading={<CAvatar uri={Strings.defaultAvatar} size={Sizes.s24} />}
+                        title={author.name}
                         onPress={() => onItemPressed(author)}>
-                        {author.name}
-                    </Chip> : <ProfileTileVer
+                    </CChip> : <ProfileTileVer
                         title={author.name}
                         image={author.avatar}
                         style={styles.authorItemVer}
@@ -70,8 +68,5 @@ const styles = StyleSheet.create({
     },
     authorItemVer: {
         width: Sizes.s100
-    },
-    teacherAvatar: {
-        alignSelf: Alignment.baseLine,
     },
 })
