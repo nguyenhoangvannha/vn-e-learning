@@ -14,7 +14,7 @@ const CIonIcon = ({ name, style, size, onPress, paddingHorizontal, color }) => {
     return (
         <Ionicons
             name={name}
-            style={{ paddingHorizontal: paddingHorizontal ?? Sizes.s8, ...style , color: theme.iconColor}}
+            style={{ paddingHorizontal: paddingHorizontal ?? Sizes.s8, ...style , color: color ?? theme.iconColor}}
             size={size ?? Sizes.s24}
             color={color}
             onPress={onPress} />

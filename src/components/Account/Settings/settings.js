@@ -14,6 +14,7 @@ import Alignment from '../../../res/styles/alignment'
 import i18n from '../../../res/i18n'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
 import { ThemeContext, themes } from '../../../provider/theme-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const Settings = () => {
 
@@ -31,7 +32,7 @@ const Settings = () => {
     }
 
     return (
-        <View style={{ backgroundColor: themeContext.theme.background }}>
+        <ScreenContainer style={{ backgroundColor: themeContext.theme.background }}>
             <CAppBar title={i18n.t('settings')} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
@@ -60,7 +61,7 @@ const Settings = () => {
                 />
 
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 

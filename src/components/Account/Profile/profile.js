@@ -18,6 +18,7 @@ import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
 import { ThemeContext } from '../../../provider/theme-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const Profile = () => {
 
@@ -44,9 +45,9 @@ const Profile = () => {
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <CAppBar title={i18n.t('profile')} />
-            <CScrollView style={{ backgroundColor: theme.background }} contentContainerStyle={{ ...Styles.screenContainer }}>
+            <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
                     title={user?.fullName ?? ''} />
@@ -62,7 +63,7 @@ const Profile = () => {
                 <SizedBox height={'25%'} />
                 <CButton title={i18n.t('sign_out')} color={Colors.grey200} onPress={onSignOutPressed} />
             </CScrollView>
-        </View>
+        </ScreenContainer>
 
     )
 }
