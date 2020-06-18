@@ -6,18 +6,22 @@ import TextStyles from '../../../res/styles/text-styles'
 import Sizes from '../../../res/sizes'
 import CCard from '../../Common/Container/c-card'
 import COpacityButton from '../../Common/Button/c-opacity-button'
+import ContentContainer from '../../Common/Screen/content-container'
 
 const PathItem = ({ style, image, name, coursesCount, onPress }) => {
     return (
-       <COpacityButton onPress={onPress}>
-            <CCard style={style} borderRadius={Sizes.s0}>
-            <CImage uri={image ?? ''} style={styles.image} />
-            <View style={styles.body}>
-                <CText data={name} style={TextStyles.subhead} />
-                <CText data={`${coursesCount} Courses`} style={TextStyles.overline} />
-            </View>
-        </CCard>
-       </COpacityButton>
+        <ContentContainer style={style}>
+            <COpacityButton onPress={onPress}>
+                <CCard borderRadius={Sizes.s0}>
+                    <CImage uri={image ?? ''} style={styles.image} />
+                    <ContentContainer style={styles.body}>
+                        <CText data={name} style={TextStyles.subhead} />
+                        <CText data={`${coursesCount} Courses`} style={TextStyles.overline} />
+                    </ContentContainer>
+                </CCard>
+            </COpacityButton>
+        </ContentContainer>
+
     )
 }
 

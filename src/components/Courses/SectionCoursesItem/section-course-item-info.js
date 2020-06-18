@@ -9,11 +9,12 @@ import CText from '../../Common/Text/c-text'
 import { CRating, RatingType } from '../../Common/Rating/c-rating'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
 import { DateFormat } from '../../../utils/date-format'
+import ContentContainer from '../../Common/Screen/content-container'
 
 const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) => {
 
     return (
-        <View style={styles.container}>
+        <ContentContainer style={styles.container}>
             <CText data={course.name} style={TextStyles.subhead} />
             <SizedBox height={Sizes.s2} />
             {
@@ -44,7 +45,7 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
                     <CText data={`(${course.ratingCount})`} style={TextStyles.caption} />
                 </View>
             }
-        </View>
+        </ContentContainer>
     )
 }
 

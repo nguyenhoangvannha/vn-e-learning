@@ -11,17 +11,18 @@ import Alignment from '../../../res/styles/alignment'
 import Colors from '../../../res/colors'
 import Sizes from '../../../res/sizes'
 import TextStyles from '../../../res/styles/text-styles'
+import ContentContainer from '../Screen/content-container'
 
 const CSectionHeader = ({ style, leadingText, trailingText, iconName, onTrailingPress, hasTrailing = true }) => {
     return (
-        <View style={{ ...styles.container, ...style }}>
+        <ContentContainer style={{ ...styles.container, ...style }}>
             <CText data={leadingText} style={TextStyles.subhead} />
             <Expanded />
             {hasTrailing && <CFlatButton
                 title={trailingText}
                 trailing={<CIonIcon name={iconName ?? IconName.iosArrowForward} size={Sizes.s16} />}
                 onPress={onTrailingPress} />}
-        </View>
+        </ContentContainer>
     )
 }
 
