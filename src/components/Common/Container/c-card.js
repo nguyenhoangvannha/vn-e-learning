@@ -3,14 +3,17 @@ import { StyleSheet, Text, View } from 'react-native'
 import { Card } from 'react-native-paper'
 import Colors from '../../../res/colors'
 import Sizes from '../../../res/sizes'
+import ContentContainer from '../Screen/content-container'
 
-const CCard = ({ style, children, elevation , borderRadius}) => {
+const CCard = ({ style, children, elevation, borderRadius }) => {
     return (
-        <Card
-            style={styles.container, { ...style , borderRadius: borderRadius}}
-            elevation={elevation ?? Sizes.s4}>
-            {children}
-        </Card>
+        <ContentContainer>
+            <Card
+                style={styles.container, { ...style, borderRadius: borderRadius }}
+                elevation={elevation ?? Sizes.s4}>
+                {children}
+            </Card>
+        </ContentContainer>
     )
 }
 

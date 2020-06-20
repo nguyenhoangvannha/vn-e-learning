@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../res/styles/styles'
@@ -10,18 +10,34 @@ import CDivider from '../../Common/Container/c-divider'
 import ProfileTile from '../../Common/Profile/profile-tile'
 import Strings from '../../../res/strings'
 import SizedBox from '../../Common/Container/sized-box'
-import CFlatButton from '../../Common/Button/c-flat-button'
 import Alignment from '../../../res/styles/alignment'
 import i18n from '../../../res/i18n'
+import { AuthenticationContext } from '../../../provider/authentication-provider'
+import { ThemeContext, themes } from '../../../provider/theme-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const Settings = () => {
+
+    const authContext = useContext(AuthenticationContext)
+
+    const themeContext = useContext(ThemeContext)
+
+    const user = authContext.user
+
+    const isDarkTheme = themeContext.theme === themes.dark;
+
+    const changeTheme = (useDarkTheme) => {
+        console.log('changeTheme', useDarkTheme)
+        themeContext.setTheme(useDarkTheme ? themes.dark : themes.light)
+    }
+
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={{ backgroundColor: themeContext.theme.background }}>
             <CAppBar title={i18n.t('settings')} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
-                    title='Nha Nguyen'
+                    title={user?.fullName ?? ''}
                     subtitle='Mobile Developer' />
                 <SizedBox height={Sizes.s16} />
                 <ListTileText
@@ -33,17 +49,19 @@ const Settings = () => {
                 <ListTileText
                     style={styles.item}
                     title={i18n.t('dark_theme')}
-                    subtitle='Off'
-                    trailing={<CSwitch />} />
+                    subtitle={isDarkTheme ? 'On' : 'Off'}
+                    trailing={<CSwitch
+                        initValue={isDarkTheme}
+                        onValueChange={(value) => changeTheme(value)} />} />
                 <CDivider containerHeight={Sizes.s16} />
                 <ListTileText
                     style={styles.item}
                     title={i18n.t('language')}
                     subtitle='English'
                 />
-                
+
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 

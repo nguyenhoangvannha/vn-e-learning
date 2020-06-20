@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CIconButton from '../../Common/Button/c-icon-button'
 import Colors from '../../../res/colors'
@@ -8,26 +8,42 @@ import TextStyles from '../../../res/styles/text-styles'
 import FlexDirection from '../../../globals/flex-direction'
 import IconName from '../../../res/icon-name'
 import i18n from '../../../res/i18n'
+import { FavouritesContext } from '../../../provider/favourites-provider'
 
-const Item = ({ bottomText, icon }) => <CIconButton
-    containerStyle={styles.actionButton}
-    size={Sizes.s32}
-    icon={icon}
-    bottomText={bottomText}
-    bottomTextStyle={styles.actionButtonText} />
-
-const CourseActions = ({ style, course }) => {
+const Item = ({ bottomText, icon, onPress }) => {
     return (
-        <View style={{...styles.container, ...style}}>
+        <CIconButton
+            onPress={onPress}
+            containerStyle={styles.actionButton}
+            size={Sizes.s32}
+            icon={icon}
+            bottomText={bottomText}
+            bottomTextStyle={styles.actionButtonText} />
+    )
+}
+
+const CourseActions = ({ style, courseId }) => {
+
+    const favouritesContext = useContext(FavouritesContext)
+
+    var isFavourite = favouritesContext.favouriteCourses.has(courseId ?? '') ?? false;
+
+    return (
+        <View style={{ ...styles.container, ...style }}>
             <Item
                 icon={IconName.bookmarkOutline}
-                bottomText={i18n.t('bookmark')} />
+                bottomText={isFavourite ? i18n.t('remove_favourite') : i18n.t('favourite')}
+                onPress={() => {
+                    isFavourite ?
+                        favouritesContext.removeFavouriteCourse(courseId)
+                        : favouritesContext.addFavouriteCourse(courseId)
+                }} />
             <Item
                 icon={IconName.iosRadio}
                 bottomText={i18n.t('add_to_channel')} />
-            <Item
+            {/* <Item
                 icon={IconName.mdCloudDownload}
-                bottomText={i18n.t('download')} />
+                bottomText={i18n.t('download')} /> */}
         </View>
     )
 }

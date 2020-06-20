@@ -1,15 +1,23 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useContext } from 'react'
+import { StyleSheet, View } from 'react-native'
 import { Divider } from 'react-native-elements'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
-import Colors from '../../../res/colors'
+import { ThemeContext } from '../../../provider/theme-provider'
 
 const CDivider = ({ marginHorizontal, style, height, marginVertical, containerHeight, color, elevation }) => {
+    const themeContext = useContext(ThemeContext)
+    const theme = themeContext.theme
+
     return (
-        <View style={{ height: containerHeight, justifyContent: Alignment.center, ...style, elevation: elevation , backgroundColor: Colors.transparent}}>
+        <View style={{
+            height: containerHeight,
+            justifyContent: Alignment.center,
+            ...style,
+            elevation: elevation,
+        }}>
             <Divider style={{
-                backgroundColor: color ?? Colors.grey100,
+                backgroundColor: color ?? theme.divider,
                 height: height ?? 1,
                 ...styles.divider,
                 marginHorizontal: marginHorizontal ?? styles.divider.marginHorizontal,

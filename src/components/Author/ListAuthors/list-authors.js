@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
-import authorsData from '../../../data/mock/authos-mock-data'
 import CFlatList from '../../Common/Container/c-flat-list'
 import CDivider from '../../Common/Container/c-divider'
 import Sizes from '../../../res/sizes'
@@ -8,12 +7,15 @@ import ProfileTile from '../../Common/Profile/profile-tile'
 import ProfileTileVer from '../../Common/Profile/profile-tile-ver'
 import Strings from '../../../res/strings'
 import CAvatar from '../../Common/Image/c-avatar'
-import Alignment from '../../../res/styles/alignment'
-import { Chip } from 'react-native-paper'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import { AuthorsContext } from '../../../provider/authors-provider'
+import CChip from '../../Common/Container/c-chip'
+import CImage from '../../Common/Image/c-image'
 
-const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
+const ListAuthors = ({ horizontal = false, headerText, chip = false, authorIds }) => {
+
+    const authorsContext = useContext(AuthorsContext)
 
     const onItemPressed = (author) => {
         RootNavigation.navigate(Routes.AuthorScreen, {
@@ -25,12 +27,13 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
         return (
             horizontal ?
                 (chip ?
-                    <Chip
-                        style={styles.teacherAvatar}
-                        avatar={<CAvatar uri={Strings.defaultAvatar} size={Sizes.s24} />}
+                    <CChip
+                        leading={<CImage
+                            style={styles.avatar}
+                            uri={Strings.defaultAvatar} />}
+                        title={author.name}
                         onPress={() => onItemPressed(author)}>
-                        {author.name}
-                    </Chip> : <ProfileTileVer
+                    </CChip> : <ProfileTileVer
                         title={author.name}
                         image={author.avatar}
                         style={styles.authorItemVer}
@@ -47,10 +50,13 @@ const ListAuthors = ({ horizontal = false, headerText, chip = false }) => {
     return (
         <CFlatList
             headerText={headerText}
-            data={authorsData}
+            data={authorIds}
             horizontal={horizontal}
-            renderItem={({ item }) => buildItem(item)}
-            keyExtractor={item => item.id}
+            renderItem={({ item }) => {
+                const author = authorsContext.authors.get(item)
+                return buildItem(author)
+            }}
+            keyExtractor={item => item}
             ItemSeparatorComponent={() => <CDivider marginHorizontal={Sizes.s4} />}
             hasTrailing={false} />
     )
@@ -66,7 +72,9 @@ const styles = StyleSheet.create({
     authorItemVer: {
         width: Sizes.s100
     },
-    teacherAvatar: {
-        alignSelf: Alignment.baseLine,
-    },
+    avatar: {
+        width: Sizes.s24,
+        height: Sizes.s24,
+        borderRadius: Sizes.s12,
+    }
 })

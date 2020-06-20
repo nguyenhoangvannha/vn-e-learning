@@ -72,5 +72,16 @@
   "type_here": "Type here",
   "beginner": "Beginner",
   "intermediate": "Intermediate",
-  "advanced": "Advanced"
+  "advanced": "Advanced",
+  "add_favourite": "Add to Favourites",
+  "favourite": "Favourite",
+  "favourites": "Favourites",
+  "no_favourites": "No Favoutires",
+  "everything_you_add_to_favourites_will_appear_here": "Everything you add to favourites will appear hear",
+  "remove_favourite": "Remove favourite",
+  "continue_learning": "Continue learning",
+  "fullname": "Fullname",
+  "search_guide_title": "Search course name, author, paths and more",
+  "wrong_username_password": "Wrong username or password",
+  "please_fill_inforamtion": "Please fill in inforamtion"
 }

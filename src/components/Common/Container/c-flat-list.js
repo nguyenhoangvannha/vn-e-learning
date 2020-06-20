@@ -4,6 +4,7 @@ import Sizes from '../../../res/sizes'
 import FlexDirection from '../../../globals/flex-direction'
 import Alignment from '../../../res/styles/alignment'
 import CSectionHeader from './c-section-header'
+import ContentContainer from '../Screen/content-container'
 
 const CFlatList = ({
     style,
@@ -24,7 +25,7 @@ const CFlatList = ({
     numColumns,
     scrollEnabled, }) => {
     return (
-        <View style={containerStyle}>
+        <ContentContainer style={containerStyle}>
             {(hasTrailing || headerText != undefined) &&
                 <CSectionHeader
                     leadingText={headerText}
@@ -45,7 +46,7 @@ const CFlatList = ({
                 showsVerticalScrollIndicator={showsVerticalScrollIndicator}
                 numColumns={numColumns}
                 scrollEnabled={scrollEnabled} />
-        </View>
+        </ContentContainer>
     )
 }
 

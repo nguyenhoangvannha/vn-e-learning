@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { MenuOption } from 'react-native-popup-menu'
 import CText from '../Text/c-text'
@@ -6,10 +6,14 @@ import Sizes from '../../../res/sizes'
 import CIonIcon from '../Icon/c-ion-icon'
 import FlexDirection from '../../../globals/flex-direction'
 import Alignment from '../../../res/styles/alignment'
+import { ThemeContext } from '../../../provider/theme-provider'
 
 const CMenuItem = ({onPress, title, iconName}) => {
+    const themeContext = useContext(ThemeContext)
+    const theme = themeContext.theme
+
     return (
-        <MenuOption onSelect={onPress} style={styles.container}>
+        <MenuOption onSelect={onPress} style={{...styles.container, backgroundColor: theme.popupColor}}>
             <CIonIcon name={iconName}/>
             <CText style={styles.text} data={title}/>
         </MenuOption>

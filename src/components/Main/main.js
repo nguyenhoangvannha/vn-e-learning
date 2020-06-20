@@ -1,26 +1,42 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Routes from '../../routes/routes';
 import Home from './Home/home';
-import Downloads from '../Content/Downloads/downloads'
 import Browse from './Browse/browse'
 import Search from './Search/search'
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import IconName from '../../res/icon-name';
 import Colors from '../../res/colors';
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import i18n from '../../res/i18n';
 import CText from '../Common/Text/c-text';
+import Favourites from '../Favourites/favourites';
+import { ThemeContext } from '../../provider/theme-provider';
+import CIonIcon from '../Common/Icon/c-ion-icon';
+import ScreenContainer from '../Common/Screen/screen-container';
 const Tab = createBottomTabNavigator()
 
 const MainScreen = () => {
+
+    const themeContext = useContext(ThemeContext)
+
+    const theme = themeContext.theme
+
     return (
-        <Tab.Navigator initialRouteName={Routes.Home} screenOptions={screenOptions} tabBarOptions={tabBarOptions}>
-            <Tab.Screen name={Routes.Home} component={Home} />
-            <Tab.Screen name={Routes.Downloads} component={Downloads} />
-            <Tab.Screen name={Routes.Browse} component={Browse} />
-            <Tab.Screen name={Routes.Search} component={Search} />
-        </Tab.Navigator>
+        <ScreenContainer>
+            <Tab.Navigator
+                initialRouteName={Routes.Home}
+                screenOptions={screenOptions}
+                tabBarOptions={{
+                    ...tabBarOptions,
+                    activeBackgroundColor: theme.appBarColor,
+                    inactiveBackgroundColor: theme.appBarColor,
+                }}>
+                <Tab.Screen name={Routes.Home} component={Home} />
+                <Tab.Screen name={Routes.Favourites} component={Favourites} />
+                <Tab.Screen name={Routes.Browse} component={Browse} />
+                <Tab.Screen name={Routes.Search} component={Search} />
+            </Tab.Navigator>
+        </ScreenContainer>
     )
 }
 
@@ -40,8 +56,8 @@ const screenOptions = ({ route }) => ({
             case Routes.Home:
                 iconName = IconName.mdHome;
                 break;
-            case Routes.Downloads:
-                iconName = IconName.iosCloudDownload;
+            case Routes.Favourites:
+                iconName = IconName.mdHeart;
                 break;
             case Routes.Browse:
                 iconName = IconName.iosApps;
@@ -53,7 +69,7 @@ const screenOptions = ({ route }) => ({
                 iconName = IconName.helpOutline;
                 break;
         }
-        return <Ionicons name={iconName} size={size} color={color} />;
+        return <CIonIcon name={iconName} size={size} color={color} />;
     },
     tabBarLabel: ({ focused, color, size }) => {
         let label;
@@ -62,8 +78,8 @@ const screenOptions = ({ route }) => ({
             case Routes.Home:
                 label = i18n.t('home');
                 break;
-            case Routes.Downloads:
-                label = i18n.t('downloads');
+            case Routes.Favourites:
+                label = i18n.t('favourites');
                 break;
             case Routes.Browse:
                 label = i18n.t('browse');

@@ -5,19 +5,22 @@ import COpacityButton from '../../Common/Button/c-opacity-button'
 import CCard from '../../Common/Container/c-card'
 import CImage from '../../Common/Image/c-image'
 import SectionCourseItemInfo from './section-course-item-info'
+import ContentContainer from '../../Common/Screen/content-container'
 
 const SectionCourseItem = ({ course, onPress }) => {
     return (
-        <COpacityButton onPress={onPress}>
-            <CCard>
-                <View>
-                    <CImage uri={course.image} style={styles.image} />
-                    <View style={styles.infoContainer}>
-                        <SectionCourseItemInfo course={course} />
+        <ContentContainer>
+            <COpacityButton onPress={onPress}>
+                <CCard>
+                    <View>
+                        <CImage uri={course.image} style={styles.image} />
+                        <ContentContainer style={styles.infoContainer}>
+                            <SectionCourseItemInfo course={course} />
+                        </ContentContainer>
                     </View>
-                </View>
-            </CCard>
-        </COpacityButton>
+                </CCard>
+            </COpacityButton>
+        </ContentContainer>
     )
 }
 

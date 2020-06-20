@@ -1,96 +1,20 @@
-import AuthorModel from '../models/author/author-model'
+import { coursesData } from './courses-mock-data';
+import { DataType } from '../../core/data/data-type';
 
-const authorsData = [
-    new AuthorModel(
-        id = '15890015833080',
-        name = 'Jesica Nevandar 0',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 10,
-    ),
+const courseIds = Array.from(coursesData.keys())
 
-    new AuthorModel(
-        id = '15890015833081',
-        name = 'Jesica Nevandar 1',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 11,
-    ),
+const authorsData = new Map(Array(20).fill(1).map((value, index) => {
+    var id = `${index}`;
+    const listCourseId = courseIds.slice(index, index + 12);
+    return [id, {
+        "id": id,
+        "name": 'Jesica Nevandar ' + index,
+        "avatar": 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+        "coursesCount": listCourseId.length,
+        "courseIds": listCourseId,
+        "introduce": `Jesica Nevandar ${index} started with Airbnb accommodation that was rented 3 years ago. Today I have several and each of them is the best rental option in its city. It means that when a traveler searches Airbnb in my city, my apartment is most likely to be rented before all the others (if available). Basically, I generate the maximum amount of income that can be made with Airbnb in my city for my type of accommodation.`,
+        'type': DataType.Author,
+    }]
+}));
 
-    new AuthorModel(
-        id = '15890015833082',
-        name = 'Jesica Nevandar 2',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 12,
-    ),
-
-    new AuthorModel(
-        id = '15890015833083',
-        name = 'Jesica Nevandar 3',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 13,
-    ),
-
-    new AuthorModel(
-        id = '15890015833084',
-        name = 'Jesica Nevandar 4',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 14,
-    ),
-
-    new AuthorModel(
-        id = '15890015833085',
-        name = 'Jesica Nevandar 5',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 15,
-    ),
-
-    new AuthorModel(
-        id = '15890015833086',
-        name = 'Jesica Nevandar 6',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 16,
-    ),
-
-    new AuthorModel(
-        id = '15890015833087',
-        name = 'Jesica Nevandar 7',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 17,
-    ),
-
-    new AuthorModel(
-        id = '15890015833088',
-        name = 'Jesica Nevandar 8',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 18,
-    ),
-
-    new AuthorModel(
-        id = '15890015833099',
-        name = 'Jesica Nevandar 9',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 19,
-    ),
-
-    new AuthorModel(
-        id = '158900158330910',
-        name = 'Jesica Nevandar 10',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 110,
-    ),
-
-    new AuthorModel(
-        id = '158900158330911',
-        name = 'Jesica Nevandar 11',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 111,
-    ),
-
-    new AuthorModel(
-        id = '158900158330912',
-        name = 'Jesica Nevandar 12',
-        avatar = 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-        coursesCount = 112,
-    ),
-
-]
 export default authorsData

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import CFlatList from '../../Common/Container/c-flat-list'
 import skillData from '../../../data/mock/skills-mock-data'
@@ -7,9 +7,12 @@ import Sizes from '../../../res/sizes'
 import CChip from '../../Common/Container/c-chip'
 import Routes from '../../../routes/routes'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import { SkillsContext } from '../../../provider/skills-provider'
 
 
 const PopularSkills = ({ style, headerText }) => {
+
+    const skillsContext = useContext(SkillsContext)
 
     const onItemPressed = (item) => {
         RootNavigation.navigate(Routes.SkillsDetail, {
@@ -21,7 +24,7 @@ const PopularSkills = ({ style, headerText }) => {
         <CFlatList
             containerStyle={style}
             headerText={headerText}
-            data={skillData}
+            data={Array.from(skillData.values())}
             renderItem={({ item }) => <CChip title={item} onPress={() => onItemPressed(item)} />}
             keyExtractor={item => item}
             horizontal={true}

@@ -18,7 +18,7 @@ const Routes = {
     SearchPaths: 'SearchPaths',
     SearchAuthors: 'SearchAuthors',
     SkillsDetail: 'SkillsDetail',
-    ListCoursesScreen: 'ListCoursesScreen',
+    ListCoursesByTypeScreen: 'ListCoursesByTypeScreen',
     AllPathsScreen: 'AllPathsScreen',
     CourseContent: 'CourseContent',
     CourseTranscript: 'CourseTranscript',
@@ -26,6 +26,8 @@ const Routes = {
     AuthorScreen: 'AuthorScreen',
     NewReleasesScreen: 'NewReleasesScreen',
     PathScreen: 'PathScreen',
+    Favourites: 'Favourites',
+    CategoryDetailScreen: 'CategoryDetailScreen',
 }
 
 export default Routes

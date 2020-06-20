@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
@@ -14,15 +14,22 @@ import ListCategory from '../../Category/ListCategory/list-category'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
+import { AuthorsContext } from '../../../provider/authors-provider'
+import { PathsContext } from '../../../provider/paths-provider'
+import ScreenContainer from '../../Common/Screen/screen-container'
 
 const Browse = ({ }) => {
+
+    const authorsContext = useContext(AuthorsContext)
+
+    const pathsContext = useContext(PathsContext)
 
     const onNewReleasesPressed = () => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
     }
 
     return (
-        <View style={Styles.fullScreen}>
+        <ScreenContainer style={Styles.fullScreen}>
             <HomeAppBar title={i18n.t('browse')} />
             <CScrollView style={Styles.screenContainer} >
                 <CImageButton
@@ -45,6 +52,7 @@ const Browse = ({ }) => {
                 <SizedBox height={Sizes.s12} />
 
                 <Paths
+                    pathIds={Array.from(pathsContext.paths.keys())}
                     headerText={i18n.t('paths')}
                     onTrailingPress={
                         () => {
@@ -53,10 +61,11 @@ const Browse = ({ }) => {
                     } />
                 <SizedBox height={Sizes.s28} />
                 <ListAuthors
+                    authorIds={Array.from(authorsContext.authors.keys())}
                     horizontal={true}
                     headerText={i18n.t('top_authors')} />
             </CScrollView>
-        </View>
+        </ScreenContainer>
     )
 }
 
