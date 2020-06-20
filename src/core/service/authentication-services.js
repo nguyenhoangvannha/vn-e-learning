@@ -14,7 +14,7 @@ export const login = (username, password) => {
 }
 
 export const register = (email, username, password, fullName, phone) => {
-    if (username != '' && password != '') {
+    if (username != '' && password != '' && fullName != '') {
         return {
             status: 200,
             user: {
