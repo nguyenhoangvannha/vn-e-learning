@@ -1,6 +1,6 @@
-const usersData = new Map().set('admin', {
+const usersData = new Map().set('Admin', {
     email: 'admin@gmail.com',
-    username: 'admin',
+    username: 'Admin',
     password: '123456',
     fullName: 'Administrator',
     phone: '+84282828485',

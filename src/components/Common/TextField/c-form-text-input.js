@@ -5,13 +5,22 @@ import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
 import FontWeight from '../../../globals/font-weight'
 import SizedBox from '../Container/sized-box'
-import FlexDirection from '../../../globals/flex-direction'
 import CTextInput from './c-text-input'
-import IconName from '../../../res/icon-name'
-import CIonIcon from '../Icon/c-ion-icon'
 import { ThemeContext } from '../../../provider/theme-provider'
+import ErrorText from '../error/error-text'
 
-const CFromTextInput = ({ error, style, width, label, onChangeText, numberOfLines, placeholder, secureTextEntry, children, }) => {
+const CFromTextInput = ({
+    error,
+    style,
+    width,
+    label,
+    onChangeText,
+    numberOfLines,
+    placeholder,
+    secureTextEntry,
+    children,
+    showErrorText = true,
+    validators }) => {
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
@@ -47,11 +56,7 @@ const CFromTextInput = ({ error, style, width, label, onChangeText, numberOfLine
         </View>
         <SizedBox height={Sizes.s8} />
         {
-            hasError && <View style={styles.errorRow}>
-                <CIonIcon name={IconName.mdAlert} color={Colors.red} size={Sizes.s14} />
-                <SizedBox width={Sizes.s8} />
-                <Text style={styles.errorText}>{error}</Text>
-            </View>
+            hasError && showErrorText && <ErrorText>{error}</ErrorText>
         }
     </View>
 }
@@ -80,14 +85,5 @@ const styles = StyleSheet.create({
         fontWeight: FontWeight.w500,
         lineHeight: 19,
         alignItems: Alignment.center,
-    },
-    errorRow: {
-        flexDirection: FlexDirection.row
-    },
-    errorText: {
-        fontSize: Sizes.s12,
-        lineHeight: Sizes.s14,
-        color: Colors.errorAlert,
-        letterSpacing: 0.5,
     },
 })

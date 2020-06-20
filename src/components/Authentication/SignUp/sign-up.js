@@ -15,6 +15,7 @@ import i18n from '../../../res/i18n'
 import { register } from '../../../core/service/authentication-services'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import ErrorText from '../../Common/error/error-text'
 
 const SignUp = ({ navigation }) => {
 
@@ -26,6 +27,7 @@ const SignUp = ({ navigation }) => {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
+    const [error, setError] = useState('')
 
     const onPressedBackToSignIn = () => {
         navigation.navigate(Routes.SignIn)
@@ -38,7 +40,7 @@ const SignUp = ({ navigation }) => {
             console.log('Users', authContext.users)
             navigation.navigate(Routes.SignIn)
         } else {
-            console.log('Register error')
+            setError(i18n.t('please_fill_inforamtion'))
         }
     }
 
@@ -53,33 +55,46 @@ const SignUp = ({ navigation }) => {
                         label={i18n.t('email')}
                         placeholder="Example: your@mail"
                         style={styles.input}
+                        showErrorText={false}
+                        error={error}
                         onChangeText={(value) => setEmail(value)} />
                     <CFromTextInput
                         label={i18n.t('username')}
                         placeholder=""
                         style={styles.input}
+                        showErrorText={false}
+                        error={error}
                         onChangeText={(value) => setUsername(value)} />
                     <CFromTextInput
                         label={i18n.t('fullname')}
                         placeholder="" style={styles.input}
+                        showErrorText={false}
+                        error={error}
                         onChangeText={(value) => setFullname(value)} />
                     <CFromTextInput
                         label={i18n.t('phone')}
                         placeholder=""
                         style={styles.input}
+                        showErrorText={false}
+                        error={error}
                         onChangeText={(value) => setPhone(value)} />
                     <CFromTextInput
                         label={i18n.t('password')}
                         placeholder={i18n.t('atless_x_char').replace('%s', 6)}
                         style={styles.input}
                         secureTextEntry={true}
+                        showErrorText={false}
+                        error={error}
                         onChangeText={(value) => setPassword(value)} />
                     <CFromTextInput
                         label={i18n.t('re_type_password')}
                         placeholder={i18n.t('atless_x_char').replace('%s', 6)}
                         style={styles.input}
                         secureTextEntry={true}
+                        showErrorText={false}
+                        error={error}
                         onChangeText={(value) => setRePassword(value)} />
+                    {error.length > 0 && <ErrorText>{error}</ErrorText>}
                     <SizedBox height={Sizes.s16} />
                     <CButton
                         title={i18n.t('create_account')}

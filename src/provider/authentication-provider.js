@@ -4,7 +4,7 @@ import usersData from '../data/mock/users-mock-data';
 const AuthenticationContext = React.createContext();
 
 const AuthenticationProvider = (props) => {
-    const [authentication, setAuthentication] = useState({ status: undefined });
+    const [authentication, setAuthentication] = useState({ status: 0 });
 
     const [users, setUsers] = useState(usersData)
 

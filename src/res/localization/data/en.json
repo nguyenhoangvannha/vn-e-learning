@@ -81,5 +81,7 @@
   "remove_favourite": "Remove favourite",
   "continue_learning": "Continue learning",
   "fullname": "Fullname",
-  "search_guide_title": "Search course name, author, paths and more"
+  "search_guide_title": "Search course name, author, paths and more",
+  "wrong_username_password": "Wrong username or password",
+  "please_fill_inforamtion": "Please fill in inforamtion"
 }
