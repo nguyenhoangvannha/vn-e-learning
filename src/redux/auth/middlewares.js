@@ -1,18 +1,22 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { AuthAction } from './actions';
+import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetLoginStatusAuthAction } from './actions';
 import { AuthRepo } from '../../repo/auth/auth-repo';
+import { Status } from '../../core/status'
 
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* login(action) {
   try {
-    const res = yield AuthRepo.login(action.payload.username, action.payload.password);
-    console.log('Login await:', res.data)
+    yield put(SetLoginStatusAuthAction(Status.loading()))
 
-    //const user //= yield call(Api.fetchUser, action.payload.userId);
-    //yield put({ type: "USER_FETCH_SUCCEEDED", user: user });
+    const res = yield AuthRepo.login(action.payload.email, action.payload.password);
+
+    yield put(SetUserTokenAuthAction(res.data.token))
+    yield put(SetUserInfoAuthAction(res.data.userInfo))
+    yield put(SetLoginStatusAuthAction(Status.success()))
+
   } catch (e) {
-    console.log('Login catch', e)
+    yield put(SetLoginStatusAuthAction(Status.error(e.message)))
     //yield put({ type: "USER_FETCH_FAILED", message: e.message });
   }
 }
@@ -22,7 +26,7 @@ function* login(action) {
   Allows concurrent fetches of user.
 */
 function* authMiddlewares() {
-  yield takeEvery(AuthAction.DO_LOGIN_AUTH_ACTION, login);
+  yield takeEvery(AuthAction.DoLoginAuthAction, login);
 }
 
 /*

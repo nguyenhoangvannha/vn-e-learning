@@ -18,32 +18,45 @@ import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
 import { useSelector, useDispatch } from 'react-redux'
 import { store } from '../../../redux/store'
-import { DoLoginAuthAction } from '../../../redux/auth/actions'
+import { DoLoginAuthAction, AuthAction } from '../../../redux/auth/actions'
+import { LoadStatus } from '../../../core/status'
 
 
 const SignIn = (props) => {
 
-    const authState = useSelector(state => state)
-
-    const dispatch = useDispatch();
-
     const authContext = useContext(AuthenticationContext)
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('nguyenhoangvannha@gmail.com');
 
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('nha.nguyen');
 
     const [error, setError] = useState('')
 
+    const authState = useSelector(state => state.authState)
+
+    const dispatch = useDispatch();
+
+    const [loginLoading, setLoginLoading] = useState(false)
+
 
     useEffect(() => {
-        var status = authContext.authentication.status;
-        if (status != undefined && status === 200) {
-            RootNavigation.replace(Routes.Main);
-        } else if (status == 404) {
-            setError(i18n.t('wrong_username_password'))
+        var loginStatus = authState.status[AuthAction.DoLoginAuthAction];
+
+        switch (loginStatus.loadStatus) {
+            case LoadStatus.loading:
+                setLoginLoading(loginLoading)
+                break;
+            case LoadStatus.error:
+                //setError(loginStatus.message)
+                setError(i18n.t('wrong_username_password'))
+                break;
+            case LoadStatus.success:
+                RootNavigation.replace(Routes.Main);
+                break;
+            default:
+                setLoginLoading(false)
         }
-    }, [authContext])
+    }, [authContext, authState])
 
     const onPressedSignIn = () => {
         dispatch(DoLoginAuthAction(username, password))
@@ -102,7 +115,13 @@ const SignIn = (props) => {
                     {error.length > 0 && <ErrorText>{error}</ErrorText>}
                     <SizedBox height={Sizes.s16} />
 
-                    <CButton title={i18n.t('sign_in').toUpperCase()} onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
+                    <CButton
+                        title={i18n.t('sign_in').toUpperCase()}
+                        onPress={onPressedSignIn}
+                        type='solid'
+                        style={styles.signIn}
+                        loading={loginLoading}
+                        disabled={false} />
                     <SizedBox height={Sizes.s12} />
                     <CButton title={i18n.t('sign_up').toUpperCase()} onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
                     <SizedBox height={Sizes.s24} />

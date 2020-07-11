@@ -1,16 +1,46 @@
 const AuthAction = {
-    DO_LOGIN_AUTH_ACTION: 'DO_LOGIN_AUTH_ACTION',
-    DO_REGISTER_AUTH_ACTION: 'DO_REGISTER_AUTH_ACTION'
+    DoLoginAuthAction: 'DoLoginAuthAction',
+    DoRegisterAuthAction: 'DoRegisterAuthAction',
+    SetUserTokenAuthAction: 'SetUserTokenAuthAction',
+    SetUserInfoAuthAction: 'SetUserInfoAuthAction',
+    SetLoginStatusAuthAction: 'SetLoginStatusAuthAction',
 }
 
-const DoLoginAuthAction = (username, password) => {
+const DoLoginAuthAction = (email, password) => {
     return {
-        type: AuthAction.DO_LOGIN_AUTH_ACTION,
+        type: AuthAction.DoLoginAuthAction,
         payload: {
-            username: username,
+            email: email,
             password: password,
         }
     }
 }
 
-export { AuthAction, DoLoginAuthAction }
+const SetUserTokenAuthAction = (token) => {
+    return {
+        type: AuthAction.SetUserTokenAuthAction,
+        payload: {
+            token: token,
+        }
+    }
+}
+
+const SetUserInfoAuthAction = (userInfo) => {
+    return {
+        type: AuthAction.SetUserInfoAuthAction,
+        payload: {
+            userInfo: userInfo,
+        }
+    }
+}
+
+const SetLoginStatusAuthAction = (status) => {
+    return {
+        type: AuthAction.SetLoginStatusAuthAction,
+        payload: {
+            status: status,
+        }
+    }
+}
+
+export { AuthAction, DoLoginAuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetLoginStatusAuthAction }
