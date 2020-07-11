@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CText from '../../Common/Text/c-text'
 import CFromTextInput from '../../Common/TextField/c-form-text-input'
@@ -13,7 +13,6 @@ import CScrollView from '../../Common/Container/c-scroll-view'
 import Routes from '../../../routes/routes'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
 import { useSelector, useDispatch } from 'react-redux'
@@ -24,7 +23,6 @@ import { LoadStatus, Status } from '../../../core/status'
 
 const SignIn = (props) => {
 
-    const authContext = useContext(AuthenticationContext)
 
     const [username, setUsername] = useState('nguyenhoangvannha@gmail.com');
 
@@ -56,15 +54,14 @@ const SignIn = (props) => {
             default:
                 setLoginLoading(false)
         }
-    }, [authContext, authState])
+    }, [authState])
 
     const onPressedSignIn = () => {
-        dispatch(DoLoginAuthAction(username, password))
-
         if (username.length === 0 || password.length === 0) {
             setError(i18n.t('please_fill_inforamtion'))
         } else {
-            authContext.login(username, password);
+            dispatch(DoLoginAuthAction(username, password))
+
         }
     }
     const onPressedSignUp = () => {
