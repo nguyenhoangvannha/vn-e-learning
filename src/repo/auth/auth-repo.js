@@ -1,7 +1,7 @@
-import axios from 'axios';
+import { apiClient } from "./axios-config";
 
 const login = async (email, password) => {
-    return axios.post('https://api.itedu.me/user/login', {
+    return apiClient.post('user/login', {
         "email": email,
         "password": password
     });

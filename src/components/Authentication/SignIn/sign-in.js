@@ -18,8 +18,8 @@ import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
 import { useSelector, useDispatch } from 'react-redux'
 import { store } from '../../../redux/store'
-import { DoLoginAuthAction, AuthAction } from '../../../redux/auth/actions'
-import { LoadStatus } from '../../../core/status'
+import { DoLoginAuthAction, AuthAction, SetStatusAuthAction } from '../../../redux/auth/actions'
+import { LoadStatus, Status } from '../../../core/status'
 
 
 const SignIn = (props) => {
@@ -38,7 +38,6 @@ const SignIn = (props) => {
 
     const [loginLoading, setLoginLoading] = useState(false)
 
-
     useEffect(() => {
         var loginStatus = authState.status[AuthAction.DoLoginAuthAction];
 
@@ -47,10 +46,11 @@ const SignIn = (props) => {
                 setLoginLoading(loginLoading)
                 break;
             case LoadStatus.error:
-                //setError(loginStatus.message)
-                setError(i18n.t('wrong_username_password'))
+                setError(loginStatus.message)
+                //setError(i18n.t('wrong_username_password'))
                 break;
             case LoadStatus.success:
+                dispatch(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.idle()))
                 RootNavigation.replace(Routes.Main);
                 break;
             default:
