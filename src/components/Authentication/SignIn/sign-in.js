@@ -16,8 +16,17 @@ import i18n from '../../../res/i18n'
 import { AuthenticationContext } from '../../../provider/authentication-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
+import { useSelector, useDispatch } from 'react-redux'
+import { store } from '../../../redux/store'
+import { DoLoginAuthAction } from '../../../redux/auth/actions'
+
 
 const SignIn = (props) => {
+
+    const authState = useSelector(state => state)
+
+    const dispatch = useDispatch();
+
     const authContext = useContext(AuthenticationContext)
 
     const [username, setUsername] = useState('');
@@ -37,6 +46,8 @@ const SignIn = (props) => {
     }, [authContext])
 
     const onPressedSignIn = () => {
+        dispatch(DoLoginAuthAction(username, password))
+
         if (username.length === 0 || password.length === 0) {
             setError(i18n.t('please_fill_inforamtion'))
         } else {

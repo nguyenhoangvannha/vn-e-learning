@@ -6,28 +6,32 @@ import { FavouritesProvider } from './favourites-provider';
 import { SkillsProvider } from './skills-provider';
 import { AuthorsProvider } from './authors-provider';
 import { PathsProvider } from './paths-provider';
+import { Provider as StoreProvider } from 'react-redux';
+import { store } from '../redux/store'
+import { appState } from '../redux/app/state';
 const AppContext = React.createContext();
 
 const AppProvider = (props) => {
-
     return (
-        <AppContext.Provider>
-            <ThemeProvider>
-                <AuthenticationProvider>
-                    <CoursesProvider>
-                        <FavouritesProvider>
-                            <SkillsProvider>
-                                <AuthorsProvider>
-                                    <PathsProvider>
-                                        {props.children}
-                                    </PathsProvider>
-                                </AuthorsProvider>
-                            </SkillsProvider>
-                        </FavouritesProvider>
-                    </CoursesProvider>
-                </AuthenticationProvider>
-            </ThemeProvider>
-        </AppContext.Provider>
+        <StoreProvider store={store}>
+            <AppContext.Provider>
+                <ThemeProvider>
+                    <AuthenticationProvider>
+                        <CoursesProvider>
+                            <FavouritesProvider>
+                                <SkillsProvider>
+                                    <AuthorsProvider>
+                                        <PathsProvider>
+                                            {props.children}
+                                        </PathsProvider>
+                                    </AuthorsProvider>
+                                </SkillsProvider>
+                            </FavouritesProvider>
+                        </CoursesProvider>
+                    </AuthenticationProvider>
+                </ThemeProvider>
+            </AppContext.Provider>
+        </StoreProvider>
     )
 }
 

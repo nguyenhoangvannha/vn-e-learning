@@ -1,0 +1,4 @@
+const authState = {
+}
+
+export {authState}
