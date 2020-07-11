@@ -77,7 +77,7 @@ const Profile = () => {
                     <ProfileItem title={i18n.t('type')} subtitle={user.type} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                     <SizedBox height={'25%'} />
-                    <ErrorText text={error} />
+                    {error != undefined && error.length > 0 && <ErrorText text={error} />}
                     <CButton title={i18n.t('sign_out')} color={Colors.grey200} onPress={onSignOutPressed} />
                 </CScrollView>
             </ScreenContainer>

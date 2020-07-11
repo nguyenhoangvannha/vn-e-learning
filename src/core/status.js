@@ -38,7 +38,7 @@ const completed = (message) => {
     }
 }
 
-const Status = {
+export const Status = {
     idle: idle,
     loading: loading,
     success: success,
@@ -46,12 +46,10 @@ const Status = {
     completed: completed,
 }
 
-const LoadStatus = {
+export const LoadStatus = {
     idle,
     loading,
     success,
     error,
     completed,
 }
-
-export { LoadStatus, Status, }

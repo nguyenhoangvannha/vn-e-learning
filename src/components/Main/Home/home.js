@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import Sizes from '../../../res/sizes'
@@ -18,8 +18,47 @@ import Routes from '../../../routes/routes'
 import { CoursesContext } from '../../../provider/courses-provider'
 import { CourseType } from '../../../data/mock/courses-mock-data'
 import ContentContainer from '../../Common/Screen/content-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DoGetTotalNumerCoursesCourseAction } from '../../../redux/course/actions'
+import { LoadStatus } from '../../../core/status'
 
 const Home = () => {
+
+    const [init, setInit] = useState(true)
+
+    const courseState = useSelector(state => state.courseState)
+
+    const dispatch = useDispatch();
+
+    const [text, setText] = useState('Initial');
+
+    // if(init){
+    //     dispatch(DoGetTotalNumerCoursesCourseAction())
+    //     setInit(false)
+    // }
+
+    useEffect(() => {
+        const loadTotalNumerCourseStatus = courseState.status[DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION]
+
+        switch (loadTotalNumerCourseStatus.loadStatus) {
+            case LoadStatus.loading:
+                setText('loading')
+                console.log('DEBUG', 'LOADING')
+                break;
+            case LoadStatus.error:
+                setText('error' + loadTotalNumerCourseStatus.message)
+                console.log('DEBUG', 'error')
+                break;
+            case LoadStatus.success:
+                setText('success' + loadTotalNumerCourseStatus.message)
+                console.log('DEBUG', 'success')
+                break;
+        }
+
+        return () => {
+            //cleanup
+        }
+    }, [courseState])
 
     const coursesState = useContext(CoursesContext)
 
@@ -37,7 +76,7 @@ const Home = () => {
                 <SectionCourses
                     headerText={title}
                     data={data}
-                    style={styles.sectionCourses}/>
+                    style={styles.sectionCourses} />
         )
     }
 
@@ -58,6 +97,7 @@ const Home = () => {
             <HomeAppBar title={i18n.t('home')} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
+                    <CText>{text}</CText>
                     <CImageButton
                         uri={Strings.defaultCourseThubnail}
                         style={styles.coursesBanner}

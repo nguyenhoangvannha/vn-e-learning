@@ -16,7 +16,6 @@ import i18n from '../../../res/i18n'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
 import { useSelector, useDispatch } from 'react-redux'
-import { store } from '../../../redux/store'
 import { DoLoginAuthAction, AuthAction, SetStatusAuthAction } from '../../../redux/auth/actions'
 import { LoadStatus, Status } from '../../../core/status'
 
