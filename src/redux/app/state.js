@@ -1,7 +1,9 @@
 import { authState } from "../auth/state"
 
-const appState = {
-    authState: authState,
+const appState = () => {
+    return {
+        authState: authState(),
+    }
 }
 
 export {appState}

@@ -12,17 +12,17 @@ import Strings from '../../../res/strings'
 import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../res/styles/alignment'
 import i18n from '../../../res/i18n'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
 import { ThemeContext, themes } from '../../../provider/theme-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import { useSelector } from 'react-redux'
 
 const Settings = () => {
 
-    const authContext = useContext(AuthenticationContext)
+    const authState = useSelector(state => state.authState)
+
+    const user = authState.userInfo
 
     const themeContext = useContext(ThemeContext)
-
-    const user = authContext.user
 
     const isDarkTheme = themeContext.theme === themes.dark;
 
@@ -37,7 +37,7 @@ const Settings = () => {
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
                     image={Strings.defaultAvatar}
-                    title={user?.fullName ?? ''}
+                    title={user?.email ?? ''}
                     subtitle='Mobile Developer' />
                 <SizedBox height={Sizes.s16} />
                 <ListTileText

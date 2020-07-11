@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Strings from '../../../res/strings'
 import FlexDirection from '../../../globals/flex-direction'
@@ -16,54 +16,71 @@ import Colors from '../../../res/colors'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
-import { ThemeContext } from '../../../provider/theme-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DoLogoutAuthAction, AuthAction } from '../../../redux/auth/actions'
+import { LoadStatus } from '../../../core/status'
+import ErrorText from '../../Common/error/error-text'
 
 const Profile = () => {
 
-    const authContext = useContext(AuthenticationContext)
+    const authState = useSelector(state => state.authState)
 
-    const themeContext = useContext(ThemeContext)
+    const dispatch = useDispatch();
 
-    const user = authContext.user;
+    const user = authState.userInfo;
 
-    const theme = themeContext.theme
+    const [logoutLoading, setLogoutLoading] = useState(false)
 
-    console.log(user)
+    const [error, setError] = useState('')
 
     useEffect(
         () => {
-            if (authContext.authentication.status === undefined) {
-                RootNavigation.reset(Routes.SignIn)
+            const logoutStatus = authState.status[AuthAction.DoLogoutAuthAction]
+            switch (logoutStatus.loadStatus) {
+                case LoadStatus.loading:
+                    setLogoutLoading(true)
+                    break;
+                case LoadStatus.error:
+                    setError(logoutStatus.message)
+                    break;
+                case LoadStatus.success:
+                    RootNavigation.reset(Routes.SignIn)
+                    break;
+                default:
+                    setError('')
+                    setLogoutLoading(false)
+                    break;
             }
-        }
+        }, [authState]
     )
 
     const onSignOutPressed = () => {
-        authContext.setAuthentication({ status: undefined })
+        dispatch(DoLogoutAuthAction())
     }
 
     return (
-        <ScreenContainer style={Styles.fullScreen}>
-            <CAppBar title={i18n.t('profile')} />
-            <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
-                <ProfileTile
-                    image={Strings.defaultAvatar}
-                    title={user?.fullName ?? ''} />
-                <SizedBox height={Sizes.s32} />
-                <ProfileItem title={i18n.t('email')} subtitle={user.email} />
-                <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title={i18n.t('phone')} subtitle={user.phone} />
-                <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title={i18n.t('courses')} subtitle={`4 ${i18n.t('courses')}`} />
-                <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <ProfileItem title={i18n.t('total_active_date')} subtitle={`1 ${i18n.t('days')}`} />
-                <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                <SizedBox height={'25%'} />
-                <CButton title={i18n.t('sign_out')} color={Colors.grey200} onPress={onSignOutPressed} />
-            </CScrollView>
-        </ScreenContainer>
+        user === undefined ? <View /> :
+            <ScreenContainer style={Styles.fullScreen}>
+                <CAppBar title={i18n.t('profile')} />
+                <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
+                    <ProfileTile
+                        image={user.avatar ?? Strings.defaultAvatar}
+                        title={user?.name ?? ''} />
+                    <SizedBox height={Sizes.s32} />
+                    <ProfileItem title={i18n.t('email')} subtitle={user.email} />
+                    <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
+                    <ProfileItem title={i18n.t('phone')} subtitle={user.phone} />
+                    <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
+                    <ProfileItem title={i18n.t('created_at')} subtitle={user.createdAt} />
+                    <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
+                    <ProfileItem title={i18n.t('type')} subtitle={user.type} />
+                    <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
+                    <SizedBox height={'25%'} />
+                    <ErrorText text={error} />
+                    <CButton title={i18n.t('sign_out')} color={Colors.grey200} onPress={onSignOutPressed} />
+                </CScrollView>
+            </ScreenContainer>
 
     )
 }

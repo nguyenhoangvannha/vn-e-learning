@@ -1,7 +1,5 @@
 import { AuthAction } from './actions'
 
-const DoLoginAuthAction = AuthAction.DoLoginAuthAction
-
 function authReducer
     (authState, action) {
     switch (action.type) {
@@ -17,13 +15,20 @@ function authReducer
                 userInfo: action.payload.userInfo,
             }
 
-        case AuthAction.SetLoginStatusAuthAction:
+        case AuthAction.SetStatusAuthAction:
+
+            const statusKey = action.payload.statusKey;
+
+            const status = {
+                ...authState.status,
+            }
+
+            status[statusKey] = action.payload.status
+
+
             return {
                 ...authState,
-                status: {
-                    ...authState.status,
-                    DoLoginAuthAction: action.payload.status
-                }
+                status: status
             }
         default:
             return authState;

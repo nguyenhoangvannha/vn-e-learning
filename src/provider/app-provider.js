@@ -8,7 +8,6 @@ import { AuthorsProvider } from './authors-provider';
 import { PathsProvider } from './paths-provider';
 import { Provider as StoreProvider } from 'react-redux';
 import { store } from '../redux/store'
-import { appState } from '../redux/app/state';
 const AppContext = React.createContext();
 
 const AppProvider = (props) => {

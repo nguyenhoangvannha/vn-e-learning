@@ -10,7 +10,7 @@ import { appMiddlewares } from "./app/middlewares";
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
 
-const store = createStore(appReducer, appState, applyMiddleware(logger, sagaMiddleware))
+const store = createStore(appReducer, appState(), applyMiddleware(logger, sagaMiddleware))
 
 // then run the saga
 sagaMiddleware.run(appMiddlewares)

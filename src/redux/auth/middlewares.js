@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetLoginStatusAuthAction } from './actions';
+import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction } from './actions';
 import { AuthRepo } from '../../repo/auth/auth-repo';
 import { Status } from '../../core/status'
 
@@ -7,17 +7,26 @@ import { Status } from '../../core/status'
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* login(action) {
   try {
-    yield put(SetLoginStatusAuthAction(Status.loading()))
+    yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.loading()))
 
     const res = yield AuthRepo.login(action.payload.email, action.payload.password);
 
     yield put(SetUserTokenAuthAction(res.data.token))
     yield put(SetUserInfoAuthAction(res.data.userInfo))
-    yield put(SetLoginStatusAuthAction(Status.success()))
+    yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.success()))
 
   } catch (e) {
-    yield put(SetLoginStatusAuthAction(Status.error(e.message)))
-    //yield put({ type: "USER_FETCH_FAILED", message: e.message });
+    yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.error(e.message)))
+  }
+}
+
+function* logout(action) {
+  try {
+    yield put(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.loading()))
+    yield put(DoClearAppStateAuthAction())
+    yield put(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.success()))
+  } catch (e) {
+    yield put(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.error(e.message)))
   }
 }
 
@@ -27,6 +36,7 @@ function* login(action) {
 */
 function* authMiddlewares() {
   yield takeEvery(AuthAction.DoLoginAuthAction, login);
+  yield takeEvery(AuthAction.DoLogoutAuthAction, logout);
 }
 
 /*

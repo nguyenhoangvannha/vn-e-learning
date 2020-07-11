@@ -1,10 +1,13 @@
 const AuthAction = {
     DoLoginAuthAction: 'DoLoginAuthAction',
     DoRegisterAuthAction: 'DoRegisterAuthAction',
+    DoLogoutAuthAction: 'DoLogoutAuthAction',
     SetUserTokenAuthAction: 'SetUserTokenAuthAction',
     SetUserInfoAuthAction: 'SetUserInfoAuthAction',
-    SetLoginStatusAuthAction: 'SetLoginStatusAuthAction',
+    SetStatusAuthAction: 'SetStatusAuthAction',
 }
+
+export const DO_CLEAR_APPSTATE_AUTH_ACTION = 'DO_CLEAR_APPSTATE_AUTH_ACTION'
 
 const DoLoginAuthAction = (email, password) => {
     return {
@@ -34,13 +37,39 @@ const SetUserInfoAuthAction = (userInfo) => {
     }
 }
 
-const SetLoginStatusAuthAction = (status) => {
+const SetStatusAuthAction = (statusKey, status) => {
     return {
-        type: AuthAction.SetLoginStatusAuthAction,
+        type: AuthAction.SetStatusAuthAction,
         payload: {
+            statusKey: statusKey,
             status: status,
         }
     }
 }
 
-export { AuthAction, DoLoginAuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetLoginStatusAuthAction }
+const DoLogoutAuthAction = () => {
+    return {
+        type: AuthAction.DoLogoutAuthAction,
+        payload: {
+
+        }
+    }
+}
+
+export const DoClearAppStateAuthAction = () => {
+    return {
+        type: DO_CLEAR_APPSTATE_AUTH_ACTION,
+        payload: {
+
+        }
+    }
+}
+
+export {
+    AuthAction,
+    DoLoginAuthAction,
+    SetUserTokenAuthAction,
+    SetUserInfoAuthAction,
+    SetStatusAuthAction as SetStatusAuthAction,
+    DoLogoutAuthAction,
+}

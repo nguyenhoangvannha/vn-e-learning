@@ -9,11 +9,12 @@ import SizedBox from '../Container/sized-box'
 
 export default function ErrorText({ text, children }) {
     return (
-        <View style={styles.errorRow}>
-            <CIonIcon name={IconName.mdAlert} color={Colors.red} size={Sizes.s14} />
-            <SizedBox width={Sizes.s8} />
-            <Text style={styles.errorText}>{text ?? children}</Text>
-        </View>
+        text ?
+            <View style={styles.errorRow}>
+                <CIonIcon name={IconName.mdAlert} color={Colors.red} size={Sizes.s14} />
+                <SizedBox width={Sizes.s8} />
+                <Text style={styles.errorText}>{text ?? children}</Text>
+            </View> : <View />
     )
 }
 
