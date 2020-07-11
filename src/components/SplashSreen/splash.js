@@ -21,7 +21,7 @@ const Splash = () => {
     React.useEffect(() => {
 
         const timer = setInterval(() => {
-            setLoading(loading + 5)
+            setLoading(loading + 10)
         }, 100)
 
         if(loading >= 100){
