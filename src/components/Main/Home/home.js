@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, View, Button } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import Sizes from '../../../res/sizes'
 import SizedBox from '../../Common/Container/sized-box'
@@ -19,33 +19,32 @@ import { CoursesContext } from '../../../provider/courses-provider'
 import { CourseType } from '../../../data/mock/courses-mock-data'
 import ContentContainer from '../../Common/Screen/content-container'
 import { useSelector, useDispatch } from 'react-redux'
-import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DoGetTotalNumerCoursesCourseAction, SetStatusCourseAction } from '../../../redux/course/actions'
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DO_GET_TOP_NEW_COURSE_ACTION } from '../../../redux/course/actions'
 import { LoadStatus, Status } from '../../../core/status'
-import { SetStatusAuthAction } from '../../../redux/auth/actions'
 
 const Home = ({ props }) => {
 
     const courseState = useSelector(state => state.courseState)
 
-    const [text, setText] = useState('Initial')
+    const [loading, setLoading] = useState(false)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
 
-        const loadTotalNumerCourseStatus = courseState.status[DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION]
+        const loadTopNewCoursesStatus = courseState.status[DO_GET_TOP_NEW_COURSE_ACTION]
 
-        console.log('DEBUG', loadTotalNumerCourseStatus.loadStatus);
+        console.log('DEBUG DO_GET_TOP_NEW_COURSE_ACTION', courseState.topNewCourses)
 
-        switch (loadTotalNumerCourseStatus.loadStatus) {
+        switch (loadTopNewCoursesStatus.loadStatus) {
             case LoadStatus.loading:
-                setText('loading')
+                setLoading(true)
                 break;
             case LoadStatus.error:
-                setText('error' + loadTotalNumerCourseStatus.message)
+                setLoading(false)
                 break;
             case LoadStatus.success:
-                setText('success' + loadTotalNumerCourseStatus.message)
+                setLoading(false)
                 break;
         }
 
@@ -91,7 +90,6 @@ const Home = ({ props }) => {
             <HomeAppBar title={i18n.t('home')} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
-                    <CText>{text}</CText>
                     <CImageButton
                         uri={Strings.defaultCourseThubnail}
                         style={styles.coursesBanner}

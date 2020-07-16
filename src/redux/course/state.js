@@ -1,4 +1,4 @@
-import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION } from "./actions"
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DO_GET_TOP_NEW_COURSE_ACTION } from "./actions"
 import {Status} from '../../core/status'
 
 export const courseState = () => {
@@ -6,6 +6,11 @@ export const courseState = () => {
         totalNumerCourses: 0,
         status: {
             DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION: Status.idle(),
-        }
+            DO_GET_TOP_NEW_COURSE_ACTION: Status.idle(),
+        },
+        courses: {
+            
+        },
+        topNewCourses: new Set(),
     }
 }
