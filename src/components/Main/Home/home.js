@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Button } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import Sizes from '../../../res/sizes'
 import SizedBox from '../../Common/Container/sized-box'
@@ -19,39 +19,33 @@ import { CoursesContext } from '../../../provider/courses-provider'
 import { CourseType } from '../../../data/mock/courses-mock-data'
 import ContentContainer from '../../Common/Screen/content-container'
 import { useSelector, useDispatch } from 'react-redux'
-import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DoGetTotalNumerCoursesCourseAction } from '../../../redux/course/actions'
-import { LoadStatus } from '../../../core/status'
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DoGetTotalNumerCoursesCourseAction, SetStatusCourseAction } from '../../../redux/course/actions'
+import { LoadStatus, Status } from '../../../core/status'
+import { SetStatusAuthAction } from '../../../redux/auth/actions'
 
-const Home = () => {
-
-    const [init, setInit] = useState(true)
+const Home = ({ props }) => {
 
     const courseState = useSelector(state => state.courseState)
 
+    const [text, setText] = useState('Initial')
+
     const dispatch = useDispatch();
 
-    const [text, setText] = useState('Initial');
-
-    // if(init){
-    //     dispatch(DoGetTotalNumerCoursesCourseAction())
-    //     setInit(false)
-    // }
-
     useEffect(() => {
+
         const loadTotalNumerCourseStatus = courseState.status[DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION]
+
+        console.log('DEBUG', loadTotalNumerCourseStatus.loadStatus);
 
         switch (loadTotalNumerCourseStatus.loadStatus) {
             case LoadStatus.loading:
                 setText('loading')
-                console.log('DEBUG', 'LOADING')
                 break;
             case LoadStatus.error:
                 setText('error' + loadTotalNumerCourseStatus.message)
-                console.log('DEBUG', 'error')
                 break;
             case LoadStatus.success:
                 setText('success' + loadTotalNumerCourseStatus.message)
-                console.log('DEBUG', 'success')
                 break;
         }
 

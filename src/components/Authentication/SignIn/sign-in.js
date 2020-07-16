@@ -60,7 +60,6 @@ const SignIn = (props) => {
             setError(i18n.t('please_fill_inforamtion'))
         } else {
             dispatch(DoLoginAuthAction(username, password))
-
         }
     }
     const onPressedSignUp = () => {

@@ -1,11 +1,13 @@
 import { apiClient } from "../axios-config"
 
-import axios from 'axios';
-
-const getTotalNumerCourses = async () => {
+const getTotalNumerCourses = () => {
     return apiClient.get('course/total-number');
 }
 
-export const CourseRepo = {
+const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
+}
+
+export {
+    CourseRepo
 }

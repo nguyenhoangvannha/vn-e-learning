@@ -1,40 +1,40 @@
-const idle = (message) => {
+const idle = (message, data) => {
     return {
         loadStatus: LoadStatus.idle,
         message: message ?? '',
-        data: undefined,
+        data: data,
     }
 }
 
-const loading = (message) => {
+const loading = (message, data) => {
     return {
         loadStatus: LoadStatus.loading,
         message: message ?? '',
-        data: undefined,
+        data: data,
     }
 }
 
-const success = (message) => {
+const success = (message, data) => {
     return {
         loadStatus: LoadStatus.success,
         message: message ?? '',
-        data: undefined,
+        data: data,
     }
 }
 
-const error = (message) => {
+const error = (message, data) => {
     return {
         loadStatus: LoadStatus.error,
         message: message ?? '',
-        data: undefined,
+        data: data,
     }
 }
 
-const completed = (message) => {
+const completed = (message, data) => {
     return {
         loadStatus: LoadStatus.completed,
         message: message ?? '',
-        data: undefined,
+        data: data,
     }
 }
 

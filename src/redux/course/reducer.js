@@ -4,13 +4,13 @@ export const courseReducer = (courseState, action) => {
     switch (action.type) {
         case SET_STATUS_COURSE_ACTION:
             const status = { ...courseState.status };
-            status[action.statusKey] = action.status;
+
+            status[action.payload.statusKey] = action.payload.status;
 
             return {
                 ...courseState,
                 status: status,
             }
-            break;
         default:
             return courseState;
     }
