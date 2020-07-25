@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import Sizes from '../../../res/sizes'
@@ -18,8 +18,40 @@ import Routes from '../../../routes/routes'
 import { CoursesContext } from '../../../provider/courses-provider'
 import { CourseType } from '../../../data/mock/courses-mock-data'
 import ContentContainer from '../../Common/Screen/content-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DO_GET_TOP_NEW_COURSE_ACTION } from '../../../redux/course/actions'
+import { LoadStatus, Status } from '../../../core/status'
 
-const Home = () => {
+const Home = ({ props }) => {
+
+    const courseState = useSelector(state => state.courseState)
+
+    const [loading, setLoading] = useState(false)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+        const loadTopNewCoursesStatus = courseState.status[DO_GET_TOP_NEW_COURSE_ACTION]
+
+        console.log('DEBUG DO_GET_TOP_NEW_COURSE_ACTION', courseState.topNewCourses)
+
+        switch (loadTopNewCoursesStatus.loadStatus) {
+            case LoadStatus.loading:
+                setLoading(true)
+                break;
+            case LoadStatus.error:
+                setLoading(false)
+                break;
+            case LoadStatus.success:
+                setLoading(false)
+                break;
+        }
+
+        return () => {
+            //cleanup
+        }
+    }, [courseState])
 
     const coursesState = useContext(CoursesContext)
 
@@ -37,7 +69,7 @@ const Home = () => {
                 <SectionCourses
                     headerText={title}
                     data={data}
-                    style={styles.sectionCourses}/>
+                    style={styles.sectionCourses} />
         )
     }
 

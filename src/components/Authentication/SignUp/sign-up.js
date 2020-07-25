@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CText from '../../Common/Text/c-text'
 import CFromTextInput from '../../Common/TextField/c-form-text-input'
@@ -13,13 +13,10 @@ import CScrollView from '../../Common/Container/c-scroll-view'
 import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
 import { register } from '../../../core/service/authentication-services'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
 
 const SignUp = ({ navigation }) => {
-
-    const authContext = useContext(AuthenticationContext)
 
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
@@ -36,8 +33,6 @@ const SignUp = ({ navigation }) => {
     const onPressedCreateAccount = () => {
         var res = register(email, username, password, fullName, phone)
         if (res.status == 200) {
-            authContext.addUser(res.user)
-            console.log('Users', authContext.users)
             navigation.navigate(Routes.SignIn)
         } else {
             setError(i18n.t('please_fill_inforamtion'))

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CText from '../../Common/Text/c-text'
 import CFromTextInput from '../../Common/TextField/c-form-text-input'
@@ -13,34 +13,53 @@ import CScrollView from '../../Common/Container/c-scroll-view'
 import Routes from '../../../routes/routes'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
+import { useSelector, useDispatch } from 'react-redux'
+import { DoLoginAuthAction, AuthAction, SetStatusAuthAction } from '../../../redux/auth/actions'
+import { LoadStatus, Status } from '../../../core/status'
+
 
 const SignIn = (props) => {
-    const authContext = useContext(AuthenticationContext)
 
-    const [username, setUsername] = useState('');
 
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('nguyenhoangvannha@gmail.com');
+
+    const [password, setPassword] = useState('nha.nguyen');
 
     const [error, setError] = useState('')
 
+    const authState = useSelector(state => state.authState)
+
+    const dispatch = useDispatch();
+
+    const [loginLoading, setLoginLoading] = useState(false)
 
     useEffect(() => {
-        var status = authContext.authentication.status;
-        if (status != undefined && status === 200) {
-            RootNavigation.replace(Routes.Main);
-        } else if (status == 404) {
-            setError(i18n.t('wrong_username_password'))
+        var loginStatus = authState.status[AuthAction.DoLoginAuthAction];
+
+        switch (loginStatus.loadStatus) {
+            case LoadStatus.loading:
+                setLoginLoading(loginLoading)
+                break;
+            case LoadStatus.error:
+                setError(loginStatus.message)
+                //setError(i18n.t('wrong_username_password'))
+                break;
+            case LoadStatus.success:
+                dispatch(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.idle()))
+                RootNavigation.replace(Routes.Main);
+                break;
+            default:
+                setLoginLoading(false)
         }
-    }, [authContext])
+    }, [authState])
 
     const onPressedSignIn = () => {
         if (username.length === 0 || password.length === 0) {
             setError(i18n.t('please_fill_inforamtion'))
         } else {
-            authContext.login(username, password);
+            dispatch(DoLoginAuthAction(username, password))
         }
     }
     const onPressedSignUp = () => {
@@ -91,7 +110,13 @@ const SignIn = (props) => {
                     {error.length > 0 && <ErrorText>{error}</ErrorText>}
                     <SizedBox height={Sizes.s16} />
 
-                    <CButton title={i18n.t('sign_in').toUpperCase()} onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
+                    <CButton
+                        title={i18n.t('sign_in').toUpperCase()}
+                        onPress={onPressedSignIn}
+                        type='solid'
+                        style={styles.signIn}
+                        loading={loginLoading}
+                        disabled={false} />
                     <SizedBox height={Sizes.s12} />
                     <CButton title={i18n.t('sign_up').toUpperCase()} onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
                     <SizedBox height={Sizes.s24} />
