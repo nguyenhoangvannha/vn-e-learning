@@ -19,6 +19,7 @@ import ContentContainer from '../../Common/Screen/content-container'
 import { useSelector, useDispatch } from 'react-redux'
 import {  DO_GET_TOP_NEW_COURSE_ACTION } from '../../../feature/course/actions'
 import { LoadStatus, Status } from '../../../core/status'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
 
 const Home = ({ props }) => {
 
@@ -35,20 +36,7 @@ const Home = ({ props }) => {
 
         const loadTopNewCoursesStatus = courseState.status[DO_GET_TOP_NEW_COURSE_ACTION]
 
-        console.log('DEBUG DO_GET_TOP_NEW_COURSE_ACTION', courseState.topNewCourses)
-
-        switch (loadTopNewCoursesStatus.loadStatus) {
-            case LoadStatus.loading:
-                setLoading(true)
-                break;
-            case LoadStatus.error:
-                setLoading(false)
-                break;
-            case LoadStatus.success:
-                setLoading(false)
-                console.log('DEBUG COURSE STATE', courseState)
-                break;
-        }
+        setLoading(loadTopNewCoursesStatus.loadStatus === LoadStatus.loading)
 
         return () => {
             //cleanup
@@ -59,10 +47,7 @@ const Home = ({ props }) => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
     }
 
-    const buildSectionCourses = (title) => {
-        var courseIds = Object.keys(allCourses)
-
-        console.log('DEBUG BUILD', courseIds);
+    const buildSectionCourses = (title, courseIds) => {
         return (
             courseIds.length == 0 ?
                 <View /> :
@@ -99,11 +84,11 @@ const Home = ({ props }) => {
                         <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
                     </CImageButton>
                     {buildContinueLearning(i18n.t('continue_learning'))}
-                    {buildSectionCourses(i18n.t('software_development'),)}
+                     {loading ? <CLoadingIndicator/> :  buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses)}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses(i18n.t('it_operations'),)}
-                    {buildSectionCourses(i18n.t('data_professional'),)}
-                    {buildSectionCourses(i18n.t('security_professional'),)}
+                    {buildSectionCourses(i18n.t('top_sell_courses'), courseState.topSellCourses)}
+                    <SizedBox height={Sizes.s12} />
+                    {buildSectionCourses(i18n.t('top_rate_courses'), courseState.topRateCourses)}
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>

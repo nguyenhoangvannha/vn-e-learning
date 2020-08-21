@@ -1,4 +1,4 @@
-import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SET_STATUS_COURSE_ACTION, SET_ADD_COURSE_ACTION, SET_ADD_TOP_NEW_COURSE_ACTION } from "./actions";
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SET_STATUS_COURSE_ACTION, SET_ADD_COURSE_ACTION, SET_ADD_TOP_NEW_COURSE_ACTION, SET_ADD_TOP_SELL_COURSE_ACTION, SET_ADD_TOP_RATE_COURSE_ACTION } from "./actions";
 
 export const courseReducer = (courseState, action) => {
     switch (action.type) {
@@ -21,11 +21,24 @@ export const courseReducer = (courseState, action) => {
             }
             break;
         case SET_ADD_TOP_NEW_COURSE_ACTION:
-            var topNewCourses = new Set([...courseState.topNewCourses, ...action.payload.courseIds])
-            console.log('DEBUG ADDX', topNewCourses)
+            var topNewCourses = [...courseState.topNewCourses, ...action.payload.courseIds]
             return {
                 ...courseState,
                 topNewCourses: topNewCourses
+            }
+            break;
+        case SET_ADD_TOP_SELL_COURSE_ACTION:
+            var topSellCourses = [...courseState.topSellCourses, ...action.payload.courseIds]
+            return {
+                ...courseState,
+                topSellCourses: topSellCourses
+            }
+            break;
+        case SET_ADD_TOP_RATE_COURSE_ACTION:
+            var topRateCourses = [...courseState.topRateCourses, ...action.payload.courseIds]
+            return {
+                ...courseState,
+                topRateCourses: topRateCourses
             }
             break;
         default:

@@ -11,9 +11,25 @@ const getTopNewCourses = () => {
     });
 }
 
+const getTopSellCourses = () => {
+    return apiClient.post('course/top-sell', {
+        "limit": 10,
+        "page": 1
+    });
+}
+
+const getTopRateCourses = () => {
+    return apiClient.post('course/top-rate', {
+        "limit": 10,
+        "page": 1
+    });
+}
+
 const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
     getTopNewCourses: getTopNewCourses,
+    getTopSellCourses: getTopSellCourses,
+    getTopRateCourses: getTopRateCourses,
 }
 
 export {

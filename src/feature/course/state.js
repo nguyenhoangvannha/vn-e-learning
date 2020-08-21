@@ -11,6 +11,8 @@ export const courseState = () => {
         courses: {
             
         },
-        topNewCourses: new Set(),
+        topNewCourses: [],
+        topSellCourses: [],
+        topRateCourses: [],
     }
 }

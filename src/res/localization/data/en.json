@@ -85,5 +85,8 @@
   "wrong_username_password": "Wrong username or password",
   "please_fill_inforamtion": "Please fill in inforamtion",
   "created_at": "Created At",
-  "type": "Type"
+  "type": "Type",
+  "top_new_courses": "Top New Courses",
+  "top_sell_courses": "Top Sell Courses",
+  "top_rate_courses": "Top Rate Courses"
 }
