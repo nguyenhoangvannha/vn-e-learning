@@ -10,25 +10,26 @@ import CText from '../../Common/Text/c-text'
 import Alignment from '../../../res/styles/alignment'
 import TextStyles from '../../../res/styles/text-styles'
 import Colors from '../../../res/colors'
-import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import SectionCourses, { SectionCoursesByIds } from '../../Courses/SectionCourses/section-courses'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import i18n from '../../../res/i18n'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
-import { CoursesContext } from '../../../provider/courses-provider'
-import { CourseType } from '../../../data/mock/courses-mock-data'
 import ContentContainer from '../../Common/Screen/content-container'
 import { useSelector, useDispatch } from 'react-redux'
-import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, DO_GET_TOP_NEW_COURSE_ACTION } from '../../../redux/course/actions'
+import {  DO_GET_TOP_NEW_COURSE_ACTION } from '../../../feature/course/actions'
 import { LoadStatus, Status } from '../../../core/status'
 
 const Home = ({ props }) => {
 
     const courseState = useSelector(state => state.courseState)
 
-    const [loading, setLoading] = useState(false)
+    var allCourses = courseState.courses;
 
     const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false)
+
 
     useEffect(() => {
 
@@ -45,6 +46,7 @@ const Home = ({ props }) => {
                 break;
             case LoadStatus.success:
                 setLoading(false)
+                console.log('DEBUG COURSE STATE', courseState)
                 break;
         }
 
@@ -53,28 +55,27 @@ const Home = ({ props }) => {
         }
     }, [courseState])
 
-    const coursesState = useContext(CoursesContext)
-
-    var allCourses = Array.from(coursesState.courses.values());
-
     const onNewReleasesPressed = () => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
     }
 
-    const buildSectionCourses = (title, type) => {
-        var data = allCourses.filter((course) => course.type === type).map(value => value.id)
+    const buildSectionCourses = (title) => {
+        var courseIds = Object.keys(allCourses)
+
+        console.log('DEBUG BUILD', courseIds);
         return (
-            data.length == 0 ?
+            courseIds.length == 0 ?
                 <View /> :
-                <SectionCourses
+                <SectionCoursesByIds
                     headerText={title}
-                    data={data}
+                    courseIds={courseIds}
                     style={styles.sectionCourses} />
         )
     }
 
     const buildContinueLearning = (title) => {
-        var data = Array.from(coursesState.learningCourseIds);
+        return <View />
+        var data = Array.from(courseState.learningCourseIds);
         return (
             data.length == 0 ?
                 <View /> :
@@ -98,11 +99,11 @@ const Home = ({ props }) => {
                         <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
                     </CImageButton>
                     {buildContinueLearning(i18n.t('continue_learning'))}
-                    {buildSectionCourses(i18n.t('software_development'), CourseType.SOFTWARE_DEVELOPMENT)}
+                    {buildSectionCourses(i18n.t('software_development'),)}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses(i18n.t('it_operations'), CourseType.IT_OPERATIONS)}
-                    {buildSectionCourses(i18n.t('data_professional'), CourseType.DATA_PROFESSIONAL)}
-                    {buildSectionCourses(i18n.t('security_professional'), CourseType.SECURITY_PROFESSIONAL)}
+                    {buildSectionCourses(i18n.t('it_operations'),)}
+                    {buildSectionCourses(i18n.t('data_professional'),)}
+                    {buildSectionCourses(i18n.t('security_professional'),)}
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>

@@ -13,7 +13,7 @@ const SectionCourseItem = ({ course, onPress }) => {
             <COpacityButton onPress={onPress}>
                 <CCard>
                     <View>
-                        <CImage uri={course.image} style={styles.image} />
+                        <CImage uri={course.imageUrl} style={styles.image} />
                         <ContentContainer style={styles.infoContainer}>
                             <SectionCourseItemInfo course={course} />
                         </ContentContainer>

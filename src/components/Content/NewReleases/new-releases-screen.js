@@ -7,6 +7,7 @@ import Styles from '../../../res/styles/styles'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import { CoursesContext } from '../../../provider/courses-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import { useSelector, useDispatch } from 'react-redux'
 
 const NewReleasesScreen = () => {
     const coursesContext = useContext(CoursesContext)

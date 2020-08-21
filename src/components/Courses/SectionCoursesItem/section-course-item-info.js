@@ -15,7 +15,7 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
 
     return (
         <ContentContainer style={styles.container}>
-            <CText data={course.name} style={TextStyles.subhead} />
+            <CText data={course.title} style={TextStyles.subhead} />
             <SizedBox height={Sizes.s2} />
             {
                 !simple && (
@@ -32,7 +32,7 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
                 <SizedBox width={Sizes.s4} />
                 <CText data={DateFormat.toMdy(course.date)} style={TextStyles.caption} />
                 <SizedBox width={Sizes.s4} />
-                <CText data={course.length} style={TextStyles.caption} />
+                <CText data={`${course.totalHours} hours`} style={TextStyles.caption} />
             </View>
             <SizedBox height={Sizes.s4} />
             {
@@ -40,9 +40,9 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
                     <CRating
                         readonly={true}
                         type={RatingType.star}
-                        ratingCount={course.rating} />
+                        ratingCount={course.ratedNumber / 2} />
                     <SizedBox width={Sizes.s4} />
-                    <CText data={`(${course.ratingCount})`} style={TextStyles.caption} />
+                    <CText data={`(${course.ratedNumber})`} style={TextStyles.caption} />
                 </View>
             }
         </ContentContainer>

@@ -7,6 +7,49 @@ import Routes from '../../../routes/routes';
 import { RootNavigation } from '../../../routes/navigations/root-navigation';
 import i18n from '../../../res/i18n';
 import { CoursesContext } from '../../../provider/courses-provider';
+import { useSelector, useDispatch } from 'react-redux'
+
+export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
+
+    const courseState = useSelector(state => state.courseState)
+
+    var allCourses = courseState.courses;
+
+    const dispatch = useDispatch();
+
+    const onTrailingPressed = () => {
+        RootNavigation.navigate(Routes.ListCoursesByTypeScreen, {
+            title: headerText,
+            courseIds: courseIds,
+        })
+    }
+
+    return (
+        <CFlatList
+            headerText={headerText}
+            style={style}
+            horizontal={true}
+            data={courseIds}
+            renderItem={({ item }) => {
+                var course = allCourses[item]
+                return <SectionCourseItem
+                    key={course.id}
+                    course={course}
+                    onPress={() => {
+                        //coursesContext.addLearningCourse(item)
+                        RootNavigation.navigate(Routes.CourseDetail, {
+                            course: course
+                        })
+                    }}
+                />
+            }
+            }
+            keyExtractor={item => item}
+            ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
+            trailingText={i18n.t('see_all')}
+            onTrailingPress={onTrailingPressed} />
+    )
+}
 
 const SectionCourses = ({ style, headerText, data }) => {
 

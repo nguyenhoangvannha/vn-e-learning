@@ -6,7 +6,7 @@ import { SkillsProvider } from './skills-provider';
 import { AuthorsProvider } from './authors-provider';
 import { PathsProvider } from './paths-provider';
 import { Provider as StoreProvider } from 'react-redux';
-import { store } from '../redux/store'
+import { store } from '../feature/store'
 const AppContext = React.createContext();
 
 const AppProvider = (props) => {

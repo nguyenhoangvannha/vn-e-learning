@@ -18,7 +18,7 @@ import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { useSelector, useDispatch } from 'react-redux'
-import { DoLogoutAuthAction, AuthAction } from '../../../redux/auth/actions'
+import { DoLogoutAuthAction, AuthAction } from '../../../feature/auth/actions'
 import { LoadStatus } from '../../../core/status'
 import ErrorText from '../../Common/error/error-text'
 
