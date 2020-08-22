@@ -28,6 +28,8 @@ const Browse = ({ }) => {
 
     const instructorState = useSelector(state => state.instructorState)
 
+    const courseState = useSelector(state => state.courseState)
+
     const dispatch = useDispatch();
 
     const [loadInstructorStatus, setLoadInstructorStatus] = useState(Status.idle())
@@ -75,7 +77,8 @@ const Browse = ({ }) => {
                     onPress={onNewReleasesPressed} />
                 <SizedBox height={Sizes.s12} />
 
-                <ListCategory />
+                <ListCategory
+                    categories={Object.values(courseState.categories)} />
                 <PopularSkills
                     headerText={i18n.t('popular_skills')} />
                 <SizedBox height={Sizes.s12} />

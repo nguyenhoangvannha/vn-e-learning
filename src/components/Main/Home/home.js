@@ -56,7 +56,7 @@ const Home = ({ props }) => {
     }
 
     const buildSectionCourses = (title, courseIds) => {
-        console.log('DEBUG BUILD ', title, courseIds)
+        //console.log('DEBUG BUILD', title, courseIds)
         return (
             courseIds.length == 0 ?
                 <View /> :

@@ -7,21 +7,27 @@ import Sizes from '../../../res/sizes'
 import NavigationUtils from '../../../routes/navigation-utils'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
+import { useSelector, useDispatch } from 'react-redux'
+import { DoGetCourseByCategoryCourseAction } from '../../../feature/course/actions'
 
-const ListCategory = () => {
+const ListCategory = ({categories}) => {
+
+    const dispatch = useDispatch();
+
     return (
         <CFlatGrid
-            data={categoriesData}
+            data={categories}
             renderItem={(item) =>
                 <CImageButton
-                    uri={Strings.defaultCourseThubnail}
-                    title={item}
+                    uri={Strings.blueImage}
+                    title={item.name}
                     width={Sizes.s150}
                     height={Sizes.s60} 
                     onPress={
                         () => {
+                            dispatch(DoGetCourseByCategoryCourseAction(item.id))
                             RootNavigation.push(Routes.CategoryDetailScreen, {
-                                category: item,
+                                categoryId: item.id,
                             })
                         }
                     }/>}

@@ -55,8 +55,9 @@ export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
 }
 
 const SectionCourses = ({ style, headerText, data }) => {
-
-    const coursesContext = useContext(CoursesContext)
+    const authState = useSelector(state => state.authState)
+    
+    const dispatch = useDispatch();
 
     const onTrailingPressed = () => {
         RootNavigation.navigate(Routes.ListCoursesByTypeScreen, {
@@ -72,14 +73,14 @@ const SectionCourses = ({ style, headerText, data }) => {
             horizontal={true}
             data={data}
             renderItem={({ item }) => {
-                var course = coursesContext.courses.get(item)
+                var course = item
                 return <SectionCourseItem
                     key={course.id}
                     course={course}
                     onPress={() => {
-                        coursesContext.addLearningCourse(item)
+                        dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
                         RootNavigation.navigate(Routes.CourseDetail, {
-                            course: course
+                            courseId: course.id
                         })
                     }}
                 />

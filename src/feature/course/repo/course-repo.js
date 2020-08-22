@@ -27,14 +27,36 @@ const getTopRateCourses = () => {
 
 const getCourseDetail = (courseId, userId) => {
     return apiClient.get(`course/get-course-detail/${courseId}/${userId}`, {
-        
+
     });
 }
 
 const getRecommendCourses = (userId, limit, offset) => {
     return apiClient.get(`user/recommend-course/${userId}/${limit}/${offset}`, {
-        
+
     });
+}
+
+const getAllCategory = () => {
+    return apiClient.get(`category/all`, {
+
+    });
+}
+
+const getCategoryCourses = (category) => {
+    var body = {
+        "keyword": "",
+        "opt": {
+            "category": [
+                category
+            ]
+        },
+        "limit": 2000,
+        "offset": 1
+    }
+
+    console.log('DEBUG getCategoryCourses', body)
+    return apiClient.post(`course/search`, body);
 }
 
 const CourseRepo = {
@@ -44,6 +66,8 @@ const CourseRepo = {
     getTopRateCourses: getTopRateCourses,
     getCourseDetail: getCourseDetail,
     getRecommendCourses: getRecommendCourses,
+    getAllCategory: getAllCategory,
+    getCategoryCourses: getCategoryCourses,
 }
 
 export {

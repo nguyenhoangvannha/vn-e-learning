@@ -8,12 +8,12 @@ export const courseState = () => {
             DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION: Status.idle(),
             DO_GET_TOP_NEW_COURSE_ACTION: Status.idle(),
         },
-        courses: {
-            
-        },
+        courses: {},
         topNewCourses: [],
         topSellCourses: [],
         topRateCourses: [],
         recommendCourses: [],
+        categories: {},
+        coursesByCategory: {} //String - Array Id
     }
 }

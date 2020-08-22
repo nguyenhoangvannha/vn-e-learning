@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { AuthAction } from './auth/actions'
 import { LoadStatus } from '../core/status'
-import { DoGetTotalNumerCoursesCourseAction, DoGetTopNewCourseAction, DoGetTopSellCourseAction, DoGetTopRateCourseAction, DoGetRecommendCourseCourseAction } from './course/actions';
+import { DoGetTotalNumerCoursesCourseAction, DoGetTopNewCourseAction, DoGetTopSellCourseAction, DoGetTopRateCourseAction, DoGetRecommendCourseCourseAction, DoGetAllCategoryCourseAction } from './course/actions';
 import { DoGetAllInstructor } from './instructor/actions';
 
 function* onAuthStatusChange(action) {
@@ -16,6 +16,7 @@ function* onAuthStatusChange(action) {
             yield put(DoGetTopRateCourseAction());
             yield put(DoGetAllInstructor());
             yield put(DoGetRecommendCourseCourseAction(data.userInfo.id));
+            yield put(DoGetAllCategoryCourseAction());
         }
     }
 }

@@ -10,6 +10,46 @@ export const SET_ADD_TOP_RATE_COURSE_ACTION = 'SET_ADD_TOP_RATE_COURSE_ACTION'
 export const DO_GET_COURSE_DETAIL_COURSE_ACTION = 'DO_GET_COURSE_DETAIL_COURSE_ACTION'
 export const DO_GET_RECOMMEND_COURSE_COURSE_ACTION = 'DO_GET_RECOMMEND_COURSE_COURSE_ACTION'
 export const SET_ADD_RECOMMEND_COURSE_ACTION = 'SET_ADD_RECOMMEND_COURSE_ACTION'
+export const DO_GET_ALL_CATEGORY_COURSE_ACTION = 'DO_GET_ALL_CATEGORY_COURSE_ACTION'
+export const SET_ADD_CATEGORY_COURSE_ACTION = 'SET_ADD_CATEGORY_COURSE_ACTION'
+export const DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION = 'DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION'
+export const SET_COURSE_BY_CATEGORY_COURSE_ACTION = 'SET_COURSE_BY_CATEGORY_COURSE_ACTION'
+
+
+export const DoGetCourseByCategoryCourseAction = (category) => {
+    return {
+        type: DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION,
+        payload: {
+            category: category
+        }
+    }
+}
+
+export const SetCourseByCategoryCourseAction = (coursesByCategory) => {
+    return {
+        type: SET_COURSE_BY_CATEGORY_COURSE_ACTION,
+        payload: {
+            coursesByCategory: coursesByCategory
+        }
+    }
+}
+
+export const DoGetAllCategoryCourseAction = () => {
+    return {
+        type: DO_GET_ALL_CATEGORY_COURSE_ACTION,
+        payload: {
+        }
+    }
+}
+
+export const SetAddCategoriesCourseAction = (categories) => {
+    return {
+        type: SET_ADD_CATEGORY_COURSE_ACTION,
+        payload: {
+            categories: categories
+        }
+    }
+}
 
 export const DoGetRecommendCourseCourseAction = (userId) => {
     return {

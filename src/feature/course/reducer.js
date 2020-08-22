@@ -1,4 +1,4 @@
-import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SET_STATUS_COURSE_ACTION, SET_ADD_COURSE_ACTION, SET_ADD_TOP_NEW_COURSE_ACTION, SET_ADD_TOP_SELL_COURSE_ACTION, SET_ADD_TOP_RATE_COURSE_ACTION, SET_ADD_RECOMMEND_COURSE_ACTION } from "./actions";
+import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SET_STATUS_COURSE_ACTION, SET_ADD_COURSE_ACTION, SET_ADD_TOP_NEW_COURSE_ACTION, SET_ADD_TOP_SELL_COURSE_ACTION, SET_ADD_TOP_RATE_COURSE_ACTION, SET_ADD_RECOMMEND_COURSE_ACTION, SET_ADD_CATEGORY_COURSE_ACTION, SET_COURSE_BY_CATEGORY_COURSE_ACTION } from "./actions";
 
 export const courseReducer = (courseState, action) => {
     switch (action.type) {
@@ -11,6 +11,24 @@ export const courseReducer = (courseState, action) => {
                 ...courseState,
                 status: status,
             }
+        case SET_COURSE_BY_CATEGORY_COURSE_ACTION:
+            return {
+                ...courseState,
+                coursesByCategory: {
+                    ...courseState.coursesByCategory,
+                    ...action.payload.coursesByCategory
+                }
+            }
+            break;
+        case SET_ADD_CATEGORY_COURSE_ACTION:
+            return {
+                ...courseState,
+                categories: {
+                    ...courseState.categories,
+                    ...action.payload.categories
+                }
+            }
+            break;
         case SET_ADD_COURSE_ACTION:
             return {
                 ...courseState,
