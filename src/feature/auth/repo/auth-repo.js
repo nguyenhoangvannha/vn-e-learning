@@ -7,8 +7,18 @@ const login = (email, password) => {
     });
 }
 
+const register = (email, username, phone, password) => {
+    return apiClient.post('user/register', {
+        "email": email,
+        "password": password,
+        "username": username,
+        "phone": phone
+    });
+}
+
 const AuthRepo = {
     login: login,
+    register: register,
 }
 
 export { AuthRepo }

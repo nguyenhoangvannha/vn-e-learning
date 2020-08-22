@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction } from './actions';
+import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction, DO_REGISTER_AUTH_ACTION } from './actions';
 import { Status } from '../../core/status'
 import { AuthRepo } from './repo/auth-repo';
 
@@ -20,6 +20,27 @@ function* login(action) {
   }
 }
 
+function* register(action) {
+  try {
+    var statusKey = DO_REGISTER_AUTH_ACTION;
+
+    yield put(SetStatusAuthAction(statusKey, Status.loading()))
+
+    var payload = action.payload;
+
+    const res = yield AuthRepo.register(payload.email, payload.username, payload.phone, payload.password);
+
+    yield put(SetUserTokenAuthAction(res.data.token))
+    yield put(SetUserInfoAuthAction(res.data.userInfo))
+    yield put(SetStatusAuthAction(statusKey, Status.success()))
+
+  } catch (e) {
+    yield put(SetStatusAuthAction(statusKey, Status.error(e.message)))
+  } finally {
+    yield put(SetStatusAuthAction(statusKey, Status.idle()))
+  }
+}
+
 function* logout(action) {
   try {
     yield put(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.loading()))
@@ -37,6 +58,7 @@ function* logout(action) {
 function* authMiddlewares() {
   yield takeEvery(AuthAction.DoLoginAuthAction, login);
   yield takeEvery(AuthAction.DoLogoutAuthAction, logout);
+  yield takeEvery(DO_REGISTER_AUTH_ACTION, register);
 }
 
 /*

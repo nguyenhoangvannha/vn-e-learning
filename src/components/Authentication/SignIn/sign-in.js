@@ -43,8 +43,8 @@ const SignIn = (props) => {
                 setLoginLoading(loginLoading)
                 break;
             case LoadStatus.error:
-                setError(loginStatus.message)
-                //setError(i18n.t('wrong_username_password'))
+                //setError(loginStatus.message)
+                setError(i18n.t('wrong_username_password'))
                 break;
             case LoadStatus.success:
                 dispatch(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.idle()))
@@ -58,6 +58,8 @@ const SignIn = (props) => {
     const onPressedSignIn = () => {
         if (username.length === 0 || password.length === 0) {
             setError(i18n.t('please_fill_inforamtion'))
+        } if (password.length < 6) {
+            setError(i18n.t('password_atless_x_char').replace('%s', '6'))
         } else {
             dispatch(DoLoginAuthAction(username, password))
         }
@@ -78,8 +80,8 @@ const SignIn = (props) => {
                     <SizedBox height={Sizes.s70} />
 
                     <CFromTextInput
-                        label={i18n.t('username')}
-                        placeholder={i18n.t('your_username')}
+                        label={i18n.t('email')}
+                        placeholder={i18n.t('your_email_address')}
                         style={styles.input}
                         onChangeText={(value) => {
                             if (error.length > 0) {

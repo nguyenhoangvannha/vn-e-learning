@@ -88,5 +88,9 @@
   "type": "Type",
   "top_new_courses": "Top New Courses",
   "top_sell_courses": "Top Sell Courses",
-  "top_rate_courses": "Top Rate Courses"
+  "top_rate_courses": "Top Rate Courses",
+  "password_not_match": "Password not match",
+  "password_atless_x_char": "Password atless %s char",
+  "wrong_email": "Wrong email address",
+  "account_not_found": "Account not found"
 }

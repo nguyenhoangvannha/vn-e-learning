@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CText from '../../Common/Text/c-text'
 import CFromTextInput from '../../Common/TextField/c-form-text-input'
@@ -12,31 +12,78 @@ import Styles from '../../../res/styles/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import Routes from '../../../routes/routes'
 import i18n from '../../../res/i18n'
-import { register } from '../../../core/service/authentication-services'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
+import { useSelector, useDispatch } from 'react-redux'
+import { Status, LoadStatus } from '../../../core/status'
+import { DO_REGISTER_AUTH_ACTION, DoRegisterAuthAction } from '../../../feature/auth/actions'
 
 const SignUp = ({ navigation }) => {
 
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
-    const [fullName, setFullname] = useState('')
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
     const [error, setError] = useState('')
+    const [status, setStatus] = useState(Status.idle())
+
+
+    const authState = useSelector(state => state.authState)
+
+    const dispatch = useDispatch();
+
+
+
+    useEffect(() => {
+
+        setStatus(authState.status[DO_REGISTER_AUTH_ACTION])
+
+        switch (status.loadStatus) {
+            case LoadStatus.error:
+                setError(status.message)
+                break;
+            case LoadStatus.success:
+                navigation.navigate(Routes.SignIn)
+                break;
+            default:
+                break;
+        }
+
+        return () => {
+            //cleanup
+        }
+    }, [authState])
 
     const onPressedBackToSignIn = () => {
         navigation.navigate(Routes.SignIn)
     }
 
     const onPressedCreateAccount = () => {
-        var res = register(email, username, password, fullName, phone)
-        if (res.status == 200) {
-            navigation.navigate(Routes.SignIn)
-        } else {
-            setError(i18n.t('please_fill_inforamtion'))
+        if (validate()) {
+            setError('')
+            dispatch(DoRegisterAuthAction(email, username, phone, password))
         }
+    }
+
+    const validate = () => {
+        if(!email.includes('@')){
+            setError(i18n.t('wrong_email'))
+            return false;
+        }
+        if (email.length == 0 || username.length == 0 || phone == 0) {
+            setError(i18n.t('please_fill_inforamtion'))
+            return false;
+        }
+        if(password.length < 6 || rePassword.length < 6){
+            setError(i18n.t('password_atless_x_char').replace('%s', '6'))
+            return false;
+        }
+        if (password != rePassword) {
+            setError(i18n.t('password_not_match'))
+            return false;
+        }
+        return true;
     }
 
     return (
@@ -60,12 +107,6 @@ const SignUp = ({ navigation }) => {
                         showErrorText={false}
                         error={error}
                         onChangeText={(value) => setUsername(value)} />
-                    <CFromTextInput
-                        label={i18n.t('fullname')}
-                        placeholder="" style={styles.input}
-                        showErrorText={false}
-                        error={error}
-                        onChangeText={(value) => setFullname(value)} />
                     <CFromTextInput
                         label={i18n.t('phone')}
                         placeholder=""
@@ -95,7 +136,8 @@ const SignUp = ({ navigation }) => {
                         title={i18n.t('create_account')}
                         type='outline'
                         style={styles.signUp}
-                        loading={false} disabled={false}
+                        loading={(status?.loadStatus ?? LoadStatus.idle) == LoadStatus.loading}
+                        disabled={false}
                         onPress={onPressedCreateAccount} />
                     <SizedBox height={Sizes.s24} />
                     <CButton title={i18n.t('back_to_login')} onPress={onPressedBackToSignIn} type='clear' color={Colors.transparent} style={styles.forgotPassword} loading={false} disabled={false} />

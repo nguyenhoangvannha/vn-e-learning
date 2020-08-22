@@ -1,6 +1,5 @@
 const AuthAction = {
     DoLoginAuthAction: 'DoLoginAuthAction',
-    DoRegisterAuthAction: 'DoRegisterAuthAction',
     DoLogoutAuthAction: 'DoLogoutAuthAction',
     SetUserTokenAuthAction: 'SetUserTokenAuthAction',
     SetUserInfoAuthAction: 'SetUserInfoAuthAction',
@@ -8,6 +7,7 @@ const AuthAction = {
 }
 
 export const DO_CLEAR_APPSTATE_AUTH_ACTION = 'DO_CLEAR_APPSTATE_AUTH_ACTION'
+export const DO_REGISTER_AUTH_ACTION = 'DO_REGISTER_AUTH_ACTION'
 
 const DoLoginAuthAction = (email, password) => {
     return {
@@ -15,6 +15,18 @@ const DoLoginAuthAction = (email, password) => {
         payload: {
             email: email,
             password: password,
+        }
+    }
+}
+
+export const DoRegisterAuthAction = (email, username, phone, password) => {
+    return {
+        type: DO_REGISTER_AUTH_ACTION,
+        payload: {
+            email: email,
+            password: password,
+            username: username,
+            phone: phone
         }
     }
 }
