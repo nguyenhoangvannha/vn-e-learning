@@ -5,6 +5,7 @@ import {redirectAppMiddleware} from '../redirect-app-middleware'
 import { courseMiddleware } from '../course/middlewares';
 import { redirectAuthMiddleware } from '../redirect-auth-middleware';
 import { userMiddlewares } from '../user/middlewares';
+import { instructorMiddlewares } from '../instructor/middlewares';
 // Imports: Redux Sagas
 
 export function* appMiddlewares() {
@@ -13,6 +14,7 @@ export function* appMiddlewares() {
         fork(redirectAppMiddleware),
         fork(courseMiddleware),
         fork(redirectAuthMiddleware),
-        fork(userMiddlewares)
+        fork(userMiddlewares),
+        fork(instructorMiddlewares),
     ]);
 };

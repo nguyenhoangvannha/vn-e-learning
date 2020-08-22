@@ -3,6 +3,7 @@ import { appState } from "./state";
 import { DO_CLEAR_APPSTATE_APP_ACTION } from "./actions";
 import { courseReducer } from "../course/reducer";
 import { userReducer } from "../user/reducer";
+import { instructorReducer } from "../instructor/reducer";
 
 const { authReducer } = require("../auth/reducer");
 
@@ -14,7 +15,8 @@ const appReducer = (state, action) => {
             return {
                 authState: authReducer(state.authState, action),
                 courseState: courseReducer(state.courseState, action),
-                userState: userReducer(state.userState, action)
+                userState: userReducer(state.userState, action),
+                instructorState: instructorReducer(state.instructorState, action)
             }
     }
 }

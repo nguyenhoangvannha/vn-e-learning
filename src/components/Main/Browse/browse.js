@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
@@ -17,8 +17,30 @@ import i18n from '../../../res/i18n'
 import { AuthorsContext } from '../../../provider/authors-provider'
 import { PathsContext } from '../../../provider/paths-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION } from '../../../feature/instructor/actions'
+import { Status, LoadStatus } from '../../../core/status'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import ListInstructorHor from '../../../components/Author/list_instructor_hor'
 
 const Browse = ({ }) => {
+
+
+    const instructorState = useSelector(state => state.instructorState)
+
+    const dispatch = useDispatch();
+
+    const [loadInstructorStatus, setLoadInstructorStatus] = useState(Status.idle())
+
+
+    useEffect(() => {
+
+        setLoadInstructorStatus(instructorState.status[DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION])
+
+        return () => {
+            //cleanup
+        }
+    }, [instructorState])
 
     const authorsContext = useContext(AuthorsContext)
 
@@ -46,7 +68,6 @@ const Browse = ({ }) => {
                 <SizedBox height={Sizes.s12} />
 
                 <ListCategory />
-
                 <PopularSkills
                     headerText={i18n.t('popular_skills')} />
                 <SizedBox height={Sizes.s12} />
@@ -60,10 +81,14 @@ const Browse = ({ }) => {
                         }
                     } />
                 <SizedBox height={Sizes.s28} />
-                <ListAuthors
-                    authorIds={Array.from(authorsContext.authors.keys())}
-                    horizontal={true}
-                    headerText={i18n.t('top_authors')} />
+                {
+                    loadInstructorStatus.loadStatus == LoadStatus.loading ? <CLoadingIndicator />
+                        : loadInstructorStatus.loadStatus == LoadStatus.success ? <ListInstructorHor
+                            instructors={Object.values(instructorState.instructors)} />
+                            : loadInstructorStatus.loadStatus == LoadStatus.error ? <Text>
+                                {loadInstructorStatus.message}
+                            </Text> : <View></View>
+                }
             </CScrollView>
         </ScreenContainer>
     )
