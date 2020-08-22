@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Strings from '../../../res/strings'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'

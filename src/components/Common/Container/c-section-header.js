@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import CText from '../Text/c-text'
 import Expanded from './expanded'
 import CIonIcon from '../Icon/c-ion-icon'

@@ -7,7 +7,7 @@ import { ThemeContext } from '../../../provider/theme-provider'
 import SizedBox from './sized-box'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 
 const CChip = ({ leading, title, onPress, style }) => {
 

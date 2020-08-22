@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import CText from '../Text/c-text'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import COpacityButton from './c-opacity-button'
 
 const CFlatButton = ({ style, leading, title, titleStyle, trailing , onPress}) => {

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import Alignment from "./alignment"
 import Sizes from "../sizes"
-import FlexDirection from '../../globals/flex-direction'
+import FlexDirection from '../../res/styles/flex-direction'
 import Colors from '../colors'
 import Constants from "expo-constants";
 

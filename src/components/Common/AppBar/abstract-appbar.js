@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import Constants from "expo-constants";
 import CSwitch from '../switch/c-switch'
 import { ThemeContext, themes } from '../../../provider/theme-provider'

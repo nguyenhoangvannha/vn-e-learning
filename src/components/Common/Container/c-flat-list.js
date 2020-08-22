@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 import Sizes from '../../../res/sizes'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import Alignment from '../../../res/styles/alignment'
 import CSectionHeader from './c-section-header'
 import ContentContainer from '../Screen/content-container'

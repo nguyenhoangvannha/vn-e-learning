@@ -6,11 +6,11 @@ import IconName from '../../../res/icon-name';
 import Expanded from '../Container/expanded';
 import CTextInput from '../TextField/c-text-input';
 import Sizes from '../../../res/sizes';
-import FontWeight from '../../../globals/font-weight';
+import FontWeight from '../../../res/styles/font-weight';
 import i18n from '../../../res/i18n';
 import COpacityButton from '../Button/c-opacity-button';
 import CText from '../Text/c-text';
-import FlexDirection from '../../../globals/flex-direction';
+import FlexDirection from '../../../res/styles/flex-direction';
 import Alignment from '../../../res/styles/alignment';
 import Colors from '../../../res/colors';
 

@@ -4,7 +4,7 @@ import { MenuOption } from 'react-native-popup-menu'
 import CText from '../Text/c-text'
 import Sizes from '../../../res/sizes'
 import CIonIcon from '../Icon/c-ion-icon'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import Alignment from '../../../res/styles/alignment'
 import { ThemeContext } from '../../../provider/theme-provider'
 
