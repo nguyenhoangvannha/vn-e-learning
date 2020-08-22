@@ -25,11 +25,18 @@ const getTopRateCourses = () => {
     });
 }
 
+const getCourseDetail = (courseId, userId) => {
+    return apiClient.get(`course/get-course-detail/${courseId}/${userId}`, {
+        
+    });
+}
+
 const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
     getTopNewCourses: getTopNewCourses,
     getTopSellCourses: getTopSellCourses,
     getTopRateCourses: getTopRateCourses,
+    getCourseDetail: getCourseDetail,
 }
 
 export {

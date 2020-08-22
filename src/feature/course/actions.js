@@ -7,6 +7,7 @@ export const SET_ADD_COURSE_ACTION = 'SET_ADD_COURSE_ACTION'
 export const SET_ADD_TOP_NEW_COURSE_ACTION = 'SET_ADD_TOP_NEW_COURSE_ACTION'
 export const SET_ADD_TOP_SELL_COURSE_ACTION = 'SET_ADD_TOP_SELL_COURSE_ACTION'
 export const SET_ADD_TOP_RATE_COURSE_ACTION = 'SET_ADD_TOP_RATE_COURSE_ACTION'
+export const DO_GET_COURSE_DETAIL_COURSE_ACTION = 'DO_GET_COURSE_DETAIL_COURSE_ACTION'
 
 const DoGetTotalNumerCoursesCourseAction = () => {
     return {
@@ -85,6 +86,16 @@ const SetStatusCourseAction = (statusKey, status) => {
         payload: {
             statusKey: statusKey,
             status: status,
+        }
+    }
+}
+
+export const DoGetCourseDetailCourseAction = (courseId, userId) => {
+    return {
+        type: DO_GET_COURSE_DETAIL_COURSE_ACTION,
+        payload: {
+            courseId: courseId,
+            userId: userId,
         }
     }
 }
