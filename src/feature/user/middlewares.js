@@ -7,12 +7,12 @@ import { UserRepo } from './repo/user_repo';
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* addFavouriteCourse(action) {
   try {
-    var statusKey = DO_ADD_FAVOURITE_COURSE_USER_ACTION
+    var statusKey = `${DO_ADD_FAVOURITE_COURSE_USER_ACTION}${action.payload.courseId}`
     yield put(SetStatusUserAction(statusKey, Status.loading()))
 
     const res = yield UserRepo.addFavouriteCourse(action.payload.courseId);
 
-    yield put(SetStatusUserAction(statusKey, Status.success()))
+    yield put(SetStatusUserAction(statusKey, Status.success(res.data.message, res.data.likeStatus)))
 
   } catch (e) {
     yield put(SetStatusUserAction(statusKey, Status.error(e.message)))

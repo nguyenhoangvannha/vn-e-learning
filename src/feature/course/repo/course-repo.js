@@ -68,6 +68,13 @@ const searchCourses = (keyword) => {
     return apiClient.post(`course/search`, body);
 }
 
+const getFavouriteCourses = () => {
+    var body = {
+    }
+
+    return apiClient.get(`user/get-favorite-courses`, body);
+}
+
 const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
     getTopNewCourses: getTopNewCourses,
@@ -78,6 +85,7 @@ const CourseRepo = {
     getAllCategory: getAllCategory,
     getCategoryCourses: getCategoryCourses,
     searchCourses: searchCourses,
+    getFavouriteCourses: getFavouriteCourses,
 }
 
 export {

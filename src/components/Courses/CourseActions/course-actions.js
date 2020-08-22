@@ -10,6 +10,8 @@ import IconName from '../../../res/icon-name'
 import i18n from '../../../res/i18n'
 import { FavouritesContext } from '../../../provider/favourites-provider'
 import { useSelector, useDispatch } from 'react-redux'
+import { DoAddFavouriteCourseUserAction, DO_ADD_FAVOURITE_COURSE_USER_ACTION } from '../../../feature/user/actions'
+import { Status, LoadStatus } from '../../../core/status'
 
 const Item = ({ bottomText, icon, onPress }) => {
     return (
@@ -25,6 +27,7 @@ const Item = ({ bottomText, icon, onPress }) => {
 
 const CourseActions = ({ style, courseId }) => {
 
+    const [addFavouriteStatus, setAddFavouriteStatus] = useState(Status.idle())
 
     const userState = useSelector(state => state.userState)
 
@@ -34,16 +37,26 @@ const CourseActions = ({ style, courseId }) => {
 
     var isFavourite = favouritesContext.favouriteCourses.has(courseId ?? '') ?? false;
 
+
+    useEffect(() => {
+
+        setAddFavouriteStatus(userState.status[`${DO_ADD_FAVOURITE_COURSE_USER_ACTION}${courseId}`])
+
+        return () => {
+            //cleanup
+        }
+    }, [userState])
+
+    const onPressFavourite = () => {
+        dispatch(DoAddFavouriteCourseUserAction(courseId))
+    }
+
     return (
         <View style={{ ...styles.container, ...style }}>
             <Item
-                icon={IconName.bookmarkOutline}
+                icon={IconName.mdHeart}
                 bottomText={isFavourite ? i18n.t('remove_favourite') : i18n.t('favourite')}
-                onPress={() => {
-                    isFavourite ?
-                        favouritesContext.removeFavouriteCourse(courseId)
-                        : favouritesContext.addFavouriteCourse(courseId)
-                }} />
+                onPress={() => onPressFavourite()} />
             <Item
                 icon={IconName.iosRadio}
                 bottomText={i18n.t('add_to_channel')} />

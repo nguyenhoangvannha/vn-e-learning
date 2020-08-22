@@ -12,7 +12,9 @@ import {
     DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION,
     SetCourseByCategoryCourseAction,
     DO_SEARCH_COURSE_COURSE_ACTION,
-    SetSearchResultCourseAction
+    SetSearchResultCourseAction,
+    DO_GET_FAVOURITES_COURSE_ACTION,
+    SetFavouritesCourseAction
 } from './actions'
 import { Status } from '../../core/status'
 import { CourseRepo } from './repo/course-repo';
@@ -206,7 +208,25 @@ function* searchCourses(action) {
         yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
     } catch (e) {
         yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
-    } finally{
+    } finally {
+        yield put(SetStatusCourseAction(statusKey, Status.idle()))
+    }
+}
+
+function* getFavouriteCourses(action) {
+    const statusKey = DO_GET_FAVOURITES_COURSE_ACTION;
+
+    try {
+        yield put(SetStatusCourseAction(statusKey, Status.loading()))
+
+        const res = yield CourseRepo.getFavouriteCourses()
+
+        yield put(SetFavouritesCourseAction(res.data?.payload ?? []))
+
+        yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
+    } catch (e) {
+        yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
+    } finally {
         yield put(SetStatusCourseAction(statusKey, Status.idle()))
     }
 }
@@ -221,6 +241,7 @@ function* courseMiddleware() {
     yield takeEvery(DO_GET_ALL_CATEGORY_COURSE_ACTION, getAllCategory);
     yield takeEvery(DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION, getCategoryCourses);
     yield takeEvery(DO_SEARCH_COURSE_COURSE_ACTION, searchCourses);
+    yield takeEvery(DO_GET_FAVOURITES_COURSE_ACTION, getFavouriteCourses);
 }
 
 export { courseMiddleware }

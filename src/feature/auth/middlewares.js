@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction, DO_REGISTER_AUTH_ACTION, DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION } from './actions';
+import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction, DO_REGISTER_AUTH_ACTION, DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION, SetAxiosTokenAuthAction } from './actions';
 import { Status } from '../../core/status'
 import { AuthRepo } from './repo/auth-repo';
 
@@ -12,6 +12,7 @@ function* login(action) {
     const res = yield AuthRepo.login(action.payload.email, action.payload.password);
 
     yield put(SetUserTokenAuthAction(res.data.token))
+    yield put(SetAxiosTokenAuthAction(res.data.token))
     yield put(SetUserInfoAuthAction(res.data.userInfo))
     yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.success('Success', res.data)))
 

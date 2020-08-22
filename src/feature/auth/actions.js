@@ -9,6 +9,16 @@ const AuthAction = {
 export const DO_CLEAR_APPSTATE_AUTH_ACTION = 'DO_CLEAR_APPSTATE_AUTH_ACTION'
 export const DO_REGISTER_AUTH_ACTION = 'DO_REGISTER_AUTH_ACTION'
 export const DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION = 'DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION'
+export const SET_AXIOS_CLIENT_TOKEN_AUTH_ACTION = 'SET_AXIOS_CLIENT_TOKEN_AUTH_ACTION'
+
+export const SetAxiosTokenAuthAction = (token) => {
+    return {
+        type: SET_AXIOS_CLIENT_TOKEN_AUTH_ACTION,
+        payload: {
+            token: token,
+        }
+    }
+}
 
 export const DoSendForgetPasswordEmailAuthAction = (email) => {
     return {

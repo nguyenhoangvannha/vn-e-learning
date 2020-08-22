@@ -16,6 +16,25 @@ export const DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION = 'DO_GET_COURSE_BY_CATEGOR
 export const SET_COURSE_BY_CATEGORY_COURSE_ACTION = 'SET_COURSE_BY_CATEGORY_COURSE_ACTION'
 export const DO_SEARCH_COURSE_COURSE_ACTION = 'DO_SEARCH_COURSE_COURSE_ACTION'
 export const SET_SEARCH_RESULTS_COURSE_ACTION = 'SET_SEARCH_RESULTS_COURSE_ACTION'
+export const DO_GET_FAVOURITES_COURSE_ACTION = 'DO_GET_FAVOURITES_COURSE_ACTION'
+export const SET_FAVOURITES_COURSE_ACTION = 'SET_FAVOURITES_COURSE_ACTION'
+
+export const DoGetFavouritesCourseAction = () => {
+    return {
+        type: DO_GET_FAVOURITES_COURSE_ACTION,
+        payload: {
+        }
+    }
+}
+
+export const SetFavouritesCourseAction = (courses) => {
+    return {
+        type: SET_FAVOURITES_COURSE_ACTION,
+        payload: {
+            courses: courses
+        }
+    }
+}
 
 export const DoSearchCourseCourseAction = (keyword) => {
     return {

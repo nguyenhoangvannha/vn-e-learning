@@ -1,10 +1,17 @@
 import {
     DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SET_STATUS_COURSE_ACTION, SET_ADD_COURSE_ACTION, SET_ADD_TOP_NEW_COURSE_ACTION, SET_ADD_TOP_SELL_COURSE_ACTION, SET_ADD_TOP_RATE_COURSE_ACTION, SET_ADD_RECOMMEND_COURSE_ACTION, SET_ADD_CATEGORY_COURSE_ACTION, SET_COURSE_BY_CATEGORY_COURSE_ACTION,
-    SET_SEARCH_RESULTS_COURSE_ACTION
+    SET_SEARCH_RESULTS_COURSE_ACTION,
+    SET_FAVOURITES_COURSE_ACTION
 } from "./actions";
 
 export const courseReducer = (courseState, action) => {
     switch (action.type) {
+        case SET_FAVOURITES_COURSE_ACTION:
+            return {
+                ...courseState,
+                favouriteCourses: action.payload.courses
+            }
+            break;
         case SET_SEARCH_RESULTS_COURSE_ACTION:
             return {
                 ...courseState,
