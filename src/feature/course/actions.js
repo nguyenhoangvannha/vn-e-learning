@@ -14,7 +14,26 @@ export const DO_GET_ALL_CATEGORY_COURSE_ACTION = 'DO_GET_ALL_CATEGORY_COURSE_ACT
 export const SET_ADD_CATEGORY_COURSE_ACTION = 'SET_ADD_CATEGORY_COURSE_ACTION'
 export const DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION = 'DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION'
 export const SET_COURSE_BY_CATEGORY_COURSE_ACTION = 'SET_COURSE_BY_CATEGORY_COURSE_ACTION'
+export const DO_SEARCH_COURSE_COURSE_ACTION = 'DO_SEARCH_COURSE_COURSE_ACTION'
+export const SET_SEARCH_RESULTS_COURSE_ACTION = 'SET_SEARCH_RESULTS_COURSE_ACTION'
 
+export const DoSearchCourseCourseAction = (keyword) => {
+    return {
+        type: DO_SEARCH_COURSE_COURSE_ACTION,
+        payload: {
+            keyword: keyword
+        }
+    }
+}
+
+export const SetSearchResultCourseAction = (courses) => {
+    return {
+        type: SET_SEARCH_RESULTS_COURSE_ACTION,
+        payload: {
+            courses: courses
+        }
+    }
+}
 
 export const DoGetCourseByCategoryCourseAction = (category) => {
     return {

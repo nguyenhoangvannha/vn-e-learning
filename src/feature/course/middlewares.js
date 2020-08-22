@@ -10,7 +10,9 @@ import {
     DO_GET_ALL_CATEGORY_COURSE_ACTION,
     SetAddCategoriesCourseAction,
     DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION,
-    SetCourseByCategoryCourseAction
+    SetCourseByCategoryCourseAction,
+    DO_SEARCH_COURSE_COURSE_ACTION,
+    SetSearchResultCourseAction
 } from './actions'
 import { Status } from '../../core/status'
 import { CourseRepo } from './repo/course-repo';
@@ -189,6 +191,26 @@ function* getCategoryCourses(action) {
     }
 }
 
+function* searchCourses(action) {
+    const statusKey = DO_SEARCH_COURSE_COURSE_ACTION;
+
+    try {
+        yield put(SetStatusCourseAction(statusKey, Status.loading()))
+
+        var payload = action.payload
+
+        const res = yield CourseRepo.searchCourses(payload.keyword)
+
+        yield put(SetSearchResultCourseAction(res.data?.payload?.rows ?? []))
+
+        yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
+    } catch (e) {
+        yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
+    } finally{
+        yield put(SetStatusCourseAction(statusKey, Status.idle()))
+    }
+}
+
 function* courseMiddleware() {
     yield takeEvery(DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, getTotalNumberCourse);
     yield takeEvery(DO_GET_TOP_NEW_COURSE_ACTION, getTopNewCourse);
@@ -198,6 +220,7 @@ function* courseMiddleware() {
     yield takeEvery(DO_GET_RECOMMEND_COURSE_COURSE_ACTION, getRecommendCourses);
     yield takeEvery(DO_GET_ALL_CATEGORY_COURSE_ACTION, getAllCategory);
     yield takeEvery(DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION, getCategoryCourses);
+    yield takeEvery(DO_SEARCH_COURSE_COURSE_ACTION, searchCourses);
 }
 
 export { courseMiddleware }

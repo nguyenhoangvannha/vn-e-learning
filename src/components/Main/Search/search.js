@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import CSearchBar from '../../Common/Search/c-search-bar'
 import Styles from '../../../res/styles/styles'
@@ -19,10 +19,36 @@ import { PathsContext } from '../../../provider/paths-provider'
 import { AuthorsContext } from '../../../provider/authors-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { ThemeContext } from '../../../provider/theme-provider'
+import { useSelector, useDispatch } from 'react-redux'
+import { Status, LoadStatus } from '../../../core/status'
+import { DO_SEARCH_COURSE_COURSE_ACTION, DoSearchCourseCourseAction } from '../../../feature/course/actions'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import ErrorText from '../../Common/error/error-text'
+import CText from '../../Common/Text/c-text'
+import CFlatButton from '../../Common/Button/c-flat-button'
+import SectionCourses from '../../Courses/SectionCourses/section-courses'
 
 const Tab = createMaterialTopTabNavigator();
 
 const Search = () => {
+    const courseState = useSelector(state => state.courseState)
+
+    const dispatch = useDispatch();
+
+    const [searchStatus, setSearchStatus] = useState(Status.idle())
+
+    const [currentKeyword, setCurrentKeyword] = useState('')
+
+
+    useEffect(() => {
+
+        setSearchStatus(courseState.status[DO_SEARCH_COURSE_COURSE_ACTION])
+
+        return () => {
+            //cleanup
+        }
+    }, [courseState])
+
     const coursesContext = useContext(CoursesContext)
 
     const pathsContext = useContext(PathsContext)
@@ -66,52 +92,34 @@ const Search = () => {
     }
 
     function search(keyword) {
-        setSuggestions([])
-        setCourseIds([])
-        setPathIds([])
-        setAuthorIds([])
-
-        const lKeyword = keyword.toLowerCase().trim();
-
-        const resultSuggestions = [];
-
-        const resultCourseIds = [];
-
-        const resultPathIds = [];
-
-        const resultAuthorIds = [];
-
-        coursesContext.courses.forEach((value, key) => {
-            if (value.name.toLowerCase().search(lKeyword) >= 0) {
-                resultCourseIds.push(key)
-                resultSuggestions.push(value.name)
-            }
-        })
-
-        pathsContext.paths.forEach((value, key) => {
-            if (value.name.toLowerCase().search(lKeyword) >= 0) {
-                resultPathIds.push(key)
-                resultSuggestions.push(value.name)
-            }
-        })
-
-        authorsContext.authors.forEach((value, key) => {
-            if (value.name.toLowerCase().search(lKeyword) >= 0) {
-                resultAuthorIds.push(key)
-                resultSuggestions.push(value.name)
-            }
-        })
-
-        setCourseIds(resultCourseIds)
-        setPathIds(resultPathIds)
-        setAuthorIds(resultAuthorIds)
-        setSuggestions(resultSuggestions)
-        console.log('setSuggestions', suggestions.length)
+        dispatch(DoSearchCourseCourseAction(keyword))
     }
 
     function onPressDone() {
-        setSearching(false)
+        search(currentKeyword)
         console.log('onPressDone', searching)
+    }
+
+    const build = () => {
+        var loadStatus = searchStatus.loadStatus
+
+        return loadStatus === LoadStatus.loading ? <CLoadingIndicator /> :
+            loadStatus === LoadStatus.error ? <ErrorText text={searchStatus.message} /> :
+                buildCourses()
+    }
+
+    const buildCourses = () => {
+        if(courseState.searchResults.length == 0)
+        return (
+            <SearchGuideScreen
+            title={i18n.t('not_found')}
+            />
+        )
+        return (
+            <SectionCourses
+                data={courseState.searchResults}
+            />
+        )
     }
 
     const buildResult = () => {
@@ -155,17 +163,19 @@ const Search = () => {
             <CCard style={styles.searchBar}>
                 <CSearchBar
                     onTextChange={(value) => {
-                        console.log('onTextChange', value)
-                        if (value === '') {
-                            setSearching(false)
-                        } else {
-                            setSearching(true)
-                            search(value)
-                        }
+                        setCurrentKeyword(value)
+                        // console.log('onTextChange', value)
+                        // if (value === '') {
+                        //     setSearching(false)
+                        // } else {
+                        //     setSearching(true)
+                        //     search(value)
+                        // }
                     }}
                     onPressDone={onPressDone} />
             </CCard>
-            {searching == undefined ? buildInit() : (searching === true ? buildSuggestion() : buildResult())}
+            {build()}
+            {/* {searching == undefined ? buildInit() : (searching === true ? buildSuggestion() : buildResult())} */}
         </ScreenContainer>
     )
 }

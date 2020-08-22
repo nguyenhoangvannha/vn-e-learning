@@ -55,7 +55,16 @@ const getCategoryCourses = (category) => {
         "offset": 1
     }
 
-    console.log('DEBUG getCategoryCourses', body)
+    return apiClient.post(`course/search`, body);
+}
+
+const searchCourses = (keyword) => {
+    var body = {
+        "keyword": keyword,
+        "limit": 2000,
+        "offset": 1
+    }
+
     return apiClient.post(`course/search`, body);
 }
 
@@ -68,6 +77,7 @@ const CourseRepo = {
     getRecommendCourses: getRecommendCourses,
     getAllCategory: getAllCategory,
     getCategoryCourses: getCategoryCourses,
+    searchCourses: searchCourses,
 }
 
 export {
