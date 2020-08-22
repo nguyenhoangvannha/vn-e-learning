@@ -57,9 +57,6 @@ function* sendForgetPasswordEmail(action) {
 
     yield put(SetStatusAuthAction(statusKey, Status.loading()))
 
-    yield put(SetStatusAuthAction(statusKey, Status.success()))
-    return;
-
     var payload = action.payload;
 
     const res = yield AuthRepo.sendForgetPasswordEmail(payload.email);

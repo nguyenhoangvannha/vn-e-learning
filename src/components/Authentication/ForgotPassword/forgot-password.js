@@ -46,11 +46,14 @@ const ForgotPassword = () => {
                 setError(sendEmailStatus.message)
                 break;
             case LoadStatus.success:
-                setSendSuccess(true)
+                setSendSuccess(sendEmailStatus.loadStatus == LoadStatus.success)
                 break;
+            case LoadStatus.loading:
+            case LoadStatus.completed:
             default:
                 break;
         }
+
 
         return () => {
             //cleanup
