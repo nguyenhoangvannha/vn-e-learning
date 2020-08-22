@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CIconButton from '../../Common/Button/c-icon-button'
 import Colors from '../../../res/colors'
@@ -9,6 +9,7 @@ import FlexDirection from '../../../globals/flex-direction'
 import IconName from '../../../res/icon-name'
 import i18n from '../../../res/i18n'
 import { FavouritesContext } from '../../../provider/favourites-provider'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Item = ({ bottomText, icon, onPress }) => {
     return (
@@ -23,6 +24,11 @@ const Item = ({ bottomText, icon, onPress }) => {
 }
 
 const CourseActions = ({ style, courseId }) => {
+
+
+    const userState = useSelector(state => state.userState)
+
+    const dispatch = useDispatch();
 
     const favouritesContext = useContext(FavouritesContext)
 

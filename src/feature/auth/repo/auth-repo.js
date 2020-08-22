@@ -1,4 +1,4 @@
-import { apiClient } from "../axios-config";
+import { apiClient } from "../../axios-config";
 
 const login = (email, password) => {
     return apiClient.post('user/login', {

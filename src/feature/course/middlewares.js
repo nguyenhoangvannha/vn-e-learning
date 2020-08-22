@@ -4,7 +4,7 @@ import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SetStatusCourseAction, DO_GET
     DO_GET_TOP_RATE_COURSE_ACTION,
     SetAddTopRateCourseAction} from './actions'
 import { Status } from '../../core/status'
-import { CourseRepo } from '../../repo/course/course-repo'
+import { CourseRepo } from './repo/course-repo';
 
 function* getTotalNumberCourse(action) {
     const statusKey = DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION;

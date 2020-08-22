@@ -1,4 +1,4 @@
-import { apiClient } from "../axios-config"
+import { apiClient } from "../../axios-config"
 
 const getTotalNumerCourses = () => {
     return apiClient.get('course/total-number');

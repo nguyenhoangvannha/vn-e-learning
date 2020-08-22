@@ -37,18 +37,18 @@ const CourseDetail = ({ route }) => {
     console.log('received', course.authors)
 
     const onShare = () => {
-        ShareUtils.share({ message: course.name })
+        ShareUtils.share({ message: course.title })
     };
 
     return (
         <ScreenContainer style={Styles.fullScreen}>
             <CAppBar
-                title={course.name}
+                title={course.title}
                 trailing={
                     <CIonIcon
                         name={IconName.mdShare}
                         onPress={onShare} />} />
-            <VideoView uri={course.image} style={styles.videoView} />
+            <VideoView uri={course.imageUrl} style={styles.videoView} />
             <CScrollView
                 style={Styles.screenContainer}>
                 <SizedBox height={Sizes.s10} />
@@ -63,7 +63,7 @@ const CourseDetail = ({ route }) => {
                     courseId={course.id ?? ''}
                     style={styles.courseActions} />
                 <SizedBox height={Sizes.s8} />
-                <CText data={course.introduce} />
+                <CText data={course.description} />
                 <SizedBox height={Sizes.s12} />
                 <CButton title={i18n.t('take_a_learning_check')} color={Colors.gray} />
                 <SizedBox height={Sizes.s8} />

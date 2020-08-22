@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction } from './actions';
-import { AuthRepo } from '../../repo/auth/auth-repo';
 import { Status } from '../../core/status'
+import { AuthRepo } from './repo/auth-repo';
 
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
