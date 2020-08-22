@@ -13,7 +13,7 @@ function* login(action) {
 
     yield put(SetUserTokenAuthAction(res.data.token))
     yield put(SetUserInfoAuthAction(res.data.userInfo))
-    yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.success()))
+    yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.success('Success', res.data)))
 
   } catch (e) {
     yield put(SetStatusAuthAction(AuthAction.DoLoginAuthAction, Status.error(e.message)))

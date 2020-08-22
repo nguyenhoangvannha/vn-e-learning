@@ -31,12 +31,19 @@ const getCourseDetail = (courseId, userId) => {
     });
 }
 
+const getRecommendCourses = (userId, limit, offset) => {
+    return apiClient.get(`user/recommend-course/${userId}/${limit}/${offset}`, {
+        
+    });
+}
+
 const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
     getTopNewCourses: getTopNewCourses,
     getTopSellCourses: getTopSellCourses,
     getTopRateCourses: getTopRateCourses,
     getCourseDetail: getCourseDetail,
+    getRecommendCourses: getRecommendCourses,
 }
 
 export {

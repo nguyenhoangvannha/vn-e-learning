@@ -3,7 +3,9 @@ import { DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, SetStatusCourseAction, DO_GET
     SetAddTopSellCourseAction,  
     DO_GET_TOP_RATE_COURSE_ACTION,
     SetAddTopRateCourseAction,
-    DO_GET_COURSE_DETAIL_COURSE_ACTION} from './actions'
+    DO_GET_COURSE_DETAIL_COURSE_ACTION,
+    DO_GET_RECOMMEND_COURSE_COURSE_ACTION,
+    SetAddRecommendCourseAction} from './actions'
 import { Status } from '../../core/status'
 import { CourseRepo } from './repo/course-repo';
 
@@ -112,12 +114,37 @@ function* getCourseDetail(action) {
     }
 }
 
+function* getRecommendCourses(action) {
+    const statusKey = DO_GET_RECOMMEND_COURSE_COURSE_ACTION;
+
+    try {
+        yield put(SetStatusCourseAction(statusKey, Status.loading()))
+        const res = yield CourseRepo.getRecommendCourses(action.payload.userId, action.payload.limit, action.payload.offset)
+
+        var courses = res.data.payload.reduce(function (map, course) {
+            map[course.id] = course;
+            return map;
+        }, {});
+
+        yield put(SetAddCourseAction(courses))
+
+        var recommendCourses = res.data.payload.map((course) => course.id);
+
+        yield put(SetAddRecommendCourseAction(recommendCourses))
+
+        yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
+    } catch (e) {
+        yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
+    }
+}
+
 function* courseMiddleware() {
     yield takeEvery(DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, getTotalNumberCourse);
     yield takeEvery(DO_GET_TOP_NEW_COURSE_ACTION, getTopNewCourse);
     yield takeEvery(DO_GET_TOP_SELL_COURSE_ACTION, getTopSellCourse);
     yield takeEvery(DO_GET_TOP_RATE_COURSE_ACTION, getTopRateCourse);
     yield takeEvery(DO_GET_COURSE_DETAIL_COURSE_ACTION, getCourseDetail);
+    yield takeEvery(DO_GET_RECOMMEND_COURSE_COURSE_ACTION, getRecommendCourses);
 }
 
 export { courseMiddleware }

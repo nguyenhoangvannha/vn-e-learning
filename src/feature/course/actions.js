@@ -8,6 +8,28 @@ export const SET_ADD_TOP_NEW_COURSE_ACTION = 'SET_ADD_TOP_NEW_COURSE_ACTION'
 export const SET_ADD_TOP_SELL_COURSE_ACTION = 'SET_ADD_TOP_SELL_COURSE_ACTION'
 export const SET_ADD_TOP_RATE_COURSE_ACTION = 'SET_ADD_TOP_RATE_COURSE_ACTION'
 export const DO_GET_COURSE_DETAIL_COURSE_ACTION = 'DO_GET_COURSE_DETAIL_COURSE_ACTION'
+export const DO_GET_RECOMMEND_COURSE_COURSE_ACTION = 'DO_GET_RECOMMEND_COURSE_COURSE_ACTION'
+export const SET_ADD_RECOMMEND_COURSE_ACTION = 'SET_ADD_RECOMMEND_COURSE_ACTION'
+
+export const DoGetRecommendCourseCourseAction = (userId) => {
+    return {
+        type: DO_GET_RECOMMEND_COURSE_COURSE_ACTION,
+        payload: {
+            userId: userId,
+            limit: 10,
+            offset: 1
+        }
+    }
+}
+
+export const SetAddRecommendCourseAction = (courseIds) => {
+    return {
+        type: SET_ADD_RECOMMEND_COURSE_ACTION,
+        payload: {
+            courseIds: courseIds
+        }
+    }
+}
 
 const DoGetTotalNumerCoursesCourseAction = () => {
     return {

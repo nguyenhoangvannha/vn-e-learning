@@ -17,13 +17,17 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
 import ContentContainer from '../../Common/Screen/content-container'
 import { useSelector, useDispatch } from 'react-redux'
-import {  DO_GET_TOP_NEW_COURSE_ACTION } from '../../../feature/course/actions'
+import { DO_GET_TOP_NEW_COURSE_ACTION, DoGetRecommendCourseCourseAction, DO_GET_RECOMMEND_COURSE_COURSE_ACTION } from '../../../feature/course/actions'
 import { LoadStatus, Status } from '../../../core/status'
 import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import CFlatButton from '../../Common/Button/c-flat-button'
+import { ActivityIndicator } from 'react-native-paper'
 
 const Home = ({ props }) => {
 
     const courseState = useSelector(state => state.courseState)
+
+    const authState = useSelector(state => state.authState)
 
     var allCourses = courseState.courses;
 
@@ -31,12 +35,16 @@ const Home = ({ props }) => {
 
     const [loading, setLoading] = useState(false)
 
+    const [recommendCoursesStatus, setRecommendCoursesStatus] = useState(Status.idle())
+
 
     useEffect(() => {
 
         const loadTopNewCoursesStatus = courseState.status[DO_GET_TOP_NEW_COURSE_ACTION]
 
         setLoading(loadTopNewCoursesStatus.loadStatus === LoadStatus.loading)
+
+        setRecommendCoursesStatus(courseState.status[DO_GET_RECOMMEND_COURSE_COURSE_ACTION])
 
         return () => {
             //cleanup
@@ -48,6 +56,7 @@ const Home = ({ props }) => {
     }
 
     const buildSectionCourses = (title, courseIds) => {
+        console.log('DEBUG BUILD ', title, courseIds)
         return (
             courseIds.length == 0 ?
                 <View /> :
@@ -84,11 +93,14 @@ const Home = ({ props }) => {
                         <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
                     </CImageButton>
                     {buildContinueLearning(i18n.t('continue_learning'))}
-                     {loading ? <CLoadingIndicator/> :  buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses)}
+                    {recommendCoursesStatus.loadStatus === LoadStatus.loading ? <ActivityIndicator /> :  buildSectionCourses(i18n.t('recommend_for_you'), courseState.recommendCourses)}
+                    <SizedBox height={Sizes.s12} />
+                    {loading ? <ActivityIndicator /> : buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses)}
                     <SizedBox height={Sizes.s12} />
                     {buildSectionCourses(i18n.t('top_sell_courses'), courseState.topSellCourses)}
                     <SizedBox height={Sizes.s12} />
                     {buildSectionCourses(i18n.t('top_rate_courses'), courseState.topRateCourses)}
+
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>

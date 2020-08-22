@@ -92,5 +92,6 @@
   "password_not_match": "Password not match",
   "password_atless_x_char": "Password atless %s char",
   "wrong_email": "Wrong email address",
-  "account_not_found": "Account not found"
+  "account_not_found": "Account not found",
+  "recommend_for_you": "Recommend for you"
 }
