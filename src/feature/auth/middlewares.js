@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction, DO_REGISTER_AUTH_ACTION } from './actions';
+import { AuthAction, SetUserTokenAuthAction, SetUserInfoAuthAction, SetStatusAuthAction, DoClearAppStateAuthAction, DO_REGISTER_AUTH_ACTION, DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION } from './actions';
 import { Status } from '../../core/status'
 import { AuthRepo } from './repo/auth-repo';
 
@@ -51,6 +51,28 @@ function* logout(action) {
   }
 }
 
+function* sendForgetPasswordEmail(action) {
+  try {
+    var statusKey = DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION;
+
+    yield put(SetStatusAuthAction(statusKey, Status.loading()))
+
+    yield put(SetStatusAuthAction(statusKey, Status.success()))
+    return;
+
+    var payload = action.payload;
+
+    const res = yield AuthRepo.sendForgetPasswordEmail(payload.email);
+
+    yield put(SetStatusAuthAction(statusKey, Status.success()))
+
+  } catch (e) {
+    yield put(SetStatusAuthAction(statusKey, Status.error(e.message)))
+  } finally {
+    yield put(SetStatusAuthAction(statusKey, Status.idle()))
+  }
+}
+
 /*
   Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
   Allows concurrent fetches of user.
@@ -59,6 +81,7 @@ function* authMiddlewares() {
   yield takeEvery(AuthAction.DoLoginAuthAction, login);
   yield takeEvery(AuthAction.DoLogoutAuthAction, logout);
   yield takeEvery(DO_REGISTER_AUTH_ACTION, register);
+  yield takeEvery(DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION, sendForgetPasswordEmail);
 }
 
 /*

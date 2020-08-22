@@ -16,9 +16,16 @@ const register = (email, username, phone, password) => {
     });
 }
 
+const sendForgetPasswordEmail = (email) => {
+    return apiClient.post('user/forget-pass/send-email', {
+        "email": email
+    });
+}
+
 const AuthRepo = {
     login: login,
     register: register,
+    sendForgetPasswordEmail: sendForgetPasswordEmail,
 }
 
 export { AuthRepo }

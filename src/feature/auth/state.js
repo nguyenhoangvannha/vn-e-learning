@@ -1,4 +1,4 @@
-import { AuthAction, DO_REGISTER_AUTH_ACTION } from "./actions"
+import { AuthAction, DO_REGISTER_AUTH_ACTION, DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION } from "./actions"
 import { Status } from "../../core/status";
 
 const DoLoginAuthAction = AuthAction.DoLoginAuthAction;
@@ -12,6 +12,7 @@ const authState = () => {
             DoLoginAuthAction: Status.idle(),
             DO_REGISTER_AUTH_ACTION: Status.idle(),
             DoLogoutAuthAction: Status.idle(),
+            DO_SEND_FORGET_PASSWORD_EMAIL_AUTH_ACTION: Status.idle(),
         }
     }
 }
