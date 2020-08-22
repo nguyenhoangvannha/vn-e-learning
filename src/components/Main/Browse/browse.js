@@ -18,7 +18,7 @@ import { AuthorsContext } from '../../../provider/authors-provider'
 import { PathsContext } from '../../../provider/paths-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { useSelector, useDispatch } from 'react-redux'
-import { DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION } from '../../../feature/instructor/actions'
+import { DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION, DoGetInstructorDetail } from '../../../feature/instructor/actions'
 import { Status, LoadStatus } from '../../../core/status'
 import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
 import ListInstructorHor from '../../../components/Author/list_instructor_hor'
@@ -48,6 +48,14 @@ const Browse = ({ }) => {
 
     const onNewReleasesPressed = () => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
+    }
+
+    const onInstructorItemPressed = (author) => {
+        dispatch(DoGetInstructorDetail(author['id']))
+
+        RootNavigation.navigate(Routes.AuthorScreen, {
+            instructorId: author['id'],
+        })
     }
 
     return (
@@ -83,8 +91,11 @@ const Browse = ({ }) => {
                 <SizedBox height={Sizes.s28} />
                 {
                     loadInstructorStatus.loadStatus == LoadStatus.loading ? <CLoadingIndicator />
-                        : loadInstructorStatus.loadStatus == LoadStatus.success ? <ListInstructorHor
-                            instructors={Object.values(instructorState.instructors)} />
+                        : loadInstructorStatus.loadStatus == LoadStatus.success ?
+                            <ListInstructorHor
+                                instructors={Object.values(instructorState.instructors)}
+                                onItemPressed={(item) => onInstructorItemPressed(item)}
+                            />
                             : loadInstructorStatus.loadStatus == LoadStatus.error ? <Text>
                                 {loadInstructorStatus.message}
                             </Text> : <View></View>

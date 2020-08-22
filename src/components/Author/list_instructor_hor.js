@@ -5,17 +5,21 @@ import ProfileTileVer from '../Common/Profile/profile-tile-ver'
 import CFlatList from '../Common/Container/c-flat-list'
 import CDivider from '../Common/Container/c-divider'
 import Sizes from '../../res/sizes'
+import { RootNavigation } from '../../routes/navigations/root-navigation'
+import Routes from '../../routes/routes'
 
 export default function ListInstructorHor({
-    instructors
+    instructors,
+    onItemPressed,
 }) {
 
     const buildItem = (author) => {
         return (
             <ProfileTileVer
-                title={author['user.name']}
+                title={author['user.name'] ?? author.name}
                 image={author['user.avatar']}
                 style={styles.authorItemVer}
+                onPress={() => onItemPressed(author)}
             />
         )
     }

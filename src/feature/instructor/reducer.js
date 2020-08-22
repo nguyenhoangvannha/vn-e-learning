@@ -1,4 +1,4 @@
-import { SET_STATUS_INSTRUCTOR_ACTION, SET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION } from "./actions";
+import { SET_STATUS_INSTRUCTOR_ACTION, SET_ADD_INSTRUCTOR_INSTRUCTOR_ACTION } from "./actions";
 
 function instructorReducer
     (instructorState, action) {
@@ -18,7 +18,7 @@ function instructorReducer
                 ...instructorState,
                 status: status
             }
-        case SET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION:
+        case SET_ADD_INSTRUCTOR_INSTRUCTOR_ACTION:
             return {
                 ...instructorState,
                 instructors: {

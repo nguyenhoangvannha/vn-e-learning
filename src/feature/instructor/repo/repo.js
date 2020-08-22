@@ -5,8 +5,14 @@ const getAllInstructor = (courseId) => {
     });
 }
 
+const getInstructorDetails = (instructorId) => {
+    return apiClient.get(`instructor/detail/${instructorId}`, {
+    });
+}
+
 const InstructorRepo = {
     getAllInstructor: getAllInstructor,
+    getInstructorDetails: getInstructorDetails,
 }
 
 export { InstructorRepo }

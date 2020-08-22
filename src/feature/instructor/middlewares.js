@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { Status } from '../../core/status'
-import { DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION, SetStatusInstructor, SetAllInstructor } from './actions';
+import { DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION, SetStatusInstructor, SetAddInstructor, DO_GET_INSTRUCTOR_DETAIL_INSTRUCTOR_ACTION } from './actions';
 import { InstructorRepo } from './repo/repo';
 
 
@@ -14,9 +14,28 @@ function* getAllInstructor(action) {
     var instructors = res.data.payload.reduce(function (map, item) {
       map[item.id] = item;
       return map;
-  }, {});
+    }, {});
 
-    yield put(SetAllInstructor(instructors))
+    yield put(SetAddInstructor(instructors))
+
+    yield put(SetStatusInstructor(statusKey, Status.success()))
+
+  } catch (e) {
+    yield put(SetStatusInstructor(statusKey, Status.error(e.message)))
+  }
+}
+
+function* getInstructorDetails(action) {
+  try {
+    var statusKey = `${DO_GET_INSTRUCTOR_DETAIL_INSTRUCTOR_ACTION}${action.payload.instructorId}`
+    yield put(SetStatusInstructor(statusKey, Status.loading()))
+
+    const res = yield InstructorRepo.getInstructorDetails(action.payload.instructorId);
+    var instructors = {}
+
+    instructors[res.data.payload.id] = res.data.payload
+
+    yield put(SetAddInstructor(instructors))
 
     yield put(SetStatusInstructor(statusKey, Status.success()))
 
@@ -31,6 +50,7 @@ function* getAllInstructor(action) {
 */
 function* instructorMiddlewares() {
   yield takeEvery(DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION, getAllInstructor);
+  yield takeEvery(DO_GET_INSTRUCTOR_DETAIL_INSTRUCTOR_ACTION, getInstructorDetails);
 }
 
 /*
