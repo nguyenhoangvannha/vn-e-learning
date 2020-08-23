@@ -2,6 +2,7 @@ import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { Status } from '../../core/status'
 import { DO_ADD_FAVOURITE_COURSE_USER_ACTION, SetStatusUserAction } from './actions';
 import { UserRepo } from './repo/user_repo';
+import { DoGetFavouritesCourseAction } from '../course/actions';
 
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
@@ -11,6 +12,8 @@ function* addFavouriteCourse(action) {
     yield put(SetStatusUserAction(statusKey, Status.loading()))
 
     const res = yield UserRepo.addFavouriteCourse(action.payload.courseId);
+
+    yield put(DoGetFavouritesCourseAction());
 
     yield put(SetStatusUserAction(statusKey, Status.success(res.data.message, res.data.likeStatus)))
 

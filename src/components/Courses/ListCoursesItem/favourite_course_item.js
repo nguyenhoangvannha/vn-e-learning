@@ -15,6 +15,7 @@ import i18n from '../../../res/i18n'
 import CFlatList from '../../Common/Container/c-flat-list'
 import CText from '../../Common/Text/c-text'
 import Styles from '../../../res/styles/styles'
+import CDivider from '../../Common/Container/c-divider'
 
 export const FavouriteCourseList = ({ courses }) => {
     return (
