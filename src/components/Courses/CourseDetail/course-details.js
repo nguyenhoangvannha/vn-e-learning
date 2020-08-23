@@ -63,7 +63,7 @@ const CourseDetail = ({ route }) => {
 
     const theme = themeContext.theme
 
-    const onShare = () => {
+    const onShare = (course) => {
         ShareUtils.share({ message: course.title })
     }
 
@@ -123,7 +123,7 @@ const CourseDetail = ({ route }) => {
                     trailing={
                         <CIonIcon
                             name={IconName.mdShare}
-                            onPress={onShare} />} />
+                            onPress={() => onShare(course)} />} />
                 <VideoView uri={course.imageUrl} style={styles.videoView} />
                 <Tab.Navigator
                     tabBarOptions={{

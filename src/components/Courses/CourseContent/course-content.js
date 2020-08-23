@@ -30,7 +30,6 @@ const CourseContent = () => {
             <CSectionList
                 sections={DATA}
                 renderItem={({ item }) => {
-                    //return <CText data={`${item}`} />
                     return <CourseContentItem data={item} />
                 }}
                 renderSectionHeader={({ section: { title, data } }) => (
