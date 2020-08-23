@@ -10,12 +10,17 @@ import Routes from '../../../routes/routes'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
 import CourseActionsMenuButton from '../CourseActions/course-actions-menu-button'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import { useSelector, useDispatch } from 'react-redux'
+import { SetCurrentCourseIdCourseAction } from '../../../feature/course/actions'
 
 const ListCoursesItem = ({style, course }) => {
+    
+    const dispatch = useDispatch();
 
     const onPress = (course) => {
+        dispatch(SetCurrentCourseIdCourseAction(course.id))
         RootNavigation.navigate(Routes.CourseDetail, {
-            course: course,
+            courseId: course.id,
         });
     }
 

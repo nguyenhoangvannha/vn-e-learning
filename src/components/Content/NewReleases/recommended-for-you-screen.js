@@ -9,7 +9,7 @@ import { CoursesContext } from '../../../provider/courses-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { useSelector, useDispatch } from 'react-redux'
 
-const NewReleasesScreen = () => {
+const RecommendedForYouScreen = () => {
     const courseState = useSelector(state => state.courseState)
 
     const dispatch = useDispatch();
@@ -18,17 +18,17 @@ const NewReleasesScreen = () => {
         <ScreenContainer style={Styles.fullScreen}>
             <ImageAppBar
                 uri={Strings.defaultCourseThubnail}
-                title={i18n.t('new_releases')}
+                title={i18n.t('recommended_for_you')}
             />
             <View style={Styles.screenContainer}>
                 <ListCoursesByIds
                     hasTrailing={false}
-                    data={courseState.topNewCourses} />
+                    data={courseState.recommendCourses} />
             </View>
         </ScreenContainer>
     )
 }
 
-export default NewReleasesScreen
+export default RecommendedForYouScreen
 
 const styles = StyleSheet.create({})

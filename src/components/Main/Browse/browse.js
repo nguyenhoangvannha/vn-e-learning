@@ -52,6 +52,10 @@ const Browse = ({ }) => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
     }
 
+    const onRecommendedPressed = () => {
+        RootNavigation.navigate(Routes.RecommendedForYouScreen)
+    }
+
     const onInstructorItemPressed = (author) => {
         dispatch(DoGetInstructorDetail(author['id']))
 
@@ -74,7 +78,7 @@ const Browse = ({ }) => {
                     uri={Strings.defaultCourseThubnail}
                     title={i18n.t('recommended_for_you').toUpperCase()}
                     height={Sizes.s64}
-                    onPress={onNewReleasesPressed} />
+                    onPress={onRecommendedPressed} />
                 <SizedBox height={Sizes.s12} />
 
                 <ListCategory
