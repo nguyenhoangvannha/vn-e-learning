@@ -53,7 +53,7 @@ export default SectionCourseItemInfo
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: Alignment.flexStart
+        alignItems: Alignment.flexStart,
     },
     row: {
         flexDirection: FlexDirection.row

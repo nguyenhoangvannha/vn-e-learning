@@ -11,7 +11,7 @@ import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-inf
 import CourseActionsMenuButton from '../CourseActions/course-actions-menu-button'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
-const ListCoursesItem = ({ navigation, style, course }) => {
+const ListCoursesItem = ({style, course }) => {
 
     const onPress = (course) => {
         RootNavigation.navigate(Routes.CourseDetail, {
@@ -21,7 +21,7 @@ const ListCoursesItem = ({ navigation, style, course }) => {
 
     return (
         <COpacityButton style={{ ...styles.container, ...style }} onPress={() => onPress(course)}>
-            <CImage uri={course.image} style={styles.image} />
+            <CImage uri={course.image ?? course.imageUrl} style={styles.image} />
             <SectionCourseItemInfo course={course} />
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
                 <CourseActionsMenuButton courseId={course.id}/>

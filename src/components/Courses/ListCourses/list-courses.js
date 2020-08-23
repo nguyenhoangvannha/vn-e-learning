@@ -10,9 +10,7 @@ import { CoursesContext } from '../../../provider/courses-provider'
 
 
 //data: list course ids
-const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }) => {
-
-    const coursesState = useContext(CoursesContext)
+const ListCourses = ({ style, headerText, hasTrailing = false, data }) => {
 
     return (
         <CFlatList
@@ -23,12 +21,11 @@ const ListCourses = ({ navigation, style, headerText, hasTrailing = true, data }
             headerStyle={TextStyles.caption}
             style={style}
             horizontal={false}
-            renderItem={({item}) => {
-                return <ListCoursesItem course={coursesState.courses.get(item)} navigation={navigation} />;
+            renderItem={({ item }) => {
+                return <ListCoursesItem course={item} />;
             }}
             keyExtractor={item => item}
             ItemSeparatorComponent={() => <SizedBox height={Sizes.s4}><CDivider /></SizedBox>}
-            contentContainerStyle={{height: '100%'}}
         />
     )
 }

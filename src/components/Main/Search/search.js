@@ -27,6 +27,7 @@ import ErrorText from '../../Common/error/error-text'
 import CText from '../../Common/Text/c-text'
 import CFlatButton from '../../Common/Button/c-flat-button'
 import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import ListCourses from '../../Courses/ListCourses/list-courses'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -49,47 +50,33 @@ const Search = () => {
         }
     }, [courseState])
 
-    const coursesContext = useContext(CoursesContext)
-
-    const pathsContext = useContext(PathsContext)
-
-    const authorsContext = useContext(AuthorsContext)
-
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
 
-    const [courseIds, setCourseIds] = useState([]);
-
-    const [pathIds, setPathIds] = useState([]);
-
-    const [authorIds, setAuthorIds] = useState([])
-
-    const [suggestions, setSuggestions] = useState([]);
-
     const [searching, setSearching] = useState(undefined)
 
-    const buildInit = () => {
-        return (
-            <SearchGuideScreen />
-        )
-    }
+    // const buildInit = () => {
+    //     return (
+    //         <SearchGuideScreen />
+    //     )
+    // }
 
-    const buildSuggestion = () => {
-        console.log('buildSuggestion', suggestions.length)
-        return (
-            <CFlatList
-                hasTrailing={false}
-                data={suggestions}
-                renderItem={({ item }) => {
-                    return <ListTileText subtitle={item} style={styles.suggestion}>
+    // const buildSuggestion = () => {
+    //     console.log('buildSuggestion', suggestions.length)
+    //     return (
+    //         <CFlatList
+    //             hasTrailing={false}
+    //             data={suggestions}
+    //             renderItem={({ item }) => {
+    //                 return <ListTileText subtitle={item} style={styles.suggestion}>
 
-                    </ListTileText>
-                }}
-                keyExtractor={item => item}>
-            </CFlatList>
-        )
-    }
+    //                 </ListTileText>
+    //             }}
+    //             keyExtractor={item => item}>
+    //         </CFlatList>
+    //     )
+    // }
 
     function search(keyword) {
         dispatch(DoSearchCourseCourseAction(keyword))
@@ -116,47 +103,47 @@ const Search = () => {
             />
         )
         return (
-            <SectionCourses
+            <ListCourses
                 data={courseState.searchResults}
             />
         )
     }
 
-    const buildResult = () => {
-        return <Tab.Navigator tabBarOptions={{
-            contentContainerStyle: { backgroundColor: theme.tabColor },
-            activeTintColor: theme.activeTextColor,
-            inactiveTintColor: theme.textColor,
-            indicatorStyle: { backgroundColor: theme.indicatorColor },
-        }}>
-            <Tab.Screen
-                name={Routes.SearchAll}
-                options={{ title: i18n.t('all') }}>
-                {() => <SearchAll
-                    courseIds={courseIds}
-                    pathIds={pathIds}
-                    authorIds={authorIds}>
-                </SearchAll>}
-            </Tab.Screen>
-            <Tab.Screen
-                name={Routes.SearchCourses}
-                options={{ title: i18n.t('courses') }} >
-                {() => <SearchCourses
-                    courseIds={courseIds}>
-                </SearchCourses>}
-            </Tab.Screen>
-            <Tab.Screen name={Routes.SearchPaths} options={{ title: i18n.t('paths') }} >
-                {() => <SearchPaths
-                    pathIds={pathIds}>
-                </SearchPaths>}
-            </Tab.Screen>
-            <Tab.Screen name={Routes.SearchAuthors} options={{ title: i18n.t('authors') }} >
-                {() => <SearchAuthors
-                    authorIds={authorIds}>
-                </SearchAuthors>}
-            </Tab.Screen>
-        </Tab.Navigator>
-    }
+    // const buildResult = () => {
+    //     return <Tab.Navigator tabBarOptions={{
+    //         contentContainerStyle: { backgroundColor: theme.tabColor },
+    //         activeTintColor: theme.activeTextColor,
+    //         inactiveTintColor: theme.textColor,
+    //         indicatorStyle: { backgroundColor: theme.indicatorColor },
+    //     }}>
+    //         <Tab.Screen
+    //             name={Routes.SearchAll}
+    //             options={{ title: i18n.t('all') }}>
+    //             {() => <SearchAll
+    //                 courseIds={courseIds}
+    //                 pathIds={pathIds}
+    //                 authorIds={authorIds}>
+    //             </SearchAll>}
+    //         </Tab.Screen>
+    //         <Tab.Screen
+    //             name={Routes.SearchCourses}
+    //             options={{ title: i18n.t('courses') }} >
+    //             {() => <SearchCourses
+    //                 courseIds={courseIds}>
+    //             </SearchCourses>}
+    //         </Tab.Screen>
+    //         <Tab.Screen name={Routes.SearchPaths} options={{ title: i18n.t('paths') }} >
+    //             {() => <SearchPaths
+    //                 pathIds={pathIds}>
+    //             </SearchPaths>}
+    //         </Tab.Screen>
+    //         <Tab.Screen name={Routes.SearchAuthors} options={{ title: i18n.t('authors') }} >
+    //             {() => <SearchAuthors
+    //                 authorIds={authorIds}>
+    //             </SearchAuthors>}
+    //         </Tab.Screen>
+    //     </Tab.Navigator>
+    // }
 
     return (
         <ScreenContainer style={Styles.fullScreen}>
@@ -164,13 +151,6 @@ const Search = () => {
                 <CSearchBar
                     onTextChange={(value) => {
                         setCurrentKeyword(value)
-                        // console.log('onTextChange', value)
-                        // if (value === '') {
-                        //     setSearching(false)
-                        // } else {
-                        //     setSearching(true)
-                        //     search(value)
-                        // }
                     }}
                     onPressDone={onPressDone} />
             </CCard>
