@@ -94,7 +94,7 @@ export const DoGetRecommendCourseCourseAction = (userId) => {
         type: DO_GET_RECOMMEND_COURSE_COURSE_ACTION,
         payload: {
             userId: userId,
-            limit: 10,
+            limit: 5,
             offset: 1
         }
     }

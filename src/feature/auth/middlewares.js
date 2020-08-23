@@ -65,7 +65,7 @@ function* sendForgetPasswordEmail(action) {
     yield put(SetStatusAuthAction(statusKey, Status.success()))
 
   } catch (e) {
-    yield put(SetStatusAuthAction(statusKey, Status.error(e.message)))
+    yield put(SetStatusAuthAction(statusKey, Status.error(e.message ?? e, e)))
   } finally {
     yield put(SetStatusAuthAction(statusKey, Status.idle()))
   }

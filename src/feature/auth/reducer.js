@@ -30,7 +30,7 @@ function authReducer
                 ...authState,
                 userInfo: action.payload.userInfo,
             }
-
+            break;
         case AuthAction.SetStatusAuthAction:
 
             const statusKey = action.payload.statusKey;
@@ -46,6 +46,7 @@ function authReducer
                 ...authState,
                 status: status
             }
+            break;
         default:
             return authState;
     }

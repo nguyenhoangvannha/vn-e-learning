@@ -43,23 +43,26 @@ const ForgotPassword = () => {
 
         switch (sendEmailStatus.loadStatus) {
             case LoadStatus.error:
+                console.log('DEBUG LOAD', sendEmailStatus.loadStatus, Date.now().toLocaleString())
                 setError(sendEmailStatus.message)
                 break;
             case LoadStatus.success:
-                setSendSuccess(sendEmailStatus.loadStatus == LoadStatus.success)
+                console.log('DEBUG LOAD', sendEmailStatus.loadStatus)
+                setSendSuccess(sendEmailStatus.loadStatus == LoadStatus.success, Date.now().toLocaleString())
                 break;
             case LoadStatus.loading:
             case LoadStatus.completed:
             default:
+                console.log('DEBUG LOAD', sendEmailStatus.loadStatus, Date.now().toLocaleString())
                 break;
         }
-
 
         return () => {
             //cleanup
         }
     }, [authState])
 
+    
 
     const onCancelPressed = () => {
         RootNavigation.goBack()
@@ -141,7 +144,6 @@ const ForgotPassword = () => {
             <CAppBar dividerColor={Colors.transparent} />
             {sendSuccess ? buildSuccess() : buildFrom()}
         </ScreenContainer>
-
     )
 }
 
