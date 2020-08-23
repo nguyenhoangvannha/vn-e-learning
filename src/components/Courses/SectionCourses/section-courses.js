@@ -8,7 +8,7 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation';
 import i18n from '../../../res/i18n';
 import { CoursesContext } from '../../../provider/courses-provider';
 import { useSelector, useDispatch } from 'react-redux'
-import { DoGetCourseDetailCourseAction } from '../../../feature/course/actions';
+import { DoGetCourseDetailCourseAction, SetCurrentCourseIdCourseAction } from '../../../feature/course/actions';
 
 export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
 
@@ -39,7 +39,10 @@ export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
                     key={course.id}
                     course={course}
                     onPress={() => {
+                        dispatch(SetCurrentCourseIdCourseAction(course.id))
+
                         dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
+                        
                         RootNavigation.navigate(Routes.CourseDetail, {
                             courseId: course.id
                         })
@@ -78,7 +81,10 @@ const SectionCourses = ({ style, headerText, data }) => {
                     key={course.id}
                     course={course}
                     onPress={() => {
+                        dispatch(SetCurrentCourseIdCourseAction(course.id))
+
                         dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
+
                         RootNavigation.navigate(Routes.CourseDetail, {
                             courseId: course.id
                         })

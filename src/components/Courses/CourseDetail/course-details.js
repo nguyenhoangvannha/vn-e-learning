@@ -117,8 +117,7 @@ const CourseDetail = ({ route }) => {
         var instructor = course.instructor;
         return (
             <View
-                style={{ height: '100%', backgroundColor: 'red' }}
-            >
+                style={{ height: '100%'}}>
                 <CAppBar
                     title={course.title}
                     trailing={

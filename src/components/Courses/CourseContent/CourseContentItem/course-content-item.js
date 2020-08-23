@@ -7,6 +7,7 @@ import ListTile from '../../../Common/Container/list-tile'
 import CText from '../../../Common/Text/c-text'
 import CIonIcon from '../../../Common/Icon/c-ion-icon'
 import IconName from '../../../../res/icon-name'
+import i18n from '../../../../res/i18n'
 
 const CourseContentItem = ({ data }) => {
     return (
@@ -18,7 +19,7 @@ const CourseContentItem = ({ data }) => {
             title={<CText
                 data={data.name} />}
             subtitle={<CText
-                data={data.length} />}
+                data={`${data.hours} ${i18n.t('hours')}`} />}
             trailing={<CIonIcon
                 name={IconName.mdMore} />}
         />

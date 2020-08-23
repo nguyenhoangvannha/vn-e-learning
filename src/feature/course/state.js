@@ -23,5 +23,6 @@ export const courseState = () => {
         coursesByCategory: {}, //String - Array Id
         searchResults: [],
         favouriteCourses: [],
+        currentCourseId: '',
     }
 }
