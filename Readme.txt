@@ -14,7 +14,7 @@ Deadline 1: Mock-up UI/UX cho toàn bộ ứng dụng
 Deadline 2: Xây dựng ứng dụng offline cho toàn bộ ứng dụng
   - Commit ID: 3b80b20869b65b3926b5beca039fe5de6575a191
   - Video demo: https://youtu.be/gGE0ZGVkM-w
-Deadline 3: Xây dựng ứng dụng offline cho toàn bộ ứng dụng
+Deadline 3: Implement final project connect to API (itedu.me)
   - Commit ID: 04101eaa7158393dd35f2a8e8c03c4122cdfb876
   - Video demo: https://youtu.be/0GcmDCK5HGU
 ------------------------------------------------
