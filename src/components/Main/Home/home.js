@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import Sizes from '../../../res/sizes'
@@ -10,39 +10,66 @@ import CText from '../../Common/Text/c-text'
 import Alignment from '../../../res/styles/alignment'
 import TextStyles from '../../../res/styles/text-styles'
 import Colors from '../../../res/colors'
-import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import SectionCourses, { SectionCoursesByIds } from '../../Courses/SectionCourses/section-courses'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
 import i18n from '../../../res/i18n'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import Routes from '../../../routes/routes'
-import { CoursesContext } from '../../../provider/courses-provider'
-import { CourseType } from '../../../data/mock/courses-mock-data'
 import ContentContainer from '../../Common/Screen/content-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DO_GET_TOP_NEW_COURSE_ACTION, DoGetRecommendCourseCourseAction, DO_GET_RECOMMEND_COURSE_COURSE_ACTION } from '../../../feature/course/actions'
+import { LoadStatus, Status } from '../../../core/status'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import CFlatButton from '../../Common/Button/c-flat-button'
+import { ActivityIndicator } from 'react-native-paper'
 
-const Home = () => {
+const Home = ({ props }) => {
 
-    const coursesState = useContext(CoursesContext)
+    const courseState = useSelector(state => state.courseState)
 
-    var allCourses = Array.from(coursesState.courses.values());
+    const authState = useSelector(state => state.authState)
+
+    var allCourses = courseState.courses;
+
+    const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false)
+
+    const [recommendCoursesStatus, setRecommendCoursesStatus] = useState(Status.idle())
+
+
+    useEffect(() => {
+
+        const loadTopNewCoursesStatus = courseState.status[DO_GET_TOP_NEW_COURSE_ACTION]
+
+        setLoading(loadTopNewCoursesStatus.loadStatus === LoadStatus.loading)
+
+        setRecommendCoursesStatus(courseState.status[DO_GET_RECOMMEND_COURSE_COURSE_ACTION])
+
+        return () => {
+            //cleanup
+        }
+    }, [courseState])
 
     const onNewReleasesPressed = () => {
         RootNavigation.navigate(Routes.NewReleasesScreen)
     }
 
-    const buildSectionCourses = (title, type) => {
-        var data = allCourses.filter((course) => course.type === type).map(value => value.id)
+    const buildSectionCourses = (title, courseIds) => {
+        //console.log('DEBUG BUILD', title, courseIds)
         return (
-            data.length == 0 ?
+            courseIds.length == 0 ?
                 <View /> :
-                <SectionCourses
+                <SectionCoursesByIds
                     headerText={title}
-                    data={data}
-                    style={styles.sectionCourses}/>
+                    courseIds={courseIds}
+                    style={styles.sectionCourses} />
         )
     }
 
     const buildContinueLearning = (title) => {
-        var data = Array.from(coursesState.learningCourseIds);
+        return <View />
+        var data = Array.from(courseState.learningCourseIds);
         return (
             data.length == 0 ?
                 <View /> :
@@ -58,19 +85,15 @@ const Home = () => {
             <HomeAppBar title={i18n.t('home')} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
-                    <CImageButton
-                        uri={Strings.defaultCourseThubnail}
-                        style={styles.coursesBanner}
-                        height={'15%'}
-                        onPress={onNewReleasesPressed}>
-                        <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
-                    </CImageButton>
                     {buildContinueLearning(i18n.t('continue_learning'))}
-                    {buildSectionCourses(i18n.t('software_development'), CourseType.SOFTWARE_DEVELOPMENT)}
+                    {recommendCoursesStatus.loadStatus === LoadStatus.loading ? <ActivityIndicator /> :  buildSectionCourses(i18n.t('recommend_for_you'), courseState.recommendCourses)}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses(i18n.t('it_operations'), CourseType.IT_OPERATIONS)}
-                    {buildSectionCourses(i18n.t('data_professional'), CourseType.DATA_PROFESSIONAL)}
-                    {buildSectionCourses(i18n.t('security_professional'), CourseType.SECURITY_PROFESSIONAL)}
+                    {loading ? <ActivityIndicator /> : buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses)}
+                    <SizedBox height={Sizes.s12} />
+                    {buildSectionCourses(i18n.t('top_sell_courses'), courseState.topSellCourses)}
+                    <SizedBox height={Sizes.s12} />
+                    {buildSectionCourses(i18n.t('top_rate_courses'), courseState.topRateCourses)}
+
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>

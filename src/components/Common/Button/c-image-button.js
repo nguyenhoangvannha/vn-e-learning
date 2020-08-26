@@ -10,7 +10,7 @@ const CImageButton = ({ style, uri, children, onPress, width, height, title }) =
     return (
         <CTouchableButton style={{ ...style, height: height, width: width }} onPress={onPress}>
             <ImageBackground style={styles.image} source={{ uri: uri }}>
-                {title != undefined && <CText data={title} style={{ ...TextStyles.button, color: Colors.white }} />}
+                {title != undefined && <CText data={title} style={{ ...TextStyles.title, color: Colors.white }} />}
                 {children}
             </ImageBackground>
         </CTouchableButton>

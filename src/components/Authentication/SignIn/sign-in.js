@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CText from '../../Common/Text/c-text'
 import CFromTextInput from '../../Common/TextField/c-form-text-input'
@@ -7,40 +7,58 @@ import Alignment from '../../../res/styles/alignment'
 import Sizes from '../../../res/sizes'
 import CButton from '../../Common/Button/c-button'
 import SizedBox from '../../Common/Container/sized-box'
-import FontWeight from '../../../globals/font-weight'
+import FontWeight from '../../../res/styles/font-weight'
 import Styles from '../../../res/styles/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import Routes from '../../../routes/routes'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
+import { useSelector, useDispatch } from 'react-redux'
+import { DoLoginAuthAction, AuthAction, SetStatusAuthAction } from '../../../feature/auth/actions'
+import { LoadStatus, Status } from '../../../core/status'
+
 
 const SignIn = (props) => {
-    const authContext = useContext(AuthenticationContext)
 
-    const [username, setUsername] = useState('');
 
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('nguyenhoangvannha@gmail.com');
+
+    const [password, setPassword] = useState('nha.nguyen');
 
     const [error, setError] = useState('')
 
+    const authState = useSelector(state => state.authState)
+
+    const dispatch = useDispatch();
+
+    const [loginStatus, setLoginStatus] = useState(Status.idle())
 
     useEffect(() => {
-        var status = authContext.authentication.status;
-        if (status != undefined && status === 200) {
-            RootNavigation.replace(Routes.Main);
-        } else if (status == 404) {
-            setError(i18n.t('wrong_username_password'))
+        setLoginStatus(authState.status[AuthAction.DoLoginAuthAction]);
+
+        switch (loginStatus.loadStatus) {
+            case LoadStatus.loading:
+                break;
+            case LoadStatus.error:
+                setError(i18n.t('wrong_username_password_or_account_not_active'))
+                break;
+            case LoadStatus.success:
+                RootNavigation.replace(Routes.Main);
+                dispatch(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.idle()))
+                break;
+            default:
         }
-    }, [authContext])
+    }, [authState])
 
     const onPressedSignIn = () => {
         if (username.length === 0 || password.length === 0) {
             setError(i18n.t('please_fill_inforamtion'))
+        } if (password.length < 6) {
+            setError(i18n.t('password_atless_x_char').replace('%s', '6'))
         } else {
-            authContext.login(username, password);
+            dispatch(DoLoginAuthAction(username, password))
         }
     }
     const onPressedSignUp = () => {
@@ -59,8 +77,8 @@ const SignIn = (props) => {
                     <SizedBox height={Sizes.s70} />
 
                     <CFromTextInput
-                        label={i18n.t('username')}
-                        placeholder={i18n.t('your_username')}
+                        label={i18n.t('email')}
+                        placeholder={i18n.t('your_email_address')}
                         style={styles.input}
                         onChangeText={(value) => {
                             if (error.length > 0) {
@@ -91,7 +109,13 @@ const SignIn = (props) => {
                     {error.length > 0 && <ErrorText>{error}</ErrorText>}
                     <SizedBox height={Sizes.s16} />
 
-                    <CButton title={i18n.t('sign_in').toUpperCase()} onPress={onPressedSignIn} type='solid' style={styles.signIn} loading={false} disabled={false} />
+                    <CButton
+                        title={i18n.t('sign_in').toUpperCase()}
+                        onPress={onPressedSignIn}
+                        type='solid'
+                        style={styles.signIn}
+                        loading={loginStatus.loadStatus === LoadStatus.loading}
+                        disabled={false} />
                     <SizedBox height={Sizes.s12} />
                     <CButton title={i18n.t('sign_up').toUpperCase()} onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
                     <SizedBox height={Sizes.s24} />

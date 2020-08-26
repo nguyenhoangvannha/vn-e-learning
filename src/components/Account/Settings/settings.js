@@ -12,17 +12,23 @@ import Strings from '../../../res/strings'
 import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../res/styles/alignment'
 import i18n from '../../../res/i18n'
-import { AuthenticationContext } from '../../../provider/authentication-provider'
 import { ThemeContext, themes } from '../../../provider/theme-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DoChangeLanguageAppAction } from '../../../feature/app/actions'
+import SupportedLocale from '../../../res/localization/supported_locale'
 
 const Settings = () => {
 
-    const authContext = useContext(AuthenticationContext)
+    const authState = useSelector(state => state.authState)
+
+    const dispatch = useDispatch();
+
+    const appState = useSelector(state => state)
+
+    const user = authState.userInfo
 
     const themeContext = useContext(ThemeContext)
-
-    const user = authContext.user
 
     const isDarkTheme = themeContext.theme === themes.dark;
 
@@ -31,14 +37,24 @@ const Settings = () => {
         themeContext.setTheme(useDarkTheme ? themes.dark : themes.light)
     }
 
+    const changeLanguage = (enabled) => {
+        if (appState.language === 'en') {
+            dispatch(DoChangeLanguageAppAction(SupportedLocale.vi))
+        } else {
+            dispatch(DoChangeLanguageAppAction(SupportedLocale.en))
+        }
+    }
+
+    console.log('DEBUG', i18n.language)
+
     return (
         <ScreenContainer style={{ backgroundColor: themeContext.theme.background }}>
             <CAppBar title={i18n.t('settings')} />
             <CScrollView contentContainerStyle={Styles.screenContainer}>
                 <ProfileTile
-                    image={Strings.defaultAvatar}
-                    title={user?.fullName ?? ''}
-                    subtitle='Mobile Developer' />
+                    image={user.avatar ?? Strings.defaultAvatar}
+                    title={user?.email ?? ''}
+                    subtitle={user.type ?? ''} />
                 <SizedBox height={Sizes.s16} />
                 <ListTileText
                     style={styles.item}
@@ -58,6 +74,9 @@ const Settings = () => {
                     style={styles.item}
                     title={i18n.t('language')}
                     subtitle='English'
+                    trailing={<CSwitch
+                        initValue={i18n.language === 'en'}
+                        onValueChange={(value) => changeLanguage(value)} />}
                 />
 
             </CScrollView>

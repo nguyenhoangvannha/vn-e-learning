@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import i18n from '../../../res/i18n'
@@ -8,35 +8,112 @@ import Styles from '../../../res/styles/styles'
 import Alignment from '../../../res/styles/alignment'
 import CText from '../../Common/Text/c-text'
 import TextStyles from '../../../res/styles/text-styles'
-import FontWeight from '../../../globals/font-weight'
+import FontWeight from '../../../res/styles/font-weight'
 import CButton from '../../Common/Button/c-button'
 import SizedBox from '../../Common/Container/sized-box'
 import ListCourses from '../../Courses/ListCourses/list-courses'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CAvatar from '../../Common/Image/c-avatar'
 import ScreenContainer from '../../Common/Screen/screen-container'
+import { useSelector, useDispatch } from 'react-redux'
+import { DO_GET_INSTRUCTOR_DETAIL_INSTRUCTOR_ACTION } from '../../../feature/instructor/actions'
+import { Status, LoadStatus } from '../../../core/status'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import ErrorBack from '../../Common/error/error_back'
+import { DateFormat } from '../../../utils/date-format'
+import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import { CRating } from '../../Common/Rating/c-rating'
+import { Text } from 'react-native'
 
 const AuthorScreen = ({ route }) => {
 
-    const author = route.params.author;
+    const instructorId = route.params.instructorId;
+
+    const instructorState = useSelector(state => state.instructorState)
+
+    const dispatch = useDispatch();
+
+    const [loadInstructorStatus, setLoadInstructorStatus] = useState(Status.idle())
+
+
+    useEffect(() => {
+
+        setLoadInstructorStatus(instructorState.status[`${DO_GET_INSTRUCTOR_DETAIL_INSTRUCTOR_ACTION}${instructorId}`])
+
+        return () => {
+            //cleanup
+        }
+    }, [instructorState])
+
+    const onPressFollow = (instructor) => {
+        console.log('DEBUG XS', instructor)
+    }
+
+    const buildDetails = () => {
+        var author = instructorState.instructors[instructorId]
+
+        return (
+            <View>
+                <CAppBar title={i18n.t('author')} />
+                <CScrollView contentContainerStyle={{ ...Styles.screenContainer, ...styles.body }}>
+                    <CAvatar uri={author.avatar} size={Sizes.s68} />
+                    <CText style={{ ...TextStyles.title, ...styles.name }}>{author.name}</CText>
+                    <CRating
+                        ratingCount={5 * author.ratedNumber / author.countRating} />
+                    <SizedBox height={Sizes.s16} />
+                    <Text
+                        style={{ textAlign: 'center', alignContent: 'center' }}>
+                        {`${author.email}`}
+                    </Text>
+
+                    <SizedBox height={Sizes.s16} />
+                    <CText style={{ ...TextStyles.caption, ...styles.name }}>{author.skills}</CText>
+                    <CButton title={i18n.t('follow')} style={{ width: '100%' }} onPress={() => onPressFollow(author)} />
+                    <CText style={{ ...TextStyles.subtitle, ...styles.description }}>
+                        {author.intro}
+                    </CText>
+                    <SizedBox height={Sizes.s32} />
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('phone')} ${author.phone}`}
+                    </CText>
+                    <SizedBox height={Sizes.s16} />
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('rating_count')} ${author.countRating}`}
+                    </CText>
+                    <SizedBox height={Sizes.s16} />
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('join_date')} ${DateFormat.toString(author.createdAt)}`}
+                    </CText>
+
+                    <SizedBox height={Sizes.s16} />
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('average_point')} ${author.averagePoint}`}
+                    </CText>
+                    <SizedBox height={Sizes.s16} />
+                    <CText style={styles.infoText}>
+                        {`${i18n.t('courses')} ${author.totalCourse}`}
+                    </CText>
+                    <SizedBox height={Sizes.s16} />
+                    <SectionCourses
+                        data={author.courses}
+                        hasTrailing={false} />
+                </CScrollView>
+            </View>
+        )
+    }
 
     return (
         <ScreenContainer style={Styles.fullScreen}>
-            <CAppBar title={i18n.t('author')} />
-            <CScrollView contentContainerStyle={{ ...Styles.screenContainer, ...styles.body }}>
-                <CAvatar uri={Strings.defaultAvatar} size={Sizes.s68} />
-                <CText style={{ ...TextStyles.title, ...styles.name }}>{author.name}</CText>
-                <CButton title={i18n.t('follow')} style={{ width: '100%' }} />
-                <CText style={{ ...TextStyles.subtitle, ...styles.description }}>
-                    {author.introduce}
-                </CText>
-                <SizedBox height={Sizes.s32} />
-                <CText style={{ ...TextStyles.subhead, alignSelf: Alignment.flexStart }}>{i18n.t('courses')}</CText>
-                <SizedBox height={Sizes.s16} />
-                <ListCourses
-                    data={author.courseIds}
-                    hasTrailing={false} />
-            </CScrollView>
+            {
+                loadInstructorStatus.loadStatus == LoadStatus.loading ? <CLoadingIndicator />
+                    : loadInstructorStatus.loadStatus == LoadStatus.success ? buildDetails()
+                        : <ErrorBack
+                            text={loadInstructorStatus.message} />
+            }
         </ScreenContainer>
     )
 }
@@ -54,5 +131,9 @@ const styles = StyleSheet.create({
     },
     description: {
         paddingTop: Sizes.s12,
+    },
+    infoText: {
+        ...TextStyles.subhead,
+        alignSelf: Alignment.flexStart
     }
 })

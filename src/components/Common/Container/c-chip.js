@@ -7,7 +7,7 @@ import { ThemeContext } from '../../../provider/theme-provider'
 import SizedBox from './sized-box'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 
 const CChip = ({ leading, title, onPress, style }) => {
 
@@ -33,9 +33,11 @@ const styles = StyleSheet.create({
     chip: {
         alignItems: Alignment.center,
         flexDirection: FlexDirection.row,
-        paddingVertical: Sizes.s8,
-        paddingHorizontal: Sizes.s12,
+        paddingVertical: Sizes.s4,
+        paddingLeft: Sizes.s4,
+        paddingRight: Sizes.s8,
         borderRadius: Sizes.s16,
+        alignSelf:'baseline'
     },
     text: {
     }

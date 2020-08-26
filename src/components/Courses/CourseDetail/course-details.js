@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
 import VideoView from '../../Common/Video/video-view'
@@ -23,64 +23,130 @@ import CText from '../../Common/Text/c-text'
 import i18n from '../../../res/i18n'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { ThemeContext } from '../../../provider/theme-provider'
+import { useSelector, useDispatch } from 'react-redux'
+import { Status, LoadStatus } from '../../../core/status'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import { DO_GET_COURSE_DETAIL_COURSE_ACTION } from '../../../feature/course/actions'
+import ErrorText from '../../Common/error/error-text'
+import ErrorBack from '../../Common/error/error_back'
+import InstructorChipItem from '../../Author/instructor_chip_item'
+import TextStyles from '../../../res/styles/text-styles'
+import { DateFormat } from '../../../utils/date-format'
 
 const Tab = createMaterialTopTabNavigator()
 
 const CourseDetail = ({ route }) => {
 
+    var courseId = route.params.courseId
+
+    const courseState = useSelector(state => state.courseState)
+
+    var allCourses = courseState.courses;
+
+    const dispatch = useDispatch();
+
+    const [status, setStatus] = useState(Status.idle())
+
+    useEffect(() => {
+
+        const loadCourseDetailStatus = courseState.status[`${DO_GET_COURSE_DETAIL_COURSE_ACTION}${courseId}`]
+
+        setStatus(loadCourseDetailStatus)
+
+        return () => {
+            //cleanup
+        }
+    }, [courseState])
+
+
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
 
-    var course = route.params.course
+    const onShare = (course) => {
+        ShareUtils.share({ message: course.title })
+    }
 
-    console.log('received', course.authors)
-
-    const onShare = () => {
-        ShareUtils.share({ message: course.name })
-    };
-
-    return (
-        <ScreenContainer style={Styles.fullScreen}>
-            <CAppBar
-                title={course.name}
-                trailing={
-                    <CIonIcon
-                        name={IconName.mdShare}
-                        onPress={onShare} />} />
-            <VideoView uri={course.image} style={styles.videoView} />
+    const CourseOverview = () => {
+        var course = allCourses[courseId]
+        var instructor = course.instructor;
+        return (
             <CScrollView
                 style={Styles.screenContainer}>
                 <SizedBox height={Sizes.s10} />
-                <SectionCourseItemInfo course={course} simple={true} />
+                <CText data={course.title} style={TextStyles.headline} />
+                {
+                    instructor != undefined ?? <InstructorChipItem
+                        id={instructor['id'] ?? ''}
+                        name={instructor['name'] ?? ''}
+                        avatar={instructor['avatar'] ?? ''}
+                    />
+                }
+                <View style={Styles.row}>
+                    <CText>{`${DateFormat.toMdy(Date.parse(course.updatedAt))} - `}</CText>
+                    <CText>{`${course.totalHours} ${i18n.t('hours')} - `}</CText>
+                    <CText>{`${course.soldNumber} ${i18n.t('learner')}`}</CText>
+                    <SizedBox width={Sizes.s4} />
+                </View>
+                <CText>{`${course.price} vnd`}</CText>
+                <CText>{`${i18n.t('requirement')} ${course.requirement} `}</CText>
+                <CText>{`${i18n.t('learn_what')} ${course.learnWhat} `}</CText>
+
+                <View style={Styles.row}>
+                    <CText>{`${course.videoNumber} ${i18n.t('videos')}`}</CText>
+                </View>
                 <SizedBox height={Sizes.s8} />
-                <ListAuthors
-                    authorIds={course.authors}
-                    horizontal={true}
-                    chip={true} />
+
                 <SizedBox height={Sizes.s8} />
                 <CourseActions
                     courseId={course.id ?? ''}
                     style={styles.courseActions} />
                 <SizedBox height={Sizes.s8} />
-                <CText data={course.introduce} />
+                <CText data={course.description} />
                 <SizedBox height={Sizes.s12} />
                 <CButton title={i18n.t('take_a_learning_check')} color={Colors.gray} />
                 <SizedBox height={Sizes.s8} />
                 <CButton title={i18n.t('view_related_paths_and_courses')} color={Colors.gray} />
-                <SizedBox height={Sizes.s8} />
-                <View style={{ height: Sizes.s420 }}>
-                    <Tab.Navigator
-                        tabBarOptions={{
-                            contentContainerStyle: { backgroundColor: theme.tabColor },
-                            activeTintColor: theme.textColor,
-                            inactiveTintColor: theme.textColor,
-                        }}>
-                        <Tab.Screen name={Routes.CourseContent} component={CourseContent} options={{ title: i18n.t('contents') }} />
-                        <Tab.Screen name={Routes.CourseTranscript} component={CourseTranscript} options={{ title: i18n.t('transcript') }} />
-                    </Tab.Navigator>
-                </View>
+                <SizedBox height={Sizes.s28} />
             </CScrollView>
+        )
+    }
+
+    const build = () => {
+        var course = allCourses[courseId]
+        var instructor = course.instructor;
+        return (
+            <View
+                style={{ height: '100%'}}>
+                <CAppBar
+                    title={course.title}
+                    trailing={
+                        <CIonIcon
+                            name={IconName.mdShare}
+                            onPress={() => onShare(course)} />} />
+                <VideoView uri={course.imageUrl} style={styles.videoView} />
+                <Tab.Navigator
+                    tabBarOptions={{
+                        contentContainerStyle: { backgroundColor: theme.tabColor },
+                        activeTintColor: theme.textColor,
+                        inactiveTintColor: theme.textColor,
+                    }}>
+                    <Tab.Screen name={Routes.CourseTranscript} component={CourseOverview} options={{ title: i18n.t('overview') }} />
+                    <Tab.Screen name={Routes.CourseContent} component={CourseContent} options={{ title: i18n.t('contents') }} />
+                </Tab.Navigator>
+            </View>
+        )
+    }
+
+    const loadStatus = status?.loadStatus ?? LoadStatus.idle;
+
+    return (
+        <ScreenContainer style={{ ...Styles.fullScreen, }}>
+            {
+                loadStatus == LoadStatus.loading ? <CLoadingIndicator />
+                    : loadStatus == LoadStatus.error ? <ErrorBack text={status.message} />
+                        : build()
+            }
         </ScreenContainer>
     )
 }

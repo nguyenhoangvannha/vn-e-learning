@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import IconName from '../../../res/icon-name'
 import Colors from '../../../res/colors'
 import Sizes from '../../../res/sizes'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import CIonIcon from '../Icon/c-ion-icon'
 import SizedBox from '../Container/sized-box'
 

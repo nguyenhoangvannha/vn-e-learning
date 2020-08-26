@@ -25,6 +25,7 @@ import PathScreen from './src/components/Content/Paths/path-screen';
 import VerifyPasswordScreen from './src/components/Authentication/VerifyPassword/verify-password-screen';
 import { AppProvider } from './src/provider/app-provider';
 import CategoryDetailScreen from './src/components/Category/CategoryDetails/category-detail-screen';
+import RecommendedForYouScreen from './src/components/Content/NewReleases/recommended-for-you-screen';
 
 const Stack = createStackNavigator()
 
@@ -35,7 +36,6 @@ export default function App() {
 
     return () => (RootNavigation.isMountedRef.current = false);
   }, []);
-
 
   return (
     <AppProvider>
@@ -59,6 +59,7 @@ export default function App() {
             <Stack.Screen name={Routes.NewReleasesScreen} component={NewReleasesScreen} options={NavigationOptions.normalOptions} />
             <Stack.Screen name={Routes.PathScreen} component={PathScreen} options={NavigationOptions.normalOptions} />
             <Stack.Screen name={Routes.CategoryDetailScreen} component={CategoryDetailScreen} options={NavigationOptions.normalOptions} />
+            <Stack.Screen name={Routes.RecommendedForYouScreen} component={RecommendedForYouScreen} options={NavigationOptions.normalOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </MenuProvider>

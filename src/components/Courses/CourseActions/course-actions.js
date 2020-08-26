@@ -1,14 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import CIconButton from '../../Common/Button/c-icon-button'
 import Colors from '../../../res/colors'
 import Alignment from '../../../res/styles/alignment'
 import Sizes from '../../../res/sizes'
 import TextStyles from '../../../res/styles/text-styles'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import IconName from '../../../res/icon-name'
 import i18n from '../../../res/i18n'
-import { FavouritesContext } from '../../../provider/favourites-provider'
+import { useSelector, useDispatch } from 'react-redux'
+import { DoAddFavouriteCourseUserAction, DO_ADD_FAVOURITE_COURSE_USER_ACTION } from '../../../feature/user/actions'
+import { Status, LoadStatus } from '../../../core/status'
 
 const Item = ({ bottomText, icon, onPress }) => {
     return (
@@ -24,26 +26,46 @@ const Item = ({ bottomText, icon, onPress }) => {
 
 const CourseActions = ({ style, courseId }) => {
 
-    const favouritesContext = useContext(FavouritesContext)
+    const [addFavouriteStatus, setAddFavouriteStatus] = useState(Status.idle())
 
-    var isFavourite = favouritesContext.favouriteCourses.has(courseId ?? '') ?? false;
+    const courseState = useSelector(state => state.courseState)
+
+    const userState = useSelector(state => state.userState)
+
+    const dispatch = useDispatch();
+
+    const [favourite, setFavourite] = useState(false)
+
+
+    useEffect(() => {
+
+        setAddFavouriteStatus(userState.status[`${DO_ADD_FAVOURITE_COURSE_USER_ACTION}${courseId}`])
+
+        courseState.favouriteCourses.forEach((value) => {
+            if (value.id === courseId) setFavourite(true)
+        })
+
+        return () => {
+            //cleanup
+        }
+    }, [userState, courseState])
+
+    const onPressFavourite = () => {
+        dispatch(DoAddFavouriteCourseUserAction(courseId))
+    }
 
     return (
         <View style={{ ...styles.container, ...style }}>
             <Item
-                icon={IconName.bookmarkOutline}
-                bottomText={isFavourite ? i18n.t('remove_favourite') : i18n.t('favourite')}
-                onPress={() => {
-                    isFavourite ?
-                        favouritesContext.removeFavouriteCourse(courseId)
-                        : favouritesContext.addFavouriteCourse(courseId)
-                }} />
+                icon={IconName.mdHeart}
+                bottomText={addFavouriteStatus?.loadStatus === LoadStatus.loading ? i18n.t('loading') : favourite ? i18n.t('remove_favourite') : i18n.t('add_favourite')}
+                onPress={() => onPressFavourite()} />
             <Item
                 icon={IconName.iosRadio}
-                bottomText={i18n.t('add_to_channel')} />
-            {/* <Item
+                bottomText={i18n.t('buy')} />
+            <Item
                 icon={IconName.mdCloudDownload}
-                bottomText={i18n.t('download')} /> */}
+                bottomText={i18n.t('download')} />
         </View>
     )
 }

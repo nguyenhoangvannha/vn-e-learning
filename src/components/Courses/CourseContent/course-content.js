@@ -4,19 +4,41 @@ import CourseContentItem from './CourseContentItem/course-content-item'
 import Colors from '../../../res/colors'
 import Sizes from '../../../res/sizes'
 import CFlatList from '../../Common/Container/c-flat-list'
-import courseContentData from '../../../data/mock/course-content-mock-data'
 import CDivider from '../../Common/Container/c-divider'
 import ContentContainer from '../../Common/Screen/content-container'
+import { useSelector, useDispatch } from 'react-redux'
+import CText from '../../Common/Text/c-text'
+import CSectionList from '../../Common/Container/c-section-list'
+import CSectionHeader from '../../Common/Container/c-section-header'
 
 const CourseContent = () => {
+    const courseState = useSelector(state => state.courseState)
+
+    const course = courseState.courses[courseState.currentCourseId]
+
+    const sections = course.section ?? []
+
+    const DATA = sections.map((section, index, array) => {
+        return {
+            title: section.name,
+            data: section.lesson
+        }
+    })
+
     return (
         <ContentContainer style={styles.container}>
-            <CFlatList
-                data={courseContentData}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => <CourseContentItem data={item} />}
-                hasTrailing={false}
-                ItemSeparatorComponent={() => <CDivider containerHeight={Sizes.s8}/>} />
+            <CSectionList
+                sections={DATA}
+                renderItem={({ item }) => {
+                    return <CourseContentItem data={item} />
+                }}
+                renderSectionHeader={({ section: { title, data } }) => (
+                    <CSectionHeader
+                        leadingText={`${title}`}
+                        hasTrailing={false} />
+                )}
+                keyExtractor={(item, index) => item + index}>
+            </CSectionList>
         </ContentContainer>
     )
 }

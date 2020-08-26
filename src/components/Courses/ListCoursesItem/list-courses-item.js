@@ -2,29 +2,24 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import CImage from '../../Common/Image/c-image'
 import Sizes from '../../../res/sizes'
-import FlexDirection from '../../../globals/flex-direction'
+import FlexDirection from '../../../res/styles/flex-direction'
 import SizedBox from '../../Common/Container/sized-box'
 import Alignment from '../../../res/styles/alignment'
 import COpacityButton from '../../Common/Button/c-opacity-button'
-import Routes from '../../../routes/routes'
 import SectionCourseItemInfo from '../SectionCoursesItem/section-course-item-info'
 import CourseActionsMenuButton from '../CourseActions/course-actions-menu-button'
-import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import Expanded from '../../Common/Container/expanded'
 
-const ListCoursesItem = ({ navigation, style, course }) => {
-
-    const onPress = (course) => {
-        RootNavigation.navigate(Routes.CourseDetail, {
-            course: course,
-        });
-    }
+const ListCoursesItem = ({ style, course, onPress }) => {
 
     return (
         <COpacityButton style={{ ...styles.container, ...style }} onPress={() => onPress(course)}>
-            <CImage uri={course.image} style={styles.image} />
-            <SectionCourseItemInfo course={course} />
+            <CImage uri={course.image ?? course.imageUrl} style={styles.image} />
+            <Expanded>
+                <SectionCourseItemInfo course={course} />
+            </Expanded>
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
-                <CourseActionsMenuButton courseId={course.id}/>
+                <CourseActionsMenuButton courseId={course.id} />
             </SizedBox>
         </COpacityButton>
     )

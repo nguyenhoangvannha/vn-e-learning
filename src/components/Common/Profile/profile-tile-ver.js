@@ -6,7 +6,7 @@ import CText from '../Text/c-text'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
 import TextStyles from '../../../res/styles/text-styles'
-import FontWeight from '../../../globals/font-weight'
+import FontWeight from '../../../res/styles/font-weight'
 import COpacityButton from '../Button/c-opacity-button'
 
 const ProfileTileVer = ({ style, image, title, subtitle, onPress }) => {

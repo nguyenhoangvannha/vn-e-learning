@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import CSearchBar from '../../Common/Search/c-search-bar'
 import Styles from '../../../res/styles/styles'
@@ -19,153 +19,143 @@ import { PathsContext } from '../../../provider/paths-provider'
 import { AuthorsContext } from '../../../provider/authors-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { ThemeContext } from '../../../provider/theme-provider'
+import { useSelector, useDispatch } from 'react-redux'
+import { Status, LoadStatus } from '../../../core/status'
+import { DO_SEARCH_COURSE_COURSE_ACTION, DoSearchCourseCourseAction } from '../../../feature/course/actions'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
+import ErrorText from '../../Common/error/error-text'
+import CText from '../../Common/Text/c-text'
+import CFlatButton from '../../Common/Button/c-flat-button'
+import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import ListCourses from '../../Courses/ListCourses/list-courses'
 
 const Tab = createMaterialTopTabNavigator();
 
 const Search = () => {
-    const coursesContext = useContext(CoursesContext)
+    const courseState = useSelector(state => state.courseState)
 
-    const pathsContext = useContext(PathsContext)
+    const dispatch = useDispatch();
 
-    const authorsContext = useContext(AuthorsContext)
+    const [searchStatus, setSearchStatus] = useState(Status.idle())
+
+    const [currentKeyword, setCurrentKeyword] = useState('')
+
+
+    useEffect(() => {
+
+        setSearchStatus(courseState.status[DO_SEARCH_COURSE_COURSE_ACTION])
+
+        return () => {
+            //cleanup
+        }
+    }, [courseState])
 
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
 
-    const [courseIds, setCourseIds] = useState([]);
-
-    const [pathIds, setPathIds] = useState([]);
-
-    const [authorIds, setAuthorIds] = useState([])
-
-    const [suggestions, setSuggestions] = useState([]);
-
     const [searching, setSearching] = useState(undefined)
 
-    const buildInit = () => {
-        return (
-            <SearchGuideScreen />
-        )
-    }
+    // const buildInit = () => {
+    //     return (
+    //         <SearchGuideScreen />
+    //     )
+    // }
 
-    const buildSuggestion = () => {
-        console.log('buildSuggestion', suggestions.length)
-        return (
-            <CFlatList
-                hasTrailing={false}
-                data={suggestions}
-                renderItem={({ item }) => {
-                    return <ListTileText subtitle={item} style={styles.suggestion}>
+    // const buildSuggestion = () => {
+    //     console.log('buildSuggestion', suggestions.length)
+    //     return (
+    //         <CFlatList
+    //             hasTrailing={false}
+    //             data={suggestions}
+    //             renderItem={({ item }) => {
+    //                 return <ListTileText subtitle={item} style={styles.suggestion}>
 
-                    </ListTileText>
-                }}
-                keyExtractor={item => item}>
-            </CFlatList>
-        )
-    }
+    //                 </ListTileText>
+    //             }}
+    //             keyExtractor={item => item}>
+    //         </CFlatList>
+    //     )
+    // }
 
     function search(keyword) {
-        setSuggestions([])
-        setCourseIds([])
-        setPathIds([])
-        setAuthorIds([])
-
-        const lKeyword = keyword.toLowerCase().trim();
-
-        const resultSuggestions = [];
-
-        const resultCourseIds = [];
-
-        const resultPathIds = [];
-
-        const resultAuthorIds = [];
-
-        coursesContext.courses.forEach((value, key) => {
-            if (value.name.toLowerCase().search(lKeyword) >= 0) {
-                resultCourseIds.push(key)
-                resultSuggestions.push(value.name)
-            }
-        })
-
-        pathsContext.paths.forEach((value, key) => {
-            if (value.name.toLowerCase().search(lKeyword) >= 0) {
-                resultPathIds.push(key)
-                resultSuggestions.push(value.name)
-            }
-        })
-
-        authorsContext.authors.forEach((value, key) => {
-            if (value.name.toLowerCase().search(lKeyword) >= 0) {
-                resultAuthorIds.push(key)
-                resultSuggestions.push(value.name)
-            }
-        })
-
-        setCourseIds(resultCourseIds)
-        setPathIds(resultPathIds)
-        setAuthorIds(resultAuthorIds)
-        setSuggestions(resultSuggestions)
-        console.log('setSuggestions', suggestions.length)
+        dispatch(DoSearchCourseCourseAction(keyword))
     }
 
     function onPressDone() {
-        setSearching(false)
+        search(currentKeyword)
         console.log('onPressDone', searching)
     }
 
-    const buildResult = () => {
-        return <Tab.Navigator tabBarOptions={{
-            contentContainerStyle: { backgroundColor: theme.tabColor },
-            activeTintColor: theme.activeTextColor,
-            inactiveTintColor: theme.textColor,
-            indicatorStyle: { backgroundColor: theme.indicatorColor },
-        }}>
-            <Tab.Screen
-                name={Routes.SearchAll}
-                options={{ title: i18n.t('all') }}>
-                {() => <SearchAll
-                    courseIds={courseIds}
-                    pathIds={pathIds}
-                    authorIds={authorIds}>
-                </SearchAll>}
-            </Tab.Screen>
-            <Tab.Screen
-                name={Routes.SearchCourses}
-                options={{ title: i18n.t('courses') }} >
-                {() => <SearchCourses
-                    courseIds={courseIds}>
-                </SearchCourses>}
-            </Tab.Screen>
-            <Tab.Screen name={Routes.SearchPaths} options={{ title: i18n.t('paths') }} >
-                {() => <SearchPaths
-                    pathIds={pathIds}>
-                </SearchPaths>}
-            </Tab.Screen>
-            <Tab.Screen name={Routes.SearchAuthors} options={{ title: i18n.t('authors') }} >
-                {() => <SearchAuthors
-                    authorIds={authorIds}>
-                </SearchAuthors>}
-            </Tab.Screen>
-        </Tab.Navigator>
+    const build = () => {
+        var loadStatus = searchStatus.loadStatus
+
+        return loadStatus === LoadStatus.loading ? <CLoadingIndicator /> :
+            loadStatus === LoadStatus.error ? <ErrorText text={searchStatus.message} /> :
+                buildCourses()
     }
+
+    const buildCourses = () => {
+        if(courseState.searchResults.length == 0)
+        return (
+            <SearchGuideScreen
+            title={i18n.t('not_found')}
+            />
+        )
+        return (
+            <ListCourses
+                data={courseState.searchResults}
+            />
+        )
+    }
+
+    // const buildResult = () => {
+    //     return <Tab.Navigator tabBarOptions={{
+    //         contentContainerStyle: { backgroundColor: theme.tabColor },
+    //         activeTintColor: theme.activeTextColor,
+    //         inactiveTintColor: theme.textColor,
+    //         indicatorStyle: { backgroundColor: theme.indicatorColor },
+    //     }}>
+    //         <Tab.Screen
+    //             name={Routes.SearchAll}
+    //             options={{ title: i18n.t('all') }}>
+    //             {() => <SearchAll
+    //                 courseIds={courseIds}
+    //                 pathIds={pathIds}
+    //                 authorIds={authorIds}>
+    //             </SearchAll>}
+    //         </Tab.Screen>
+    //         <Tab.Screen
+    //             name={Routes.SearchCourses}
+    //             options={{ title: i18n.t('courses') }} >
+    //             {() => <SearchCourses
+    //                 courseIds={courseIds}>
+    //             </SearchCourses>}
+    //         </Tab.Screen>
+    //         <Tab.Screen name={Routes.SearchPaths} options={{ title: i18n.t('paths') }} >
+    //             {() => <SearchPaths
+    //                 pathIds={pathIds}>
+    //             </SearchPaths>}
+    //         </Tab.Screen>
+    //         <Tab.Screen name={Routes.SearchAuthors} options={{ title: i18n.t('authors') }} >
+    //             {() => <SearchAuthors
+    //                 authorIds={authorIds}>
+    //             </SearchAuthors>}
+    //         </Tab.Screen>
+    //     </Tab.Navigator>
+    // }
 
     return (
         <ScreenContainer style={Styles.fullScreen}>
             <CCard style={styles.searchBar}>
                 <CSearchBar
                     onTextChange={(value) => {
-                        console.log('onTextChange', value)
-                        if (value === '') {
-                            setSearching(false)
-                        } else {
-                            setSearching(true)
-                            search(value)
-                        }
+                        setCurrentKeyword(value)
                     }}
                     onPressDone={onPressDone} />
             </CCard>
-            {searching == undefined ? buildInit() : (searching === true ? buildSuggestion() : buildResult())}
+            {build()}
+            {/* {searching == undefined ? buildInit() : (searching === true ? buildSuggestion() : buildResult())} */}
         </ScreenContainer>
     )
 }
