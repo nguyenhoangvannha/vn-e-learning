@@ -8,7 +8,6 @@ import CScrollView from '../../Common/Container/c-scroll-view'
 import SectionCourses, { SectionCoursesByIds } from '../../Courses/SectionCourses/section-courses'
 import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../res/sizes'
-import { CoursesContext } from '../../../provider/courses-provider'
 import { PathsContext } from '../../../provider/paths-provider'
 import { AuthorsContext } from '../../../provider/authors-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
@@ -17,10 +16,10 @@ import { Status, LoadStatus } from '../../../core/status'
 import { ActivityIndicator } from 'react-native-paper'
 import { useSelector, useDispatch } from 'react-redux'
 import CFlatButton from '../../Common/Button/c-flat-button'
+import ListCourses from '../../Courses/ListCourses/list-courses'
+import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
 
 const CategoryDetailScreen = ({ route }) => {
-
-    const coursesContext = useContext(CoursesContext)
 
     const pathsContext = useContext(PathsContext)
 
@@ -32,7 +31,7 @@ const CategoryDetailScreen = ({ route }) => {
 
     const courseState = useSelector(state => state.courseState)
 
-    var category =  courseState.categories[categoryId].name
+    var category = courseState.categories[categoryId].name
 
 
     const dispatch = useDispatch();
@@ -51,23 +50,14 @@ const CategoryDetailScreen = ({ route }) => {
     return (
         <ScreenContainer style={Styles.fullScreen}>
             <CAppBar title={category} />
-            <CScrollView style={Styles.body}>
-                <Paths
-                    headerText={`Paths in ${category}`}
-                    pathIds={pathIds} />
-                {
-                    loadCourseStatus.loadStatus == LoadStatus.loading ? <ActivityIndicator /> :
-                        <SectionCourses
-                            headerText={`Courses in ${category}`}
-                            data={courseState.coursesByCategory[categoryId]}
-                        />
-                }
-                <ListAuthors
-                    authorIds={authorsContext.authorIds.slice(4, 15)}
-                    headerText={`Top authors in ${category}`}
-                    horizontal={true} />
-                <SizedBox height={Sizes.s16} />
-            </CScrollView>
+            {
+                loadCourseStatus.loadStatus == LoadStatus.loading ? <CLoadingIndicator /> :
+                    <ListCourses
+                        //headerText={`Courses in ${category}`}
+                        style={{padding: Sizes.s12}}
+                        data={courseState.coursesByCategory[categoryId]}
+                    />
+            }
         </ScreenContainer>
     )
 }

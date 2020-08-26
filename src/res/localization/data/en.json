@@ -98,5 +98,8 @@
   "not_found": "Not found",
   "back": "Back",
   "instructor": "Instructor",
-  "price": "Price"
+  "price": "Price",
+  "rating_count": "Total rating",
+  "join_date": "Join date",
+  "average_point": "Average point"
 }

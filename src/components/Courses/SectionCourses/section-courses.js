@@ -57,7 +57,7 @@ export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
     )
 }
 
-const SectionCourses = ({ style, headerText, data }) => {
+const SectionCourses = ({ style, headerText, data , hasTrailing  = true}) => {
     const authState = useSelector(state => state.authState)
     
     const dispatch = useDispatch();
@@ -95,6 +95,7 @@ const SectionCourses = ({ style, headerText, data }) => {
             keyExtractor={item => item}
             ItemSeparatorComponent={() => <SizedBox width={Sizes.s12} />}
             trailingText={i18n.t('see_all')}
+            hasTrailing={hasTrailing}
             onTrailingPress={onTrailingPressed} />
     )
 }

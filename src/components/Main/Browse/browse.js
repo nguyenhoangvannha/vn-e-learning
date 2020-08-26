@@ -6,9 +6,6 @@ import CImageButton from '../../Common/Button/c-image-button'
 import Strings from '../../../res/strings'
 import Sizes from '../../../res/sizes'
 import SizedBox from '../../Common/Container/sized-box'
-import PopularSkills from '../../Skills/PopularSkills/popular-skills'
-import Paths from '../../Content/Paths/paths'
-import ListAuthors from '../../Author/ListAuthors/list-authors'
 import Routes from '../../../routes/routes'
 import ListCategory from '../../Category/ListCategory/list-category'
 import HomeAppBar from '../../Common/AppBar/home-app-bar'
@@ -83,22 +80,10 @@ const Browse = ({ }) => {
                     height={Sizes.s64}
                     onPress={onRecommendedPressed} />
                 <SizedBox height={Sizes.s12} />
-
                 <ListCategory
                     categories={Object.values(courseState.categories)} />
-                <PopularSkills
-                    headerText={i18n.t('popular_skills')} />
                 <SizedBox height={Sizes.s12} />
 
-                <Paths
-                    pathIds={Array.from(pathsContext.paths.keys())}
-                    headerText={i18n.t('paths')}
-                    onTrailingPress={
-                        () => {
-                            RootNavigation.navigate(Routes.AllPathsScreen)
-                        }
-                    } />
-                <SizedBox height={Sizes.s28} />
                 {
                     loadInstructorStatus.loadStatus == LoadStatus.loading ? <CLoadingIndicator />
                         : loadInstructorStatus.loadStatus == LoadStatus.success ?

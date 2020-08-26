@@ -17,6 +17,12 @@ const toMdy = (date) => {
     }
 }
 
+const toString = (dateStr) => {
+    const date = Date.parse(dateStr);
+    return toMdy(date)
+}
+
 export const DateFormat = {
     toMdy: toMdy,
+    toString: toString,
 }

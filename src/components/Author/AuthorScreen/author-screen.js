@@ -20,6 +20,10 @@ import { DO_GET_INSTRUCTOR_DETAIL_INSTRUCTOR_ACTION } from '../../../feature/ins
 import { Status, LoadStatus } from '../../../core/status'
 import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
 import ErrorBack from '../../Common/error/error_back'
+import { DateFormat } from '../../../utils/date-format'
+import SectionCourses from '../../Courses/SectionCourses/section-courses'
+import { CRating } from '../../Common/Rating/c-rating'
+import { Text } from 'react-native'
 
 const AuthorScreen = ({ route }) => {
 
@@ -54,18 +58,48 @@ const AuthorScreen = ({ route }) => {
                 <CScrollView contentContainerStyle={{ ...Styles.screenContainer, ...styles.body }}>
                     <CAvatar uri={author.avatar} size={Sizes.s68} />
                     <CText style={{ ...TextStyles.title, ...styles.name }}>{author.name}</CText>
+                    <CRating
+                        ratingCount={5 * author.ratedNumber / author.countRating} />
+                    <SizedBox height={Sizes.s16} />
+                    <Text
+                        style={{ textAlign: 'center', alignContent: 'center' }}>
+                        {`${author.email}`}
+                    </Text>
+
+                    <SizedBox height={Sizes.s16} />
                     <CText style={{ ...TextStyles.caption, ...styles.name }}>{author.skills}</CText>
                     <CButton title={i18n.t('follow')} style={{ width: '100%' }} onPress={() => onPressFollow(author)} />
                     <CText style={{ ...TextStyles.subtitle, ...styles.description }}>
                         {author.intro}
                     </CText>
                     <SizedBox height={Sizes.s32} />
-                    <CText style={{ ...TextStyles.subhead, alignSelf: Alignment.flexStart }}>{`${i18n.t('rating_count')} ${author.countRating}`}</CText>
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('phone')} ${author.phone}`}
+                    </CText>
                     <SizedBox height={Sizes.s16} />
-                    <CText style={{ ...TextStyles.subhead, alignSelf: Alignment.flexStart }}>{`${i18n.t('courses')} ${author.totalCourse}`}</CText>
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('rating_count')} ${author.countRating}`}
+                    </CText>
                     <SizedBox height={Sizes.s16} />
-                    <ListCourses
-                        data={author.courseIds}
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('join_date')} ${DateFormat.toString(author.createdAt)}`}
+                    </CText>
+
+                    <SizedBox height={Sizes.s16} />
+                    <CText
+                        style={styles.infoText}>
+                        {`${i18n.t('average_point')} ${author.averagePoint}`}
+                    </CText>
+                    <SizedBox height={Sizes.s16} />
+                    <CText style={styles.infoText}>
+                        {`${i18n.t('courses')} ${author.totalCourse}`}
+                    </CText>
+                    <SizedBox height={Sizes.s16} />
+                    <SectionCourses
+                        data={author.courses}
                         hasTrailing={false} />
                 </CScrollView>
             </View>
@@ -97,5 +131,9 @@ const styles = StyleSheet.create({
     },
     description: {
         paddingTop: Sizes.s12,
+    },
+    infoText: {
+        ...TextStyles.subhead,
+        alignSelf: Alignment.flexStart
     }
 })
