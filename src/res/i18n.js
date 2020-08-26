@@ -16,6 +16,7 @@ i18n
   .use(reactI18nextModule)
   .use(i18nextReactNative)
   .init({
+    lng: SupportedLocale.en,
     resources: localesResourse,
     fallbackLng: SupportedLocale.en,
     debug: true,

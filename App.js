@@ -37,7 +37,6 @@ export default function App() {
     return () => (RootNavigation.isMountedRef.current = false);
   }, []);
 
-
   return (
     <AppProvider>
       <MenuProvider style={Styles.fullScreen}>
