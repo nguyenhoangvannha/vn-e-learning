@@ -15,7 +15,10 @@ const CTextInput = ({ style, onChangeText, numberOfLines, placeholder, secureTex
             numberOfLines={numberOfLines ?? 1}
             placeholder={placeholder}
             placeholderTextColor={Colors.desText}
-            secureTextEntry={secureTextEntry ?? false}>{children}</TextInput>
+            autoCapitalize={false}
+            secureTextEntry={secureTextEntry ?? false}>
+                {children}
+        </TextInput>
     )
 }
 

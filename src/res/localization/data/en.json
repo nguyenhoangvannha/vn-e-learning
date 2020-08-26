@@ -83,6 +83,7 @@
   "fullname": "Fullname",
   "search_guide_title": "Search course name, author, paths and more",
   "wrong_username_password": "Wrong username or password",
+  "wrong_username_password_or_account_not_active": "Wrong username or password or your account not activated",
   "please_fill_inforamtion": "Please fill in inforamtion",
   "created_at": "Created At",
   "type": "Type",

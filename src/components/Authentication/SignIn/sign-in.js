@@ -33,25 +33,22 @@ const SignIn = (props) => {
 
     const dispatch = useDispatch();
 
-    const [loginLoading, setLoginLoading] = useState(false)
+    const [loginStatus, setLoginStatus] = useState(Status.idle())
 
     useEffect(() => {
-        var loginStatus = authState.status[AuthAction.DoLoginAuthAction];
+        setLoginStatus(authState.status[AuthAction.DoLoginAuthAction]);
 
         switch (loginStatus.loadStatus) {
             case LoadStatus.loading:
-                setLoginLoading(loginLoading)
                 break;
             case LoadStatus.error:
-                //setError(loginStatus.message)
-                setError(i18n.t('wrong_username_password'))
+                setError(i18n.t('wrong_username_password_or_account_not_active'))
                 break;
             case LoadStatus.success:
-                dispatch(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.idle()))
                 RootNavigation.replace(Routes.Main);
+                dispatch(SetStatusAuthAction(AuthAction.DoLogoutAuthAction, Status.idle()))
                 break;
             default:
-                setLoginLoading(false)
         }
     }, [authState])
 
@@ -117,7 +114,7 @@ const SignIn = (props) => {
                         onPress={onPressedSignIn}
                         type='solid'
                         style={styles.signIn}
-                        loading={loginLoading}
+                        loading={loginStatus.loadStatus === LoadStatus.loading}
                         disabled={false} />
                     <SizedBox height={Sizes.s12} />
                     <CButton title={i18n.t('sign_up').toUpperCase()} onPress={onPressedSignUp} type='outline' style={styles.signUp} loading={false} disabled={false} />
