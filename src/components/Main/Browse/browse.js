@@ -22,9 +22,11 @@ import { DO_GET_ALL_INSTRUCTOR_INSTRUCTOR_ACTION, DoGetInstructorDetail } from '
 import { Status, LoadStatus } from '../../../core/status'
 import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
 import ListInstructorHor from '../../../components/Author/list_instructor_hor'
+import { DoGetRecommendCourseCourseAction } from '../../../feature/course/actions'
 
 const Browse = ({ }) => {
 
+    const authState = useSelector(state => state.authState)
 
     const instructorState = useSelector(state => state.instructorState)
 
@@ -53,6 +55,7 @@ const Browse = ({ }) => {
     }
 
     const onRecommendedPressed = () => {
+        dispatch(DoGetRecommendCourseCourseAction(authState.userInfo.id, 1000, 1))
         RootNavigation.navigate(Routes.RecommendedForYouScreen)
     }
 

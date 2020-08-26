@@ -85,13 +85,6 @@ const Home = ({ props }) => {
             <HomeAppBar title={i18n.t('home')} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
-                    <CImageButton
-                        uri={Strings.defaultCourseThubnail}
-                        style={styles.coursesBanner}
-                        height={'15%'}
-                        onPress={onNewReleasesPressed}>
-                        <CText data={i18n.t('new_release')} style={{ ...TextStyles.headline, color: Colors.white }} />
-                    </CImageButton>
                     {buildContinueLearning(i18n.t('continue_learning'))}
                     {recommendCoursesStatus.loadStatus === LoadStatus.loading ? <ActivityIndicator /> :  buildSectionCourses(i18n.t('recommend_for_you'), courseState.recommendCourses)}
                     <SizedBox height={Sizes.s12} />

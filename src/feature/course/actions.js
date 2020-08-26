@@ -99,13 +99,13 @@ export const SetAddCategoriesCourseAction = (categories) => {
     }
 }
 
-export const DoGetRecommendCourseCourseAction = (userId) => {
+export const DoGetRecommendCourseCourseAction = (userId, limit, offset) => {
     return {
         type: DO_GET_RECOMMEND_COURSE_COURSE_ACTION,
         payload: {
             userId: userId,
-            limit: 5,
-            offset: 1
+            limit: limit ?? 5,
+            offset: offset ?? 1
         }
     }
 }
