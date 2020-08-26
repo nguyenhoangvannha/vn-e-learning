@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
-import ImageAppBar from '../../Common/AppBar/image-appbar'
+import CAppBar from '../../Common/AppBar/c-app-bar'
 import Strings from '../../../res/strings'
 import i18n from '../../../res/i18n'
 import Styles from '../../../res/styles/styles'
@@ -16,8 +16,8 @@ const NewReleasesScreen = () => {
 
     return (
         <ScreenContainer style={Styles.fullScreen}>
-            <ImageAppBar
-                uri={Strings.defaultCourseThubnail}
+            <CAppBar
+                //uri={Strings.defaultCourseThubnail}
                 title={i18n.t('new_releases')}
             />
             <View style={Styles.screenContainer}>

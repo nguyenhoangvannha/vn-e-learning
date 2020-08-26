@@ -138,11 +138,13 @@ const CourseDetail = ({ route }) => {
         )
     }
 
+    const loadStatus = status?.loadStatus ?? LoadStatus.idle;
+
     return (
         <ScreenContainer style={{ ...Styles.fullScreen, }}>
             {
-                status.loadStatus == LoadStatus.loading ? <CLoadingIndicator />
-                    : status.loadStatus == LoadStatus.error ? <ErrorBack text={status.message} />
+                loadStatus == LoadStatus.loading ? <CLoadingIndicator />
+                    : loadStatus == LoadStatus.error ? <ErrorBack text={status.message} />
                         : build()
             }
         </ScreenContainer>
