@@ -15,7 +15,7 @@ import i18n from '../../../res/i18n'
 import { ThemeContext, themes } from '../../../provider/theme-provider'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { useSelector, useDispatch } from 'react-redux'
-import {DoChangeLanguageAppAction} from '../../../feature/app/actions'
+import { DoChangeLanguageAppAction } from '../../../feature/app/actions'
 import SupportedLocale from '../../../res/localization/supported_locale'
 
 const Settings = () => {
@@ -38,7 +38,7 @@ const Settings = () => {
     }
 
     const changeLanguage = (enabled) => {
-        if(appState.language === 'en'){
+        if (appState.language === 'en') {
             dispatch(DoChangeLanguageAppAction(SupportedLocale.vi))
         } else {
             dispatch(DoChangeLanguageAppAction(SupportedLocale.en))
@@ -75,7 +75,7 @@ const Settings = () => {
                     title={i18n.t('language')}
                     subtitle='English'
                     trailing={<CSwitch
-                        initValue={appState.language === 'en'}
+                        initValue={i18n.language === 'en'}
                         onValueChange={(value) => changeLanguage(value)} />}
                 />
 
