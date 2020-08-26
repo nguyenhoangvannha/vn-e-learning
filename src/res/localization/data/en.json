@@ -101,5 +101,6 @@
   "price": "Price",
   "rating_count": "Total rating",
   "join_date": "Join date",
-  "average_point": "Average point"
+  "average_point": "Average point",
+  "account_exist": "Email or phone number already used"
 }

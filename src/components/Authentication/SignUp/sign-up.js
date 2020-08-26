@@ -41,7 +41,7 @@ const SignUp = ({ navigation }) => {
 
         switch (status.loadStatus) {
             case LoadStatus.error:
-                setError(status.message)
+                setError(i18n.t('account_exist'))
                 break;
             case LoadStatus.success:
                 navigation.navigate(Routes.SignIn)

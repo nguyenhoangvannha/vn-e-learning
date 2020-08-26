@@ -21,6 +21,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { DoLogoutAuthAction, AuthAction } from '../../../feature/auth/actions'
 import { LoadStatus } from '../../../core/status'
 import ErrorText from '../../Common/error/error-text'
+import { DateFormat } from '../../../utils/date-format'
 
 const Profile = () => {
 
@@ -72,7 +73,7 @@ const Profile = () => {
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                     <ProfileItem title={i18n.t('phone')} subtitle={user.phone} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                    <ProfileItem title={i18n.t('created_at')} subtitle={user.createdAt} />
+                    <ProfileItem title={i18n.t('created_at')} subtitle={DateFormat.toString(user.createdAt)} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                     <ProfileItem title={i18n.t('type')} subtitle={user.type} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />

@@ -38,7 +38,7 @@ const Settings = () => {
                 <ProfileTile
                     image={Strings.defaultAvatar}
                     title={user?.email ?? ''}
-                    subtitle='Mobile Developer' />
+                    subtitle={user.type ?? ''} />
                 <SizedBox height={Sizes.s16} />
                 <ListTileText
                     style={styles.item}
