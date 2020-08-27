@@ -3,11 +3,18 @@ import {
     SET_SEARCH_RESULTS_COURSE_ACTION,
     SET_FAVOURITES_COURSE_ACTION,
     SET_CURRENT_COURSE_ID_COURSE_ACTION,
-    SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION
+    SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION,
+    SET_ADD_MY_COURSES_COURSE_ACTION
 } from "./actions";
 
 export const courseReducer = (courseState, action) => {
     switch (action.type) {
+        case SET_ADD_MY_COURSES_COURSE_ACTION:
+            return {
+                ...courseState,
+                myCourses: action.payload.courses
+            }
+            break;
         case SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION:
             var containt = Object.keys(courseState.courses)
                 .includes(action.payload.courseId)

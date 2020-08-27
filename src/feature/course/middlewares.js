@@ -14,7 +14,10 @@ import {
     DO_SEARCH_COURSE_COURSE_ACTION,
     SetSearchResultCourseAction,
     DO_GET_FAVOURITES_COURSE_ACTION,
-    SetFavouritesCourseAction
+    SetFavouritesCourseAction,
+    DO_GET_FREE_COURSE_COURSE_ACTION,
+    DO_GET_MY_COURSES_COURSE_COURSE_ACTION,
+    SetAddMyCoursesCourseAction
 } from './actions'
 import { Status } from '../../core/status'
 import { CourseRepo } from './repo/course-repo';
@@ -231,6 +234,38 @@ function* getFavouriteCourses(action) {
     }
 }
 
+function* getFreeCourse(action) {
+    const statusKey = DO_GET_FREE_COURSE_COURSE_ACTION;
+
+    try {
+        yield put(SetStatusCourseAction(statusKey, Status.loading()))
+        const res = yield CourseRepo.getFreeCourse(action.payload.courseId)
+        yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
+    } catch (e) {
+        yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
+    }
+}
+
+function* getMyCourses(action) {
+    const statusKey = DO_GET_MY_COURSES_COURSE_COURSE_ACTION;
+
+    try {
+        yield put(SetStatusCourseAction(statusKey, Status.loading()))
+        const res = yield CourseRepo.getMyCourses()
+        
+        var courses = res.data.payload.reduce(function (map, course) {
+            map[course.id] = course;
+            return map;
+        }, {});
+
+        yield put(SetAddMyCoursesCourseAction(courses))
+
+        yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
+    } catch (e) {
+        yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
+    }
+}
+
 function* courseMiddleware() {
     yield takeEvery(DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, getTotalNumberCourse);
     yield takeEvery(DO_GET_TOP_NEW_COURSE_ACTION, getTopNewCourse);
@@ -242,6 +277,8 @@ function* courseMiddleware() {
     yield takeEvery(DO_GET_COURSE_BY_CATEGORY_COURSE_ACTION, getCategoryCourses);
     yield takeEvery(DO_SEARCH_COURSE_COURSE_ACTION, searchCourses);
     yield takeEvery(DO_GET_FAVOURITES_COURSE_ACTION, getFavouriteCourses);
+    yield takeEvery(DO_GET_FREE_COURSE_COURSE_ACTION, getFreeCourse);
+    yield takeEvery(DO_GET_MY_COURSES_COURSE_COURSE_ACTION, getMyCourses);
 }
 
 export { courseMiddleware }
