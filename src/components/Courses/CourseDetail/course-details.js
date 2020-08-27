@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Styles from '../../../res/styles/styles'
-import VideoView from '../../Common/Video/video-view'
+import CYoutubeVideoView from '../../Common/Video/youtube-video-view'
 import Sizes from '../../../res/sizes'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import SizedBox from '../../Common/Container/sized-box'
@@ -117,14 +117,16 @@ const CourseDetail = ({ route }) => {
         var instructor = course.instructor;
         return (
             <View
-                style={{ height: '100%'}}>
+                style={{ height: '100%' }}>
                 <CAppBar
                     title={course.title}
                     trailing={
                         <CIonIcon
                             name={IconName.mdShare}
                             onPress={() => onShare(course)} />} />
-                <VideoView uri={course.imageUrl} style={styles.videoView} />
+                <CYoutubeVideoView
+                    uri={course.imageUrl}
+                    style={styles.videoView} />
                 <Tab.Navigator
                     tabBarOptions={{
                         contentContainerStyle: { backgroundColor: theme.tabColor },

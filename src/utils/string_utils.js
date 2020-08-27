@@ -1,0 +1,7 @@
+const getMp4VideoUrl = (courseId, lessonId) => {
+    return `https://storage.googleapis.com/itedu-bucket/Courses/${courseId}/${lessonId}/video-1038130864.mp4?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=storage-admin%40itedu-storage.iam.gserviceaccount.com%2F20200826%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20200826T172752Z&X-Goog-Expires=86401&X-Goog-SignedHeaders=host&X-Goog-Signature=2796dd9bdea051c0b2e007ff7a846cf4f8a1f51f3a13f9c16d1115c9796c9381e01244c53f34bdb263e0a5538ea89d8b571914849862461fc66dbb0f72dab5d4ca6f2317ec20c8a717f299cdea9058d222c97c4d96f053313696ea63d36dbc38653fb6d0f06f47c6246e63ecb5af576adfc29b4655fc8b6eb1a7335c94786059ceb75726d7580daed05b7be7242c6af171a1f4fd8d065ed4a0d829d51babdc1037874de21007aac05cdba3a1278b6548d18fffdc80a8d795ef010e93bc0eb8b399da8e32aeba687e30ecbfd2be8e4e55fc57e158294b1f581892cde7acbe79c70b7d49033e6efef7b1bb46f3cc779a2f03cf26a9d1376c57be4b95873bed631e`
+}
+
+export default StringUtils = {
+    getMp4VideoUrl: getMp4VideoUrl
+}
