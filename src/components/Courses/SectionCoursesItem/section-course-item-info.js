@@ -12,7 +12,6 @@ import { DateFormat } from '../../../utils/date-format'
 import ContentContainer from '../../Common/Screen/content-container'
 
 const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) => {
-
     return (
         <ContentContainer style={styles.container}>
             <CText data={course.title} style={TextStyles.subhead} />
@@ -38,9 +37,11 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
             {
                 !simple && <View style={styles.row}>
                     <CRating
+                        style={{ width: 100 }}
                         readonly={true}
                         type={RatingType.star}
-                        ratingCount={course.ratedNumber / 2} />
+                        ratingCount={course.contentPoint ?? 0.0}
+                    />
                     <SizedBox width={Sizes.s4} />
                     <CText data={`(${course.ratedNumber})`} style={TextStyles.caption} />
                 </View>

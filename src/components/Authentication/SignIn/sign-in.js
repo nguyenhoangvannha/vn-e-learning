@@ -15,7 +15,7 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import i18n from '../../../res/i18n'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import ErrorText from '../../Common/error/error-text'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, ConnectedComponent } from 'react-redux'
 import { DoLoginAuthAction, AuthAction, SetStatusAuthAction } from '../../../feature/auth/actions'
 import { LoadStatus, Status } from '../../../core/status'
 
@@ -37,7 +37,9 @@ const SignIn = (props) => {
 
     useEffect(() => {
         setLoginStatus(authState.status[AuthAction.DoLoginAuthAction]);
+    }, [authState])
 
+    useEffect(() => {
         switch (loginStatus.loadStatus) {
             case LoadStatus.loading:
                 break;
@@ -50,7 +52,11 @@ const SignIn = (props) => {
                 break;
             default:
         }
-    }, [authState])
+        return () => {
+
+        }
+    }, [loginStatus])
+
 
     const onPressedSignIn = () => {
         if (username.length === 0 || password.length === 0) {

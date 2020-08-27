@@ -32,6 +32,7 @@ import ErrorBack from '../../Common/error/error_back'
 import InstructorChipItem from '../../Author/instructor_chip_item'
 import TextStyles from '../../../res/styles/text-styles'
 import { DateFormat } from '../../../utils/date-format'
+import CExpoVideoView from '../../Common/Video/expo-video-view'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -120,13 +121,17 @@ const CourseDetail = ({ route }) => {
                 style={{ height: '100%' }}>
                 <CAppBar
                     title={course.title}
+                    // onLeadingPressed={() => {
+                    // }}
                     trailing={
                         <CIonIcon
                             name={IconName.mdShare}
                             onPress={() => onShare(course)} />} />
-                <CYoutubeVideoView
+                {/* <CYoutubeVideoView
                     uri={course.imageUrl}
-                    style={styles.videoView} />
+                    style={styles.videoView} /> */}
+                <CExpoVideoView
+                />
                 <Tab.Navigator
                     tabBarOptions={{
                         contentContainerStyle: { backgroundColor: theme.tabColor },

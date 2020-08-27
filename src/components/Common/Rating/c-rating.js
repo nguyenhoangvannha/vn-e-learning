@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { Rating } from 'react-native-elements'
 import Sizes from '../../../res/sizes'
-import ContentContainer from '../Screen/content-container'
 import { ThemeContext } from '../../../provider/theme-provider'
+import { Rating, AirbnbRating } from 'react-native-ratings';
 
 export const RatingType = {
     bell: 'bell',
@@ -12,17 +11,19 @@ export const RatingType = {
     star: 'star',
 }
 
-export const CRating = ({ type, ratingCount, imageSize, readonly }) => {
+export const CRating = ({ style, type, ratingCount, imageSize, readonly = true }) => {
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
-
     return (
         <Rating
-            tintColor={theme.background}
-            imageSize={imageSize ?? Sizes.s14}
+            type={type ?? RatingType.star}
             ratingCount={ratingCount ?? 0}
-            readonly={readonly} />
+            imageSize={imageSize ?? Sizes.s14}
+            showRating={false}
+            style={{ paddingHorizontal: 10 }}
+            readonly={readonly}
+        />
     )
 }
 
