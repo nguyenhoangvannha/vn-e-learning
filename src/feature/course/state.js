@@ -24,5 +24,6 @@ export const courseState = () => {
         searchResults: [],
         favouriteCourses: [],
         currentCourseId: '',
+        continuesLearningIds: []
     }
 }

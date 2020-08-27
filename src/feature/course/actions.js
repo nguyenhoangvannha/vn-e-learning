@@ -19,6 +19,16 @@ export const SET_SEARCH_RESULTS_COURSE_ACTION = 'SET_SEARCH_RESULTS_COURSE_ACTIO
 export const DO_GET_FAVOURITES_COURSE_ACTION = 'DO_GET_FAVOURITES_COURSE_ACTION'
 export const SET_FAVOURITES_COURSE_ACTION = 'SET_FAVOURITES_COURSE_ACTION'
 export const SET_CURRENT_COURSE_ID_COURSE_ACTION = 'SET_CURRENT_COURSE_ID_COURSE_ACTION'
+export const SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION = 'SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION'
+
+export const SetAddContinuesLearningCourseAction = (courseId) => {
+    return {
+        type: SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION,
+        payload: {
+            courseId: courseId
+        }
+    }
+}
 
 export const SetCurrentCourseIdCourseAction = (courseId) => {
     return {

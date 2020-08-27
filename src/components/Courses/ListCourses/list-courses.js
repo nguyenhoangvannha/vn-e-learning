@@ -8,7 +8,7 @@ import CDivider from '../../Common/Container/c-divider';
 import i18n from '../../../res/i18n';
 import { CoursesContext } from '../../../provider/courses-provider'
 import { useSelector, useDispatch } from 'react-redux'
-import { DoGetCourseDetailCourseAction, SetCurrentCourseIdCourseAction } from '../../../feature/course/actions';
+import { DoGetCourseDetailCourseAction, SetCurrentCourseIdCourseAction, SetAddContinuesLearningCourseAction } from '../../../feature/course/actions';
 import { RootNavigation } from '../../../routes/navigations/root-navigation';
 import Routes from '../../../routes/routes';
 
@@ -25,6 +25,7 @@ export const ListCoursesByIds = ({ style, headerText, hasTrailing = false, data 
     const onPress = (course) => {
         dispatch(SetCurrentCourseIdCourseAction(course.id))
         dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
+        dispatch(SetAddContinuesLearningCourseAction(course.id))
         RootNavigation.navigate(Routes.CourseDetail, {
             courseId: course.id,
         });
@@ -62,6 +63,7 @@ const ListCourses = ({ style, headerText, hasTrailing = false, data }) => {
     const onPress = (course) => {
         dispatch(SetCurrentCourseIdCourseAction(course.id))
         dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
+        dispatch(SetAddContinuesLearningCourseAction(course.id))
         RootNavigation.navigate(Routes.CourseDetail, {
             courseId: course.id,
         });

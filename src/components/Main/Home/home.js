@@ -71,15 +71,13 @@ const Home = ({ props }) => {
         )
     }
 
-    const buildContinueLearning = (title) => {
-        return <View />
-        var data = Array.from(courseState.learningCourseIds);
+    const buildContinueLearning = (title, courseIds) => {
         return (
-            data.length == 0 ?
+            courseIds.length == 0 ?
                 <View /> :
-                <SectionCourses
+                <SectionCoursesByIds
                     headerText={title}
-                    data={data}
+                    courseIds={courseIds}
                     style={styles.sectionCourses} />
         )
     }
@@ -89,7 +87,7 @@ const Home = ({ props }) => {
             <HomeAppBar title={i18n.t('home')} hasBack={false} />
             <CScrollView>
                 <View style={Styles.screenContainer}>
-                    {buildContinueLearning(i18n.t('continue_learning'))}
+                    {buildContinueLearning(i18n.t('continue_learning'), courseState.continuesLearningIds)}
                     {buildSectionCourses(i18n.t('recommend_for_you'), courseState.recommendCourses, recommendCoursesStatus.loadStatus)}
                     <SizedBox height={Sizes.s12} />
                     {buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses, topNewStatus.loadStatus)}
