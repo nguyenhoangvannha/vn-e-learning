@@ -14,7 +14,7 @@ import ContentContainer from '../../Common/Screen/content-container'
 const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) => {
     return (
         <ContentContainer style={styles.container}>
-            <CText data={course.title} style={TextStyles.subhead} />
+            <CText data={course.title ?? course.courseTitle} style={TextStyles.subhead} />
             <SizedBox height={Sizes.s2} />
             {
                 !simple && (
