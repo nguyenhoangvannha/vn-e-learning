@@ -21,7 +21,7 @@ const CYoutubeVideoView = ({ videoId }) => {
         <YoutubePlayer
             height={220}
             play={playing}
-            videoId={"iee2TATGMyI"}
+            videoId={videoId} //iee2TATGMyI
             onChangeState={onStateChange}
         />
         /* <Button title={playing ? "pause" : "play"} onPress={togglePlaying} /> */

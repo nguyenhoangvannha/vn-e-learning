@@ -29,7 +29,7 @@ const CourseContent = ({ onTapItem }) => {
                 sections={DATA}
                 renderItem={({ item }) => {
                     return <COpacityButton
-                        onPress={onTapItem}>
+                        onPress={() => onTapItem(item)}>
                         <CourseContentItem
                             data={item} />
                     </COpacityButton>

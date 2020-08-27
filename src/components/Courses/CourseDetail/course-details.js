@@ -33,6 +33,8 @@ import InstructorChipItem from '../../Author/instructor_chip_item'
 import TextStyles from '../../../res/styles/text-styles'
 import { DateFormat } from '../../../utils/date-format'
 import CExpoVideoView from '../../Common/Video/expo-video-view'
+import CImage from '../../Common/Image/c-image'
+import Strings from '../../../res/strings'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -43,6 +45,10 @@ const CourseDetail = ({ route }) => {
     const courseState = useSelector(state => state.courseState)
 
     var allCourses = courseState.courses;
+
+    const course = allCourses[courseId]
+
+    const [currentVideoUri, setCurrentVideoUri] = useState(course?.promoVidUrl ?? '')
 
     const dispatch = useDispatch();
 
@@ -68,8 +74,11 @@ const CourseDetail = ({ route }) => {
         ShareUtils.share({ message: course.title })
     }
 
+    const onTapLessonItem = (lesson) => {
+        setCurrentVideoUri(lesson.videoUrl)
+    }
+
     const CourseOverview = () => {
-        var course = allCourses[courseId]
         var instructor = course.instructor;
         return (
             <CScrollView
@@ -113,10 +122,34 @@ const CourseDetail = ({ route }) => {
         )
     }
 
+    const buildVideoView = () => {
+        const isExposedVideoFile = currentVideoUri.endsWith('.mp4')
+        const isYoutubeVideo = currentVideoUri.includes('https://youtube')
+
+        if (isExposedVideoFile) {
+            return <CExpoVideoView
+                uri={currentVideoUri} />
+        }
+
+        if (isYoutubeVideo) {
+
+            var splited = currentVideoUri.split('/')
+
+            var youtubeVideoId = splited[splited.length - 1]
+
+            return <CYoutubeVideoView
+                videoId={youtubeVideoId}
+                style={styles.videoView} />
+        }
+
+        return <CImage
+            uri={Strings.noVideoImage}
+            height={200}
+        />
+
+    }
+
     const build = () => {
-        var course = allCourses[courseId]
-        var instructor = course.instructor;
-        const isExposedVideoFile = course.promoVidUrl.endsWith('.mp4')
         return (
             <View
                 style={{ height: '100%' }}>
@@ -128,15 +161,7 @@ const CourseDetail = ({ route }) => {
                         <CIonIcon
                             name={IconName.mdShare}
                             onPress={() => onShare(course)} />} />
-                {
-
-                    isExposedVideoFile ?
-                        <CExpoVideoView
-                            uri={course.promoVidUrl} /> :
-                        <CYoutubeVideoView
-                            uri={course.imageUrl}
-                            style={styles.videoView} />
-                }
+                {buildVideoView()}
                 <Tab.Navigator
                     tabBarOptions={{
                         contentContainerStyle: { backgroundColor: theme.tabColor },
@@ -149,7 +174,8 @@ const CourseDetail = ({ route }) => {
                         options={{ title: i18n.t('overview') }} />
                     <Tab.Screen
                         name={Routes.CourseContent}
-                        component={CourseContent}
+                        //component={CourseContent}
+                        children={() => <CourseContent onTapItem={onTapLessonItem} />}
                         options={{ title: i18n.t('contents') }} />
                 </Tab.Navigator>
             </View>
