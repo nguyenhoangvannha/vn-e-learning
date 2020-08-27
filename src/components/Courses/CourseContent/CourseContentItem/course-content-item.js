@@ -8,6 +8,7 @@ import CText from '../../../Common/Text/c-text'
 import CIonIcon from '../../../Common/Icon/c-ion-icon'
 import IconName from '../../../../res/icon-name'
 import i18n from '../../../../res/i18n'
+import COpacityButton from '../../../Common/Button/c-opacity-button'
 
 const CourseContentItem = ({ data }) => {
     return (

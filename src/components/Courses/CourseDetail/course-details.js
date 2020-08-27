@@ -116,6 +116,7 @@ const CourseDetail = ({ route }) => {
     const build = () => {
         var course = allCourses[courseId]
         var instructor = course.instructor;
+        const isExposedVideoFile = course.promoVidUrl.endsWith('.mp4')
         return (
             <View
                 style={{ height: '100%' }}>
@@ -127,19 +128,29 @@ const CourseDetail = ({ route }) => {
                         <CIonIcon
                             name={IconName.mdShare}
                             onPress={() => onShare(course)} />} />
-                {/* <CYoutubeVideoView
-                    uri={course.imageUrl}
-                    style={styles.videoView} /> */}
-                <CExpoVideoView
-                />
+                {
+
+                    isExposedVideoFile ?
+                        <CExpoVideoView
+                            uri={course.promoVidUrl} /> :
+                        <CYoutubeVideoView
+                            uri={course.imageUrl}
+                            style={styles.videoView} />
+                }
                 <Tab.Navigator
                     tabBarOptions={{
                         contentContainerStyle: { backgroundColor: theme.tabColor },
                         activeTintColor: theme.textColor,
                         inactiveTintColor: theme.textColor,
                     }}>
-                    <Tab.Screen name={Routes.CourseTranscript} component={CourseOverview} options={{ title: i18n.t('overview') }} />
-                    <Tab.Screen name={Routes.CourseContent} component={CourseContent} options={{ title: i18n.t('contents') }} />
+                    <Tab.Screen
+                        name={Routes.CourseTranscript}
+                        component={CourseOverview}
+                        options={{ title: i18n.t('overview') }} />
+                    <Tab.Screen
+                        name={Routes.CourseContent}
+                        component={CourseContent}
+                        options={{ title: i18n.t('contents') }} />
                 </Tab.Navigator>
             </View>
         )

@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { Audio, Video } from 'expo-av';
 
-export default function CExpoVideoView({ shouldPlay = true, videoRef }) {
+export default function CExpoVideoView({ shouldPlay = false, videoRef, uri }) {
     return (
         <View>
             <Video
                 ref={videoRef}
-                source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
+                source={{ uri: uri }}
                 rate={1.0}
                 volume={1.0}
                 isMuted={false}
                 resizeMode="cover"
-                shouldPlay={false}
+                shouldPlay={shouldPlay}
                 isLooping={false}
                 useNativeControls={true}
                 style={{
