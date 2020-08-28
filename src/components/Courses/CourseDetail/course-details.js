@@ -37,10 +37,11 @@ import CImage from '../../Common/Image/c-image'
 import Strings from '../../../res/strings'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import { useNavigation } from '@react-navigation/native'
+import CourseRatingTab from '../CourseContent/course-rating-screen'
 
 const Tab = createMaterialTopTabNavigator()
 
-const CourseDetail = ({ route , navigator}) => {
+const CourseDetail = ({ route, navigator }) => {
 
     var courseId = route.params.courseId
 
@@ -151,7 +152,7 @@ const CourseDetail = ({ route , navigator}) => {
 
     const build = () => {
         return (
-            <View style={{height: '100%'}}>
+            <View style={{ height: '100%' }}>
                 {buildVideoView()}
                 <Tab.Navigator
                     tabBarOptions={{
@@ -168,6 +169,10 @@ const CourseDetail = ({ route , navigator}) => {
                         //component={CourseContent}
                         children={() => <CourseContent onTapItem={onTapLessonItem} />}
                         options={{ title: i18n.t('contents') }} />
+                    <Tab.Screen
+                        name={Routes.CourseRatingTab}
+                        children={() => <CourseRatingTab />}
+                        options={{ title: i18n.t('rating') }} />
                 </Tab.Navigator>
             </View>
         )
