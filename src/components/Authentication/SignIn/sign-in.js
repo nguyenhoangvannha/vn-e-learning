@@ -23,9 +23,9 @@ import { LoadStatus, Status } from '../../../core/status'
 const SignIn = (props) => {
 
 
-    const [username, setUsername] = useState('nguyenhoangvannha@gmail.com');
+    const [username, setUsername] = useState('');
 
-    const [password, setPassword] = useState('nha.nguyen');
+    const [password, setPassword] = useState('');
 
     const [error, setError] = useState('')
 
@@ -83,7 +83,7 @@ const SignIn = (props) => {
                     <SizedBox height={Sizes.s70} />
 
                     <CFromTextInput
-                        initValue={'nguyenhoangvannha@gmail.com'}
+                        initValue={''}
                         label={i18n.t('email')}
                         placeholder={i18n.t('your_email_address')}
                         style={styles.input}
@@ -99,7 +99,7 @@ const SignIn = (props) => {
                     </CFromTextInput>
 
                     <CFromTextInput
-                        initValue={'nha.nguyen'}
+                        initValue={''}
                         label={i18n.t('password')}
                         placeholder={i18n.t('atless_x_char').replace('%s', 6)}
                         style={styles.input} 

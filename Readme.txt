@@ -18,3 +18,22 @@ Deadline 3: Implement final project connect to API (itedu.me)
   - Commit ID: 04101eaa7158393dd35f2a8e8c03c4122cdfb876
   - Video demo: https://youtu.be/0GcmDCK5HGU
 ------------------------------------------------
+
+How to build this app
+
+- 1 Install node https://nodejs.org/en/download/package-manager/
+
+
+- 2 Install react-native https://reactnative.dev/docs/0.61/getting-started
+
+- 3 Install expo https://docs.expo.io/get-started/installation/
+
+- 4 Open termial
+
+- 5 Clone project `git clone git@github.com:nguyenhoangvannha/vn-e-learning.git`
+
+- 6 `cd vn-e-learning'
+
+- 7 'npm install'
+
+- 8 'npm run ios' or 'npm run android'
