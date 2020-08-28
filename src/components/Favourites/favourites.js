@@ -11,6 +11,7 @@ import { DO_GET_FAVOURITES_COURSE_ACTION, DoGetFavouritesCourseAction } from '..
 import CLoadingIndicator from '../Common/Animations/c_loading_indicator'
 import { FavouriteCourseList } from '../Courses/ListCoursesItem/favourite_course_item'
 import Colors from '../../res/colors'
+import ScreenContainer from '../Common/Screen/screen-container'
 
 const Favourites = () => {
 
@@ -31,7 +32,9 @@ const Favourites = () => {
 
 
     return (
-        <View style={{ backgroundColor: Colors.white, height: '100%' , paddingHorizontal: Sizes.s8, paddingVertical: Sizes.s16}}>
+        <ScreenContainer style={{paddingHorizontal: Sizes.s8, paddingVertical: Sizes.s16}}
+        //style={{ backgroundColor: Colors.white, height: '100%' , paddingHorizontal: Sizes.s8, paddingVertical: Sizes.s16}}
+        >
             {/* <CFlatButton
                     title='BUTTON'
                     onPress={() => {
@@ -42,7 +45,7 @@ const Favourites = () => {
                 getFavouriteStatus.loadStatus == LoadStatus.loading
                     ? <CLoadingIndicator /> : <Content data={Array.from(courseState.favouriteCourses)} />
             }
-        </View>
+        </ScreenContainer>
     )
 }
 

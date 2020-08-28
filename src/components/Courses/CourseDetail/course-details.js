@@ -103,70 +103,72 @@ const CourseDetail = ({ route, navigator }) => {
         }
 
         return (
-            <CScrollView
-                style={Styles.screenContainer}>
-                <SizedBox height={Sizes.s10} />
-                <CText data={course.title} style={TextStyles.courseName} />
-                <SizedBox height={Sizes.s10} />
-                <View style={Styles.row}>
-                    <AirRating
-                        showRating={true}
-                        ratingCount={averageScore} />
-                    <View style={{ padding: Sizes.s12 }}>
-                        <CText
-                            data={`${i18n.t('rated_by')} ${totalPeople} ${i18n.t('peoples')}`} />
-                        <SizedBox height={Sizes.s6} />
-                        <CChip title={`${course.soldNumber} ${i18n.t('learner')}`} />
-                        <SizedBox height={Sizes.s6} />
+            <ScreenContainer>
+                <CScrollView
+                    style={Styles.screenContainer}>
+                    <SizedBox height={Sizes.s10} />
+                    <CText data={course.title} style={TextStyles.courseName} />
+                    <SizedBox height={Sizes.s10} />
+                    <View style={Styles.row}>
+                        <AirRating
+                            showRating={true}
+                            ratingCount={averageScore} />
+                        <View style={{ padding: Sizes.s12 }}>
+                            <CText
+                                data={`${i18n.t('rated_by')} ${totalPeople} ${i18n.t('peoples')}`} />
+                            <SizedBox height={Sizes.s6} />
+                            <CChip title={`${course.soldNumber} ${i18n.t('learner')}`} />
+                            <SizedBox height={Sizes.s6} />
+                        </View>
                     </View>
-                </View>
-                <SizedBox height={Sizes.s18} />
-                {
-                    instructor != undefined ?? <InstructorChipItem
-                        id={instructor['id'] ?? ''}
-                        name={instructor['name'] ?? ''}
-                        avatar={instructor['avatar'] ?? ''}
-                    />
-                }
-                <CText>{`${i18n.t('updated_at')}   ${DateFormat.toMdy(Date.parse(course.updatedAt))} `}</CText>
-                <SizedBox width={Sizes.s4} />
-                <SizedBox height={Sizes.s12} />
-                <View style={Styles.row}>
-                    <CChip title={course.price == 0 ? i18n.t('free') : `${course.price} vnd`} />
-                    <SizedBox width={Sizes.s8} />
-                    <CChip title={`${course.videoNumber} ${i18n.t('videos')}`} />
-                    <SizedBox width={Sizes.s8} />
-                    <CChip title={`${course.totalHours} ${i18n.t('hours')}`} />
-                </View>
-                <SizedBox height={Sizes.s12} />
-                <CText
-                    style={TextStyles.title}
-                    data={`${i18n.t('requirement')}`} />
-                <SizedBox height={Sizes.s4} />
-                <CText>{`${course.requirement} `}</CText>
-                <SizedBox height={Sizes.s12} />
-                <CText
-                    style={TextStyles.title}
-                    data={`${i18n.t('learn_what')}`} />
-                <SizedBox height={Sizes.s4} />
-                <CText>{`${course.learnWhat}`}</CText>
-                <SizedBox height={Sizes.s8} />
-                <CourseActions
-                    courseId={course.id ?? ''}
-                    style={styles.courseActions} />
-                <SizedBox height={Sizes.s8} />
-                <CText data={course.description} />
-                <SizedBox height={Sizes.s12} />
+                    <SizedBox height={Sizes.s18} />
+                    {
+                        instructor != undefined ?? <InstructorChipItem
+                            id={instructor['id'] ?? ''}
+                            name={instructor['name'] ?? ''}
+                            avatar={instructor['avatar'] ?? ''}
+                        />
+                    }
+                    <CText>{`${i18n.t('updated_at')}   ${DateFormat.toMdy(Date.parse(course.updatedAt))} `}</CText>
+                    <SizedBox width={Sizes.s4} />
+                    <SizedBox height={Sizes.s12} />
+                    <View style={Styles.row}>
+                        <CChip title={course.price == 0 ? i18n.t('free') : `${course.price} vnd`} />
+                        <SizedBox width={Sizes.s8} />
+                        <CChip title={`${course.videoNumber} ${i18n.t('videos')}`} />
+                        <SizedBox width={Sizes.s8} />
+                        <CChip title={`${course.totalHours} ${i18n.t('hours')}`} />
+                    </View>
+                    <SizedBox height={Sizes.s12} />
+                    <CText
+                        style={TextStyles.title}
+                        data={`${i18n.t('requirement')}`} />
+                    <SizedBox height={Sizes.s4} />
+                    <CText>{`${course.requirement} `}</CText>
+                    <SizedBox height={Sizes.s12} />
+                    <CText
+                        style={TextStyles.title}
+                        data={`${i18n.t('learn_what')}`} />
+                    <SizedBox height={Sizes.s4} />
+                    <CText>{`${course.learnWhat}`}</CText>
+                    <SizedBox height={Sizes.s8} />
+                    <CourseActions
+                        courseId={course.id ?? ''}
+                        style={styles.courseActions} />
+                    <SizedBox height={Sizes.s8} />
+                    <CText data={course.description} />
+                    <SizedBox height={Sizes.s12} />
 
-                <CText
-                    style={TextStyles.title}
-                    data={`${i18n.t('same_category_courses')}`} />
-                <SizedBox height={Sizes.s10} />
-                <SectionCourses
-                    hasTrailing={false}
-                    data={course?.coursesLikeCategory ?? []} />
-                <SizedBox height={Sizes.s100} />
-            </CScrollView>
+                    <CText
+                        style={TextStyles.title}
+                        data={`${i18n.t('same_category_courses')}`} />
+                    <SizedBox height={Sizes.s10} />
+                    <SectionCourses
+                        hasTrailing={false}
+                        data={course?.coursesLikeCategory ?? []} />
+                    <SizedBox height={Sizes.s100} />
+                </CScrollView>
+            </ScreenContainer>
         )
     }
 
