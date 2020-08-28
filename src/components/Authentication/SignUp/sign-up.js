@@ -38,7 +38,12 @@ const SignUp = ({ navigation }) => {
     useEffect(() => {
 
         setStatus(authState.status[DO_REGISTER_AUTH_ACTION])
+        return () => {
+            //cleanup
+        }
+    }, [authState])
 
+    useEffect(() => {
         switch (status.loadStatus) {
             case LoadStatus.error:
                 setError(i18n.t('account_exist'))
@@ -49,11 +54,10 @@ const SignUp = ({ navigation }) => {
             default:
                 break;
         }
-
         return () => {
-            //cleanup
+
         }
-    }, [authState])
+    }, [status])
 
     const onPressedBackToSignIn = () => {
         navigation.navigate(Routes.SignIn)
@@ -67,7 +71,7 @@ const SignUp = ({ navigation }) => {
     }
 
     const validate = () => {
-        if(!email.includes('@')){
+        if (!email.includes('@')) {
             setError(i18n.t('wrong_email'))
             return false;
         }
@@ -75,7 +79,7 @@ const SignUp = ({ navigation }) => {
             setError(i18n.t('please_fill_inforamtion'))
             return false;
         }
-        if(password.length < 6 || rePassword.length < 6){
+        if (password.length < 8 || rePassword.length < 8) {
             setError(i18n.t('password_atless_x_char').replace('%s', '6'))
             return false;
         }

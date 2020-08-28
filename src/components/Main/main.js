@@ -13,6 +13,7 @@ import Favourites from '../Favourites/favourites';
 import { ThemeContext } from '../../provider/theme-provider';
 import CIonIcon from '../Common/Icon/c-ion-icon';
 import ScreenContainer from '../Common/Screen/screen-container';
+import MeScreen from './MyCourses/me-screen';
 const Tab = createBottomTabNavigator()
 
 const MainScreen = () => {
@@ -32,7 +33,7 @@ const MainScreen = () => {
                     inactiveBackgroundColor: theme.appBarColor,
                 }}>
                 <Tab.Screen name={Routes.Home} component={Home} />
-                <Tab.Screen name={Routes.Favourites} component={Favourites} />
+                <Tab.Screen name={Routes.MeScreen} component={MeScreen} />
                 <Tab.Screen name={Routes.Browse} component={Browse} />
                 <Tab.Screen name={Routes.Search} component={Search} />
             </Tab.Navigator>
@@ -56,7 +57,7 @@ const screenOptions = ({ route }) => ({
             case Routes.Home:
                 iconName = IconName.mdHome;
                 break;
-            case Routes.Favourites:
+            case Routes.MeScreen:
                 iconName = IconName.mdHeart;
                 break;
             case Routes.Browse:
@@ -78,8 +79,8 @@ const screenOptions = ({ route }) => ({
             case Routes.Home:
                 label = i18n.t('home');
                 break;
-            case Routes.Favourites:
-                label = i18n.t('favourites');
+            case Routes.MeScreen:
+                label = i18n.t('my_courses');
                 break;
             case Routes.Browse:
                 label = i18n.t('browse');
@@ -88,7 +89,7 @@ const screenOptions = ({ route }) => ({
                 label = i18n.t('search');
                 break;
             default:
-                label = i18n.t('home');
+                label = i18n.t('others');
                 break;
         }
         return <CText style={styles.labelStyle}>{label}</CText>;

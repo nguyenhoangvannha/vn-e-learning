@@ -8,6 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Routes from './src/routes/routes';
 import MainScreen from './src/components/Main/main';
 import Profile from './src/components/Account/Profile/profile'
+import EditProfileScreen from './src/components/Account/Profile/edit-profile-screen'
 import { RootNavigation } from './src/routes/navigations/root-navigation'
 import Settings from './src/components/Account/Settings/settings';
 import SkillsDetail from './src/components/Skills/SkillDetails/skills-detail';
@@ -26,6 +27,7 @@ import VerifyPasswordScreen from './src/components/Authentication/VerifyPassword
 import { AppProvider } from './src/provider/app-provider';
 import CategoryDetailScreen from './src/components/Category/CategoryDetails/category-detail-screen';
 import RecommendedForYouScreen from './src/components/Content/NewReleases/recommended-for-you-screen';
+import ChangePasswordScreen from './src/components/Account/Profile/change-password-screen';
 
 const Stack = createStackNavigator()
 
@@ -60,6 +62,8 @@ export default function App() {
             <Stack.Screen name={Routes.PathScreen} component={PathScreen} options={NavigationOptions.normalOptions} />
             <Stack.Screen name={Routes.CategoryDetailScreen} component={CategoryDetailScreen} options={NavigationOptions.normalOptions} />
             <Stack.Screen name={Routes.RecommendedForYouScreen} component={RecommendedForYouScreen} options={NavigationOptions.normalOptions} />
+            <Stack.Screen name={Routes.EditProfileScreen} component={EditProfileScreen} options={NavigationOptions.normalOptions} />
+            <Stack.Screen name={Routes.ChangePasswordScreen} component={ChangePasswordScreen} options={NavigationOptions.normalOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </MenuProvider>

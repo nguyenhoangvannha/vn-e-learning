@@ -10,13 +10,14 @@ import CAvatar from '../Image/c-avatar'
 import ListTile from '../Container/list-tile'
 import COpacityButton from '../Button/c-opacity-button'
 
-const ProfileTile = ({ style, image, title, subtitle, onPress }) => {
+const ProfileTile = ({ style, image, title, subtitle, onPress, trailing }) => {
     return (
         <COpacityButton style={style} onPress={onPress}>
             <ListTile
                 leading={<CAvatar size={Sizes.s48} uri={image ?? ''} />}
                 title={<CText data={title} style={TextStyles.subhead} />}
-                subtitle={<CText data={subtitle} style={TextStyles.overline} />} />
+                subtitle={<CText data={subtitle} style={TextStyles.overline} />}
+                trailing={trailing} />
         </COpacityButton>
     )
 }

@@ -19,6 +19,45 @@ export const SET_SEARCH_RESULTS_COURSE_ACTION = 'SET_SEARCH_RESULTS_COURSE_ACTIO
 export const DO_GET_FAVOURITES_COURSE_ACTION = 'DO_GET_FAVOURITES_COURSE_ACTION'
 export const SET_FAVOURITES_COURSE_ACTION = 'SET_FAVOURITES_COURSE_ACTION'
 export const SET_CURRENT_COURSE_ID_COURSE_ACTION = 'SET_CURRENT_COURSE_ID_COURSE_ACTION'
+export const SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION = 'SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION'
+export const DO_GET_FREE_COURSE_COURSE_ACTION = 'DO_GET_FREE_COURSE_COURSE_ACTION'
+export const DO_GET_MY_COURSES_COURSE_COURSE_ACTION = 'DO_GET_MY_COURSES_COURSE_COURSE_ACTION'
+export const SET_ADD_MY_COURSES_COURSE_ACTION = 'SET_ADD_MY_COURSES_COURSE_ACTION'
+
+export const SetAddMyCoursesCourseAction = (courses) => {
+    return {
+        type: SET_ADD_MY_COURSES_COURSE_ACTION,
+        payload: {
+            courses: courses
+        }
+    }
+}
+
+export const DoGetMyCoursesCourseAction = () => {
+    return {
+        type: DO_GET_MY_COURSES_COURSE_COURSE_ACTION,
+        payload: {
+        }
+    }
+}
+
+export const DoGetFreeCourseCourseAction = (courseId) => {
+    return {
+        type: DO_GET_FREE_COURSE_COURSE_ACTION,
+        payload: {
+            courseId: courseId
+        }
+    }
+}
+
+export const SetAddContinuesLearningCourseAction = (courseId) => {
+    return {
+        type: SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION,
+        payload: {
+            courseId: courseId
+        }
+    }
+}
 
 export const SetCurrentCourseIdCourseAction = (courseId) => {
     return {

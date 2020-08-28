@@ -19,9 +19,11 @@ import i18n from '../../../res/i18n'
 import ScreenContainer from '../../Common/Screen/screen-container'
 import { useSelector, useDispatch } from 'react-redux'
 import { DoLogoutAuthAction, AuthAction } from '../../../feature/auth/actions'
-import { LoadStatus } from '../../../core/status'
+import { LoadStatus, Status } from '../../../core/status'
 import ErrorText from '../../Common/error/error-text'
 import { DateFormat } from '../../../utils/date-format'
+import CIconButton from '../../Common/Button/c-icon-button'
+import IconName from '../../../res/icon-name'
 
 const Profile = () => {
 
@@ -31,33 +33,43 @@ const Profile = () => {
 
     const user = authState.userInfo;
 
-    const [logoutLoading, setLogoutLoading] = useState(false)
+    const [logoutStatus, setLogoutstatus] = useState(Status.idle())
 
     const [error, setError] = useState('')
 
     useEffect(
         () => {
-            const logoutStatus = authState.status[AuthAction.DoLogoutAuthAction]
-            switch (logoutStatus.loadStatus) {
-                case LoadStatus.loading:
-                    setLogoutLoading(true)
-                    break;
-                case LoadStatus.error:
-                    setError(logoutStatus.message)
-                    break;
-                case LoadStatus.success:
-                    RootNavigation.reset(Routes.SignIn)
-                    break;
-                default:
-                    setError('')
-                    setLogoutLoading(false)
-                    break;
-            }
+            setLogoutstatus(authState.status[AuthAction.DoLogoutAuthAction])
         }, [authState]
     )
 
+    useEffect(() => {
+        switch (logoutStatus.loadStatus) {
+            case LoadStatus.error:
+                setError(logoutStatus.message)
+                break;
+            case LoadStatus.success:
+                RootNavigation.reset(Routes.SignIn)
+                break;
+            default:
+                setError('')
+                break;
+        }
+        return () => {
+
+        }
+    }, [logoutStatus])
+
     const onSignOutPressed = () => {
         dispatch(DoLogoutAuthAction())
+    }
+
+    const onPressEditBasicInfo = () => {
+        RootNavigation.push(Routes.EditProfileScreen)
+    }
+
+    const onChangePasswordPressed = () => {
+        RootNavigation.push(Routes.ChangePasswordScreen)
     }
 
     return (
@@ -67,7 +79,13 @@ const Profile = () => {
                 <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
                     <ProfileTile
                         image={user.avatar ?? Strings.defaultAvatar}
-                        title={user?.name ?? ''} />
+                        title={user?.name ?? ''}
+                        trailing={<CIconButton
+                            icon={IconName.icConstruct}
+                            size={Sizes.s32}
+                            onPress={onPressEditBasicInfo}
+                        />}
+                    />
                     <SizedBox height={Sizes.s32} />
                     <ProfileItem title={i18n.t('email')} subtitle={user.email} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
@@ -77,9 +95,20 @@ const Profile = () => {
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                     <ProfileItem title={i18n.t('type')} subtitle={user.type} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                    <SizedBox height={'25%'} />
+                    <SizedBox height={'20%'} />
                     {error != undefined && error.length > 0 && <ErrorText text={error} />}
-                    <CButton title={i18n.t('sign_out')} color={Colors.grey200} onPress={onSignOutPressed} />
+                    <SizedBox height={Sizes.s32} />
+                    <CButton
+                        //loading={logoutStatus?.loadStatus == LoadStatus.loading}
+                        title={i18n.t('change_password')}
+                        //color={Colors.grey200}
+                        onPress={onChangePasswordPressed} />
+                    <SizedBox height={Sizes.s16} />
+                    <CButton
+                        loading={logoutStatus?.loadStatus == LoadStatus.loading}
+                        title={i18n.t('sign_out')}
+                        color={Colors.grey200}
+                        onPress={onSignOutPressed} />
                 </CScrollView>
             </ScreenContainer>
 

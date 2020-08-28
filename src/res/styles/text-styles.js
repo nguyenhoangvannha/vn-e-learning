@@ -26,6 +26,11 @@ const TextStyles = StyleSheet.create({
         fontSize: Sizes.s24,
         fontWeight: FontWeight.w400
     },
+    courseName: {
+        fontSize: Sizes.s28,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 0.15
+    },
     title: {
         fontSize: Sizes.s20,
         fontWeight: FontWeight.w500,
@@ -65,6 +70,12 @@ const TextStyles = StyleSheet.create({
         fontSize: Sizes.s10,
         fontWeight: FontWeight.w400,
         letterSpacing: 1.5
+    },
+    smallTab: {
+        fontSize: Sizes.s8,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 1,
+        margin: 0
     },
 })
 

@@ -10,22 +10,23 @@ import { CRating, RatingType } from '../../Common/Rating/c-rating'
 import ListAuthors from '../../Author/ListAuthors/list-authors'
 import { DateFormat } from '../../../utils/date-format'
 import ContentContainer from '../../Common/Screen/content-container'
+import CChip from '../../Common/Container/c-chip'
+import i18n from '../../../res/i18n'
 
 const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) => {
-
     return (
         <ContentContainer style={styles.container}>
-            <CText data={course.title} style={TextStyles.subhead} />
+            <CText data={course.title ?? course.courseTitle} style={TextStyles.subhead} />
             <SizedBox height={Sizes.s2} />
             {
-                !simple && (
-                    authorChip ?
-                        <ListAuthors
-                            authorIds={course.authors}
-                            horizontal={true}
-                            chip={true} /> :
-                        <CText data={course.teachers} style={TextStyles.caption} />)
+                !simple &&
+                <View>
+                    <SizedBox height={Sizes.s4} />
+                    <CChip title={`${course['instructor.user.name'] ?? course.instructor?.name ?? course.instructorName ?? ''}`} />
+                    <SizedBox height={Sizes.s4} />
+                </View>
             }
+
             <SizedBox height={Sizes.s2} />
             <View style={styles.row}>
                 <CText data={course.level} style={TextStyles.caption} />
@@ -34,15 +35,22 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
                 <SizedBox width={Sizes.s4} />
                 <CText data={`${course.totalHours} hours`} style={TextStyles.caption} />
             </View>
-            <SizedBox height={Sizes.s4} />
+            <SizedBox height={Sizes.s8} />
             {
-                !simple && <View style={styles.row}>
-                    <CRating
-                        readonly={true}
-                        type={RatingType.star}
-                        ratingCount={course.ratedNumber / 2} />
+                !simple &&
+                <View style={styles.row}>
+                    <CChip
+                        leadingText={`${course.soldNumber ?? 0}`}
+                        title={i18n.t('sold')} />
                     <SizedBox width={Sizes.s4} />
-                    <CText data={`(${course.ratedNumber})`} style={TextStyles.caption} />
+                    <CChip
+                        leadingText={`${course.ratedNumber ?? 0}`}
+                        title={i18n.t('rated')} />
+                    <SizedBox width={Sizes.s4} />
+                    <CChip
+                        leadingText={`${course.totalHours ?? 0}`.substr(0, 3)}
+                        title={i18n.t('hours')} />
+                    <SizedBox width={Sizes.s4} />
                 </View>
             }
         </ContentContainer>

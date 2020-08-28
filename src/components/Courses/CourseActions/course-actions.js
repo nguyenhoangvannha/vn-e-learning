@@ -11,6 +11,7 @@ import i18n from '../../../res/i18n'
 import { useSelector, useDispatch } from 'react-redux'
 import { DoAddFavouriteCourseUserAction, DO_ADD_FAVOURITE_COURSE_USER_ACTION } from '../../../feature/user/actions'
 import { Status, LoadStatus } from '../../../core/status'
+import { DoGetFreeCourseCourseAction } from '../../../feature/course/actions'
 
 const Item = ({ bottomText, icon, onPress }) => {
     return (
@@ -36,6 +37,9 @@ const CourseActions = ({ style, courseId }) => {
 
     const [favourite, setFavourite] = useState(false)
 
+    const myCourses = courseState.myCourses
+
+    const [alreadyBuy, setAlreadyBuy] = useState(false)
 
     useEffect(() => {
 
@@ -50,8 +54,21 @@ const CourseActions = ({ style, courseId }) => {
         }
     }, [userState, courseState])
 
+    useEffect(() => {
+        const buyStatus = Object.keys(myCourses).includes(courseId)
+        setAlreadyBuy(buyStatus)
+        return () => {
+
+        }
+    }, [myCourses])
+
     const onPressFavourite = () => {
         dispatch(DoAddFavouriteCourseUserAction(courseId))
+    }
+
+    const onPressGet = () => {
+        if (!alreadyBuy)
+            dispatch(DoGetFreeCourseCourseAction(courseId))
     }
 
     return (
@@ -62,7 +79,8 @@ const CourseActions = ({ style, courseId }) => {
                 onPress={() => onPressFavourite()} />
             <Item
                 icon={IconName.iosRadio}
-                bottomText={i18n.t('buy')} />
+                bottomText={alreadyBuy ? i18n.t('bought') : i18n.t('get')}
+                onPress={onPressGet} />
             <Item
                 icon={IconName.mdCloudDownload}
                 bottomText={i18n.t('download')} />

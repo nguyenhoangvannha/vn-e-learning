@@ -8,7 +8,7 @@ import { RootNavigation } from '../../../routes/navigations/root-navigation';
 import i18n from '../../../res/i18n';
 import { CoursesContext } from '../../../provider/courses-provider';
 import { useSelector, useDispatch } from 'react-redux'
-import { DoGetCourseDetailCourseAction, SetCurrentCourseIdCourseAction } from '../../../feature/course/actions';
+import { DoGetCourseDetailCourseAction, SetCurrentCourseIdCourseAction, SetAddContinuesLearningCourseAction } from '../../../feature/course/actions';
 
 export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
 
@@ -43,6 +43,8 @@ export const SectionCoursesByIds = ({ style, headerText, courseIds }) => {
 
                         dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
                         
+                        dispatch(SetAddContinuesLearningCourseAction(course.id))
+
                         RootNavigation.navigate(Routes.CourseDetail, {
                             courseId: course.id
                         })
@@ -85,6 +87,8 @@ const SectionCourses = ({ style, headerText, data , hasTrailing  = true}) => {
 
                         dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
 
+                        dispatch(SetAddContinuesLearningCourseAction(course.id))
+                        
                         RootNavigation.navigate(Routes.CourseDetail, {
                             courseId: course.id
                         })

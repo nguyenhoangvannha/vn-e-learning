@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { StyleSheet, View, Picker } from 'react-native'
 import CAppBar from '../../Common/AppBar/c-app-bar'
 import Styles from '../../../res/styles/styles'
 import CSwitch from '../../Common/switch/c-switch'
@@ -17,6 +17,9 @@ import ScreenContainer from '../../Common/Screen/screen-container'
 import { useSelector, useDispatch } from 'react-redux'
 import { DoChangeLanguageAppAction } from '../../../feature/app/actions'
 import SupportedLocale from '../../../res/localization/supported_locale'
+import { Dropdown } from 'react-native-material-dropdown';
+import Colors from '../../../res/colors'
+
 
 const Settings = () => {
 
@@ -32,20 +35,24 @@ const Settings = () => {
 
     const isDarkTheme = themeContext.theme === themes.dark;
 
+    const [selectedLanguage, setSelectedLanguage] = useState(appState.language ?? SupportedLocale.en)
+
+
     const changeTheme = (useDarkTheme) => {
         console.log('changeTheme', useDarkTheme)
         themeContext.setTheme(useDarkTheme ? themes.dark : themes.light)
     }
 
-    const changeLanguage = (enabled) => {
-        if (appState.language === 'en') {
-            dispatch(DoChangeLanguageAppAction(SupportedLocale.vi))
-        } else {
-            dispatch(DoChangeLanguageAppAction(SupportedLocale.en))
+    let allLanguages = [
+        {
+            value: 'English',
+            code: 'en',
+        },
+        {
+            value: 'Vietnamese',
+            code: 'vi'
         }
-    }
-
-    console.log('DEBUG', i18n.language)
+    ];
 
     return (
         <ScreenContainer style={{ backgroundColor: themeContext.theme.background }}>
@@ -55,13 +62,7 @@ const Settings = () => {
                     image={user.avatar ?? Strings.defaultAvatar}
                     title={user?.email ?? ''}
                     subtitle={user.type ?? ''} />
-                <SizedBox height={Sizes.s16} />
-                <ListTileText
-                    style={styles.item}
-                    title={i18n.t('notifications')}
-                    subtitle={i18n.t('show_notification')}
-                    trailing={<CSwitch initValue={true} />} />
-                <CDivider containerHeight={Sizes.s16} />
+                <SizedBox height={Sizes.s32} />
                 <ListTileText
                     style={styles.item}
                     title={i18n.t('dark_theme')}
@@ -73,10 +74,25 @@ const Settings = () => {
                 <ListTileText
                     style={styles.item}
                     title={i18n.t('language')}
-                    subtitle='English'
-                    trailing={<CSwitch
-                        initValue={i18n.language === 'en'}
-                        onValueChange={(value) => changeLanguage(value)} />}
+                    subtitle={selectedLanguage == 'en' ? 'English' : 'Vietnamese'}
+                    trailing={
+                        <Dropdown
+                            containerStyle={{ width: 120 }}
+                            //label={selectedLanguage == 'en' ? 'English' : 'Vietnamese'}
+                            data={allLanguages}
+                            value={selectedLanguage == 'en' ? 'English' : 'Vietnamese'}
+                            textColor={isDarkTheme ? Colors.white : Colors.black}
+                            baseColor={isDarkTheme ? Colors.white : Colors.black}
+                            onChangeText={(value, index, data) => {
+                                const langCode = data[index]['code'];
+                                console.log(value, index, langCode)
+                                if (langCode != selectedLanguage) {
+                                    setSelectedLanguage(langCode)
+                                    dispatch(DoChangeLanguageAppAction(langCode))
+                                }
+                            }}
+                        />
+                    }
                 />
 
             </CScrollView>

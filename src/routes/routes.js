@@ -29,6 +29,12 @@ const Routes = {
     Favourites: 'Favourites',
     CategoryDetailScreen: 'CategoryDetailScreen',
     RecommendedForYouScreen: 'RecommendedForYouScreen',
+    MeScreen: 'MeScreen',
+    MyCoursesTab: 'MyCoursesTab',
+    EditProfileScreen: 'EditProfileScreen',
+    ChangePasswordScreen: 'ChangePasswordScreen',
+    CourseRatingTab: 'CourseRatingTab',
+    CourseAssignmentTab: 'CourseAssignmentTab'
 }
 
 export default Routes

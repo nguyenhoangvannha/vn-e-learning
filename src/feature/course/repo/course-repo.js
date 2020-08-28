@@ -75,6 +75,20 @@ const getFavouriteCourses = () => {
     return apiClient.get(`user/get-favorite-courses`, body);
 }
 
+const getFreeCourse = (courseId) => {
+    var body = {
+        "courseId": courseId
+    }
+
+    return apiClient.post(`payment/get-free-courses`, body);
+}
+
+const getMyCourses = () => {
+    var body = {
+    }
+    return apiClient.get(`user/get-process-courses`, body);
+}
+
 const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
     getTopNewCourses: getTopNewCourses,
@@ -86,6 +100,8 @@ const CourseRepo = {
     getCategoryCourses: getCategoryCourses,
     searchCourses: searchCourses,
     getFavouriteCourses: getFavouriteCourses,
+    getFreeCourse: getFreeCourse,
+    getMyCourses: getMyCourses,
 }
 
 export {

@@ -3,15 +3,13 @@ import { StyleSheet, Text, View } from 'react-native'
 import CourseContentItem from './CourseContentItem/course-content-item'
 import Colors from '../../../res/colors'
 import Sizes from '../../../res/sizes'
-import CFlatList from '../../Common/Container/c-flat-list'
-import CDivider from '../../Common/Container/c-divider'
 import ContentContainer from '../../Common/Screen/content-container'
 import { useSelector, useDispatch } from 'react-redux'
-import CText from '../../Common/Text/c-text'
 import CSectionList from '../../Common/Container/c-section-list'
 import CSectionHeader from '../../Common/Container/c-section-header'
+import COpacityButton from '../../Common/Button/c-opacity-button'
 
-const CourseContent = () => {
+const CourseContent = ({ onTapItem }) => {
     const courseState = useSelector(state => state.courseState)
 
     const course = courseState.courses[courseState.currentCourseId]
@@ -30,7 +28,11 @@ const CourseContent = () => {
             <CSectionList
                 sections={DATA}
                 renderItem={({ item }) => {
-                    return <CourseContentItem data={item} />
+                    return <COpacityButton
+                        onPress={() => onTapItem(item)}>
+                        <CourseContentItem
+                            data={item} />
+                    </COpacityButton>
                 }}
                 renderSectionHeader={({ section: { title, data } }) => (
                     <CSectionHeader
@@ -48,6 +50,6 @@ export default CourseContent
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.white,
-        paddingVertical: Sizes.s16,
+        padding: Sizes.s16,
     }
 })
