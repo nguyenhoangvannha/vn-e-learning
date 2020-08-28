@@ -17,6 +17,10 @@ Deadline 2: Xây dựng ứng dụng offline cho toàn bộ ứng dụng
 Deadline 3: Implement final project connect to API (itedu.me)
   - Commit ID: 04101eaa7158393dd35f2a8e8c03c4122cdfb876
   - Video demo: https://youtu.be/0GcmDCK5HGU
+Deadline 4: Complete app with checklist
+  - Commit ID: d997d4a28847036ae4ee6df480add4d60de3694e
+  - Video demo: https://youtu.be/1pBzcH7J1no
+  
 ------------------------------------------------
 
 How to build this app
