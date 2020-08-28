@@ -38,6 +38,7 @@ import Strings from '../../../res/strings'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import { useNavigation } from '@react-navigation/native'
 import CourseRatingTab from '../CourseContent/course-rating-screen'
+import { CRating } from '../../Common/Rating/c-rating'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -81,11 +82,32 @@ const CourseDetail = ({ route, navigator }) => {
 
     const CourseOverview = () => {
         var instructor = course.instructor;
+
+        const stars = course?.ratings?.stars ?? [];
+
+        var totalScore = 0.0;
+
+        var totalPeople = 0;
+
+        var averageScore = 0.0;
+
+        stars.forEach((peoplesInt, index) => {
+            totalScore += peoplesInt * (index + 1)
+            totalPeople += peoplesInt
+        })
+
+        if (stars.length > 0) {
+            averageScore = totalScore / totalPeople;
+        }
+
         return (
             <CScrollView
                 style={Styles.screenContainer}>
                 <SizedBox height={Sizes.s10} />
                 <CText data={course.title} style={TextStyles.headline} />
+                
+                <CRating ratingCount={averageScore} />
+
                 {
                     instructor != undefined ?? <InstructorChipItem
                         id={instructor['id'] ?? ''}
