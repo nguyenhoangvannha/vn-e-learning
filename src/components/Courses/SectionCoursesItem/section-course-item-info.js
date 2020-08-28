@@ -22,7 +22,7 @@ const SectionCourseItemInfo = ({ course, simple = false, authorChip = false }) =
                 !simple &&
                 <View>
                     <SizedBox height={Sizes.s4} />
-                    <CChip title={`${course['instructor.user.name'] ?? course.instructor?.name ?? ''}`} />
+                    <CChip title={`${course['instructor.user.name'] ?? course.instructor?.name ?? course.instructorName ?? ''}`} />
                     <SizedBox height={Sizes.s4} />
                 </View>
             }

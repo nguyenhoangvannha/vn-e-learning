@@ -71,6 +71,12 @@ const TextStyles = StyleSheet.create({
         fontWeight: FontWeight.w400,
         letterSpacing: 1.5
     },
+    smallTab: {
+        fontSize: Sizes.s8,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 1,
+        margin: 0
+    },
 })
 
 export default TextStyles

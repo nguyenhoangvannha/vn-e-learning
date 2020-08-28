@@ -39,6 +39,8 @@ import CourseRatingTab from '../CourseContent/course-rating-screen'
 import { CRating, AirRating } from '../../Common/Rating/c-rating'
 import CChip from '../../Common/Container/c-chip'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import SectionCourses from '../SectionCourses/section-courses'
+import CourseAssignmentTab from '../CourseContent/course-assignment-tab'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -155,7 +157,15 @@ const CourseDetail = ({ route, navigator }) => {
                 <SizedBox height={Sizes.s8} />
                 <CText data={course.description} />
                 <SizedBox height={Sizes.s12} />
-                <SizedBox height={Sizes.s44} />
+
+                <CText
+                    style={TextStyles.title}
+                    data={`${i18n.t('same_category_courses')}`} />
+                <SizedBox height={Sizes.s10} />
+                <SectionCourses
+                    hasTrailing={false}
+                    data={course?.coursesLikeCategory ?? []} />
+                <SizedBox height={Sizes.s100} />
             </CScrollView>
         )
     }
@@ -196,6 +206,7 @@ const CourseDetail = ({ route, navigator }) => {
                         contentContainerStyle: { backgroundColor: theme.tabColor },
                         activeTintColor: theme.textColor,
                         inactiveTintColor: theme.textColor,
+                        //labelStyle: TextStyles.smallTab
                     }}>
                     <Tab.Screen
                         name={Routes.CourseTranscript}
@@ -210,6 +221,10 @@ const CourseDetail = ({ route, navigator }) => {
                         name={Routes.CourseRatingTab}
                         children={() => <CourseRatingTab />}
                         options={{ title: i18n.t('rating') }} />
+                    {/* <Tab.Screen
+                        name={Routes.CourseAssignmentTab}
+                        children={() => <CourseAssignmentTab />}
+                        options={{ title: i18n.t('assignment') }} /> */}
                 </Tab.Navigator>
             </View>
         )

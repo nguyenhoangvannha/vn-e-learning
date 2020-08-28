@@ -127,5 +127,7 @@
   "rating": "Rating",
   "rated_by": "Rated by",
   "peoples": "peoples",
-  "updated_at": "Updated at"
+  "updated_at": "Updated at",
+  "same_category_courses": "Same category courses",
+  "assignment": "assignment"
 }
