@@ -27,6 +27,7 @@ import VerifyPasswordScreen from './src/components/Authentication/VerifyPassword
 import { AppProvider } from './src/provider/app-provider';
 import CategoryDetailScreen from './src/components/Category/CategoryDetails/category-detail-screen';
 import RecommendedForYouScreen from './src/components/Content/NewReleases/recommended-for-you-screen';
+import ChangePasswordScreen from './src/components/Account/Profile/change-password-screen';
 
 const Stack = createStackNavigator()
 
@@ -62,6 +63,7 @@ export default function App() {
             <Stack.Screen name={Routes.CategoryDetailScreen} component={CategoryDetailScreen} options={NavigationOptions.normalOptions} />
             <Stack.Screen name={Routes.RecommendedForYouScreen} component={RecommendedForYouScreen} options={NavigationOptions.normalOptions} />
             <Stack.Screen name={Routes.EditProfileScreen} component={EditProfileScreen} options={NavigationOptions.normalOptions} />
+            <Stack.Screen name={Routes.ChangePasswordScreen} component={ChangePasswordScreen} options={NavigationOptions.normalOptions} />
           </Stack.Navigator>
         </NavigationContainer>
       </MenuProvider>

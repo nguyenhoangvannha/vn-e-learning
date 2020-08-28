@@ -68,6 +68,10 @@ const Profile = () => {
         RootNavigation.push(Routes.EditProfileScreen)
     }
 
+    const onChangePasswordPressed = () => {
+        RootNavigation.push(Routes.ChangePasswordScreen)
+    }
+
     return (
         user === undefined ? <View /> :
             <ScreenContainer style={Styles.fullScreen}>
@@ -91,8 +95,15 @@ const Profile = () => {
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
                     <ProfileItem title={i18n.t('type')} subtitle={user.type} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />
-                    <SizedBox height={'25%'} />
+                    <SizedBox height={'20%'} />
                     {error != undefined && error.length > 0 && <ErrorText text={error} />}
+                    <SizedBox height={Sizes.s32} />
+                    <CButton
+                        //loading={logoutStatus?.loadStatus == LoadStatus.loading}
+                        title={i18n.t('change_password')}
+                        //color={Colors.grey200}
+                        onPress={onChangePasswordPressed} />
+                    <SizedBox height={Sizes.s16} />
                     <CButton
                         loading={logoutStatus?.loadStatus == LoadStatus.loading}
                         title={i18n.t('sign_out')}

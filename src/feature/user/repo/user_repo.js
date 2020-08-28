@@ -14,9 +14,18 @@ const updateBasicProfile = (username, phone, avatar) => {
     });
 }
 
+const changePassword = (userId, oldPass, newPass) => {
+    return apiClient.post('user​/change-password', {
+        "id": userId,
+        "oldPass": oldPass,
+        "newPass": newPass
+    });
+}
+
 const UserRepo = {
     addFavouriteCourse: addFavouriteCourse,
     updateBasicProfile: updateBasicProfile,
+    changePassword: changePassword,
 }
 
 export { UserRepo }

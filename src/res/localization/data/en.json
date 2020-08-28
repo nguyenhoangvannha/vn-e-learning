@@ -113,5 +113,9 @@
   "avatar": "Avatar",
   "username_6_char": "Username atleast 6 chars",
   "phone_9_char": "Phone atleast 9 chars",
-  "invalid_url": "Invalid url"
+  "invalid_url": "Invalid url",
+  "change_password": "Change password",
+  "old_password": "Old password",
+  "new_password": "New password",
+  "retype_new_password": "Retype new password"
 }

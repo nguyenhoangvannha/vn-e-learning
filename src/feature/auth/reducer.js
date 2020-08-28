@@ -8,7 +8,7 @@ function authReducer
             // Add a request interceptor
             apiClient.interceptors.request.use(
                 config => {
-                    //console.log('Axios Starting Request', config)
+                    console.log('Axios Starting Request', config)
                     if (action.payload.token) {
                         config.headers['Authorization'] = 'Bearer ' + action.payload.token;
                     }

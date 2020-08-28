@@ -32,6 +32,7 @@ const Routes = {
     MeScreen: 'MeScreen',
     MyCoursesTab: 'MyCoursesTab',
     EditProfileScreen: 'EditProfileScreen',
+    ChangePasswordScreen: 'ChangePasswordScreen',
 }
 
 export default Routes

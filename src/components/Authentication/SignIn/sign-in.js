@@ -61,8 +61,8 @@ const SignIn = (props) => {
     const onPressedSignIn = () => {
         if (username.length === 0 || password.length === 0) {
             setError(i18n.t('please_fill_inforamtion'))
-        } if (password.length < 6) {
-            setError(i18n.t('password_atless_x_char').replace('%s', '6'))
+        } if (password.length < 8) {
+            setError(i18n.t('password_atless_x_char').replace('%s', '8'))
         } else {
             dispatch(DoLoginAuthAction(username, password))
         }
@@ -83,6 +83,7 @@ const SignIn = (props) => {
                     <SizedBox height={Sizes.s70} />
 
                     <CFromTextInput
+                        initValue={'nguyenhoangvannha@gmail.com'}
                         label={i18n.t('email')}
                         placeholder={i18n.t('your_email_address')}
                         style={styles.input}
@@ -94,13 +95,15 @@ const SignIn = (props) => {
                         }}
                         showErrorText={false}
                         error={error}>
-                        {username}
+                       
                     </CFromTextInput>
 
                     <CFromTextInput
+                        initValue={'nha.nguyen'}
                         label={i18n.t('password')}
                         placeholder={i18n.t('atless_x_char').replace('%s', 6)}
-                        style={styles.input} secureTextEntry={true}
+                        style={styles.input} 
+                        secureTextEntry={true}
                         onChangeText={(value) => {
                             if (error.length > 0) {
                                 setError('')
@@ -109,7 +112,6 @@ const SignIn = (props) => {
                         }}
                         showErrorText={false}
                         error={error}>
-                        {password}
                     </CFromTextInput>
 
                     {error.length > 0 && <ErrorText>{error}</ErrorText>}

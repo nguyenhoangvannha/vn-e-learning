@@ -79,7 +79,7 @@ const SignUp = ({ navigation }) => {
             setError(i18n.t('please_fill_inforamtion'))
             return false;
         }
-        if (password.length < 6 || rePassword.length < 6) {
+        if (password.length < 8 || rePassword.length < 8) {
             setError(i18n.t('password_atless_x_char').replace('%s', '6'))
             return false;
         }

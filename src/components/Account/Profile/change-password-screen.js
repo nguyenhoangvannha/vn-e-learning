@@ -6,11 +6,9 @@ import SizedBox from '../../Common/Container/sized-box'
 import Sizes from '../../../res/sizes'
 import Alignment from '../../../res/styles/alignment'
 import Styles from '../../../res/styles/styles'
-import CDivider from '../../Common/Container/c-divider'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CButton from '../../Common/Button/c-button'
 import CAppBar from '../../Common/AppBar/c-app-bar'
-import ProfileItem from './profile-item'
 import ProfileTile from '../../Common/Profile/profile-tile'
 import Colors from '../../../res/colors'
 import { RootNavigation } from '../../../routes/navigations/root-navigation'
@@ -22,9 +20,9 @@ import { AuthAction } from '../../../feature/auth/actions'
 import { LoadStatus, Status } from '../../../core/status'
 import ErrorText from '../../Common/error/error-text'
 import CFromTextInput from '../../Common/TextField/c-form-text-input'
-import { DoUpdateBasicProfileUserAction, DO_UPDATE_BASIC_PROFILE_USER_ACTION } from '../../../feature/user/actions'
+import { DO_CHANGE_PASSWORD_USER_ACTION, DoChangePasswordUserAction } from '../../../feature/user/actions'
 
-const EditProfileScreen = () => {
+const ChangePasswordScreen = () => {
 
     const userState = useSelector(state => state.userState)
 
@@ -38,36 +36,32 @@ const EditProfileScreen = () => {
 
     const [error, setError] = useState('')
 
-    const [username, setUsername] = useState(user.name)
+    const [oldPassword, setOldPassword] = useState('')
 
-    const [avatar, setAvatar] = useState(user.avatar)
+    const [newPassword, setNewPassword] = useState('')
 
-    const [phone, setPhone] = useState(user.phone)
-
-    useEffect(
-        () => {
-            setUser(authState.userInfo)
-        }, [authState]
-    )
+    const [retypeNewPassword, setRetypeNewPassword] = useState('')
 
     useEffect(
         () => {
-            setStatus(userState.status[DO_UPDATE_BASIC_PROFILE_USER_ACTION])
+            setStatus(userState.status[DO_CHANGE_PASSWORD_USER_ACTION])
         }, [userState]
     )
 
     useEffect(() => {
-        switch (status.loadStatus) {
-            case LoadStatus.error:
-                setError(status.message)
-                break;
-            case LoadStatus.success:
-                RootNavigation.goBack()
-                break;
-            default:
-                setError('')
-                break;
-        }
+        if (status != undefined)
+            switch (status.loadStatus) {
+                case LoadStatus.error:
+                    setError(status.message)
+                    break;
+                case LoadStatus.success:
+                    dispatch(DoLogoutAuthAction())
+                    RootNavigation.reset(Routes.SignIn)
+                    break;
+                default:
+                    //setError('')
+                    break;
+            }
         return () => {
 
         }
@@ -78,10 +72,7 @@ const EditProfileScreen = () => {
     const onTapApply = () => {
         const result = validate()
         if (result.length == 0) {
-            const newName = username?.length != 0 ? username : user.name;
-            const newPhone = phone?.length != 0 ? phone : user.phone;
-            const newAvatar = avatar?.length != 0 ? avatar : user.avatar;
-            dispatch(DoUpdateBasicProfileUserAction(newName, newPhone, newAvatar))
+            dispatch(DoChangePasswordUserAction(user.id, oldPassword, newPassword))
         } else {
             setError(result)
         }
@@ -89,21 +80,17 @@ const EditProfileScreen = () => {
 
     const validate = () => {
         var result = ''
-        if (username.length < 6) {
-            result = i18n.t('username_6_char')
-        } else
-            if (phone.length < 9) {
-                result = i18n.t('phone_9_char')
-            } else
-                if (!avatar.includes('http')) {
-                    result = i18n.t('invalid_url')
-                }
+        if (oldPassword.length < 5 || newPassword.length < 8 || retypeNewPassword.length < 8) {
+            result = i18n.t('password_atless_x_char').replace('%s', '8')
+        } else if (newPassword != retypeNewPassword) {
+            result = i18n.t('password_not_match')
+        }
         return result
     }
 
     return (
         <ScreenContainer style={Styles.fullScreen}>
-            <CAppBar title={`${i18n.t('edit_profile')}`} />
+            <CAppBar title={`${i18n.t('change_password')}`} />
             {
                 user === undefined ? <View /> :
                     <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
@@ -112,30 +99,30 @@ const EditProfileScreen = () => {
                             title={user?.name ?? ''} />
                         <SizedBox height={Sizes.s32} />
                         <CFromTextInput
-                            initValue={user.name}
-                            label={i18n.t('username')}
-                            placeholder={user.name ?? i18n.t('not_set_yet')}
+                            secureTextEntry={true}
+                            label={i18n.t('old_password')}
+                            placeholder={i18n.t('old_password')}
                             style={styles.input}
                             showErrorText={false}
                             error={error}
-                            onChangeText={(value) => setUsername(value)}
+                            onChangeText={(value) => setOldPassword(value)}
                         />
                         <CFromTextInput
-                            initValue={user.phone}
-                            label={i18n.t('phone')}
-                            placeholder={user.phone ?? ''}
+                            secureTextEntry={true}
+                            label={i18n.t('new_password')}
+                            placeholder={'new_password'}
                             style={styles.input}
                             showErrorText={false}
                             error={error}
-                            onChangeText={(value) => setPhone(value)} />
+                            onChangeText={(value) => setNewPassword(value)} />
                         <CFromTextInput
-                            initValue={user.avatar}
-                            label={i18n.t('avatar')}
-                            placeholder={user.avatar ?? ''}
+                            secureTextEntry={true}
+                            label={i18n.t('retype_new_password')}
+                            placeholder={'retype_new_password'}
                             style={styles.input}
                             showErrorText={false}
                             error={error}
-                            onChangeText={(value) => setAvatar(value)} />
+                            onChangeText={(value) => setRetypeNewPassword(value)} />
                         <SizedBox height={'1%'} />
                         {error != undefined && error.length > 0 && <ErrorText text={error} />}
                         <SizedBox height={'25%'} />
@@ -152,7 +139,7 @@ const EditProfileScreen = () => {
     )
 }
 
-export default EditProfileScreen
+export default ChangePasswordScreen
 
 const styles = StyleSheet.create({
     header: {
