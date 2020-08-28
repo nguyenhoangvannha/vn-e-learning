@@ -30,6 +30,7 @@
     "react-native-gesture-handler": "~1.6.0",
     "react-native-locale-detector": "^1.0.1",
     "react-native-localize": "^1.4.0",
+    "react-native-material-dropdown": "^0.11.1",
     "react-native-paper": "^3.10.1",
     "react-native-popup-menu": "^0.15.7",
     "react-native-ratings": "^7.3.0",
