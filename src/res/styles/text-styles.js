@@ -26,6 +26,11 @@ const TextStyles = StyleSheet.create({
         fontSize: Sizes.s24,
         fontWeight: FontWeight.w400
     },
+    courseName: {
+        fontSize: Sizes.s28,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 0.15
+    },
     title: {
         fontSize: Sizes.s20,
         fontWeight: FontWeight.w500,

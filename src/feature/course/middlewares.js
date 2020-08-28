@@ -17,7 +17,8 @@ import {
     SetFavouritesCourseAction,
     DO_GET_FREE_COURSE_COURSE_ACTION,
     DO_GET_MY_COURSES_COURSE_COURSE_ACTION,
-    SetAddMyCoursesCourseAction
+    SetAddMyCoursesCourseAction,
+    DoGetMyCoursesCourseAction
 } from './actions'
 import { Status } from '../../core/status'
 import { CourseRepo } from './repo/course-repo';
@@ -243,6 +244,7 @@ function* getFreeCourse(action) {
     try {
         yield put(SetStatusCourseAction(statusKey, Status.loading()))
         const res = yield CourseRepo.getFreeCourse(action.payload.courseId)
+        yield put(DoGetMyCoursesCourseAction())
         yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload)))
     } catch (e) {
         yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))

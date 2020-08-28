@@ -47,7 +47,6 @@ const CSearchBar = ({ onTextChange, onPressDone }) => {
                     <CTextInput
                         onChangeText={onChangeText}
                         placeholder={i18n.t('type_here')}>
-                        {value}
                     </CTextInput>
                 </Expanded>}
                 trailing={buildTraling()}

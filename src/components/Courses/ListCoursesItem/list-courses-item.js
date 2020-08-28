@@ -45,13 +45,15 @@ export const MyCourseItem = ({ style, course, onPress }) => {
     )
 }
 
-const ListCoursesItem = ({ style, course, onPress }) => {
+const ListCoursesItem = ({ style, course, onPress, simple = true }) => {
 
     return (
         <COpacityButton style={{ ...styles.container, ...style }} onPress={() => onPress(course)}>
             <CImage uri={course.image ?? course.imageUrl ?? course.courseImage} style={styles.image} />
             <Expanded>
-                <SectionCourseItemInfo course={course} />
+                <SectionCourseItemInfo
+                    simple={simple}
+                    course={course} />
             </Expanded>
             <SizedBox width={Sizes.s24} style={styles.trailingIcon}>
                 <CourseActionsMenuButton courseId={course.id} />

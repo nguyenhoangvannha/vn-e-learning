@@ -35,10 +35,10 @@ import { DateFormat } from '../../../utils/date-format'
 import CExpoVideoView from '../../Common/Video/expo-video-view'
 import CImage from '../../Common/Image/c-image'
 import Strings from '../../../res/strings'
-import { RootNavigation } from '../../../routes/navigations/root-navigation'
-import { useNavigation } from '@react-navigation/native'
 import CourseRatingTab from '../CourseContent/course-rating-screen'
-import { CRating } from '../../Common/Rating/c-rating'
+import { CRating, AirRating } from '../../Common/Rating/c-rating'
+import CChip from '../../Common/Container/c-chip'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -104,10 +104,21 @@ const CourseDetail = ({ route, navigator }) => {
             <CScrollView
                 style={Styles.screenContainer}>
                 <SizedBox height={Sizes.s10} />
-                <CText data={course.title} style={TextStyles.headline} />
-                
-                <CRating ratingCount={averageScore} />
-
+                <CText data={course.title} style={TextStyles.courseName} />
+                <SizedBox height={Sizes.s10} />
+                <View style={Styles.row}>
+                    <AirRating
+                        showRating={true}
+                        ratingCount={averageScore} />
+                    <View style={{ padding: Sizes.s12 }}>
+                        <CText
+                            data={`${i18n.t('rated_by')} ${totalPeople} ${i18n.t('peoples')}`} />
+                        <SizedBox height={Sizes.s6} />
+                        <CChip title={`${course.soldNumber} ${i18n.t('learner')}`} />
+                        <SizedBox height={Sizes.s6} />
+                    </View>
+                </View>
+                <SizedBox height={Sizes.s18} />
                 {
                     instructor != undefined ?? <InstructorChipItem
                         id={instructor['id'] ?? ''}
@@ -115,21 +126,28 @@ const CourseDetail = ({ route, navigator }) => {
                         avatar={instructor['avatar'] ?? ''}
                     />
                 }
+                <CText>{`${i18n.t('updated_at')}   ${DateFormat.toMdy(Date.parse(course.updatedAt))} `}</CText>
+                <SizedBox width={Sizes.s4} />
+                <SizedBox height={Sizes.s12} />
                 <View style={Styles.row}>
-                    <CText>{`${DateFormat.toMdy(Date.parse(course.updatedAt))} - `}</CText>
-                    <CText>{`${course.totalHours} ${i18n.t('hours')} - `}</CText>
-                    <CText>{`${course.soldNumber} ${i18n.t('learner')}`}</CText>
-                    <SizedBox width={Sizes.s4} />
+                    <CChip title={course.price == 0 ? i18n.t('free') : `${course.price} vnd`} />
+                    <SizedBox width={Sizes.s8} />
+                    <CChip title={`${course.videoNumber} ${i18n.t('videos')}`} />
+                    <SizedBox width={Sizes.s8} />
+                    <CChip title={`${course.totalHours} ${i18n.t('hours')}`} />
                 </View>
-                <CText>{`${course.price} vnd`}</CText>
-                <CText>{`${i18n.t('requirement')} ${course.requirement} `}</CText>
-                <CText>{`${i18n.t('learn_what')} ${course.learnWhat} `}</CText>
-
-                <View style={Styles.row}>
-                    <CText>{`${course.videoNumber} ${i18n.t('videos')}`}</CText>
-                </View>
-                <SizedBox height={Sizes.s8} />
-
+                <SizedBox height={Sizes.s12} />
+                <CText
+                    style={TextStyles.title}
+                    data={`${i18n.t('requirement')}`} />
+                <SizedBox height={Sizes.s4} />
+                <CText>{`${course.requirement} `}</CText>
+                <SizedBox height={Sizes.s12} />
+                <CText
+                    style={TextStyles.title}
+                    data={`${i18n.t('learn_what')}`} />
+                <SizedBox height={Sizes.s4} />
+                <CText>{`${course.learnWhat}`}</CText>
                 <SizedBox height={Sizes.s8} />
                 <CourseActions
                     courseId={course.id ?? ''}
@@ -137,17 +155,14 @@ const CourseDetail = ({ route, navigator }) => {
                 <SizedBox height={Sizes.s8} />
                 <CText data={course.description} />
                 <SizedBox height={Sizes.s12} />
-                <CButton title={i18n.t('take_a_learning_check')} color={Colors.gray} />
-                <SizedBox height={Sizes.s8} />
-                <CButton title={i18n.t('view_related_paths_and_courses')} color={Colors.gray} />
-                <SizedBox height={Sizes.s28} />
+                <SizedBox height={Sizes.s44} />
             </CScrollView>
         )
     }
 
     const buildVideoView = () => {
-        const isExposedVideoFile = currentVideoUri.endsWith('.mp4')
-        const isYoutubeVideo = currentVideoUri.includes('https://youtube')
+        const isExposedVideoFile = currentVideoUri != undefined && currentVideoUri.endsWith('.mp4')
+        const isYoutubeVideo = currentVideoUri != undefined && currentVideoUri.includes('https://youtube')
 
         if (isExposedVideoFile) {
             return <CExpoVideoView
@@ -207,9 +222,6 @@ const CourseDetail = ({ route, navigator }) => {
             <View style={{ height: '100%' }}>
                 <CAppBar
                     title={course.title}
-                    // onLeadingPressed={() => {
-                    //     navigator.pop()
-                    // }}
                     trailing={
                         <CIonIcon
                             name={IconName.mdShare}

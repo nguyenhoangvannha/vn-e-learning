@@ -11,7 +11,17 @@ export const RatingType = {
     star: 'star',
 }
 
-export const CRating = ({ style, type, ratingCount, imageSize, readonly = true }) => {
+export const AirRating = ({ ratingCount = 0 , isDisabled = true}) => {
+    return (
+        <AirbnbRating
+            count={ratingCount}
+            size={Sizes.s18}
+            isDisabled={isDisabled}
+        />
+    )
+}
+
+export const CRating = ({ style, type, ratingCount, imageSize, readonly = true, showRating = false }) => {
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
@@ -20,7 +30,7 @@ export const CRating = ({ style, type, ratingCount, imageSize, readonly = true }
             type={type ?? RatingType.star}
             ratingCount={ratingCount ?? 0}
             imageSize={imageSize ?? Sizes.s14}
-            showRating={false}
+            showRating={showRating}
             style={{ paddingHorizontal: 10 }}
             readonly={readonly}
         />

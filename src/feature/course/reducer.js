@@ -18,7 +18,9 @@ export const courseReducer = (courseState, action) => {
         case SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION:
             var containt = Object.keys(courseState.courses)
                 .includes(action.payload.courseId)
-            var newContinuesLearningIds = containt ? [...courseState.continuesLearningIds, action.payload.courseId] : courseState.continuesLearningIds
+            var newContinuesLearningIds = containt && !courseState.continuesLearningIds.includes(action.payload.courseId)
+                ? [...courseState.continuesLearningIds, action.payload.courseId]
+                : courseState.continuesLearningIds
             return {
                 ...courseState,
                 continuesLearningIds: newContinuesLearningIds

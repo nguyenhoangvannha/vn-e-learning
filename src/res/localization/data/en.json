@@ -117,5 +117,15 @@
   "change_password": "Change password",
   "old_password": "Old password",
   "new_password": "New password",
-  "retype_new_password": "Retype new password"
+  "retype_new_password": "Retype new password",
+  "sold": "Sold",
+  "rated": "Rated",
+  "requirement": "Requirement",
+  "learn_what": "What you will learn",
+  "bought": "Bought",
+  "free": "Free",
+  "rating": "Rating",
+  "rated_by": "Rated by",
+  "peoples": "peoples",
+  "updated_at": "Updated at"
 }
