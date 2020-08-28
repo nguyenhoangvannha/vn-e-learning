@@ -26,7 +26,7 @@ import { ThemeContext } from '../../../provider/theme-provider'
 import { useSelector, useDispatch } from 'react-redux'
 import { Status, LoadStatus } from '../../../core/status'
 import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
-import { DO_GET_COURSE_DETAIL_COURSE_ACTION } from '../../../feature/course/actions'
+import { DO_GET_COURSE_DETAIL_COURSE_ACTION, DoGetMyCoursesCourseAction } from '../../../feature/course/actions'
 import ErrorText from '../../Common/error/error-text'
 import ErrorBack from '../../Common/error/error_back'
 import InstructorChipItem from '../../Author/instructor_chip_item'
@@ -35,10 +35,12 @@ import { DateFormat } from '../../../utils/date-format'
 import CExpoVideoView from '../../Common/Video/expo-video-view'
 import CImage from '../../Common/Image/c-image'
 import Strings from '../../../res/strings'
+import { RootNavigation } from '../../../routes/navigations/root-navigation'
+import { useNavigation } from '@react-navigation/native'
 
 const Tab = createMaterialTopTabNavigator()
 
-const CourseDetail = ({ route }) => {
+const CourseDetail = ({ route , navigator}) => {
 
     var courseId = route.params.courseId
 
@@ -61,7 +63,7 @@ const CourseDetail = ({ route }) => {
         setStatus(loadCourseDetailStatus)
 
         return () => {
-            //cleanup
+            dispatch(DoGetMyCoursesCourseAction())
         }
     }, [courseState])
 
@@ -151,16 +153,7 @@ const CourseDetail = ({ route }) => {
 
     const build = () => {
         return (
-            <View
-                style={{ height: '100%' }}>
-                <CAppBar
-                    title={course.title}
-                    // onLeadingPressed={() => {
-                    // }}
-                    trailing={
-                        <CIonIcon
-                            name={IconName.mdShare}
-                            onPress={() => onShare(course)} />} />
+            <View>
                 {buildVideoView()}
                 <Tab.Navigator
                     tabBarOptions={{
@@ -186,11 +179,23 @@ const CourseDetail = ({ route }) => {
 
     return (
         <ScreenContainer style={{ ...Styles.fullScreen, }}>
-            {
-                loadStatus == LoadStatus.loading ? <CLoadingIndicator />
-                    : loadStatus == LoadStatus.error ? <ErrorBack text={status.message} />
-                        : build()
-            }
+            <View style={{ height: '100%' }}>
+                <CAppBar
+                    title={course.title}
+                    // onLeadingPressed={() => {
+                    //     navigator.pop()
+                    // }}
+                    trailing={
+                        <CIonIcon
+                            name={IconName.mdShare}
+                            onPress={() => onShare(course)} />}
+                />
+                {
+                    loadStatus == LoadStatus.loading ? <CLoadingIndicator />
+                        : loadStatus == LoadStatus.error ? <ErrorBack text={status.message} />
+                            : build()
+                }
+            </View>
         </ScreenContainer>
     )
 }

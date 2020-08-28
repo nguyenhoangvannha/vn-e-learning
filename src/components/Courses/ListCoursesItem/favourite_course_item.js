@@ -15,6 +15,8 @@ import CFlatList from '../../Common/Container/c-flat-list'
 import CText from '../../Common/Text/c-text'
 import CDivider from '../../Common/Container/c-divider'
 import Expanded from '../../Common/Container/expanded'
+import { useDispatch, useSelector } from 'react-redux'
+import { SetCurrentCourseIdCourseAction, DoGetCourseDetailCourseAction, SetAddContinuesLearningCourseAction } from '../../../feature/course/actions'
 
 export const FavouriteCourseList = ({ courses }) => {
     return (
@@ -35,7 +37,15 @@ export const FavouriteCourseList = ({ courses }) => {
 
 const FavouriteCoursesItem = ({ style, course }) => {
 
+    const dispatch =  useDispatch()
+
+    const authState = useSelector(state => state.authState)
+
+ 
     const onPress = (course) => {
+        dispatch(SetCurrentCourseIdCourseAction(course.id))
+        dispatch(DoGetCourseDetailCourseAction(course.id, authState.userInfo.id))
+        dispatch(SetAddContinuesLearningCourseAction(course.id))
         RootNavigation.navigate(Routes.CourseDetail, {
             courseId: course.id,
         });

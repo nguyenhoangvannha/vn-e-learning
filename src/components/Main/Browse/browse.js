@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View , Text} from 'react-native'
 import Styles from '../../../res/styles/styles'
 import CScrollView from '../../Common/Container/c-scroll-view'
 import CImageButton from '../../Common/Button/c-image-button'

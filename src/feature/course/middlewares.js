@@ -111,7 +111,10 @@ function* getCourseDetail(action) {
 
     try {
         yield put(SetStatusCourseAction(statusKey, Status.loading()))
+
         const res = yield CourseRepo.getCourseDetail(action.payload.courseId, action.payload.userId)
+
+        console.log('DEBUG DO_GET_COURSE_DETAIL_COURSE_ACTION', Date.now().toString())
 
         var courseDetail = res.data.payload;
 
