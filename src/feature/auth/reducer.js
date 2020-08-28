@@ -12,7 +12,7 @@ function authReducer
                     if (action.payload.token) {
                         config.headers['Authorization'] = 'Bearer ' + action.payload.token;
                     }
-                    config.headers['Content-Type'] = 'application/json';
+                    //config.headers['Content-Type'] = 'application/json';
                     return config;
                 },
                 error => {

@@ -22,6 +22,8 @@ import { DoLogoutAuthAction, AuthAction } from '../../../feature/auth/actions'
 import { LoadStatus } from '../../../core/status'
 import ErrorText from '../../Common/error/error-text'
 import { DateFormat } from '../../../utils/date-format'
+import CIconButton from '../../Common/Button/c-icon-button'
+import IconName from '../../../res/icon-name'
 
 const Profile = () => {
 
@@ -60,6 +62,10 @@ const Profile = () => {
         dispatch(DoLogoutAuthAction())
     }
 
+    const onPressEditBasicInfo = () => {
+        RootNavigation.push(Routes.EditProfileScreen)
+    }
+
     return (
         user === undefined ? <View /> :
             <ScreenContainer style={Styles.fullScreen}>
@@ -67,7 +73,13 @@ const Profile = () => {
                 <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
                     <ProfileTile
                         image={user.avatar ?? Strings.defaultAvatar}
-                        title={user?.name ?? ''} />
+                        title={user?.name ?? ''}
+                        trailing={<CIconButton
+                            icon={IconName.icConstruct}
+                            size={Sizes.s32}
+                            onPress={onPressEditBasicInfo}
+                        />}
+                    />
                     <SizedBox height={Sizes.s32} />
                     <ProfileItem title={i18n.t('email')} subtitle={user.email} />
                     <CDivider marginVertical={Sizes.s8} marginHorizontal={Sizes.s4} />

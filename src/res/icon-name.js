@@ -26,7 +26,8 @@ const IconName = {
     book: 'ios-bookmarks',
     mdHeart: 'md-heart',
     mdHeartOutline: 'md-heart-outline',
-    mdMail: 'md-mail'
+    mdMail: 'md-mail',
+    icConstruct: 'ios-construct'
 }
 
 export default IconName

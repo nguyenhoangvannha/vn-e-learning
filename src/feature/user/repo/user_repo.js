@@ -6,8 +6,17 @@ const addFavouriteCourse = (courseId) => {
     });
 }
 
+const updateBasicProfile = (username, phone, avatar) => {
+    return apiClient.put('user/update-profile', {
+        "name": username,
+        "avatar": avatar,
+        "phone": phone
+    });
+}
+
 const UserRepo = {
     addFavouriteCourse: addFavouriteCourse,
+    updateBasicProfile: updateBasicProfile,
 }
 
 export { UserRepo }

@@ -31,6 +31,7 @@ const Routes = {
     RecommendedForYouScreen: 'RecommendedForYouScreen',
     MeScreen: 'MeScreen',
     MyCoursesTab: 'MyCoursesTab',
+    EditProfileScreen: 'EditProfileScreen',
 }
 
 export default Routes

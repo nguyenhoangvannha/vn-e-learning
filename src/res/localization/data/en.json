@@ -106,5 +106,9 @@
   "your_courses": "Your courses",
   "latest_tearn_time": "Current access",
   "process": "Process",
-  "my_courses": "My Courses"
+  "my_courses": "My Courses",
+  "edit_profile": "Edit Profile",
+  "apply": "Apply",
+  "not_set_yet": "Not set yet",
+  "avatar": "Avatar"
 }
