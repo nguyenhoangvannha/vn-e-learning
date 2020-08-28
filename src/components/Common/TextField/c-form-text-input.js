@@ -20,7 +20,9 @@ const CFromTextInput = ({
     secureTextEntry,
     children,
     showErrorText = true,
-    validators }) => {
+    validators,
+    initValue,
+}) => {
     const themeContext = useContext(ThemeContext)
 
     const theme = themeContext.theme
@@ -41,6 +43,7 @@ const CFromTextInput = ({
             }
             <SizedBox height={3} />
             <CTextInput
+                initValue={initValue}
                 style={{
                     ...styles.textInput,
                     ...style,

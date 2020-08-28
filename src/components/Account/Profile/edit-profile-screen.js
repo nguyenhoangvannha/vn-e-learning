@@ -38,11 +38,11 @@ const EditProfileScreen = () => {
 
     const [error, setError] = useState('')
 
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(user.name)
 
-    const [avatar, setAvatar] = useState('')
+    const [avatar, setAvatar] = useState(user.avatar)
 
-    const [phone, setPhone] = useState('')
+    const [phone, setPhone] = useState(user.phone)
 
     useEffect(
         () => {
@@ -63,7 +63,7 @@ const EditProfileScreen = () => {
                 break;
             case LoadStatus.success:
                 setError('Success')
-                // RootNavigation.reset(Routes.SignIn)
+                RootNavigation.goBack()
                 break;
             default:
                 setError('')
@@ -77,52 +77,77 @@ const EditProfileScreen = () => {
 
 
     const onTapApply = () => {
-        const newName = username?.length != 0 ? username : user.name;
-        const newPhone = phone?.length != 0 ? phone : user.phone;
-        const newAvatar = avatar?.length != 0 ? avatar : user.avatar;
-        dispatch(DoUpdateBasicProfileUserAction(newName, newPhone, newAvatar))
+        const result = validate()
+        if (result.length == 0) {
+            const newName = username?.length != 0 ? username : user.name;
+            const newPhone = phone?.length != 0 ? phone : user.phone;
+            const newAvatar = avatar?.length != 0 ? avatar : user.avatar;
+            dispatch(DoUpdateBasicProfileUserAction(newName, newPhone, newAvatar))
+        } else {
+            setError(result)
+        }
+    }
+
+    const validate = () => {
+        var result = ''
+        if (username.length < 6) {
+            result = i18n.t('username_6_char')
+        } else
+            if (phone.length < 9) {
+                result = i18n.t('phone_9_char')
+            } else
+                if (!avatar.includes('http')) {
+                    result = i18n.t('invalid_url')
+                }
+        return result
     }
 
     return (
-
         <ScreenContainer style={Styles.fullScreen}>
-            <CAppBar title={i18n.t('edit_profile')} />
+            <CAppBar title={`${i18n.t('edit_profile')}`} />
+            {
                 user === undefined ? <View /> :
-            <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
-                <ProfileTile
-                    image={user.avatar ?? Strings.defaultAvatar}
-                    title={user?.name ?? ''} />
-                <SizedBox height={Sizes.s32} />
-                <CFromTextInput
-                    label={i18n.t('username')}
-                    placeholder={user.name ?? i18n.t('not_set_yet')}
-                    style={styles.input}
-                    showErrorText={false}
-                    error={error}
-                    onChangeText={(value) => setUsername(value)} />
-                <CFromTextInput
-                    label={i18n.t('phone')}
-                    placeholder={user.phone ?? ''}
-                    style={styles.input}
-                    showErrorText={false}
-                    error={error}
-                    onChangeText={(value) => setPhone(value)} />
-                <CFromTextInput
-                    label={i18n.t('avatar')}
-                    placeholder={user.avatar ?? ''}
-                    style={styles.input}
-                    showErrorText={false}
-                    error={error}
-                    onChangeText={(value) => setAvatar(value)} />
-                <SizedBox height={'1%'} />
-                {error != undefined && error.length > 0 && <ErrorText text={error} />}
-                <SizedBox height={'25%'} />
-                <CButton
-                    loading={status?.loadStatus == LoadStatus.loading}
-                    title={i18n.t('apply')}
-                    color={Colors.blue500}
-                    onPress={onTapApply} />
-            </CScrollView>
+                    <CScrollView contentContainerStyle={{ ...Styles.screenContainer }}>
+                        <ProfileTile
+                            image={user.avatar ?? Strings.defaultAvatar}
+                            title={user?.name ?? ''} />
+                        <SizedBox height={Sizes.s32} />
+                        <CFromTextInput
+                            initValue={user.name}
+                            label={i18n.t('username')}
+                            placeholder={user.name ?? i18n.t('not_set_yet')}
+                            style={styles.input}
+                            showErrorText={false}
+                            error={error}
+                            onChangeText={(value) => setUsername(value)}
+                        />
+                        <CFromTextInput
+                            initValue={user.phone}
+                            label={i18n.t('phone')}
+                            placeholder={user.phone ?? ''}
+                            style={styles.input}
+                            showErrorText={false}
+                            error={error}
+                            onChangeText={(value) => setPhone(value)} />
+                        <CFromTextInput
+                            initValue={user.avatar}
+                            label={i18n.t('avatar')}
+                            placeholder={user.avatar ?? ''}
+                            style={styles.input}
+                            showErrorText={false}
+                            error={error}
+                            onChangeText={(value) => setAvatar(value)} />
+                        <SizedBox height={'1%'} />
+                        {error != undefined && error.length > 0 && <ErrorText text={error} />}
+                        <SizedBox height={'25%'} />
+                        <CButton
+                            //disabled={username.length === 0 && phone.length === 0 && avatar.length === 0}
+                            loading={status?.loadStatus == LoadStatus.loading}
+                            title={i18n.t('apply')}
+                            color={Colors.blue500}
+                            onPress={onTapApply} />
+                    </CScrollView>
+            }
         </ScreenContainer>
 
     )

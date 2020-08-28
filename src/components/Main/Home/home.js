@@ -62,7 +62,7 @@ const Home = ({ props }) => {
         return (
             courseIds.length == 0 ?
                 <View /> :
-                loadStatus == LoadStatus.loading ?
+                loadStatus != undefined && loadStatus == LoadStatus.loading ?
                     <ActivityIndicator /> :
                     <SectionCoursesByIds
                         headerText={title}
@@ -88,13 +88,13 @@ const Home = ({ props }) => {
             <CScrollView>
                 <View style={Styles.screenContainer}>
                     {buildContinueLearning(i18n.t('continue_learning'), courseState.continuesLearningIds)}
-                    {buildSectionCourses(i18n.t('recommend_for_you'), courseState.recommendCourses, recommendCoursesStatus.loadStatus)}
+                    {buildSectionCourses(i18n.t('recommend_for_you'), courseState.recommendCourses, recommendCoursesStatus?.loadStatus)}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses, topNewStatus.loadStatus)}
+                    {buildSectionCourses(i18n.t('top_new_courses'), courseState.topNewCourses, topNewStatus?.loadStatus)}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses(i18n.t('top_sell_courses'), courseState.topSellCourses, topSellStatus.loadStatus)}
+                    {buildSectionCourses(i18n.t('top_sell_courses'), courseState.topSellCourses, topSellStatus?.loadStatus)}
                     <SizedBox height={Sizes.s12} />
-                    {buildSectionCourses(i18n.t('top_rate_courses'), courseState.topRateCourses, topRateStatus.loadStatus)}
+                    {buildSectionCourses(i18n.t('top_rate_courses'), courseState.topRateCourses, topRateStatus?.loadStatus)}
                     <SizedBox height={Sizes.s160} />
                 </View>
             </CScrollView>

@@ -110,5 +110,8 @@
   "edit_profile": "Edit Profile",
   "apply": "Apply",
   "not_set_yet": "Not set yet",
-  "avatar": "Avatar"
+  "avatar": "Avatar",
+  "username_6_char": "Username atleast 6 chars",
+  "phone_9_char": "Phone atleast 9 chars",
+  "invalid_url": "Invalid url"
 }

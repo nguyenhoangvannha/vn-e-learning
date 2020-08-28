@@ -32,12 +32,14 @@ function* updateBasicProfile(action) {
 
     const res = yield UserRepo.updateBasicProfile(payload.username, payload.phone, payload.avatar);
 
-    yield put(SetUserInfoAuthAction(res.data.userInfo))
+    yield put(SetUserInfoAuthAction(res.data.payload))
 
-    yield put(SetStatusUserAction(statusKey, Status.success(res.data.message, res.data.userInfo)))
+    yield put(SetStatusUserAction(statusKey, Status.success(res.data.message, res.data.payload)))
 
   } catch (e) {
     yield put(SetStatusUserAction(statusKey, Status.error(e.message)))
+  } finally {
+    yield put(SetStatusUserAction(statusKey, Status.idle()))
   }
 }
 
