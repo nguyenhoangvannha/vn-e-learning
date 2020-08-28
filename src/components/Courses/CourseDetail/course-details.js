@@ -58,12 +58,10 @@ const CourseDetail = ({ route , navigator}) => {
 
     useEffect(() => {
 
-        const loadCourseDetailStatus = courseState.status[`${DO_GET_COURSE_DETAIL_COURSE_ACTION}${courseId}`]
-
-        setStatus(loadCourseDetailStatus)
+        setStatus(courseState.status[`${DO_GET_COURSE_DETAIL_COURSE_ACTION}${courseId}`])
 
         return () => {
-            dispatch(DoGetMyCoursesCourseAction())
+            //dispatch(DoGetMyCoursesCourseAction())
         }
     }, [courseState])
 
@@ -153,7 +151,7 @@ const CourseDetail = ({ route , navigator}) => {
 
     const build = () => {
         return (
-            <View>
+            <View style={{height: '100%'}}>
                 {buildVideoView()}
                 <Tab.Navigator
                     tabBarOptions={{
