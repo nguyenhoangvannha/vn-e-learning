@@ -26,7 +26,7 @@ import { ThemeContext } from '../../../provider/theme-provider'
 import { useSelector, useDispatch } from 'react-redux'
 import { Status, LoadStatus } from '../../../core/status'
 import CLoadingIndicator from '../../Common/Animations/c_loading_indicator'
-import { DO_GET_COURSE_DETAIL_COURSE_ACTION, DoGetMyCoursesCourseAction } from '../../../feature/course/actions'
+import { DO_GET_COURSE_DETAIL_COURSE_ACTION, DoGetMyCoursesCourseAction, DoGetCourseLessonVideoCourseAction, DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION } from '../../../feature/course/actions'
 import ErrorText from '../../Common/error/error-text'
 import ErrorBack from '../../Common/error/error_back'
 import InstructorChipItem from '../../Author/instructor_chip_item'
@@ -38,9 +38,8 @@ import Strings from '../../../res/strings'
 import CourseRatingTab from '../CourseContent/course-rating-screen'
 import { CRating, AirRating } from '../../Common/Rating/c-rating'
 import CChip from '../../Common/Container/c-chip'
-import { RootNavigation } from '../../../routes/navigations/root-navigation'
 import SectionCourses from '../SectionCourses/section-courses'
-import CourseAssignmentTab from '../CourseContent/course-assignment-tab'
+import { ActivityIndicator } from 'react-native-paper'
 
 const Tab = createMaterialTopTabNavigator()
 
@@ -60,9 +59,12 @@ const CourseDetail = ({ route, navigator }) => {
 
     const [status, setStatus] = useState(Status.idle())
 
+    const [getVideoUrl, setGetVideoUrl] = useState(Status.idle())
+
     useEffect(() => {
 
         setStatus(courseState.status[`${DO_GET_COURSE_DETAIL_COURSE_ACTION}${courseId}`])
+        setGetVideoUrl(courseState.status[`${DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION}`])
 
         return () => {
             //dispatch(DoGetMyCoursesCourseAction())
@@ -80,6 +82,9 @@ const CourseDetail = ({ route, navigator }) => {
 
     const onTapLessonItem = (lesson) => {
         setCurrentVideoUri(lesson.videoUrl)
+        if (lesson.videoName?.includes('.mp4') || lesson.videoName?.includes('.mov')) {
+            dispatch(DoGetCourseLessonVideoCourseAction(course.id, lesson.id))
+        }
     }
 
     const CourseOverview = () => {
@@ -173,12 +178,13 @@ const CourseDetail = ({ route, navigator }) => {
     }
 
     const buildVideoView = () => {
-        const isExposedVideoFile = currentVideoUri != undefined && currentVideoUri.endsWith('.mp4')
+        const isExposedVideoFile = currentVideoUri != undefined && (currentVideoUri.endsWith('.mp4') || currentVideoUri.includes('.mov'))
         const isYoutubeVideo = currentVideoUri != undefined && currentVideoUri.includes('https://youtube')
 
         if (isExposedVideoFile) {
-            return <CExpoVideoView
-                uri={currentVideoUri} />
+            const loadStatus = getVideoUrl?.loadStatus ?? LoadStatus.loading
+            return loadStatus == LoadStatus.loading ? <ActivityIndicator /> : loadStatus == LoadStatus.success ? <CExpoVideoView
+                uri={courseState.videoUrl} /> : <View />
         }
 
         if (isYoutubeVideo) {

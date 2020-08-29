@@ -18,7 +18,9 @@ import {
     DO_GET_FREE_COURSE_COURSE_ACTION,
     DO_GET_MY_COURSES_COURSE_COURSE_ACTION,
     SetAddMyCoursesCourseAction,
-    DoGetMyCoursesCourseAction
+    DoGetMyCoursesCourseAction,
+    DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION,
+    SetCurrentVideoMp4CourseAction
 } from './actions'
 import { Status } from '../../core/status'
 import { CourseRepo } from './repo/course-repo';
@@ -271,6 +273,19 @@ function* getMyCourses(action) {
     }
 }
 
+function* getCourseLessonVideo(action) {
+    const statusKey = DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION;
+
+    try {
+        yield put(SetStatusCourseAction(statusKey, Status.loading()))
+        const res = yield CourseRepo.getCourseLessonVideo(action.payload.courseId, action.payload.lessonId)
+        yield put(SetCurrentVideoMp4CourseAction(res.data.payload.videoUrl))
+        yield put(SetStatusCourseAction(statusKey, Status.success(res.data.message, res.data.payload.videoUrl)))
+    } catch (e) {
+        yield put(SetStatusCourseAction(statusKey, Status.error(e.message)))
+    }
+}
+
 function* courseMiddleware() {
     yield takeEvery(DO_GET_TOTAL_NUMER_COURSES_COURSE_ACTION, getTotalNumberCourse);
     yield takeEvery(DO_GET_TOP_NEW_COURSE_ACTION, getTopNewCourse);
@@ -284,6 +299,7 @@ function* courseMiddleware() {
     yield takeEvery(DO_GET_FAVOURITES_COURSE_ACTION, getFavouriteCourses);
     yield takeEvery(DO_GET_FREE_COURSE_COURSE_ACTION, getFreeCourse);
     yield takeEvery(DO_GET_MY_COURSES_COURSE_COURSE_ACTION, getMyCourses);
+    yield takeEvery(DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION, getCourseLessonVideo);
 }
 
 export { courseMiddleware }

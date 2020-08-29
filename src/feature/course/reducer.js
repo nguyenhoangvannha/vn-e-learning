@@ -4,11 +4,18 @@ import {
     SET_FAVOURITES_COURSE_ACTION,
     SET_CURRENT_COURSE_ID_COURSE_ACTION,
     SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION,
-    SET_ADD_MY_COURSES_COURSE_ACTION
+    SET_ADD_MY_COURSES_COURSE_ACTION,
+    SET_CURRENT_VIDEO_MP4_COURSE_ACTION
 } from "./actions";
 
 export const courseReducer = (courseState, action) => {
     switch (action.type) {
+        case SET_CURRENT_VIDEO_MP4_COURSE_ACTION:
+            return {
+                ...courseState,
+                videoUrl: action.payload.videoUrl
+            }
+            break;
         case SET_ADD_MY_COURSES_COURSE_ACTION:
             return {
                 ...courseState,

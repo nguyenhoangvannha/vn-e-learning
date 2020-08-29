@@ -89,6 +89,12 @@ const getMyCourses = () => {
     return apiClient.get(`user/get-process-courses`, body);
 }
 
+const getCourseLessonVideo = (courseId, lessonId) => {
+    var body = {
+    }
+    return apiClient.get(`lesson/video/${courseId}/${lessonId}`, body);
+}
+
 const CourseRepo = {
     getTotalNumerCourses: getTotalNumerCourses,
     getTopNewCourses: getTopNewCourses,
@@ -102,6 +108,7 @@ const CourseRepo = {
     getFavouriteCourses: getFavouriteCourses,
     getFreeCourse: getFreeCourse,
     getMyCourses: getMyCourses,
+    getCourseLessonVideo: getCourseLessonVideo,
 }
 
 export {

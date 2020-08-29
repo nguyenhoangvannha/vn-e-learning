@@ -27,6 +27,7 @@ export const courseState = () => {
         continuesLearningIds: [],
         myCourses: {
 
-        }
+        },
+        videoUrl: '',
     }
 }

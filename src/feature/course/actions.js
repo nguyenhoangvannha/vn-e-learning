@@ -23,6 +23,28 @@ export const SET_ADD_CONTINUES_LEARNING_ID_COURSE_ACTION = 'SET_ADD_CONTINUES_LE
 export const DO_GET_FREE_COURSE_COURSE_ACTION = 'DO_GET_FREE_COURSE_COURSE_ACTION'
 export const DO_GET_MY_COURSES_COURSE_COURSE_ACTION = 'DO_GET_MY_COURSES_COURSE_COURSE_ACTION'
 export const SET_ADD_MY_COURSES_COURSE_ACTION = 'SET_ADD_MY_COURSES_COURSE_ACTION'
+export const DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION = 'DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION'
+export const SET_CURRENT_VIDEO_MP4_COURSE_ACTION = 'SET_CURRENT_VIDEO_MP4_COURSE_ACTION'
+
+export const SetCurrentVideoMp4CourseAction = (videoUrl) => {
+    return {
+        type: SET_CURRENT_VIDEO_MP4_COURSE_ACTION,
+        payload: {
+            videoUrl: videoUrl
+        }
+    }
+}
+
+export const DoGetCourseLessonVideoCourseAction = (courseId, lessonId) => {
+    return {
+        type: DO_GET_COURSE_LESSON_VIDEO_COURSE_ACTION,
+        payload: {
+            courseId: courseId,
+            lessonId: lessonId,
+        }
+    }
+}
+
 
 export const SetAddMyCoursesCourseAction = (courses) => {
     return {
